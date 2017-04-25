@@ -1,59 +1,49 @@
 <?php
 namespace backend\models;
 
-use common\models\User;
-use backend\models\Profile;
 use yii\base\Model;
-use Yii;
+use common\models\User;
+use backend\models\Role;
 
 /**
  * Signup form
  */
-class SignupForm extends Model
-{
+class SignupForm extends Model {
     public $username;
     public $email;
     public $password;
-    public $tipo_user;
-    /*public $nome;
-    public $apelido;*/
+    public $country_id;
+    public $permissions;
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Este utilizador nao esta disponivel.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            /*['nome', 'required'],
-            ['apelido', 'required'],
-            [['nome', 'apelido'], 'string', 'max' => 100],
-            [['nome', 'apelido'], 'safe'],*/
-            
-            ['tipo_user', 'integer'],
-
-            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Este email nao esta disponivel.'],
 
-            ['password', 'required'],
+            ['country_id', 'required'],
+            ['permissions', 'safe'],
+
+            ['password', 'required', 'message' => 'A password e obrigatoria'],
             ['password', 'string', 'min' => 6],
         ];
     }
 
     /**
      * Signs user up.
-     *
      * @return User|null the saved model or null if saving fails
      */
-    public function signup()
-    {
+    public function signup() {
         if (!$this->validate()) {
             return null;
         }
@@ -61,27 +51,10 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
-
-        /*$user->nome = $this->nome;
-        $user->apelido = $this->apelido;*/
-
-
+        $user->country_id = $this->country_id;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         
         return $user->save() ? $user : null;
-    }
-
-
-    public function getUsers(){
-        return $model = User::find()->all();
-    }
-
-    public function profileIdProfile($id){
-        
-        $model = Profile::find()->where(['user_id'=>$id])->one();
-
-            if($model)
-                return $model->name;
     }
 }

@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "auth_item".
@@ -20,23 +21,26 @@ use Yii;
  * @property AuthItemChild[] $authItemChildren
  * @property AuthItemChild[] $authItemChildren0
  */
-class Role extends \yii\db\ActiveRecord
-{
+class Role extends \yii\db\ActiveRecord {
     public $children;
 
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'auth_item';
+    }
+
+    public function behaviors() {
+        return [
+            TimestampBehavior::className()
+        ];
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'type'], 'required'],
             [['type', 'created_at', 'updated_at'], 'integer'],
