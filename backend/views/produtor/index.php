@@ -11,8 +11,7 @@ $this->title = 'User Produtors';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-produtor-index">
-
-    <p><a href="index.php?r=user-produtor%2Fcreate" class="btn btn-primary bt">Criar produtor</a></p>
+    <p><a href="index.php?r=produtor%2Fcreate" class="btn btn-primary bt">Criar produtor</a></p>
     <br>
     <div class="row">
         <?php foreach ($data as $key => $model_): ?>

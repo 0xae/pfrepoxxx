@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Produtor;
-use backend\models\ProdutorSearch;
+use backend\models\UserProdutor;
+use backend\models\UserProdutorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -17,8 +17,16 @@ use backend\models\ResetPasswordForm;
 use backend\models\SignupForm;
 
 use backend\models\User;
+use backend\models\Produtor;
+use backend\models\Marca;
+use yii\web\UploadedFile;
 
+
+/**
+ * UserProdutorController implements the CRUD actions for UserProdutor model.
+ */
 class ProdutorController extends Controller {
+
     public function behaviors() {
         return [
             'access' => [
@@ -29,7 +37,7 @@ class ProdutorController extends Controller {
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'update', 'registar', 'profile', 'block', 'delete'],
+                        'actions' => ['index', 'update', 'create', 'profile', 'block', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -45,19 +53,19 @@ class ProdutorController extends Controller {
     }
 
     /**
-     * Lists all Produtor models.
+     * Lists all UserProdutor models.
      * @return mixed
      */
     public function actionIndex() {
-        $dataProvider = Produtor::find();
+        $models = Produtor::getUsersProdutors(Yii::$app->user->identity->id);
 
         return $this->render('index', [
-            'data' => $dataProvider->all()
+            'models' => $models,
         ]);
     }
 
     /**
-     * Displays a single Produtor model.
+     * Displays a single UserProdutor model.
      * @param integer $id
      * @return mixed
      */
@@ -67,32 +75,95 @@ class ProdutorController extends Controller {
         ]);
     }
 
-    /**
-     * Creates a new Produtor model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate() {
-        $model = new Produtor();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
+    public function actionBlock($id) {
+        $model = $this->findModelUser($id);
+
+        if($model->blocked_at){
+            
+            $model->blocked_at = '';
+            $model->save();
+            Yii::$app->session->setFlash('success', 'User has been unblocked!');
+        }else{
+
+            date_default_timezone_set('Atlantic/Cape_Verde');
+            $model->blocked_at = date('Y-m-d', time());
+            $model->save();
+            Yii::$app->session->setFlash('error', 'User has been blocked!');
+        }
+
+            return $this->render('_update', [
                 'model' => $model,
             ]);
-        }
+    }
+
+
+
+    public function actionDelete($id)
+    {
+        
+
+        $model = $this->findModelUser($id);
+        $model->status = 0;
+        $model->save();
+
+        $produtor = $this->findModelProdutor($id);
+        $produtor->estado = 0;
+        $produtor->save();
+
+        Yii::$app->session->setFlash('error', 'User has been deleted!');
+
+        
+        $models = Produtor::getUsersProdutors(Yii::$app->user->identity->id);
+        $model = new UserProdutor();
+
+        return $this->render('index', [
+            'models' => $models,
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Updates an existing Produtor model.
+     * Creates a new UserProdutor model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new SignupForm();
+        $produtor = new Produtor();
+
+        if ($model->load(Yii::$app->request->post()) && $produtor->load(Yii::$app->request->post()) ) {
+            $model->tipo_user = 3;
+            if ($user = $model->signup()) {
+                //$marca->file = UploadedFile::getInstance($marca, 'file');
+                //$ext = end((explode(".", $marca->file)));
+                //$generateRandomName = Yii::$app->security->generateRandomString().".{$ext}";
+                //$marca->file->saveAs('uploads/marca/'.$generateRandomName);
+                //$marca->logo = 'uploads/marca/'.$generateRandomName;
+                //$marca->estado = $marca::STATUS_ACTIVE;
+                //$marca->save();
+
+                if($produtor->save()){
+                    return $this->redirect(['update', 'id' => $produtor->idprodutor]);
+                }
+            }
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'produtor' => $produtor,
+        ]);
+    }
+
+    /**
+     * Updates an existing UserProdutor model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id) {
-        $model = User::findModel($id);
-
+        $model = $this->findModelUser($id);
         if ($model->load(Yii::$app->request->post())) {
             if($model->password){
                 $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
@@ -108,34 +179,52 @@ class ProdutorController extends Controller {
         ]);
     }
 
-    /**
-     * Deletes an existing Produtor model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id) {
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
-    }
 
+    public function actionProfile($id) {
+        $profile = $this->findModelProdutor($id);
+        $model = $this->findModelUser($id);
+        $_dataMarca = Marca::getMarcas();
+
+        if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
+            Yii::$app->session->setFlash('success', "success");
+        }
+
+        return $this->render('_profile', [
+            'profile' => $profile,
+            'model' => $model,
+            '_dataMarca' => $_dataMarca,
+        ]);
+    }
+    
     /**
-     * Finds the Produtor model based on its primary key value.
+     * Finds the UserProdutor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Produtor the loaded model
+     * @return UserProdutor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
-        if (($model = Produtor::findOne($id)) !== null) {
+    protected function findModel($id)
+    {
+        if (($model = UserProdutor::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 
-    protected function findModelUser($id) {
-        if (($model = User::findOne($id)) !== null) {
+    protected function findModelUser($id)
+    {
+        if (($model = User::find()->where(['id' => $id, 'status' => 10])->One()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+
+    protected function findModelProdutor($id)
+    {
+        if (($model = Produtor::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
