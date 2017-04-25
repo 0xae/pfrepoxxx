@@ -14,20 +14,6 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <!--
-    <?php
-        echo '<label class="control-label">Pa&iacute;s</label>';
-        echo Select2::widget([
-            'model' => $model,
-            'attribute' => 'country_id',
-            'data' => $_dataCountries,
-            'options' => ['placeholder' => 'Selecione o pais ...'],
-            'pluginOptions' => ['allowClear' => false],
-        ]);
-        echo '<br/>';
-    ?>
-    -->
-
     <?php
         echo '<label class="control-label">Permissoes</label>';
         echo Select2::widget([
