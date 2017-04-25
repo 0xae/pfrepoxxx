@@ -183,4 +183,13 @@ return array (
       '@kartik/date' => $vendorDir . '/kartik-v/yii2-widget-datepicker',
     ),
   ),
+  'kartik-v/yii2-field-range' => 
+  array (
+    'name' => 'kartik-v/yii2-field-range',
+    'version' => '1.3.1.0',
+    'alias' => 
+    array (
+      '@kartik/field' => $vendorDir . '/kartik-v/yii2-field-range',
+    ),
+  ),
 );

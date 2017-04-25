@@ -32,7 +32,7 @@ class BusinessController extends Controller {
                     [
                         'allow' => true,
                         'actions' => ['index', 'create', 'view', 'update', 'add-producer', 'remove-producer'],
-                        'roles' => ['@']
+                        'roles' => ['passafree_staff', 'admin']
                     ],
                     [
                         'allow' => true,
@@ -49,12 +49,9 @@ class BusinessController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $query = Business::find();
-        if (!Yii::$app->user->can('admin')) {
-            $query = $query->where(['responsable' => Yii::$app->user->identity->id]);
-        }
-
-        $dataProvider = $query->all();
+        $dataProvider = new ActiveDataProvider([
+            'query' => Business::find()
+        ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

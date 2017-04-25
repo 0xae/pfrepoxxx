@@ -23,6 +23,7 @@ return array(
     'kartik\\plugins\\depdrop\\' => array($vendorDir . '/kartik-v/dependent-dropdown'),
     'kartik\\grid\\' => array($vendorDir . '/kartik-v/yii2-grid'),
     'kartik\\file\\' => array($vendorDir . '/kartik-v/yii2-widget-fileinput'),
+    'kartik\\field\\' => array($vendorDir . '/kartik-v/yii2-field-range'),
     'kartik\\depdrop\\' => array($vendorDir . '/kartik-v/yii2-widget-depdrop'),
     'kartik\\date\\' => array($vendorDir . '/kartik-v/yii2-widget-datepicker'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),

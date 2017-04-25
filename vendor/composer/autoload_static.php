@@ -40,6 +40,7 @@ class ComposerStaticInit0775b8261e0838f4666214c3746ec667
             'kartik\\plugins\\depdrop\\' => 23,
             'kartik\\grid\\' => 12,
             'kartik\\file\\' => 12,
+            'kartik\\field\\' => 13,
             'kartik\\depdrop\\' => 15,
             'kartik\\date\\' => 12,
             'kartik\\base\\' => 12,
@@ -129,6 +130,10 @@ class ComposerStaticInit0775b8261e0838f4666214c3746ec667
         'kartik\\file\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput',
+        ),
+        'kartik\\field\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-field-range',
         ),
         'kartik\\depdrop\\' => 
         array (
