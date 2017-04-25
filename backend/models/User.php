@@ -42,8 +42,7 @@ class User extends \yii\db\ActiveRecord {
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
 
-            ['password', 'string', 'min' => 6],
-            ['country_id', 'safe']
+            ['password', 'string', 'min' => 6]
         ];
     }
 
