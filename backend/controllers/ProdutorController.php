@@ -21,7 +21,6 @@ use backend\models\Produtor;
 use backend\models\Marca;
 use yii\web\UploadedFile;
 
-
 /**
  * UserProdutorController implements the CRUD actions for UserProdutor model.
  */
@@ -60,7 +59,7 @@ class ProdutorController extends Controller {
         $models = Produtor::getUsersProdutors(Yii::$app->user->identity->id);
 
         return $this->render('index', [
-            'models' => $models,
+            'data' => $models,
         ]);
     }
 
