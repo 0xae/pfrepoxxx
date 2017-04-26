@@ -10,15 +10,18 @@ use yii\grid\GridView;
 $this->title = 'User Produtors';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="produtor-index">
+<div class="user-produtor-index">
 
-    <p><a href="index.php?r=produtor%2Fcreate" class="btn btn-success bt">Criar User produtor</a></p>
+    <p><a href="index.php?r=user-produtor%2Fcreate" class="btn btn-success bt">Criar User produtor</a></p>
     <br>
     <div class="row">
-    <?php foreach ($data as $key => $model_): ?>
+    <?php
+            if($models){
+
+                foreach ($models as $key => $model_) { ?>
 
                     <div class="col-md-3">
-                        <a href="?r=produtor%2Fupdate&id=<?php echo $model_['idprodutor']; ?>"> 
+                        <a href="?r=user-produtor%2Fupdate&id=<?php echo $model_['idprodutor']; ?>"> 
                             <div class="fundo_marca">
                                 <div class="fundo_logo">
                                     <img class="img-responsive" src="uploads/others/usersemfoto.png">
@@ -29,13 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?php 
                                             if($model_['nome'])
                                                 echo $model_['nome'].' '.$model_['apelido'];
+                                            else
+                                                echo $nome = $model->loadModelUserProdutor($model_['idprodutor']);
                                         ?>
                                     </span>
                                     <div class="marca-separator"></div>
                                     
                                 </div>
+                            
+                             
                         </a>
                     </div>
-       <?php endforeach; ?>
+               <?php }
+
+            }
+        ?>
     </div>
 </div>

@@ -9,7 +9,7 @@ $this->title = 'Atualizar Conta Produtor';
 $this->params['breadcrumbs'][] = ['label' => 'Produtor', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php $this->beginContent('@app/views/produtor/_base_.php', ['model' => $model]) ?>
+<?php $this->beginContent('@app/views/user-produtor/_base_.php', ['model' => $model]) ?>
 
 
 <?php $form = ActiveForm::begin([

@@ -38,13 +38,12 @@ class AdminLoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
-    public function validatePassword($attribute, $params)
-    {
+    public function validatePassword($attribute, $params) {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Verifique os seus credenciais.');
             }
             elseif (!$user || $user->blocked_at != "") {
                 $this->addError('username', 'Your account has been blocked.');
@@ -52,8 +51,6 @@ class AdminLoginForm extends Model
             elseif (!$user || $user->status==0) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
-
-            
         }
     }
 
@@ -62,8 +59,7 @@ class AdminLoginForm extends Model
      *
      * @return boolean whether the user is logged in successfully
      */
-    public function login()
-    {
+    public function login() {
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 20 * 20 * 20 : 0);
         } else {
@@ -76,12 +72,8 @@ class AdminLoginForm extends Model
      *
      * @return User|null
      */
-    protected function getUser()
-    {
-        if ($this->_user === null) {
-            $this->_user = Admin::findByUsername($this->username);
-        }
-
+    protected function getUser() {
+        $this->_user = Admin::findByUsername($this->username);
         return $this->_user;
     }
 }

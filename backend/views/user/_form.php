@@ -13,6 +13,7 @@ use kartik\select2\Select2;
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
 
     <?php
         echo '<label class="control-label">Permissoes</label>';

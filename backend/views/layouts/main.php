@@ -15,6 +15,7 @@ use kartik\sidenav\SideNav;
 //AppAsset::register($this);
 DashboardAsset::register($this);
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -108,6 +109,12 @@ DashboardAsset::register($this);
 
             <li class="treeview">
               <a href="index.php?r=analytics">
+                <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
+              </a>
+            </li>
+
+            <li class="treeview">
+              <a href="index.php?r=user-produtor">
                 <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>

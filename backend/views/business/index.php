@@ -16,9 +16,7 @@ $this->title = 'Businesses';
     </p>
 <?php endif; ?>
 
-<?php
-
-echo GridView::widget([
+<?php echo GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
         'id',

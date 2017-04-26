@@ -30,7 +30,6 @@ class Produtor extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['nome'], 'required'],
             [['marca_idmarca', 'estado'], 'integer'],
             [['nome', 'apelido', 'foto'], 'string', 'max' => 100],
             [['public_email', 'sexo', 'telefone'], 'string', 'max' => 45]
@@ -43,13 +42,13 @@ class Produtor extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'idprodutor' => 'Idprodutor',
-            'marca_idmarca' => 'Marca',
+            'marca_idmarca' => 'Marca Idmarca',
             'nome' => 'Nome',
             'apelido' => 'Apelido',
-            'public_email' => 'Email',
+            'public_email' => 'Public Email',
             'sexo' => 'Sexo',
             'telefone' => 'Telefone',
-            'foto' => 'Foto',
+            'foto' => 'foto',
             'estado' => 'Estado',
         ];
     }
