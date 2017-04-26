@@ -1,4 +1,5 @@
 backend/runtime/*
 fronted/runtime/*
 *.swp
+*.swn
 Thumbs.db
