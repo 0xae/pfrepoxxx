@@ -49,12 +49,10 @@ class BusinessController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Business::find()
-        ]);
+        $data = Business::find()->all();
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'data' => $data,
         ]);
     }
 

@@ -10,32 +10,31 @@ use yii\grid\GridView;
 $this->title = 'User Produtors';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="produtor-index">
-
-    <p><a href="index.php?r=produtor%2Fcreate" class="btn btn-success bt">Criar User produtor</a></p>
+<div class="user-produtor-index">
+    <p><a href="index.php?r=produtor%2Fcreate" class="btn btn-primary bt">Criar produtor</a></p>
     <br>
     <div class="row">
-    <?php foreach ($data as $key => $model_): ?>
-
-                    <div class="col-md-3">
-                        <a href="?r=produtor%2Fupdate&id=<?php echo $model_['idprodutor']; ?>"> 
-                            <div class="fundo_marca">
-                                <div class="fundo_logo">
-                                    <img class="img-responsive" src="uploads/others/usersemfoto.png">
-                                </div>
-                            </div>      
-                                <div class="text-center" style="margin-top:10px;">
-                                    <span style="color: green">
-                                        <?php 
-                                            if($model_['nome'])
-                                                echo $model_['nome'].' '.$model_['apelido'];
-                                        ?>
-                                    </span>
-                                    <div class="marca-separator"></div>
-                                    
-                                </div>
-                        </a>
+        <?php foreach ($data as $key => $model_): ?>
+            <div class="col-md-3">
+                <a href="?r=produtor%2Fupdate&id=<?php echo $model_['idprodutor']; ?>"> 
+                    <div class="fundo_marca">
+                        <div class="fundo_logo">
+                            <img class="img-responsive" src="uploads/others/usersemfoto.png">
+                        </div>
+                    </div>      
+                    <div class="text-center" style="margin-top:10px;">
+                        <span>
+                            <?php 
+                                if($model_['nome'])
+                                    echo $model_['nome'].' '.$model_['apelido'];
+                                else
+                                    echo $nome = $model->loadModelUserProdutor($model_['idprodutor']);
+                            ?>
+                        </span>
+                        <div class="marca-separator"></div>
                     </div>
-       <?php endforeach; ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>

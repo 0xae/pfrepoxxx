@@ -84,7 +84,7 @@ class MarcaController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             
                 $model->estado = $model::STATUS_ACTIVE;
-
+                /*
                 $model->file = UploadedFile::getInstance($model, 'file');
                 
                 $ext = end((explode(".", $model->file)));
@@ -92,6 +92,7 @@ class MarcaController extends Controller
 
                 $model->file->saveAs('uploads/marca/'.$generateRandomName);
                 $model->logo = 'uploads/marca/'.$generateRandomName;
+                 */
 
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->idmarca]);
@@ -118,6 +119,7 @@ class MarcaController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             
+            /*
             $model->file = UploadedFile::getInstance($model, 'file');
 
             if($model->file){
@@ -128,6 +130,7 @@ class MarcaController extends Controller
                 $model->file->saveAs('uploads/marca/'.$generateRandomName);
                 $model->logo = 'uploads/marca/'.$generateRandomName;
             }
+             */
 
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->idmarca]);

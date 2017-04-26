@@ -73,14 +73,11 @@ class UserController extends Controller {
         }
 
         $model->permissions = [];
-        $data = Country::find()->asArray()->all();
-        $countries = ArrayHelper::map($data, 'id', 'name');
-        $model->country_id = 1; # default to Cape Verde
         $permissionData = ArrayHelper::map(Role::find()->all(),'name','name');
 
         return $this->render('create', [
             'model' => $model,
-            '_dataCountries' => $countries,
+            'userPermissions' => [],
             '_dataPermissions' => $permissionData
         ]);
     }
@@ -102,14 +99,12 @@ class UserController extends Controller {
             return $this->redirect(['update', 'id'=>$model->id]);
         } else {
             $data = Country::find()->asArray()->all();
-            $countries = ArrayHelper::map($data, 'id', 'name');
             $permissionData = ArrayHelper::map(Role::find()->all(),'name','name');
             $userPermissions = ArrayHelper::map($auth->getRolesByUser($model->id), 'name', 'name');
 
             return $this->render('update', [
                 'model' => $model,
                 'userPermissions' => $userPermissions,
-                '_dataCountries' => $countries,
                 '_dataPermissions' => $permissionData
             ]);
         }

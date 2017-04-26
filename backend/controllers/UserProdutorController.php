@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
@@ -17,13 +18,13 @@ use backend\models\UserProdutorSearch;
 use backend\models\User;
 use backend\models\Produtor;
 use backend\models\Marca;
+use backend\models\Business;
 
 
 /**
  * UserProdutorController implements the CRUD actions for UserProdutor model.
  */
 class UserProdutorController extends Controller {
-
     public function behaviors() {
         return [
             'access' => [
@@ -74,7 +75,6 @@ class UserProdutorController extends Controller {
         ]);
     }
 
-
     public function actionBlock($id) {
         $model = $this->findModelUser($id);
 
@@ -93,7 +93,6 @@ class UserProdutorController extends Controller {
             'model' => $model,
         ]);
     }
-
 
     public function actionDelete($id) {
         $model = $this->findModelUser($id);
@@ -132,9 +131,9 @@ class UserProdutorController extends Controller {
                 return $this->redirect(['update', 'id' => $produtor->idprodutor]);
             }
         }
-
+        
         return $this->render('create', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 
@@ -157,6 +156,7 @@ class UserProdutorController extends Controller {
             }
         }
 
+        $business = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         return $this->render('_update', [
             'model' => $model,
         ]);
@@ -172,10 +172,12 @@ class UserProdutorController extends Controller {
             Yii::$app->session->setFlash('success', "success");
         }
 
+        $business = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         return $this->render('_profile', [
-            'profile' => $profile,
             'model' => $model,
+            'profile' => $profile,
             '_dataMarca' => $_dataMarca,
+            '_dataBusiness' => $business
         ]);
     }
 

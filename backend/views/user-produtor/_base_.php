@@ -1,9 +1,7 @@
 <?php
 use yii\bootstrap\Nav;
 use backend\models\User;
-
 ?>
-
 
 <h4>Manage Your Account</a></h4>    
 <div class="category-form" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px; background: #fafafa;">
@@ -19,12 +17,7 @@ use backend\models\User;
                         ['label' => 'Detalhes da Conta', 'url' => ['/user-produtor/update', 'id' => $model->id]],
                         ['label' => 'Detalhes do perfil', 'url' => ['/user-produtor/profile', 'id' => $model->id]],
                         //['label' => 'Privilégios', 'url' => ['/artista/previlegio', 'id' => $model->id]],
-
                         '<hr>',
-
-
-
-
                         [
                             'label' => ('Bloquear Utilizador'),
                             'url'   => ['/user-produtor/block', 'id' => $model->id],
@@ -45,11 +38,6 @@ use backend\models\User;
                                 'data-confirm' => 'Are you sure you want to unblock this user?',
                             ],
                         ],
-
-
-
-
-
                         [
                             'label' => 'Apagar Utilizador',
                             'url'   => ['/user-produtor/delete', 'id' => $model->id],

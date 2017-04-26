@@ -10,12 +10,10 @@ $this->params['breadcrumbs'][] = ['label' => 'User Produtors', 'url' => ['index'
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="produtor-update">
+<div class="user-produtor-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?= $this->render('_form', ['model' => $model]) ?>
 
 </div>

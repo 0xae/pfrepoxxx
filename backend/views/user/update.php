@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $model->username;
     <?= $this->render('_form', [
         'model' => $model,
         'userPermissions' => $userPermissions,
-        '_dataCountries' => $_dataCountries,
         '_dataPermissions' => $_dataPermissions
     ]) ?>
 
