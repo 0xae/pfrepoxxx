@@ -16,8 +16,8 @@ use backend\models\User;
                         'class' => 'nav-pills nav-stacked',
                     ],
                     'items' => [
-                        ['label' => 'Detalhes da Conta', 'url' => ['/produtor/update', 'id' => $model->id]],
-                        ['label' => 'Detalhes do perfil', 'url' => ['/produtor/profile', 'id' => $model->id]],
+                        ['label' => 'Detalhes da Conta', 'url' => ['/user-produtor/update', 'id' => $model->id]],
+                        ['label' => 'Detalhes do perfil', 'url' => ['/user-produtor/profile', 'id' => $model->id]],
                         //['label' => 'Privilégios', 'url' => ['/artista/previlegio', 'id' => $model->id]],
 
                         '<hr>',
@@ -27,7 +27,7 @@ use backend\models\User;
 
                         [
                             'label' => ('Bloquear Utilizador'),
-                            'url'   => ['/produtor/block', 'id' => $model->id],
+                            'url'   => ['/user-produtor/block', 'id' => $model->id],
                             'visible' => !$model->blocked_at,
                             'linkOptions' => [
                                 'class' => 'text-danger',
@@ -37,7 +37,7 @@ use backend\models\User;
                         ],
                         [
                             'label' => 'Desbloquear Utilizador',
-                            'url'   => ['/produtor/block', 'id' => $model->id],
+                            'url'   => ['/user-produtor/block', 'id' => $model->id],
                             'visible' => $model->blocked_at,
                             'linkOptions' => [
                                 'class' => 'text-success',
@@ -52,7 +52,7 @@ use backend\models\User;
 
                         [
                             'label' => 'Apagar Utilizador',
-                            'url'   => ['/produtor/delete', 'id' => $model->id],
+                            'url'   => ['/user-produtor/delete', 'id' => $model->id],
                             'linkOptions' => [
                                 'class' => 'text-danger',
                                 'data-method' => 'post',
