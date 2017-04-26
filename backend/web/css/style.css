@@ -159,7 +159,7 @@
 	line-height: normal;
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
 }
-.info_cartaz .fundo_circle span, .proximo_evento h4, .pagination > li > a, .user_contatos h2, .modalpopup .modal-body h4 span:first-child, .popupcriarbilhete h4.modal-title, .escudo h2
+.info_cartaz .fundo_circle span, .proximo_evento h4, .pagination > li > a, .user_contatos h2, .modalpopup .modal-body h4 span:first-child, .popupcriarbilhete h4.modal-title, .escudo h2, .pagebusiness .accountingbox table tr td
 {
 	font-family: "DINBlack", Helvetica, Arial, sans-serif !important;
 }
@@ -338,7 +338,7 @@
 	background-color: #f7f7f7;
 	cursor: pointer;
 }
-.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs, .business-create .nav-tabs > li a
+.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs, .business-create .nav-tabs > li a, .nav > li > a:active
 {
 	border: none;
 }
@@ -420,9 +420,20 @@
 	background-color: transparent !important;
 	border: none;
 }
-.info_next_event .col-md-12 .col-md-1, .accountngpage .panel.accountingbox .col-md-6
+.info_next_event .col-md-12 .col-md-1, .accountngpage .accountingbox .col-md-6
 {
 	padding:0;
+}
+.accountngpage .accountingbox .col-md-6:last-child
+{
+	padding: 100px;
+}
+.accountngpage .accountingbox .col-md-6 .graficoacounting
+{
+	background-color: #e0e0e0;
+	width:300px;
+	height: 300px;
+	border-radius: 50%;
 }
 .info_next_event .col-md-12 .col-md-1 .diaevento
 {
@@ -865,9 +876,25 @@
 {
 	border-right:1px solid #ddd;
 }
+.pagebusiness .panel-body table tr td div
+{
+	float:left;
+}
 .pagebusiness .panel-body table tr td div:first-child
 {
-	border:1px dashed #f00;
+	width: 70%;
+}
+.pagebusiness .panel-body table tr td div:last-child
+{
+	width: 30%;
+}
+.pagebusiness .panel-body table tr td.childtd
+{
+	font-family: "DINRegular", Helvetica, Arial, sans-serif !important;
+}
+.pagebusiness .panel-body table tr td.childtd div:first-child
+{
+	padding-left: 50px;
 }
 .pagebusiness .col-md-3 a .panel:hover, .pagebusiness .col-md-3 a .panel:focus
 {

@@ -70,8 +70,62 @@ $this->title = 'Accounting';
 						<tbody>
 							<tr>
 								<td>
-									<div>Mark</div>
-									<div>Mark</div>
+									<div>Opening Balance</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div>Revenue</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="childtd">
+									<div>Encoding Fees</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="childtd">
+									<div>Chargebacks</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div>Publishing</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="childtd">
+									<div>Full Track</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="childtd">
+									<div>Ringtones</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div>Adjustments</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div>Payment</div>
+									<div>ECV10.000.OO</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div>Outstand Balance</div>
+									<div>ECV10.000.OO</div>
 								</td>
 							</tr>
 						</tbody>
@@ -79,7 +133,7 @@ $this->title = 'Accounting';
 					</div>
 					<?php /*?>GRAFICO<?php */?>
 					<div class="col-md-6">
-
+						<div class="graficoacounting"></div>
 					</div>
 				</div>
 			</div>
