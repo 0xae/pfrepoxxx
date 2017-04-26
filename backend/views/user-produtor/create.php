@@ -2,6 +2,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Nav;
 use yii\helpers\Html;
+use kartik\select2\Select2;
 
 
 $this->title = 'Create a produtor account';

@@ -9,9 +9,10 @@ $this->title = 'Atualizar Conta Produtor';
 $this->params['breadcrumbs'][] = ['label' => 'Produtor', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
+
 ?>
 
-<?php $this->beginContent('@app/views/produtor/_base_.php', ['model' => $model]) ?>
+<?php $this->beginContent('@app/views/user-produtor/_base_.php', ['model' => $model]) ?>
 
 
 <?php $form = ActiveForm::begin([
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="form-group">
     <div class="col-lg-offset-3 col-lg-9">
-        <?= Html::submitButton('Editar', ['class' => 'glyphicon glyphicon-pencil btn btn-block btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-block btn-success criar']) ?>
     </div>
 </div>
 

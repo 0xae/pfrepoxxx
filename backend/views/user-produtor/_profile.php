@@ -24,10 +24,18 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 
-     <?php echo $form->field($profile, 'marca_idmarca')->widget(Select2::className(), [
-    'data' => $data = $_dataMarca,
-    'options' => ['placeholder' => 'Escolha a marca em que este pertence...', 'multiple' => false],
-    ]);?>
+    <?php
+        echo $form->field($profile, 'business_id')->widget(Select2::className(), [
+            'data' => $data = $_dataBusiness,
+            'options' => ['placeholder' => 'Clique para selecionar...', 'multiple' => false],
+        ])->label('Business');
+    ?>
+    <?php
+        echo $form->field($profile, 'marca_idmarca')->widget(Select2::className(), [
+            'data' => $data = $_dataMarca,
+            'options' => ['placeholder' => 'Clique para selecionar...', 'multiple' => false],
+        ])->label("Marca");
+    ?>
     <?= $form->field($profile, 'nome') ?>
     <?= $form->field($profile, 'apelido') ?>
     <?= $form->field($profile, 'public_email') ?>
@@ -38,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="form-group">
     <div class="col-lg-offset-3 col-lg-9">
-        <?= Html::submitButton('Editar', ['class' => 'glyphicon glyphicon-pencil btn btn-block btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-block btn-success']) ?>
     </div>
 </div>
 

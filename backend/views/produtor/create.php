@@ -2,6 +2,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Nav;
 use yii\helpers\Html;
+use kartik\file\FileInput;
+use kartik\select2\Select2;
 
 
 $this->title = 'Create a produtor account';
@@ -39,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div style="background:#fff; padding:10px; border:1px solid #eee;">
                 
                 <?php $form = ActiveForm::begin([
+                    'options' => ['enctype' => 'multipart/form-data'],
                     'id' => 'form-signup',
                     'layout' => 'horizontal',
                      'fieldConfig' => [
@@ -48,9 +51,38 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]); ?>
 
+                <?= $form->field($produtor, 'nome')->textInput(['maxlength' => true]) ?>
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
                 <?= $form->field($model, 'email') ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>
+
+                 <?php echo $form->field($marca, 'nome')->widget(Select2::className(), [
+                'data' => $_dataMarca,
+                'name' => 'choose_spoonser',
+                'maintainOrder' => true,
+                'options' => ['placeholder' => 'Selecionar Segmentação...', 'multiple' => false],
+                'pluginOptions' => [
+                    'tags' => true,
+                    //'maximumInputLength' => 25
+                ],]);
+
+                 ?>
+
+                <?php echo $form->field($marca, 'file')->widget(FileInput::classname(), [
+                'options' => ['accept' => 'image/*'],
+                ]); ?>
+
+                <?= $form->field($marca, 'telefone')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($marca, 'sede')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($marca, 'slogan')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($marca, 'email')->textInput(['maxlength' => true]) ?>
+
+
+                
+
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">

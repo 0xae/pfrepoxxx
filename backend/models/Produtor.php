@@ -30,7 +30,7 @@ class Produtor extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['marca_idmarca', 'estado'], 'integer'],
+            [['marca_idmarca', 'business_id', 'user_id', 'estado'], 'integer'],
             [['nome', 'apelido', 'foto'], 'string', 'max' => 100],
             [['public_email', 'sexo', 'telefone'], 'string', 'max' => 45]
         ];

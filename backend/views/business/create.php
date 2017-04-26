@@ -7,15 +7,9 @@ use yii\helpers\Html;
 /* @var $model backend\models\Business */
 
 $this->title = 'Business';
-/*
-$this->params['breadcrumbs'][] = ['label' => 'Businesses', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
- */
 ?>
 
-<?php /*?>PAGINA EDITAR BUSINESS<?php */?>
 <div class="container-fluid pagebusiness">
-	<?php /*?>///<?php */?>
 	<div class="row nomebusinessbt">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -26,11 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
 			</div>
 		</div>
 	</div>
-	<?php /*?>TITULO, BT<?php */?>
+
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<?php /*?>TITULO<?php */?>
 				<h4>
 					<div class="borderlefttitlo"></div><span>Bussiness</span>
 					<div class="nomebusinesscreate">
@@ -38,14 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
 						<span>Francis Johnsom, Cabo Verde</span>
 					</div>
 				</h4>
-				<?php /*?>BT<?php */?>
+
 				<div class="pageventbtngroup">
 					<a href="#" class="criar btn bt-primary">Criar Produtor</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<?php /*?>BOX CONTENT<?php */?>
+
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
