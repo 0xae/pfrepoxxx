@@ -1,80 +1,94 @@
 /*--- Font ---*/
-
+@font-face { 
+    font-family: 'DINRegular';
+    src: url('../../../font/din-regular-webfont.eot');
+    src: url('../../../font/din-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../font/din-regular-webfont.woff') format('woff'),
+         url('../../../font/din-regular-webfont.ttf') format('truetype'),
+         url('../../../font/din-regular-webfont.svg#DINRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 @font-face {
-  font-family: 'DINPro Black';
-  src: url('../font/DINPro-Black.woff2') format('woff2'),
-       url('../font/DINPro-Black.woff') format('woff'),
-       url('../font/DINPro-Black.otf') format('truetype');
+    font-family: 'DINBold';
+    src: url('../../../font/din-bold-webfont.eot');
+    src: url('../../../font/din-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../font/din-bold-webfont.woff') format('woff'),
+         url('../../../font/din-bold-webfont.ttf') format('truetype'),
+         url('../../../font/din-bold-webfont.svg#DINBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'DINLight';
+    src: url('../../../font/din-light-webfont.eot');
+    src: url('../../../font/din-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../font/din-light-webfont.woff') format('woff'),
+         url('../../../font/din-light-webfont.ttf') format('truetype'),
+         url('../../../font/din-light-webfont.svg#DINLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 @font-face {
-  font-family: 'DINPro Regular';
-  src: url('../font/DINPro-Regular.woff2') format('woff2'),
-       url('../font/DINPro-Regular.woff') format('woff'),
-       url('../font/DINPro-Regular.otf') format('truetype');
-}
+    font-family: 'DINBlack';
+    src: url('../../../font/din-black-webfont.eot');
+    src: url('../../../font/din-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../font/din-black-webfont.woff') format('woff'),
+         url('../../../font/din-black-webfont.ttf') format('truetype'),
+         url('../../../font/din-black-webfont.svg#DINBlack') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
+}
 /*--- /Font ---*/
-
-
-
 html,
-body {
+body 
+{
+    font-family:"DINRegular", Helvetica, Arial, sans-serif !important;
     height: 100%;
 }
 .perfil{
     background: #222;
     border-radius: 50%;
     overflow: hidden;
-    height: 130px;
-    width: 130px;
+    height: 100px;
+    width: 100px;
     margin: 0 auto;
     margin-bottom: 7%;
     margin-top: 21%;
 }
-.nome_user span{
-    color: #fff!important;
-    /*font-family: DINPro;*/
-    font-size: 30px;
-    font-weight: 900;
-    font-style: normal;
-    font-stretch: normal;
+.nome_user span
+{
+	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
+	margin-right: 8px;
+	line-height: 0;
 }
-.nome_user small{
-    color: #fff!important;
-    /*font-family: DINPro;*/
-    font-size: 16px;
+.nome_user small
+{
+    color: #F9F9F9!important;
+    font-size: 14px;
+	display: table;
+	width: 100%;
+	margin: 10px 0 30px 0;
 }
-.criar_evento{
-    background: #068141;
-    border-radius: 3px;
-    margin-top: 8%;
-    margin-right: 26%;
-    padding: 10px;
-}
-.criar_evento a{
-    color: #fff;
-    font-weight: 500%;
-    text-transform: uppercase;
-}
-.edit_acount{
-    background: #eeeeee;
-    border-radius: 3px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 #ffffff;
-    padding: 10px 20px;
-    margin: 0px 50px;
+.edit_acount
+{
+    background: #eee;
 }
 
-.edit_acount a{
+a.edit_acount{
     color: #282c37;
 }
 .logo img{
-    width: 80%;
+    width: 75%;
     margin-top: 12px;
 }
 .treeview a{
     color: #fff!important;
-    font-size: 15px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 .sidebar-menu .treeview{
@@ -87,12 +101,12 @@ body {
     margin-right: -23px;
 }
 .notification li i{
-    color: #fff;
-    font-size: 25px;
+    color: #EEE;
+    font-size: 24px;
 }
-.notification{
-    margin-top: 5%;
-    margin-bottom: 4%;
+.notification
+{
+	margin:50px 0;
 }
 .coment{
     float: left;
@@ -101,8 +115,6 @@ body {
     background: #e0dfdf;
     overflow: hidden;
     border-radius: 4px;
-    
-
 }
 .coment_text{
     background: #e0dfdf;
@@ -116,9 +128,10 @@ body {
     background: #d8d8d8;
     padding: 5px;
 }
-.fundo_user_bilh{
+.fundo_user_bilh
+{
     background: #f4f7fa;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 15px;
     margin-bottom: 30px;
 }
@@ -134,43 +147,128 @@ body {
     width: 150px;
     height: 150px;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 25px auto;
 }
-.serach_user input{
-    height: 50px;
-    background: #ecf0f1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-}
-.validate_bi{
+.validate_bi
+{
     background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.12);
-    height: auto;
+    border-radius: 3px;
     text-align: center;
 }
-
 .validate_bi img{
     width: 70%;
     margin: 0 auto;
 }
-.user_code img{
+.user_code img
+{
     width: 10%;
     border-radius: 50%;
     overflow: hidden;
     float: left;
-    margin-right: 15px;
+    margin-right: 10px;
 }
-.user_code{
-    padding: 15px;
+.user_code
+{
+    padding: 10px;
+	width: 100%;
+	display: table;
+}
+.user_code span:first-child
+{
+	float: left;
+	display: table;
+	width: 75%;
+}
+.user_code span div
+{	font-size: 14px;
+	text-align: left;
+	display: table;
+}
+.codigoqrcode
+{
+	margin: 30px 0;
+}
+.codigoqrcode span, .validate_bi div.text-center a
+{
+	font: 16px "DINBold", Helvetica, Arial, sans-serif !important;
+	display: table;
+	width: 100%;
+}
+.validate_bi div.text-center a
+{
+	color: #fff;
+    text-transform: uppercase;
+    background: #009447;
+    padding: 10px;
+}
+.modalpopup .modal-body
+{
+	height: 280px;
+	overflow: hidden;
+}
+.modalpopup .modal-body, .modalpopup .modal-body .col-md-6:last-child, .modalpopup .modal-body .col-md-6:first-child, .pagebusiness
+{
+	padding:0 !important;
+}
+.modalpopup .modal-body form .col-md-6:first-child
+{
+	height: 100%;
+	display: table;
+}
+ .popupcriarbilhete .modal-body
+{
+	padding:0 20px 20px;
+}
+.topbtevento .row
+{
+	background-color: #f4f7fa;
+	padding: 30px 4.3%;
+	margin-top: 5.5%;
+	margin-bottom: 30px;
+}
+.popupcriarbilhete .modal-body form, .popupcriarbilhete .rodape, .historicoevento .proximo_evento, #papelFundo .papelFundoinner span
+{
+	display:table;
+	width: 100%;
+}
+.pageevento .proximo_evento
+{
+	width: 90%;
+	display: table;
+	margin-bottom: 20px;
+}
+.form-group:last-child, .popupcriarbilhete .form-group .infoput input, .filtroEd:last-child
+{
+	margin:0;
+}
+.popupcriarbilhete .rodape .btn:first-child
+{
+	margin-right: 20px;
+}
+.popupcriarbilhete .rodape .btn
+{
+	width: auto;
+	float: left;
+}
+.modalpopup .modal-body form
+{
+	padding: 20px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+#modal_validate .modal-body form input[type="text"]
+{
+	margin: 29% 0;
+	text-transform: uppercase;
 }
 #evento-descricao, #bilhete-descricao_bilhete{
     background: #ecf0f1;
     border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: 14px !important;
 }
-
-
-
 .select2-container--krajee .select2-selection{
     background-color: #ecf0f1!important;
 }
@@ -186,21 +284,17 @@ body {
 .highcharts-background{
     fill: transparent!important;
 }
-
-
-
-
 .box_title{
     background: #636363;
     padding: 10px;
 }
 .btn-file{
-    background: #00a94b!important;
+    background: #009447!important;
 }
 .bt{
-    background: #00a94b!important;
+    background: #009447 !important;
     border-radius: 4px;
-    border-color: #00a94b!important;
+    border-color: #009447 !important;
 }
 
 .bi_name h4{
@@ -220,9 +314,102 @@ body {
     font-weight: 700;
     color: #333;
 }
-
-.box_coment{
-    padding: 10%;
+.titulosection, .topbtevento .row .col-md-6:first-child
+{
+	padding:0;
+}
+.proximo_evento, .pageevento .detail_bilhete
+{
+    margin: 40px 4.5% 20px;
+}
+.pagebusiness .proximo_evento
+{
+	margin: 20px 4.5%;
+	display: table;
+	width: 90%;
+}
+.pagebusiness .col-md-12.contentbox
+{
+	padding:0 3% 0 2%;
+}
+.nomebusiness
+{
+	float:left;
+}
+.nomebusiness div:last-child
+{
+	display:table;
+	font: 20px "DINBold", Helvetica, Arial, sans-serif !important;
+	line-height: 36px !important;
+}
+.pagebusiness .proximo_evento .labeltipobilhete
+{
+	padding:17px 25px;
+}
+.pagebusiness .proximo_evento .labeltipobilhete:hover, .pagebusiness .proximo_evento .labeltipobilhete:focus
+{
+	color: #fff;
+	background-color: #009447;
+	cursor:pointer;
+}
+.circulobusiness
+{
+	height: 35px;
+	width: 35px;
+	background: #c7c7c7;
+	border-radius: 50%;
+	float: left;
+	margin-right:15px;
+}
+.pageevento .detail_bilhete
+{
+	margin-bottom: 30px;
+	margin-top: 0;
+	margin-right: 5%;
+}
+.popupcriarbilhete .proximo_evento
+{
+	margin-left: 2.5%;
+	margin-bottom: 15px;
+}
+.borderlefttitlo
+{
+	float: left;
+	width: 5px;
+	height: 23px;
+	background-color: #068141;
+	border-radius: 3px;
+	position: absolute;
+}
+.proximo_evento h4 span
+{
+	margin:0 20px;
+	float:left;
+}
+.nomebusinesscreate
+{
+	display:table;
+}
+.nomebusinesscreate span
+{
+	margin:3px 20px 0 20px !important;
+}
+.next {
+    width: 44%;
+    margin-left: 50px;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: -23px;
+}
+.mesevento 
+{
+	background: #fff;
+	color: #666;
+	width: 100%;
+	border-radius: 3px;
+	padding:3px 5px 0;
+	font: 16px "DINRegular", Helvetica, Arial, sans-serif !important;
+	display: table;
 }
 .box_valor{
     background: #fff;
@@ -259,7 +446,7 @@ body {
 }
 .event_name p a:hover{
     text-decoration: none!important;
-    color: #00a94b!important;
+    color: #009447!important;
     transition: 1s;
 }
 
@@ -270,14 +457,14 @@ body {
 
 width: 94%;
 border:1px;  
-backgroud:transparent;
+background:transparent;
 color:green;
 
 }
 .recentes{
 width: 94%;
 border:1px;  
-backgroud:transparent;
+background:transparent;
 color:green;
 clear: true;
 float: true;
@@ -292,52 +479,58 @@ float: true;
 .bi a:hover{
     text-decoration: none!important;
 }
-
-.Mask{
-    background: #f4f7fa;
-    margin-top: 3%;
-    padding: 15px;
-}
+/*
 .glyphicon-chevron-left{
     display: none!important;
 }
+*/
 .destail_evento{
     background: #009447;
     border-radius: 4px;
     height: auto;
     padding: 2px 20px;
+    margin-top: -10px;
+    margin-right: -15px;
 }
 .destail_evento h1{
     color: #fff;
-    font-weight: 700;
-    font-size: 40px;
+    font-weight: 800;
+    font-size: 30px;
 }
-.destail_evento span{
+.destail_evento span {
     color: #fff;
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: 100;
+}
+.destail_evento .fa.fa-calendar {
+    font-size: 23px;
 }
 .detail_bilhete{
     background: #edece9;
     height: auto;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
     border-radius: 4px;
+    overflow: hidden;
+}
+.detail_bilhete h2 {
+    font-size: 25px;
 }
 .detail_estatistica{
     background: #edece9;
     height: auto;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
     border-radius: 4px;
-}
-.comentarios{
-    background: #edece9;
-    border-radius: 4px;
-    height: auto;
+    margin-top: 40px;
+    margin-right: -15px;
+    overflow: hidden;
 }
 .aniversarios{
     background: #edece9;
     border-radius: 4px;
-    height: 250px;
+    height: 100%;
     width: auto;
+    margin-right: -15px;
+    margin-top: -10px;
 }
 .box_aniversario{
     background: #e0dfdf;
@@ -347,6 +540,10 @@ float: true;
 }
 .aniversarios .carousel-control{
     color: #282c37;
+}
+.comentarios
+{
+	margin-top:50px;
 }
 .comentarios .carousel-control{
     color: #282c37;
@@ -360,55 +557,40 @@ float: true;
     border-radius: 50%;
     overflow: hidden;
 }
-
-
-.bilhte > li.active > a{
-    background: #009447!important;
-    color: #fff;
-    padding: 20px 30px;
-    border: 0px!important;
-    border-bottom-color:none!important;
-    text-transform: uppercase;
-    font-weight: 700;
+.bilhte > li.active > a
+{
+	background: #009447 !important;
 }
-
-.bilhte > li.active > a, .bilhte > li.active > a:hover, .bilhte > li.active > a:focus{
-    color: #fff!important;
+.bilhte > li.active > a, .bilhte > li.active > a:hover, .bilhte > li.active > a:focus
+{
+    color: #fff !important;
 }
-
-.bilhte > li > a{
+.bilhte > li > a
+{
     background: #edece9!important;
     color: #009447;
-    padding: 20px 30px;
+    padding: 30px;
     border: 0px;
     text-transform: uppercase;
-    font-weight: 700;
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
+	font-size:16px !important;
 }
 .tab-content #geral, .tab-content #normal, .tab-content #vip{
     padding: 30px;
 } 
 
-.tab-content #geral1, .tab-content #normal1, .tab-content #vip1{
+.tab-content #geral1{
     padding: 30px;
 } 
-.fundo_circle{
+.fundo_circle
+{
     background: rgba(0, 148, 31, 0.3);
     width: 140px;
     height: 140px;
     border-radius: 50%;
     padding: 5px;
     margin: 0 auto;
+	float: right;
 }
-
-
-
-
-
-
-
-
-
 .infovenda{
     background: rgba(0, 169, 75, 0.2);
     height: 230px;
@@ -425,10 +607,31 @@ float: true;
 .event_cartaz{
     height: 382px;
     overflow: hidden;
-    margin-bottom: -3%;
+
+    /*margin-bottom: -3%;*/
 }
 .event_cartaz img{
     width: 100%;
+}
+
+/*
+.filtro {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(6,129,65, 0.6);
+    height: 382px;
+    margin-left: 0px;
+    opacity: 0.5;
+}
+*/
+
+.filtro_eventos {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-left: 0px;
+    border-radius: 4px;
+    opacity: 0.5;
 }
 
 .ticket{
@@ -462,7 +665,7 @@ float: true;
 
 .ticket i{
     font-size: 40px;
-    color: #00a94b;
+    color: #009447;
     background: #fff;
     padding: 5px 20px;
     border-radius: 4px;
@@ -482,16 +685,13 @@ float: true;
 }
 
 .info_evento{
-
     background: #fff;
 
 }
-
 .event_name{
     color: #fff;
     margin-top: -30%;
     margin-left: 30px;
-
 }
 
 .iconbi{
@@ -566,7 +766,7 @@ float: true;
 }
 
 .bota{
-    background: #00a94b!important;
+    background: #009447!important;
     border: 1px solid #eee!important;
     border-radius: 0px!important;
     width: 100%;
@@ -586,13 +786,13 @@ float: true;
 }
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus{
-    color: #00a94b!important;
+    color: #009447!important;
     background: #fff!important;
 
 }
 
 .top li a:hover{
-    color: #00a94b!important;
+    color: #009447!important;
 }
 
 .top  .user-image{

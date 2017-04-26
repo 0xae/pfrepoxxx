@@ -43,18 +43,28 @@ DashboardAsset::register($this);
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-fixed-top" role="navigation">
+			<?php /*?>Pesquisa<?php */?>
+			<form class="col-md-4">
+				<div>
+					<span><i class="glyphicon glyphicon-search"></i></span>
+					<input type="text" class="form-control" placeholder="pesquisar marcas, eventos em Cabo Verde">
+				</div>
+			</form>
           <div class="navbar-custom-menu">
             <ul class="list-unstyled">
-              <li style="padding-right: 30px;">
+			  <li class="criar_evento text-center" id="btnstatements">
+				<button type="submit" class="btn btn-primary bt sair">Criar Evento</button>
+			  </li>
+              <li class="criar_evento text-center" id="btncriaruser">
                 <form action="/passa_free/admin/index.php?r=site%2Flogout" method="post">
-                  <input name="_csrf" value="S1F0czA2M0QiFTBEdF9DCzFhQTF2W0ARAxc4R1Z1Qg8xBSIVYFNwIA==" type="hidden">
-                  <button type="submit" class="btn btn-primary bt sair">
-                  <i class="fa fa-sign-out" aria-hidden="true"></i> Sair</button>
+                  <?php /*?><input name="_csrf" value="S1F0czA2M0QiFTBEdF9DCzFhQTF2W0ARAxc4R1Z1Qg8xBSIVYFNwIA==" type="hidden">
+                  <button type="submit" class="btn btn-primary bt sair"> Criar User</button><?php */?>
+                  <button type="submit" class="btn btn-primary bt sair">Criar User</button>
                 </form>
               </li>
-              <li style="padding-right: 30px;">
-                <a href="#"></a>
-              </li>
+			<li class="criar_evento text-center" id="btnstatements">
+				<button type="submit" class="btn btn-primary bt sair">Statements</button>
+			</li>
             </ul>
           </div>
         </nav>
@@ -128,3 +138,54 @@ DashboardAsset::register($this);
 <?php $this->endPage() ?>
 
 
+
+
+
+<?php /*?>POPUP CRIAR USER<?php */?>
+<div class="modal fade popupcriarbilhete" id="modal-id">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Criar User</h4>
+            </div>
+			<div class="modal-body" style="padding-bottom: 0">
+                <div class="row">
+                    <div class="col-md-6 infoput" style="padding:0 10px">
+                       
+                    </div>
+
+                    <div class="col-md-6" style="padding:0 0 0 10px">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer rodape">
+                <button class="btn btn-success criar btn-primary criar">Criar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php /*?>POPUP STATEMENTS<?php */?>
+<div class="modal fade popupcriarbilhete" id="modal-id">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Criar User</h4>
+            </div>
+			<div class="modal-body" style="padding-bottom: 0">
+                <div class="row">
+                    <div class="col-md-6 infoput" style="padding:0 10px">
+                       
+                    </div>
+
+                    <div class="col-md-6" style="padding:0 0 0 10px">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer rodape">
+                <button class="btn btn-success criar btn-primary criar">Criar</button>
+            </div>
+        </div>
+    </div>
+</div>
