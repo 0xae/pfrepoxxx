@@ -57,7 +57,7 @@ $this->title = 'Accounting';
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<table class="table table-striped table-bordered">
+				<table class="table table-striped">
 					<thead>
 						<tr class="active">
 							<th>Subscriber</th>
