@@ -109,7 +109,7 @@ DashboardAsset::register($this);
 
             <li class="treeview">
               <a href="index.php?r=analytics">
-                <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
