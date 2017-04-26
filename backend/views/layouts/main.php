@@ -27,6 +27,29 @@ DashboardAsset::register($this);
 
 <?= Html::csrfMetaTags() ?>
 <title><?= Html::encode($this->title) ?></title>
+<style type="text/css">
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(img/loading.gif) center no-repeat #fff;
+}
+</style>
+<?php
+$script=<<<JS
+
+$(window).load(function() {
+  $(".loading").fadeOut("slow");;
+});
+JS;
+
+$this->registerJS($script);
+?>
 <?php $this->head() ?>
 </head>
 
@@ -80,21 +103,21 @@ DashboardAsset::register($this);
           </a>
         </li>
         <li class="nome_user text-center">
-          <span> 
-              <?php 
+          <span>
+              <?php
                 if(!Yii::$app->user->isGuest) {
-                  echo Yii::$app->user->identity->username; 
+                  echo Yii::$app->user->identity->username;
                 }
               ?>
             </span>
         </li>
-        <br> 
+        <br>
           <!-- Sidebar user panel -->
           <ul class="sidebar-menu text-center">
             <li class="active treeview">
               <a href="index.php"><span>Overview</span></a>
             </li>
-            
+
             <li class="treeview">
               <a href="index.php?r=business">
                 <span>Business</span> <!--i class="fa fa-angle-left pull-right"></i-->
@@ -158,11 +181,11 @@ DashboardAsset::register($this);
 			<div class="modal-body" style="padding-bottom: 0">
                 <div class="row">
                     <div class="col-md-6 infoput" style="padding:0 10px">
-                       
+
                     </div>
 
                     <div class="col-md-6" style="padding:0 0 0 10px">
-                       
+
                     </div>
                 </div>
             </div>
@@ -182,11 +205,11 @@ DashboardAsset::register($this);
 			<div class="modal-body" style="padding-bottom: 0">
                 <div class="row">
                     <div class="col-md-6 infoput" style="padding:0 10px">
-                       
+
                     </div>
 
                     <div class="col-md-6" style="padding:0 0 0 10px">
-                       
+
                     </div>
                 </div>
             </div>

@@ -179,11 +179,11 @@
 {
     text-transform: uppercase;
 }
-.modal-header, .modal-footer
+.modal-header, .modal-footer, .pagebusiness .panel-body table th, .pagebusiness .panel-body table td, .table > thead > tr > th
 {
 	border: none;
 }
-.modal-header
+.modal-header, .accountngpage .panel.accountingbox
 {
 	padding:20px;
 }
@@ -231,7 +231,7 @@
 {
 	font-family: "DINLight", Helvetica, Arial, sans-serif !important;
 }
-.detalhes_geral span:last-child
+.detalhes_geral span:last-child, .pagebusiness .panel-body table
 {
 	margin:0;
 }
@@ -291,7 +291,7 @@
 	padding: 15px;
 	font:18px "DINBold", Helvetica, Arial, sans-serif !important;
 }
-.nome_user div.nomeuser, .fundo_user_bilh h2, .fundo_user_bilh span, .pageventbtngroup a, .bilhte > li > a, #producer_form button 
+.nome_user div.nomeuser, .fundo_user_bilh h2, .fundo_user_bilh span, .pageventbtngroup a, .bilhte > li > a, #producer_form button, .criar, .filtropanel .btn-group .btn-default
 {
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
 }
@@ -420,7 +420,7 @@
 	background-color: transparent !important;
 	border: none;
 }
-.info_next_event .col-md-12 .col-md-1
+.info_next_event .col-md-12 .col-md-1, .accountngpage .panel.accountingbox .col-md-6
 {
 	padding:0;
 }
@@ -510,7 +510,8 @@
 	text-transform: uppercase;
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
 }
-.criar{
+.criar
+{
 	background: #009447!important;
 	border: 0px!important;
 	color: #fff!important;
@@ -846,11 +847,27 @@
 }
 .pagebusiness .panel
 {
-	border-radius: 3px;
+	border-radius: 5px;
 	overflow: hidden;
 	border-color:#eee;
 	margin-bottom: 30px;
 	box-shadow:0 2px 2px rgba(0, 0, 0, .05);
+}
+.pagebusiness .panel-body table thead tr th
+{
+	font:16px "DINBold", Helvetica, Arial, sans-serif !important;
+}
+.pagebusiness .panel-body table thead tr th, .pagebusiness .panel-body table td
+{
+	padding:15px;
+}
+.pagebusiness .panel-body table th, .pagebusiness .panel-body table td
+{
+	border-right:1px solid #ddd;
+}
+.pagebusiness .panel-body table tr td div:first-child
+{
+	border:1px dashed #f00;
 }
 .pagebusiness .col-md-3 a .panel:hover, .pagebusiness .col-md-3 a .panel:focus
 {
@@ -888,6 +905,31 @@
 .nomebusinessbt
 {
 	padding: 0;
-    background-color: #e0e0e0;
     margin-top: 9px;
+	background-color: #e0e0e0;
+}
+.accountngpage .panel .filtropanel, .table > thead > tr.active > th
+{
+    background-color: #f3f3f3;
+}
+.filtropanel
+{
+	padding:15px;
+}
+.filtropanel .btn-group
+{
+	float: left;
+	margin-right: 15px;
+}
+.filtropanel .btn .caret
+{
+	margin-left: 10px;
+}
+.filtropanel .btn-group .btn-default
+{
+	background-color: #fff;
+}
+.accountngpage .panel.accountingbox
+{
+	
 }

@@ -91,15 +91,15 @@ use kartik\select2\Select2;
                     </div>
                 </div>
 
-                <?php /*?><div class="col-md-12">
+                <div class="col-md-12">
                     <div class="biz-footer">
                     <?php echo Html::submitButton(
                             $model->isNewRecord ? 'Guardar' : 'Actualizar', 
-                            ['class' =>  'btn btn-success', 'id'=> 'submit_business']
+                            ['class' =>  'criar btn btn-success', 'id'=> 'submit_business']
                         );
                     ?>
                     </div>
-                </div><?php */?>
+                </div>
             <?php ActiveForm::end(); ?>
         </div>
 

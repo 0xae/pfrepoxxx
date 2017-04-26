@@ -11,7 +11,7 @@ HighchartsAsset::register($this)
 
 $this->title = 'Accounting';
 ?>
-<div class="container-fluid pagebusiness">
+<div class="container-fluid pagebusiness accountngpage">
 	<?php /*?>///<?php */?>
 	<div class="row nomebusinessbt">
 		<div class="col-md-12 titulosection">
@@ -36,11 +36,51 @@ $this->title = 'Accounting';
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<div class="col-md-6">
-				
+				<?php /*?>FILTRO<?php */?>
+				<div class="col-md-12 filtropanel">
+					<form class="form-inline">
+						<div class="form-group">
+							<?php /*?>//<?php */?>
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">First Period<span class="caret"></span></button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+								</ul>
+							</div>
+							<?php /*?>///<?php */?>
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Second Period<span class="caret"></span></button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+								</ul>
+							</div>
+						</div>
+						<button type="submit" class="criar btn btn-primary">Apply</button>
+					</form>
 				</div>
-				<div class="col-md-6">
-					
+				<?php /*?>//<?php */?>
+				<div class="accountingbox">
+					<?php /*?>TABELA<?php */?>
+					<div class="col-md-6">
+						<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td>
+									<div>Mark</div>
+									<div>Mark</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>						
+					</div>
+					<?php /*?>GRAFICO<?php */?>
+					<div class="col-md-6">
+
+					</div>
 				</div>
 			</div>
 		</div>

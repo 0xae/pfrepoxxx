@@ -40,8 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				</h4>
 				<?php /*?>BT<?php */?>
 				<div class="pageventbtngroup">
-					<a href="#" class="criar btn bt-primary">Publish</a>
-					<a href="#" class="criar btn bt-primary">Guardar</a>
+					<a href="#" class="criar btn bt-primary">Criar Produtor</a>
 				</div>
 			</div>
 		</div>
