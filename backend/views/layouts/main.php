@@ -56,6 +56,8 @@ $this->registerJS($script);
 <body class="hold-transition skin-blue sidebar-mini">
 <?php $this->beginBody() ?>
 
+<div class="loading"></div>
+
 <?php if(!Yii::$app->user->isGuest): ?>
 
   <div class="wrapper">
