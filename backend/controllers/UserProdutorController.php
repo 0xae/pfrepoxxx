@@ -3,19 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\UserProdutor;
-use backend\models\UserProdutorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-
 use yii\web\ForbiddenHttpException;
+use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 use backend\models\PasswordResetRequestForm;
 use backend\models\ResetPasswordForm;
 use backend\models\SignupForm;
-
+use backend\models\UserProdutor;
+use backend\models\UserProdutorSearch;
 use backend\models\User;
 use backend\models\Produtor;
 use backend\models\Marca;
@@ -56,7 +54,6 @@ class UserProdutorController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        //$models = UserProdutor::getUsersProdutors(Yii::$app->user->identity->id);
         $models = Produtor::getUsersProdutors(Yii::$app->user->identity->id);
         $model = new UserProdutor();
 
@@ -71,42 +68,34 @@ class UserProdutorController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
 
-    public function actionBlock($id)
-    {
+    public function actionBlock($id) {
         $model = $this->findModelUser($id);
 
         if($model->blocked_at){
-            
             $model->blocked_at = '';
             $model->save();
             Yii::$app->session->setFlash('success', 'User has been unblocked!');
-        }else{
-
+        } else {
             date_default_timezone_set('Atlantic/Cape_Verde');
             $model->blocked_at = date('Y-m-d', time());
             $model->save();
             Yii::$app->session->setFlash('error', 'User has been blocked!');
         }
 
-            return $this->render('_update', [
-                'model' => $model,
-            ]);
+        return $this->render('_update', [
+            'model' => $model,
+        ]);
     }
 
 
-
-    public function actionDelete($id)
-    {
-        
-
+    public function actionDelete($id) {
         $model = $this->findModelUser($id);
         $model->status = 0;
         $model->save();
@@ -117,7 +106,6 @@ class UserProdutorController extends Controller {
 
         Yii::$app->session->setFlash('error', 'User has been deleted!');
 
-        
         $models = Produtor::getUsersProdutors(Yii::$app->user->identity->id);
         $model = new UserProdutor();
 
@@ -132,25 +120,22 @@ class UserProdutorController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-            
             $model->tipo_user = 3;
-
             if ($user = $model->signup()) {
-
                 $produtor = new Produtor();
                 $produtor->idprodutor = $user->id;
+                $produtor->estado = 1;
                 $produtor->save();
-
                 return $this->redirect(['update', 'id' => $produtor->idprodutor]);
             }
         }
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -159,12 +144,10 @@ class UserProdutorController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModelUser($id);
 
         if ($model->load(Yii::$app->request->post())) {
-
             if($model->password){
                 $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
             }
@@ -172,17 +155,15 @@ class UserProdutorController extends Controller {
             if($model->save()){
                 Yii::$app->session->setFlash('success', "success");
             }
-        
-
         }
-            return $this->render('_update', [
-                'model' => $model,
-            ]);
+
+        return $this->render('_update', [
+            'model' => $model,
+        ]);
     }
 
 
-    public function actionProfile($id)
-    {
+    public function actionProfile($id) {
         $profile = $this->findModelProdutor($id);
         $model = $this->findModelUser($id);
         $_dataMarca = Marca::getMarcas();
@@ -190,12 +171,12 @@ class UserProdutorController extends Controller {
         if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
             Yii::$app->session->setFlash('success', "success");
         }
-            return $this->render('_profile', [
-                'profile' => $profile,
-                'model' => $model,
-                '_dataMarca' => $_dataMarca,
-            ]);
 
+        return $this->render('_profile', [
+            'profile' => $profile,
+            'model' => $model,
+            '_dataMarca' => $_dataMarca,
+        ]);
     }
 
     /**
@@ -204,7 +185,7 @@ class UserProdutorController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    
+
     /**
      * Finds the UserProdutor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -212,8 +193,7 @@ class UserProdutorController extends Controller {
      * @return UserProdutor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = UserProdutor::findOne($id)) !== null) {
             return $model;
         } else {
@@ -221,8 +201,7 @@ class UserProdutorController extends Controller {
         }
     }
 
-    protected function findModelUser($id)
-    {
+    protected function findModelUser($id) {
         if (($model = User::find()->where(['id' => $id, 'status' => 10])->One()) !== null) {
             return $model;
         } else {
@@ -230,9 +209,7 @@ class UserProdutorController extends Controller {
         }
     }
 
-
-    protected function findModelProdutor($id)
-    {
+    protected function findModelProdutor($id) {
         if (($model = Produtor::findOne($id)) !== null) {
             return $model;
         } else {
