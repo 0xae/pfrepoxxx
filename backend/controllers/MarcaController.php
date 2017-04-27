@@ -13,6 +13,7 @@ use yii\web\UploadedFile;
 use backend\models\Marca;
 use backend\models\MarcaSearch;
 use backend\models\Business;
+use backend\models\SignupForm;
 
 /**
  * MarcaController implements the CRUD actions for Marca model.
@@ -125,7 +126,8 @@ class MarcaController extends Controller {
             return $this->render('update', [
                 'model' => $model,
                 '_dataBusiness' => $_dataBusiness,
-                'newMarca' => []
+                'newMarca' => [],
+                'newUser' => new SignupForm()
             ]);
         }
     }
