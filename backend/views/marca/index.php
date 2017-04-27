@@ -11,22 +11,7 @@ $this->title = 'Marcas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="marca-index">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?= Html::a('Criar Marca', ['create'], ['class' => 'btn btn-success bt']) ?>
-    <?php /*= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'idmarca',
-            'nome',
-            'logo',
-            'estado',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); */?><br><br>
     <div class="row">
         <?php
             if($modelsMarca){
@@ -52,5 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ?>
     </div>
-
+    
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal_criar_marca">
+      Launch modal
+    </button>
+    <?php echo $this->render('create_marca', ['model' => $model]); ?>
 </div>

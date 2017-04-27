@@ -127,14 +127,14 @@ $this->registerJS($script);
             </li>
 
             <li class="treeview">
-              <a href="index.php?r=accounting">
-                <span>Accounting</span> <!--i class="fa fa-angle-left pull-right"></i-->
+              <a href="index.php?r=marca">
+                <span>Marca</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
             <li class="treeview">
-              <a href="index.php?r=user-produtor">
-                <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
+              <a href="index.php?r=accounting">
+                <span>Accounting</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
@@ -145,14 +145,8 @@ $this->registerJS($script);
             </li>
 
             <li class="treeview">
-              <a href="index.php?r=marca">
-                <span>Marca</span> <!--i class="fa fa-angle-left pull-right"></i-->
-              </a>
-            </li>
-
-            <li class="treeview">
               <a href="index.php?r=user">
-                <span>User</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                <span>Settings</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
           </ul>

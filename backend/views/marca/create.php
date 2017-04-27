@@ -4,18 +4,10 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Marca */
+/* @var $model backend\models\Business */
 
-$this->title = 'Criar Marca';
-$this->params['breadcrumbs'][] = ['label' => 'Marcas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Business';
 ?>
-<div class="marca-create">
 
-    <h2 style="color:#565656;"><?= Html::encode($this->title) ?></h2>
+<?php $this->render('_form', ['model' => $model]); ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
