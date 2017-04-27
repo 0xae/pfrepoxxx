@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="col-md-12 contentbox">
         <?php foreach($models as $m): ?>
             <div class="col-md-4">
-                <a href="index.php?r=business/update&id=<?= $m->idmarca ?>">
+                <a href="index.php?r=marca/update&id=<?= $m->idmarca ?>">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-12 imgbussinessbox">
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-md-12 descbussinessbox">
                                 <div class="linetopbox"></div>
                                 <div><?= $m->nome ?></div>
-                                <span>gettinng free publicity for you</span>
+                                <span><?= $m->slogan ?></span>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         <?php endforeach; ?>
         <div class="col-md-4">
-            <a href="index.php?r=business/create">
+            <a href="#">
                 <div class="panel panel-default addbusiness">
                     <div class="panel-body">+</div>
                 </div>

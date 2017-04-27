@@ -18,6 +18,6 @@ $this->title = ' ' . $model->nome;
       Criar Produtor
     </button>
 
+    <?php echo $this->render('create_produtor.php', ['newProdutor' => $newProdutor, 'marca' => $model]); ?>
     <?php echo $this->render('create_userprodutor.php', ['newUser' => $newUser]); ?>
-    <?php echo $this->render('create_produtor.php', []); ?>
 </div>

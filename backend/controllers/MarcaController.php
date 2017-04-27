@@ -13,6 +13,7 @@ use yii\web\UploadedFile;
 use backend\models\Marca;
 use backend\models\MarcaSearch;
 use backend\models\Business;
+use backend\models\Produtor;
 use backend\models\SignupForm;
 
 /**
@@ -25,11 +26,7 @@ class MarcaController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['index', 'create', 'update', 'view', 'delete'],
+                        'actions' => ['index', 'create', 'update', 'view', 'delete', 'create-produtor'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -122,9 +119,17 @@ class MarcaController extends Controller {
             return $this->render('update', [
                 'model' => $model,
                 '_dataBusiness' => $_dataBusiness,
+                'newUser' => new SignupForm(),
+                'newProdutor' => new Produtor(),
                 'newMarca' => [],
-                'newUser' => new SignupForm()
             ]);
+        }
+    }
+
+    public function actionCreateProdutor() {
+        $model = new Produtor();
+        if ($model->load(Yii::$app->request->post()) ) {
+            $model->save();
         }
     }
 

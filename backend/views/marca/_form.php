@@ -20,6 +20,7 @@ use kartik\select2\Select2;
             ])->label('Business');
         ?>
         <?php echo $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
+        <?php echo $form->field($model, 'slogan')->textInput(['maxlength' => true]) ?>
         <?php echo $form->field($model, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
 
         <div class="form-group">
