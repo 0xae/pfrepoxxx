@@ -330,7 +330,31 @@ a.edit_acount{
 }
 .pagebusiness .col-md-12.contentbox
 {
-	padding:0 4.5% 0 3%;
+	padding:0 4.5% 0 2%;
+}
+.accountngpage .col-md-12.contentbox
+{
+	padding: 0 4.5% 0 3%;
+}
+.pageusers .col-md-12.contentbox
+{
+	padding-right: 3%;
+}
+.business-create .tab-content .contentbox .panel
+{
+	margin: 30px 0 0 0;
+}
+.business-create .tab-content .contentbox .descbussinessbox, .pageusers .descbussinessbox, .pageprodutor .panel .descbussinessbox
+{
+	padding:8px;
+}
+.business-create .tab-content .contentbox  .col-md-8.descbussinessbox div
+{
+	font: 18px "DINRegular", Helvetica, Arial, sans-serif !important;
+}
+.business-create .tab-content .contentbox .col-md-8.descbussinessbox span
+{
+	font: 14px "DINBold", Helvetica, Arial, sans-serif !important;
 }
 .nomebusiness
 {
@@ -342,11 +366,11 @@ a.edit_acount{
 	font: 20px "DINBold", Helvetica, Arial, sans-serif !important;
 	line-height: 36px !important;
 }
-.pagebusiness .proximo_evento .labeltipobilhete
+.pagebusiness .proximo_evento .labeltipobilhete, #modalcriarmarca .labeltipobilhete
 {
 	padding:17px 25px;
 }
-.pagebusiness .proximo_evento .labeltipobilhete:hover, .pagebusiness .proximo_evento .labeltipobilhete:focus
+.pagebusiness .proximo_evento .labeltipobilhete:hover, .pagebusiness .proximo_evento .labeltipobilhete:focus, #modalcriarmarca .labeltipobilhete:hover
 {
 	color: #fff;
 	background-color: #009447;

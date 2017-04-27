@@ -9,8 +9,9 @@ use yii\grid\GridView;
 
 $this->title = 'User Produtors';
 $this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Produtor';
 ?>
-<div class="user-produtor-index">
+<?php /*?><div class="user-produtor-index">
 
     <p><a href="index.php?r=user-produtor%2Fcreate" class="btn btn-success bt">Criar User produtor</a></p>
     <br>
@@ -48,4 +49,35 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ?>
     </div>
+</div><?php */?>
+<div class="container-fluid pagebusiness pageprodutor">
+	<div class="row">
+		<div class="col-md-12 titulosection">
+			<div class="proximo_evento">
+				<h4><div class="borderlefttitlo"></div><span>Produtor</span></h4>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 contentbox">
+		<div class="col-md-2">
+		<a href="index.php?r=business/update&id=">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="col-md-12 imgbussinessbox">
+							<img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+						</div>
+						<div class="col-md-12 descbussinessbox">Nome produtor</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="col-md-2">
+			<a href="index.php?r=business/create">
+				<div class="panel panel-default addbusiness">
+					<div class="panel-body">+</div>
+				</div>
+			</a>
+		</div>
+	</div>
 </div>
