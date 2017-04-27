@@ -41,7 +41,7 @@ $this->title = 'Business';
 			<div class="panel-body">
 				<div class="business-create">
                 <div class="business-form">
-                    <div role="tabpanel" style="padding:20px 20px 10px 20px">
+                    <div role="tabpanel" style="padding:20px">
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Informa&ccedil;&otilde;es Gerais</a></li>
@@ -90,18 +90,45 @@ $this->title = 'Business';
                                         <?= $form->field($model, 'support_email')->textInput(['maxlength' => true]) ?>
                                         <?= $form->field($model, 'support_phone')->textInput(['maxlength' => true]) ?>
                                     </div>
+<<<<<<< HEAD
+                                </div>
+                                <div class="biz-footer">
+									<?php echo Html::submitButton(
+											$model->isNewRecord ? 'Guardar' : 'Actualizar', 
+											['class' =>  'criar btn btn-success', 'id'=> 'submit_business']
+										);
+									?>
+								</div>
+=======
                                     <?php echo Html::submitButton(
                                             $model->isNewRecord ? 'Guardar' : 'Actualizar', 
                                             ['class' =>  'btn btn-success', 'id'=> 'submit_business']
                                         );
                                     ?>
                                 </div>
+>>>>>>> 61f5d8ae2893893a7689428441ce5117b9168e2a
 
                             <?php ActiveForm::end(); ?>
                         </div>
 
                         <div role="tabpanel" class="biz-pane tab-pane" id="access">
-                            <h1>Producers go here</h1>
+                            <div class="row contentbox">
+								<div class="col-md-4">
+									<a href="#">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="col-md-4 imgbussinessbox">
+													<img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+												</div>
+												<div class="col-md-8 descbussinessbox">
+													<div>Nome Produtor</div>
+													<span>Texto produtor</span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
                         </div>
                       <!-- panel -->
                       </div>

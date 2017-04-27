@@ -15,4 +15,3 @@ $this->title = 'Business';
     '_dataUsers' => $_dataUsers,
     '_dataProducers' => $_dataProducers
 ]) ?>
-

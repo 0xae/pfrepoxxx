@@ -159,7 +159,7 @@
 	line-height: normal;
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
 }
-.info_cartaz .fundo_circle span, .proximo_evento h4, .pagination > li > a, .user_contatos h2, .modalpopup .modal-body h4 span:first-child, .popupcriarbilhete h4.modal-title, .escudo h2, .pagebusiness .accountingbox table tr td
+.info_cartaz .fundo_circle span, .proximo_evento h4, .pagination > li > a, .user_contatos h2, .modalpopup .modal-body h4 span:first-child, .popupcriarbilhete h4.modal-title, .escudo h2, .pagebusiness .accountingbox table tr td div, .pageusers .nav-tabs > li > a, .progresspopup ul li
 {
 	font-family: "DINBlack", Helvetica, Arial, sans-serif !important;
 }
@@ -171,27 +171,23 @@
 {
 	color:#fff;
 }
-.info_cartaz .fundo_circle span, .proximo_evento h4, .nome_user div.nomeuser, .fundo_user_bilh h2, .modalpopup .modal-body h4 span:first-child, .popupcriarbilhete h4.modal-title
+.info_cartaz .fundo_circle span, .proximo_evento h4, .nome_user div.nomeuser, .fundo_user_bilh h2, .modalpopup .modal-body h4 span:first-child, .popupcriarbilhete h4.modal-title, .pageusers .nav-tabs > li > a
 {
 	font-size: 20px;
 }
-.info_cartaz .fundo_circle span, .proximo_evento h4, .popupcriarbilhete h4.modal-title
+.info_cartaz .fundo_circle span, .proximo_evento h4, .popupcriarbilhete h4.modal-title, .pageusers .nav-tabs > li > a,  #modalcriarmarca .labeltipobilhete, .pageprodutor .panel .descbussinessbox
 {
     text-transform: uppercase;
 }
-.modal-header, .modal-footer, .pagebusiness .panel-body table th, .pagebusiness .panel-body table td, .table > thead > tr > th
+.modal-header, .modal-footer, .pagebusiness .panel-body table th, .pagebusiness .panel-body table td, .table > thead > tr > th, .pageusers .nav-tabs > li > a:hover
 {
 	border: none;
 }
-.modal-header, .accountngpage .panel.accountingbox
+.modal-header, .accountngpage .panel.accountingbox, .modal-footer, .descbussinessbox
 {
 	padding:20px;
 }
-.modal-footer, .descbussinessbox
-{
-	padding: 20px;
-}
-.proximo_evento h4
+.proximo_evento h4, .pageusers .nav-tabs > li > a, #modalcriarmarca label, #modalcriarmarca .labeltipobilhete, .progresspopup ul li
 {
     color: #009447;
 }
@@ -227,7 +223,7 @@
 	margin-bottom: 10px;
 	display: table;
 }
-.detalhes_geral span, .nomebusinesscreate
+.detalhes_geral span, .nomebusinesscreate, .pagemarcas .contentbox .panel .descbussinessbox span
 {
 	font-family: "DINLight", Helvetica, Arial, sans-serif !important;
 }
@@ -291,7 +287,7 @@
 	padding: 15px;
 	font:18px "DINBold", Helvetica, Arial, sans-serif !important;
 }
-.nome_user div.nomeuser, .fundo_user_bilh h2, .fundo_user_bilh span, .pageventbtngroup a, .bilhte > li > a, #producer_form button, .criar, .filtropanel .btn-group .btn-default
+.nome_user div.nomeuser, .fundo_user_bilh h2, .fundo_user_bilh span, .bilhte > li > a, #producer_form button, .criar, .filtropanel .btn-group .btn-default, .pagemarcas .contentbox .panel .descbussinessbox, #modalcriarmarca .col-md-6 label, #modalcriarmarca .labeltipobilhete
 {
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
 }
@@ -328,17 +324,12 @@
 	padding: 10px;
 	color: #666;
 }
-.business-create .nav-tabs > li a
-{
-	font: 16px "DINBold", Helvetica, Arial, sans-serif !important;
-	padding: 10px;
-}
-.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs > li:active > a:hover
+.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs > li:active > a:hover,.business-create .nav-tabs > li > a:focus,.nav > li > a:active
 {
 	background-color: #f7f7f7;
 	cursor: pointer;
 }
-.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs, .business-create .nav-tabs > li a, .nav > li > a:active
+.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs, .business-create .nav-tabs > li a, .nav > li > a:active,.business-create .nav-tabs > li > a:focus
 {
 	border: none;
 }
@@ -526,27 +517,25 @@
 	background: #009447!important;
 	border: 0px!important;
 	color: #fff!important;
-	padding: 5px 15px!important;
+	padding: 8px 15px!important;
 	border-radius: 4px;
 	font-size: 14px;
 	text-transform: uppercase;
-	margin-right: 10px;
 }
 .edit{
 	background: #009447!important;
 	border: 0px!important;
 	color: #fff!important;
-	padding: 5px 15px!important;
+	padding: 8px 15px!important;
 	border-radius: 4px;
 	font-size: 14px;
 	text-transform: uppercase;
-	margin-right: 10px;
 }
 .delete{
 	background: #ecf0f1!important;
 	border: 0px!important;
 	color: #c0392b!important;
-	padding: 5px 15px!important;
+	padding: 8px 15px!important;
 	border-radius: 4px;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -686,7 +675,8 @@
 	overflow: hidden;
 }
 
-.event_futuro{
+.event_futuro
+{
 	height: 150px;
 	overflow: hidden;
 }
@@ -864,7 +854,7 @@
 	margin-bottom: 30px;
 	box-shadow:0 2px 2px rgba(0, 0, 0, .05);
 }
-.pagebusiness .panel-body table thead tr th
+.pagebusiness .panel-body table thead tr th, #modalcriarmarca label
 {
 	font:16px "DINBold", Helvetica, Arial, sans-serif !important;
 }
@@ -888,13 +878,13 @@
 {
 	width: 30%;
 }
-.pagebusiness .panel-body table tr td.childtd
+.pagebusiness .panel-body table tr td.childtd, .pagebusiness .panel-body table tr td.childtd div
 {
 	font-family: "DINRegular", Helvetica, Arial, sans-serif !important;
 }
 .pagebusiness .panel-body table tr td.childtd div:first-child
 {
-	padding-left: 50px;
+	padding-left: 25px;
 }
 .pagebusiness .col-md-3 a .panel:hover, .pagebusiness .col-md-3 a .panel:focus
 {
@@ -924,10 +914,25 @@
 	background-color:#f2f2f2;
 	color:#b9b9b9;
 	font: 90px "DINLight", Helvetica, Arial, sans-serif !important;
-	padding: 28%;
 	display: table;
 	width: 100%;
 	text-align: center;
+}
+.addbusiness .plusicon
+{
+	padding: 41.5%;
+}
+.pagemarcas .addbusiness .panel-body
+{
+	padding: 24%;
+}
+.pageusers .addbusiness .panel-body
+{
+	padding: 24.5%;
+}
+.pageprodutor .addbusiness .panel-body
+{
+	padding: 12%;
 }
 .nomebusinessbt
 {
@@ -956,7 +961,195 @@
 {
 	background-color: #fff;
 }
-.accountngpage .panel.accountingbox
+.pagemarcas .contentbox .panel
 {
-	
+	height: 250px;
+	overflow: hidden;
+}
+.pagemarcas .contentbox .panel .descbussinessbox
+{
+	position: absolute;
+	bottom: 30px;
+	color: #fff;
+	width: 91%;
+	text-transform: capitalize;
+}
+.pagemarcas .contentbox .panel .descbussinessbox div
+{
+	font-size: 26px;
+}
+.linetopbox
+{
+	width: 21%;
+	height: 2px;
+	background-color: #fff;
+	margin-bottom: 20px;
+	border-radius: 3px;
+}
+.userciculo
+{
+	background-color: #fff;
+	height: 40px;
+	width: 40px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	border-radius: 50%;
+}
+.pageusers .col-md-12.imgbussinessbox
+{
+	height: 150px;
+	overflow: hidden;
+}
+.pagebusiness .boxconteinerbus .imgbussinessbox
+{
+	height:200px;
+	overflow: hidden;
+}
+.pageusers .tab-content
+{
+	padding:0 15px;
+}
+.pageusers .nav-tabs > li
+{
+	width: 50%;
+}
+.pageusers .nav-tabs > li > a
+{
+	padding: 10px;
+	text-align: center;
+	background-color: #f1f0f0;
+}
+.pageusers .nav-tabs > li.active > a
+{
+	border-bottom: 3px solid #058040;
+	background-color: #e4e9e6;
+}
+#modalcriarmarca .col-md-6:first-child
+{
+	padding: 0 10px 0 0;
+}
+#modalcriarmarca .col-md-6:last-child
+{
+	padding: 0 0 0 10px;
+}
+#modalcriarmarca .labeltipobilhete
+{
+	float:none;
+	background-color: transparent;
+	margin-right: 10px;
+}
+#modalcriarmarca .modal-body div .col-m-6:first-child
+{
+	padding-left:0; 
+}
+#modalcriarmarca .modal-body div .col-m-6:last-child
+{
+	padding-right:0; 
+}
+#modalcriarmarca .modal-body .col-md-12
+{
+	padding:0;
+}
+#modalcriarmarca .imguploadpopup, .popupcriarbilhete .modal-body input, .popupcriarbilhete .modal-body textarea
+{
+	border-radius: 3px;
+	background-color: #f8f8f8;
+}
+#modalcriarmarca .imguploadpopup
+{
+	position: absolute;
+	border: 1px solid #d2d6de;
+	width: 97%;
+	height: auto;
+	display: table;
+	padding: 38% 42%;
+}
+#modalcriarmarca .imguploadpopupinner
+{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	border-radius: 50%;
+	border: 1px solid #ddd;
+	text-align: center;
+	padding: 10px;
+	margin: -8% 0%;
+	font-size: 32px;
+	line-height: 50% !important;
+	color: #ddd;
+}
+.modal-header
+{
+	background-color: #f8f8f8;
+}
+.progresspopup
+{
+	margin: 50px 0;
+	display: table;
+	width: 100%;
+}
+.progresspopup ul li
+{
+	list-style: none;
+	border-radius:50%;
+	background-color: #eee;
+	padding: 8px 17px;
+	font-size: 20px;
+	float: left;
+	margin: 0 auto;
+	display: table;
+	position: relative;
+	z-index: 10;
+}
+.progresspopup ul li.active, .addbusiness .panel-body:hover, .addbusiness .panel-body:focus
+{
+	background-color: #009447;
+	color: #fff;
+}
+.progresspopup ul li.stepmiddleprogress
+{
+	margin: 0 37.5%;
+}
+.progresspopup ul li:last-child
+{
+	float: right;
+}
+.progresspopup ul
+{
+	display: table;
+	padding: 0;
+	width: 100%;
+	margin: 0;
+}
+.lineprogresso
+{
+	height: 5px;
+	background-color: #eee;
+	position: absolute;
+	width: 90%;
+	margin: 20px auto;
+}
+.stepsecond .lineprogresso
+{
+	width: 45%;
+	margin: 20px auto;
+}
+.stepsecond .lineprogresso.inativeline
+{
+	right: 40px;
+}
+.stepthird .lineprogresso li, .stepthird li, .stepthird .lineprogresso, .stepsecond .lineprogresso.donefirst
+{
+	background-color: #009447 !important;
+	color: #fff !important;
+}
+.pageprodutor .panel .imgbussinessbox
+{
+	height: 100px;
+	overflow: hidden;
+}
+.pageprodutor .panel .descbussinessbox
+{
+	font:14px "DINRegular", Helvetica, Arial, sans-serif !important;
 }
