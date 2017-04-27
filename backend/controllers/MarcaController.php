@@ -48,7 +48,6 @@ class MarcaController extends Controller {
     public function actionIndex() {
         $searchModel = new MarcaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         $modelsMarca = Marca::find()->all();
 
         return $this->render('index', [
@@ -79,19 +78,11 @@ class MarcaController extends Controller {
         $model = new Marca();
 
         if ($model->load(Yii::$app->request->post())) {
-                $model->estado = $model::STATUS_ACTIVE;
-                /*
-                $model->file = UploadedFile::getInstance($model, 'file');
-                
-                $ext = end((explode(".", $model->file)));
-                $generateRandomName = Yii::$app->security->generateRandomString().".{$ext}";
-
-                $model->file->saveAs('uploads/marca/'.$generateRandomName);
-                $model->logo = 'uploads/marca/'.$generateRandomName;
-                 */
+            $model->estado = $model::STATUS_ACTIVE;
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->idmarca]);
             } 
+
         } else {
             return $this->render('create', [
                 'model' => $model,

@@ -6,14 +6,13 @@ use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Marca */
-/* @var $form yii\wi
-    * dgets\ActiveForm */
+/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="modal fade popupcriarbilhete " id="modal_criar_marca" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-            <?php $form = ActiveForm::begin(["action" => 'index.php?r=marca/create']); ?>
+            <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create', 'options'=>['enctype'=>'multipart/form-data']]); ?>
                 <div class="modal-header">
                     <h4 class="modal-title">Criar Marca</h4>
                 </div>
