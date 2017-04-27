@@ -19,5 +19,5 @@ $this->title = ' ' . $model->nome;
     </button>
 
     <?php echo $this->render('create_produtor.php', ['newProdutor' => $newProdutor, 'marca' => $model]); ?>
-    <?php echo $this->render('create_userprodutor.php', ['newUser' => $newUser]); ?>
+    <?php echo $this->render('create_userprodutor.php', ['newUser' => $newUser, 'marca' => $model]); ?>
 </div>

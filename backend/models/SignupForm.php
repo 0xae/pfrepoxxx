@@ -10,6 +10,8 @@ use Yii;
  * Signup form
  */
 class SignupForm extends Model {
+    public $nome;
+    public $marca_id;
     public $username;
     public $email;
     public $password;
@@ -32,6 +34,7 @@ class SignupForm extends Model {
             [['nome', 'apelido'], 'safe'],*/
             
             ['tipo_user', 'integer'],
+            [['nome', 'marca_id'], 'safe'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -58,11 +61,6 @@ class SignupForm extends Model {
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
-
-        /*$user->nome = $this->nome;
-        $user->apelido = $this->apelido;*/
-
-
         $user->setPassword($this->password);
         $user->generateAuthKey();
         

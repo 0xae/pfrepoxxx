@@ -14,12 +14,15 @@ use kartik\select2\Select2;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
         <?php
-            echo $form->field($model, 'business_id')->widget(Select2::className(), [
-                'data' => $_dataBusiness,
-                'options' => ['placeholder' => 'Clique para selecionar...', 'multiple' => false],
-            ])->label('Business');
+            if (!$model->idmarca) {
+                echo $form->field($model, 'business_id')->widget(Select2::className(), [
+                    'data' => $_dataBusiness,
+                    'options' => ['placeholder' => 'Clique para selecionar...', 'multiple' => false],
+                ])->label('Business');
+            }
         ?>
         <?php echo $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
+        <?php echo $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
         <?php echo $form->field($model, 'slogan')->textInput(['maxlength' => true]) ?>
         <?php echo $form->field($model, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
 

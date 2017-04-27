@@ -22,9 +22,11 @@ $this->title = 'Business';
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
 				<h4>
-					<div class="borderlefttitlo"></div><span>Business</span>
+					<div class="borderlefttitlo"></div><span>New Business</span>
 					<div class="nomebusinesscreate">
-						<div class="borderlefttitlo"></div>
+                        <?php if ($model->id): ?>
+                            <div class="borderlefttitlo"></div>
+                        <?php endif; ?>
                         <span><?= $model->name ?></span>
 					</div>
 				</h4>

@@ -26,7 +26,7 @@ class MarcaController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'view', 'delete', 'create-produtor'],
+                        'actions' => ['index', 'create', 'update', 'view', 'delete', 'update-produtor', 'create-user'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -80,7 +80,6 @@ class MarcaController extends Controller {
             if($model->save()){
                 return $this->redirect(['update', 'id' => $model->idmarca]);
             } 
-
         } else {
             $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
             return $this->render('create', [
@@ -114,22 +113,64 @@ class MarcaController extends Controller {
             if($model->save()){
                 return $this->redirect(['update', 'id' => $model->idmarca]);
             }
-        } else {
-            $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
-            return $this->render('update', [
-                'model' => $model,
-                '_dataBusiness' => $_dataBusiness,
-                'newUser' => new SignupForm(),
-                'newProdutor' => new Produtor(),
-                'newMarca' => [],
-            ]);
+        } 
+
+        $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
+        $prod = Produtor::find()->where(['marca_idmarca' => $id])->one();
+        if (!$prod) {
+            $prod = new Produtor();
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+            '_dataBusiness' => $_dataBusiness,
+            'newUser' => new SignupForm(),
+            'newProdutor' => $prod,
+            'newMarca' => [],
+        ]);
+    }
+
+    public function actionUpdateProdutor($id) {
+        $model = Produtor::find()->where(['idprodutor' => $id])->One();
+        if ($model->load(Yii::$app->request->post()) ) {
+            if (!$model->save()) {
+                var_dump($model->getErrors());
+                die;
+            }
+            return $this->redirect(['update', 'id' => $model->marca_idmarca]);
         }
     }
 
-    public function actionCreateProdutor() {
-        $model = new Produtor();
-        if ($model->load(Yii::$app->request->post()) ) {
-            $model->save();
+    public function actionCreateUser() {
+        $model = new SignupForm();
+        $model->tipo_user = 3;
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                $this->addRoles($user, ['business']);
+                $prod = new Produtor();
+                $prod->idprodutor = $user->id;
+                $prod->nome = $model->nome;
+                $prod->public_email = $model->email;
+                $prod->marca_idmarca = $model->marca_id;
+
+                if ($prod->save()) {
+                    $user->delete();
+                    return;
+                }
+
+                return $this->redirect(['update', 'id' => $model->marca_id]);
+            }
+        }
+    }
+
+    private function addRoles($user, $rolesArray) {
+        $auth = Yii::$app->authManager;
+        foreach($rolesArray as $roleName) {
+            $roleObj = $auth->getRole($roleName);
+            if (!$roleObj) {
+                throw new NotFoundHttpException("Invalid role ${roleName}.");
+            }
+            $auth->assign($roleObj, $user->id);
         }
     }
 

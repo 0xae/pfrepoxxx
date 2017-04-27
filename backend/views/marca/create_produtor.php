@@ -8,7 +8,7 @@
 <div class="modal fade popupcriarbilhete " id="modal_criar_produtor" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-            <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create-produtor']); ?>
+            <?php $form = ActiveForm::begin(["action"=>"index.php?r=marca/update-produtor&id={$newProdutor->idprodutor}"]); ?>
                 <div class="modal-header"><h4 class="modal-title">Criar Produtor</h4></div>
                 <div class="modal-body">
                     <?= $form->field($newProdutor, 'marca_idmarca')
@@ -18,7 +18,6 @@
                     <?= $form->field($newProdutor, 'nome'); ?>
                     <label>Sobrenome</label> 
                     <?= $form->field($newProdutor, 'apelido')->label(false); ?>
-                    <?= $form->field($newProdutor, 'public_email'); ?>
                     <?= $form->field($newProdutor, 'telefone'); ?>
                 </div>
                 <div class="modal-footer">

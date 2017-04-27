@@ -42,7 +42,7 @@ class Marca extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['nome', 'email'], 'required'],
+            [['nome', 'business_id', 'email'], 'required'],
             [['estado', 'business_id'], 'integer'],
             [['email'], 'email'],
             [['telefone'], 'string', 'max' => 45],

@@ -20,6 +20,7 @@ use yii\web\NotFoundHttpException;
  * @property integer $updated_at
  */
 class User extends \yii\db\ActiveRecord {
+    public $nome;
     public $password;
 
     /**

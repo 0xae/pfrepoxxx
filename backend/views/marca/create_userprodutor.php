@@ -7,10 +7,17 @@
 
 <div class="modal fade popupcriarbilhete " id="modal_criar_user" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
 	<div class="modal-dialog" role="document">
-        <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create', 'options'=>['enctype'=>'multipart/form-data']]); ?>
+        <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create-user']); ?>
             <div class="modal-content">
                 <div class="modal-header"><h4 class="modal-title">Criar User</h4></div>
                 <div class="modal-body">
+                    <?= $form->field($newUser, 'marca_id')
+                             ->hiddenInput(['value'=>$marca->idmarca, 'maxlength' => true]) 
+                             ->label(false);
+                    ?>
+                    <div class="form-group">
+                        <?= $form->field($newUser, 'nome')->textInput(['maxlength' => true]) ?>
+                    </div>
                     <div class="form-group">
                         <?= $form->field($newUser, 'username')->textInput(['maxlength' => true]) ?>
                     </div>
