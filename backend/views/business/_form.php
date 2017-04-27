@@ -90,6 +90,7 @@ $this->title = 'Business';
                                         <?= $form->field($model, 'support_email')->textInput(['maxlength' => true]) ?>
                                         <?= $form->field($model, 'support_phone')->textInput(['maxlength' => true]) ?>
                                     </div>
+<<<<<<< HEAD
                                 </div>
                                 <div class="biz-footer">
 									<?php echo Html::submitButton(
@@ -98,6 +99,14 @@ $this->title = 'Business';
 										);
 									?>
 								</div>
+=======
+                                    <?php echo Html::submitButton(
+                                            $model->isNewRecord ? 'Guardar' : 'Actualizar', 
+                                            ['class' =>  'btn btn-success', 'id'=> 'submit_business']
+                                        );
+                                    ?>
+                                </div>
+>>>>>>> 61f5d8ae2893893a7689428441ce5117b9168e2a
 
                             <?php ActiveForm::end(); ?>
                         </div>

@@ -25,9 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ]); ?>
 
      <?php echo $form->field($profile, 'marca_idmarca')->widget(Select2::className(), [
-    'data' => $data = $_dataMarca,
-    'options' => ['placeholder' => 'Escolha a marca em que este pertence...', 'multiple' => false],
-    ]);?>
+        'data' => $data = $_dataMarca,
+        'options' => ['placeholder' => 'Escolha a marca em que este pertence...', 'multiple' => false],
+        ]);?>
     <?= $form->field($profile, 'nome') ?>
     <?= $form->field($profile, 'apelido') ?>
     <?= $form->field($profile, 'public_email') ?>

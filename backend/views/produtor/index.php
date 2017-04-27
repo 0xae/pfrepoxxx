@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 if($model_['nome'])
                                     echo $model_['nome'].' '.$model_['apelido'];
                                 else
-                                    echo $nome = $model->loadModelUserProdutor($model_['idprodutor']);
+                                    echo "Produtor";
                             ?>
                         </span>
                         <div class="marca-separator"></div>
