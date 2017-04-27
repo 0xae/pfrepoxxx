@@ -29,10 +29,7 @@ $this->title = 'Businesses';
                             </div>
                             <div class="col-md-12 descbussinessbox">
                             	<span><?php echo $d->name; ?></span>
-                                <span>
-                                    <span class="glyphicon glyphicon-globe" style="display:inline"></span>
-                                     <?php echo $d->getCountry()->one()->name; ?>
-                                </span>
+                                <span><?php echo $d->getCountry()->one()->name; ?></span>
                             </div>
                         </div>
                     </div>

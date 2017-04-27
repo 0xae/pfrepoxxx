@@ -128,7 +128,7 @@ $this->registerJS($script);
 
             <li class="treeview">
               <a href="index.php?r=marca">
-                <span>Marca</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
