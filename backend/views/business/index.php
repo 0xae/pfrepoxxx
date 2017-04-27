@@ -19,10 +19,10 @@ $this->title = 'Businesses';
 		</div>
 	</div>
 	<div class="col-md-12 contentbox">
-        <?php //foreach ($data as $d): ?>
+        <?php foreach ($data as $d): ?>
             <div class="col-md-3 boxconteinerbus">
-            	<a href="<?php /*?>index.php?r=business/update&id=<?= $d->id ?><?php */?>">
-                    <?php /*?><div class="panel panel-default">
+            	<a href="index.php?r=business/update&id=<?= $d->id ?>">
+                    <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-12 imgbussinessbox">
                                 <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
@@ -35,22 +35,10 @@ $this->title = 'Businesses';
                                 </span>
                             </div>
                         </div>
-                    </div><?php */?>
-                    
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="col-md-12 imgbussinessbox">
-                                <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
-                            </div>
-                            <div class="col-md-12 descbussinessbox">
-                            	<span>Francis Johnson</span>
-                                <span>Armenia</span>
-                            </div>
-                        </div>
                     </div>
                 </a>
             </div>
-        <?php //endforeach; ?>
+        <?php endforeach; ?>
 
         <?php if (Yii::$app->user->can('admin') || Yii::$app->user->can('passafree_staff')): ?>
             <div class="col-md-3">
