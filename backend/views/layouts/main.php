@@ -139,7 +139,7 @@ $this->registerJS($script);
             </li>
 
             <li class="treeview">
-              <a href="index.php?r=user-produtor">
+              <a href="index.php?r=analytics">
                 <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>

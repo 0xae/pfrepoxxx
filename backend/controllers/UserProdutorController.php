@@ -18,8 +18,6 @@ use backend\models\UserProdutorSearch;
 use backend\models\User;
 use backend\models\Produtor;
 use backend\models\Marca;
-use backend\models\Business;
-
 
 /**
  * UserProdutorController implements the CRUD actions for UserProdutor model.
@@ -156,7 +154,6 @@ class UserProdutorController extends Controller {
             }
         }
 
-        $business = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         return $this->render('_update', [
             'model' => $model,
         ]);
@@ -172,12 +169,10 @@ class UserProdutorController extends Controller {
             Yii::$app->session->setFlash('success', "success");
         }
 
-        $business = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         return $this->render('_profile', [
             'model' => $model,
             'profile' => $profile,
             '_dataMarca' => $_dataMarca,
-            '_dataBusiness' => $business
         ]);
     }
 
