@@ -41,5 +41,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal_criar_marca">
       Launch modal
     </button>
-    <?php echo $this->render('create_marca', ['model' => $model]); ?>
+    <?php echo $this->render('create_marca', ['newMarca' => $newMarca]); ?>
 </div>

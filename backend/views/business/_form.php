@@ -94,17 +94,13 @@ $this->title = 'Business';
                                         <?= $form->field($model, 'support_email')->textInput(['maxlength' => true]) ?>
                                         <?= $form->field($model, 'support_phone')->textInput(['maxlength' => true]) ?>
                                     </div>
-                                </div>
-
-                                <?php /*?><div class="col-md-12">
-                                    <div class="biz-footer">
                                     <?php echo Html::submitButton(
                                             $model->isNewRecord ? 'Guardar' : 'Actualizar', 
                                             ['class' =>  'btn btn-success', 'id'=> 'submit_business']
                                         );
                                     ?>
-                                    </div>
-                                </div><?php */?>
+                                </div>
+
                             <?php ActiveForm::end(); ?>
                         </div>
 

@@ -9,5 +9,5 @@ use yii\helpers\Html;
 $this->title = 'Business';
 ?>
 
-<?php $this->render('_form', ['model' => $model]); ?>
+<?php $this->render('_form', ['model' => $model, 'newMarca' => $newMarca]); ?>
 

@@ -45,6 +45,7 @@ class Marca extends \yii\db\ActiveRecord {
         return [
             [['nome', 'email'], 'required'],
             [['estado'], 'integer'],
+            [['email'], 'email'],
             [['telefone'], 'string', 'max' => 45],
             [['nome', 'logo', 'sede', 'email', 'slogan'], 'string', 'max' => 255],
             /*

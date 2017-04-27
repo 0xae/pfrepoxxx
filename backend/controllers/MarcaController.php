@@ -55,6 +55,7 @@ class MarcaController extends Controller {
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'modelsMarca' => $modelsMarca,
+            'newMarca' => new Marca(),
         ]);
     }
 
@@ -75,10 +76,9 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        $model = new Marca(['scenario' => Marca::SCENARIO_CREATE]);
+        $model = new Marca();
 
         if ($model->load(Yii::$app->request->post())) {
-            
                 $model->estado = $model::STATUS_ACTIVE;
                 /*
                 $model->file = UploadedFile::getInstance($model, 'file');
@@ -91,10 +91,11 @@ class MarcaController extends Controller {
                  */
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->idmarca]);
-            }
+            } 
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'newMarca' => new Marca()
             ]);
         }
     }

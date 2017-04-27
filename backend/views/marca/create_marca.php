@@ -13,23 +13,23 @@ use kartik\file\FileInput;
 <div class="modal fade popupcriarbilhete " id="modal_criar_marca" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+            <?php $form = ActiveForm::begin(["action" => 'index.php?r=marca/create']); ?>
                 <div class="modal-header">
                     <h4 class="modal-title">Criar Marca</h4>
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <?php echo $form->field($model, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
+                            <?php echo $form->field($newMarca, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
+                            <?php echo $form->field($newMarca, 'nome')->textInput(['maxlength' => true]) ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+                            <?php echo $form->field($newMarca, 'email')->textInput(['maxlength' => true]) ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($model, 'slogan')->textInput(['maxlength' => true]) ?>
+                            <?php echo $form->field($newMarca, 'slogan')->textInput(['maxlength' => true]) ?>
                         </div>
                     </div>
                 </div>
