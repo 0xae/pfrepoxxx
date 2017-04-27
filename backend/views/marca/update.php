@@ -5,10 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Marca */
 
-$this->title = ' ' . ' ' . $model->nome;
-$this->params['breadcrumbs'][] = ['label' => 'Marcas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->nome, 'url' => ['view', 'id' => $model->idmarca]];
-$this->params['breadcrumbs'][] = 'Atualizar';
+$this->title = ' ' . $model->nome;
 ?>
 <div class="marca-update">
 
@@ -16,6 +13,7 @@ $this->params['breadcrumbs'][] = 'Atualizar';
 
     <?= $this->render('_form', [
         'model' => $model,
+        '_dataBusiness' => $_dataBusiness
     ]) ?>
 
 </div>

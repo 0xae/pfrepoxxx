@@ -15,11 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <?php
             if($modelsMarca){
-
                 foreach ($modelsMarca as $key => $model) { ?>
                     <div class="col-md-3">
-                        
-                            <a href="index.php?r=marca%2Fview&id=<?php echo $model->idmarca; ?>">
+                            <a href="index.php?r=marca/update&id=<?php echo $model->idmarca; ?>">
                                 <div class="fundo_marca">
                                     <div class="fundo_logo">
                                         <img class="img-responsive" src="<?= $model['logo']; ?>">
@@ -31,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                             </a>
                         </div>        
-                    
             <?php   
                 }
             }
@@ -41,5 +38,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal_criar_marca">
       Launch modal
     </button>
-    <?php echo $this->render('create_marca', ['newMarca' => $newMarca]); ?>
+    <?php echo $this->render('create_marca', ['newMarca' => $newMarca, '_dataBusiness' => $_dataBusiness]); ?>
 </div>

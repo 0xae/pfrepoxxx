@@ -1,12 +1,8 @@
 <?php
-
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use kartik\file\FileInput;
-
-/* @var $this yii\web\View */
-/* @var $model backend\models\Marca */
-/* @var $form yii\widgets\ActiveForm */
+    use yii\helpers\Html;
+    use yii\widgets\ActiveForm;
+    use kartik\file\FileInput;
+    use kartik\select2\Select2;
 ?>
 
 <div class="modal fade popupcriarbilhete " id="modal_criar_marca" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
@@ -18,6 +14,12 @@ use kartik\file\FileInput;
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12">
+                        <?php
+                            echo $form->field($newMarca, 'business_id')->widget(Select2::className(), [
+                                'data' => $data = $_dataBusiness,
+                                'options' => ['placeholder' => 'Clique para selecionar...', 'multiple' => false],
+                            ])->label('Business');
+                        ?>
                         <div class="form-group">
                             <?php echo $form->field($newMarca, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
                         </div>

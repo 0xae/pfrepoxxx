@@ -3,14 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 use backend\models\Marca;
 use backend\models\MarcaSearch;
+use backend\models\Business;
 
 /**
  * MarcaController implements the CRUD actions for Marca model.
@@ -49,12 +51,14 @@ class MarcaController extends Controller {
         $searchModel = new MarcaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $modelsMarca = Marca::find()->all();
+        $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'modelsMarca' => $modelsMarca,
             'newMarca' => new Marca(),
+            '_dataBusiness' => $_dataBusiness
         ]);
     }
 
@@ -80,12 +84,14 @@ class MarcaController extends Controller {
         if ($model->load(Yii::$app->request->post())) {
             $model->estado = $model::STATUS_ACTIVE;
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->idmarca]);
+                return $this->redirect(['update', 'id' => $model->idmarca]);
             } 
 
         } else {
+            $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
             return $this->render('create', [
                 'model' => $model,
+                '_dataBusiness' => $_dataBusiness,
                 'newMarca' => new Marca()
             ]);
         }
@@ -101,26 +107,25 @@ class MarcaController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            
             /*
             $model->file = UploadedFile::getInstance($model, 'file');
-
             if($model->file){
-
                 $ext = end((explode(".", $model->file)));
                 $generateRandomName = Yii::$app->security->generateRandomString().".{$ext}";
-
                 $model->file->saveAs('uploads/marca/'.$generateRandomName);
                 $model->logo = 'uploads/marca/'.$generateRandomName;
             }
              */
 
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->idmarca]);
+                return $this->redirect(['update', 'id' => $model->idmarca]);
             }
         } else {
+            $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
             return $this->render('update', [
                 'model' => $model,
+                '_dataBusiness' => $_dataBusiness,
+                'newMarca' => []
             ]);
         }
     }

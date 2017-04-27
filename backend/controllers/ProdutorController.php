@@ -58,14 +58,12 @@ class ProdutorController extends Controller {
     public function actionRegistar() {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-
             $model->tipo_user = 3;
 
             if ($user = $model->signup()) {
                 $artista = new Artista();
                 $artista->idartista = $user->id;
                 $artista->save();
-
                 return $this->redirect(['update', 'id' => $artista->idartista]);
             }
         }
@@ -75,15 +73,12 @@ class ProdutorController extends Controller {
         ]);
     }
 
-
-
     /**
      * Displays a single Produtor model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -94,8 +89,7 @@ class ProdutorController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Produtor();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -113,12 +107,10 @@ class ProdutorController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModelUser($id);
 
         if ($model->load(Yii::$app->request->post())) {
-
             if($model->password){
                 $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
             }
@@ -126,12 +118,11 @@ class ProdutorController extends Controller {
             if($model->save()){
                 Yii::$app->session->setFlash('success', "success");
             }
-        
-
         }
-            return $this->render('_update', [
-                'model' => $model,
-            ]);
+
+        return $this->render('_update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -140,10 +131,8 @@ class ProdutorController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
@@ -154,8 +143,7 @@ class ProdutorController extends Controller {
      * @return Produtor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Produtor::findOne($id)) !== null) {
             return $model;
         } else {
@@ -163,8 +151,7 @@ class ProdutorController extends Controller {
         }
     }
 
-    protected function findModelUser($id)
-    {
+    protected function findModelUser($id) {
         if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {

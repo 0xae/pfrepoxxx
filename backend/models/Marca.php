@@ -1,9 +1,8 @@
 <?php
 
 namespace backend\models;
-use yii\helpers\ArrayHelper;
-
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "marca".
@@ -44,7 +43,7 @@ class Marca extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['nome', 'email'], 'required'],
-            [['estado'], 'integer'],
+            [['estado', 'business_id'], 'integer'],
             [['email'], 'email'],
             [['telefone'], 'string', 'max' => 45],
             [['nome', 'logo', 'sede', 'email', 'slogan'], 'string', 'max' => 255],
