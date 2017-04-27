@@ -114,17 +114,11 @@ class BusinessController extends Controller {
             $data = Country::find()->asArray()->all();
             $countries = ArrayHelper::map($data, 'id', 'name');
             $_dataUsers = ArrayHelper::map(User::find()->asArray()->all(), 'id', 'username');
-            $producers = ArrayHelper::map((new Business())->getAllProducers(), 'produtor_id', 'descricao');
-            $producerForm = new AddProducerForm();
-            $producerForm->business_id = $model->id;
 
             return $this->render('update', [
                 'model' => $model,
-                'producerForm' => $producerForm,
-                'producers' => $model->getProducers(),
                 '_dataUsers' => $_dataUsers,
                 '_dataCountries' => $countries,
-                '_dataProducers' => $producers
             ]);
         }
     }

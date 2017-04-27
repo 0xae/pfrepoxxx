@@ -12,6 +12,5 @@ use yii\helpers\Html;
         'model' => $model,
         '_dataUsers' => $_dataUsers,
         '_dataCountries' => $_dataCountries,
-        '_dataProducers' => $_dataProducers,
     ]) ?>
 </div>
