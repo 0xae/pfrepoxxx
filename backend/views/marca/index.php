@@ -33,32 +33,34 @@ $this->params['breadcrumbs'][] = $this->title;
 		</div>
 	</div>
 	<div class="col-md-12 contentbox">
-		<div class="col-md-4">
-			<a href="#">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<div class="col-md-12 imgbussinessbox">
-								<div class="userciculo"></div>
-								<img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
-							</div>
-							<div class="col-md-12 descbussinessbox">
-								<div class="linetopbox"></div>
-								<div>Sigui Sabura</div>
-								<span>gettinng free publicity for you</span>
-							</div>
-						</div>
-					</div>
-				</a>
-			</div>
-			<div class="col-md-4">
-				<a href="index.php?r=business/create">
-					<div class="panel panel-default addbusiness">
-						<div class="panel-body">+</div>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
+        <?php foreach($models as $m): ?>
+            <div class="col-md-4">
+                <a href="index.php?r=business/update&id=<?= $m->idmarca ?>">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-12 imgbussinessbox">
+                                <div class="userciculo"></div>
+                                <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+                            </div>
+                            <div class="col-md-12 descbussinessbox">
+                                <div class="linetopbox"></div>
+                                <div><?= $m->nome ?></div>
+                                <span>gettinng free publicity for you</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <?php endforeach; ?>
+        <div class="col-md-4">
+            <a href="index.php?r=business/create">
+                <div class="panel panel-default addbusiness">
+                    <div class="panel-body">+</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
     
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal_criar_marca">
       Launch modal

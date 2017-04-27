@@ -49,15 +49,11 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new MarcaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $modelsMarca = Marca::find()->all();
+        $models = Marca::find()->all();
         $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'modelsMarca' => $modelsMarca,
+            'models' => $models,
             'newMarca' => new Marca(),
             '_dataBusiness' => $_dataBusiness
         ]);
