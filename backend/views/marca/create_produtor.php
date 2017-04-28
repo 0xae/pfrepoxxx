@@ -22,7 +22,6 @@
                     <?= $form->field($newProdutor, 'marca_idmarca')
                              ->hiddenInput(['value' => $marca->idmarca])
                              ->label(false); ?>
-                    <?= $form->field($newProdutor, 'foto')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
                     <?= $form->field($newProdutor, 'nome'); ?>
                     <label>Sobrenome</label> 
                     <?= $form->field($newProdutor, 'apelido')->label(false); ?>
