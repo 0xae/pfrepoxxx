@@ -27,7 +27,7 @@ class RoleController extends Controller {
                     [
                         'allow' => true,
                         'actions' => ['index', 'create', 'update', 'view', 'delete'],
-                        'roles' => ['@']
+                        'roles' => ['passafree_staff', 'admin']
                     ]
                 ]
             ]

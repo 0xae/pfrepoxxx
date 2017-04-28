@@ -7,6 +7,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+
 use backend\models\LoginForm;
 use backend\models\Reports;
 use backend\models\Business;
@@ -29,12 +30,12 @@ class AccountingController extends Controller {
                                         'business-revenue', 'view-business', 'business', 
                                         'top-producers', 'top-events', 'ticket-reports'],
                         'allow' => true,
-                        'roles' => ['@']
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@']
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ],
             ],

@@ -11,18 +11,17 @@ use yii\web\ForbiddenHttpException;
 use backend\models\PasswordResetRequestForm;
 use backend\models\ResetPasswordForm;
 use backend\models\SignupForm;
+use backend\models\Business;
 
 
 /**
  * Site controller
  */
-class SiteController extends Controller
-{
+class SiteController extends Controller {
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -44,8 +43,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -53,9 +51,7 @@ class SiteController extends Controller
         ];
     }
 
-
-    public function actionSignup()
-    {
+    public function actionSignup() {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
@@ -76,15 +72,27 @@ class SiteController extends Controller
 
     public function actionLogin() {
         $this->layout = 'loginlayout';
+        $user = \Yii::$app->user;
+        $session = Yii::$app->session;
+
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if (\Yii::$app->user->can('admin') || \Yii::$app->user->can('passafree_staff')) {
-            } else if(\Yii::$app->user->can('business')) {
+            if ($user->can('admin') || $user->can('passafree_staff')) {
+                # humm, what shall we do ?
+            } else if($user->can('business')) {
+                $b = Business::find()->where(['responsable' => $user->identity->id])->One();
+                if ($b) {
+                    $session->set('business', $b->id);
+                    $session->set('business_name', $b->name);
+                } else {
+                    $session->set('business', -1);
+                }
             }
+
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -93,10 +101,8 @@ class SiteController extends Controller
         }
     }
 
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 }

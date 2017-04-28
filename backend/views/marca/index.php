@@ -44,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </a>
             </div>
         <?php endforeach; ?>
+
         <div class="col-md-4">
             <a href="javascript:void(0)" data-toggle="modal" data-target="#modal_criar_marca">
                 <div class="panel panel-default addbusiness">

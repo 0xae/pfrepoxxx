@@ -28,7 +28,7 @@ class MarcaController extends Controller {
                     [
                         'actions' => ['index', 'create', 'update', 'view', 'delete', 'update-produtor', 'create-user'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ],
             ],  
@@ -46,12 +46,23 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $models = Marca::find()->all();
+        $session = Yii::$app->session;
+        $models = Marca::find();
+        $marca = new Marca();
+        $user = Yii::$app->user;
+
+        if ($session->has('business')) {
+            $bizId = $session->get('business');
+            $models = $models->where(['business_id' => $bizId]);
+            $marca->business_id = $bizId;
+        } 
+
+        $models = $models->all();
         $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
 
         return $this->render('index', [
             'models' => $models,
-            'newMarca' => new Marca(),
+            'newMarca' => $marca,
             '_dataBusiness' => $_dataBusiness
         ]);
     }

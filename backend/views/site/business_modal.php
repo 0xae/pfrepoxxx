@@ -9,7 +9,7 @@
     $session = Yii::$app->session;
 ?>
 
-<?php if ($session->has('business')): ?>
+<?php if ($session->has('business')): $bizId = $session->get('business'); ?>
     <div class="row nomebusinessbt">
         <div class="col-md-12 titulosection">
             <div class="proximo_evento">
@@ -22,8 +22,8 @@
                     <a href="javascript:void(0)" style="color:#000;" data-toggle="modal" data-target="#choose_biz">
                         <div class="labeltipobilhete">Alterar</div>
                     </a>
-                <?php else: ?>
-                    <a href="index.php?r=business/update&id=<?= $session->get('business'); ?>" style="color:#000;" data-toggle="modal" data-target="#choose_biz">
+                <?php elseif ($bizId > 0): ?>
+                    <a href="index.php?r=business/update&id=<?= $session->get('business'); ?>" style="color:#000;">
                         <div class="labeltipobilhete">Editar</div>
                     </a>
                 <?php endif; ?>

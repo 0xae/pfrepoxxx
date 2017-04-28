@@ -53,8 +53,7 @@ class SignupForm extends Model {
      *
      * @return User|null the saved model or null if saving fails
      */
-    public function signup()
-    {
+    public function signup() {
         if (!$this->validate()) {
             return null;
         }
@@ -74,10 +73,8 @@ class SignupForm extends Model {
     }
 
     public function profileIdProfile($id){
-        
         $model = Profile::find()->where(['user_id'=>$id])->one();
-
-            if($model)
-                return $model->name;
+        if($model)
+            return $model->name;
     }
 }

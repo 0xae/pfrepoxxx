@@ -33,7 +33,7 @@ class UserController extends Controller {
                     [
                         'allow' => true,
                         'actions' => ['index', 'create', 'update', 'view'],
-                        'roles' => ['@']
+                        'roles' => ['passafree_staff', 'admin'] 
                     ]
                 ]
             ]
@@ -90,8 +90,11 @@ class UserController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $permissions = $this->getRequestPermissions();
-            $this->updateRoles($model, $permissions);
+            $this->updateRoles($model, $this->getRequestPermissions());
+            if ($model->password) {
+                $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            }
+
             Yii::$app->getSession()->setFlash('success', 'Utilizador actualizado com sucesso.');
             return $this->redirect(['update', 'id'=>$model->id]);
         } else {

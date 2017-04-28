@@ -31,13 +31,13 @@ class BusinessController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create', 'view', 'update', 'add-producer', 'remove-producer', 'select'],
+                        'actions' => ['index', 'create', 'select'],
                         'roles' => ['passafree_staff', 'admin']
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['delete', 'admin'],
-                        'roles' => ['@']
+                        'actions' => ['view', 'update'],
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ]
                 ]
             ]

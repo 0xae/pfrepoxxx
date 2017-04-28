@@ -31,7 +31,7 @@ class ProdutorController extends Controller {
                     [
                         'actions' => ['index', 'update', 'registar', 'profile', 'block', 'create', 'delete'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ],
             ],

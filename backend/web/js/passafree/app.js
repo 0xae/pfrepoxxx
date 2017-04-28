@@ -1,11 +1,10 @@
 $(document).ready(function () {
-    var sessionBusiness = parseInt($("#session_business").val()) ||  getStoredBiz();
+    var sessionBusiness = parseInt($("#session_business").val());
 
     $(".biz-choice").on("click", function () {
         var bizId = $(this).attr('data-id');
         selectBiz(bizId)
         .then(function () {
-            localStorage.setItem('defaultBiz', bizId);
             location.reload();
         });
     });
@@ -17,10 +16,5 @@ $(document).ready(function () {
 
 function selectBiz(bizId) {
     return $.get("./index.php?r=business/select&id="+bizId);
-}
-
-function getStoredBiz() {
-    var it = localStorage.getItem('defaultBiz');
-    return parseInt(it);
 }
 

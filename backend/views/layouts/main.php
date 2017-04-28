@@ -30,17 +30,10 @@ DashboardAsset::register($this);
 <style type="text/css">
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
-.loading {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background: url(img/loading.gif) center no-repeat #fff;
-}
+.loading { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background: url(img/loading.gif) center no-repeat #fff; }
 </style>
 <?php
+$user = Yii::$app->user;
 $script=<<<JS
 
 $(window).load(function() {
@@ -92,49 +85,49 @@ $this->registerJS($script);
         </li>
         <li class="nome_user text-center">
           <span>
-              <?php
-                if(!Yii::$app->user->isGuest) {
-                  echo Yii::$app->user->identity->username;
-                }
-              ?>
+              <?php echo $user->identity->username; ?>
             </span>
         </li>
         <br>
           <!-- Sidebar user panel -->
           <ul class="sidebar-menu text-center">
             <li class="<?php if (Yii::$app->controller->id == 'site'){ echo 'active'; } ?> treeview">
-              <a href="index.php"><span>Overview</span></a>
+                  <a href="index.php"><span>Overview</span></a>
             </li>
 
-            <li class="<?php if (Yii::$app->controller->id == 'business'){ echo 'active'; } ?> treeview">
-              <a href="index.php?r=business">
-                <span>Business</span> <!--i class="fa fa-angle-left pull-right"></i-->
-              </a>
-            </li>
+            <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
+                <li class="<?php if (Yii::$app->controller->id == 'business'){ echo 'active'; } ?> treeview">
+                      <a href="index.php?r=business">
+                        <span>Business</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                      </a>
+                </li>
+            <?php endif; ?>
 
             <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
-              <a href="index.php?r=marca">
-                <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
-              </a>
+                  <a href="index.php?r=marca">
+                    <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                  </a>
             </li>
 
             <li class="<?php if (Yii::$app->controller->id == 'accounting'){ echo 'active'; } ?> treeview">
-              <a href="index.php?r=accounting">
-                <span>Accounting</span> <!--i class="fa fa-angle-left pull-right"></i-->
-              </a>
+                  <a href="index.php?r=accounting">
+                    <span>Accounting</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                  </a>
             </li>
 
             <li class="<?php if (Yii::$app->controller->id == 'analytics'){ echo 'active'; } ?> treeview">
-              <a href="index.php?r=analytics">
-                <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
-              </a>
+                  <a href="index.php?r=analytics">
+                    <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                  </a>
             </li>
 
-            <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
-              <a href="index.php?r=user">
-                <span>Settings</span> <!--i class="fa fa-angle-left pull-right"></i-->
-              </a>
-            </li>
+            <?php if (Yii::$app->user->can('admin')): ?>
+                    <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
+                      <a href="index.php?r=user">
+                        <span>Settings</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                      </a>
+                    </li>
+            <?php endif; ?>
           </ul>
         </section>
         <!-- /.sidebar -->

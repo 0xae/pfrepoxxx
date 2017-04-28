@@ -35,7 +35,7 @@ class UserProdutorController extends Controller {
                     [
                         'actions' => ['index', 'update', 'create', 'profile', 'block', 'delete'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ],
             ],

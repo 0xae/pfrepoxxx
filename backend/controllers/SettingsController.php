@@ -22,7 +22,7 @@ class SettingsController extends Controller {
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@']
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ],
             ],

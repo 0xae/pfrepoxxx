@@ -25,7 +25,7 @@ class CountryController extends Controller {
                     [
                         'allow' => true,
                         'actions' => ['index', 'create', 'update', 'view'],
-                        'roles' => ['@']
+                        'roles' => ['passafree_staff', 'admin']
                     ]
                 ]
             ]

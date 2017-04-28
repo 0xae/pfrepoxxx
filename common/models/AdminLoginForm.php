@@ -7,20 +7,17 @@ use yii\base\Model;
 /**
  * Login form
  */
-class AdminLoginForm extends Model
-{
+class AdminLoginForm extends Model {
     public $username;
     public $password;
     public $rememberMe = false;
-
     private $_user;
 
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             // username and password are both required
             [['username', 'password'], 'required'],
