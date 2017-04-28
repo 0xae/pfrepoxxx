@@ -13,6 +13,14 @@
                     <h4 class="modal-title">Criar Marca</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="progresspopup">
+                        <div class="lineprogresso"></div>
+                        <ul>
+                            <li class="active">1</li>
+                            <li class="stepmiddleprogress">2</li>
+                            <li>3</li>
+                        </ul>					
+                    </div>
                     <div class="col-md-12">
                         <?php
                             echo $form->field($newMarca, 'business_id')->widget(Select2::className(), [

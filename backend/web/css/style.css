@@ -1085,7 +1085,7 @@
 }
 .progresspopup
 {
-	margin: 50px 0;
+	margin: 12px 0;
 	display: table;
 	width: 100%;
 }
@@ -1157,6 +1157,7 @@
 {
 	padding: 15px 30px;
 }
+
 
 .modal-header {
     margin-bottom: 30px;
