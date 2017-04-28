@@ -7,30 +7,19 @@ $this->title = 'Business';
 ?>
 
 <div class="container-fluid pagebusiness">
-    <!--
-	<div class="row nomebusinessbt">
-		<div class="col-md-12 titulosection">
-			<div class="proximo_evento">
-				<div class="nomebusiness">
-					<div class="circulobusiness"></div>
-					<div>Nome de Business</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    -->
-
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
 				<h4>
-					<div class="borderlefttitlo"></div><span>New Business</span>
-					<div class="nomebusinesscreate">
-                        <?php if ($model->id): ?>
-                            <div class="borderlefttitlo"></div>
-                        <?php endif; ?>
-                        <span><?= $model->name ?></span>
-					</div>
+                    <?php if ($model->id): ?>
+                        <div class="borderlefttitlo"></div><span>Business</span>
+                        <div class="nomebusinesscreate">
+                                <div class="borderlefttitlo"></div>
+                            <span><?= $model->name ?></span>
+                        </div>
+                    <?php else: ?>
+                        <div class="borderlefttitlo"></div><span>New Business</span>
+                    <?php endif; ?>
 				</h4>
 
 				<div class="pageventbtngroup">

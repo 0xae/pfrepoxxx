@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = ' ' . $model->nome;
 ?>
 <div class="marca-update">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?php /*
     <?php if ($newProdutor->idprodutor): ?>
         <button type="button" class="btn btn-sm btn-primary btn-lg" data-toggle="modal" data-target="#modal_criar_produtor">
           Editar Produtor
@@ -18,7 +18,9 @@ $this->title = ' ' . $model->nome;
           Associar responsavel
         </button>
     <?php endif; ?>
-    <?php echo $this->render('_form', ['model' => $model, '_dataBusiness' => $_dataBusiness]) ?>
+    */ ?>
+
+    <?php echo $this->render('_form1', ['model' => $model, '_dataBusiness' => $_dataBusiness]) ?>
 
     <div>
         <input id="producer_id" type="hidden" value="<?php echo $newProdutor->idprodutor; ?>" />
