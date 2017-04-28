@@ -10,6 +10,7 @@ use yii\helpers\Html;
 <div class="business-update">
     <?= $this->render('_form', [
         'model' => $model,
+        'producers' => $producers,
         '_dataUsers' => $_dataUsers,
         '_dataCountries' => $_dataCountries,
     ]) ?>

@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
 use backend\models\Country;
 use backend\models\User;
 use backend\models\AddProducerForm;
+use backend\models\Marca;
 
 /**
  * BusinessController implements the CRUD actions for Business model.
@@ -117,6 +118,7 @@ class BusinessController extends Controller {
 
             return $this->render('update', [
                 'model' => $model,
+                'producers' => Marca::find()->where(['business_id' => $id])->all(),
                 '_dataUsers' => $_dataUsers,
                 '_dataCountries' => $countries,
             ]);

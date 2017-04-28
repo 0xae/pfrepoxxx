@@ -96,21 +96,29 @@ $this->title = 'Business';
 
 								<div role="tabpanel" class="biz-pane tab-pane" id="access">
                                     <div class="row contentbox">
-                                        <div class="col-md-4">
-                                            <a href="#">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-body">
-                                                        <div class="col-md-4 imgbussinessbox">
-                                                            <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+                                        <?php if (isset($producers)): ?>
+                                            <?php foreach ($producers as $p): ?>
+                                                <div class="col-md-4">
+                                                    <a href="index.php?r=marca/update&id=<?= $p->idmarca; ?>">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-body">
+                                                                <div class="col-md-4 imgbussinessbox">
+                                                                    <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+                                                                </div>
+                                                                <div class="col-md-8 descbussinessbox">
+                                                                    <div><?= $p->nome; ?></div>
+                                                                    <span><?= $p->slogan ?></span>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-8 descbussinessbox">
-                                                            <div>Nome Produtor</div>
-                                                            <span>Texto produtor</span>
-                                                        </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                            </a>
-                                        </div>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <div class="col-md-4">
+                                                <h2>Sem produtores</h2>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
 								</div>
 								<!-- panel -->
@@ -127,58 +135,3 @@ $this->title = 'Business';
 
 
 
-
-
-
-
-
-
-
-<?php /*?>STEP 1<?php */?>
-<div class="modal fade popupcriarbilhete " id="modalcriarmarca" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header"><h4 class="modal-title">Criar Marca</h4></div>
-			<div class="modal-body">
-				<?php /*?>PROGRESSO<?php */?>
-				<div class="progresspopup">
-					<div class="lineprogresso"></div>
-					<ul>
-						<li class="active">1</li>
-						<li class="stepmiddleprogress">2</li>
-						<li>3</li>
-					</ul>					
-				</div>
-				<?php /*?>///<?php */?>
-				<form>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label>Nome</label>
-							<input type="text" class="form-control" placeholder="Select country">
-						</div>
-						<div class="form-group">
-							<label>Slogan</label>
-							<input class="form-control" placeholder="">
-						</div>
-						<div class="form-group">
-							<label>Descição</label>
-							<textarea type="text" class="form-control" placeholder="Select carrier"></textarea>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label>Logo</label>
-							<div class="imguploadpopup">
-								<div class="imguploadpopupinner">+</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="labeltipobilhete btn btn-default">Cancelar</button>
-				<button type="button" class="criar btn btn-primary">Próximo</button>
-			</div>
-		</div>
-	</div>
-</div>
