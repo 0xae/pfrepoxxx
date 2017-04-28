@@ -657,7 +657,21 @@ float: true;
     border-radius: 4px;
     opacity: 0.5;
 }
-
+.pagemarcas .filtro_eventos
+{
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.4) 100%);
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,0.4) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,0.4) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#66000000',GradientType=0 );
+	opacity: 1;
+}
+.pagemarcas .filtro_eventos:hover
+{
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#000000',GradientType=0 );
+}
 .ticket{
     margin-bottom: 8px;
     padding: 8px;

@@ -32,7 +32,7 @@ $this->title = 'Business';
 				</h4>
 
 				<div class="pageventbtngroup">
-					<button type="button" id="submit_business" class="criar btn bt-primary">Guardar</a>
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalcriarmarca">Guardar</a>
 				</div>
 			</div>
 		</div>
@@ -127,6 +127,66 @@ $this->title = 'Business';
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<?php /*?>STEP 1<?php */?>
+<div class="modal fade popupcriarbilhete " id="modalcriarmarca" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header"><h4 class="modal-title">Criar Marca</h4></div>
+			<div class="modal-body">
+				<?php /*?>PROGRESSO<?php */?>
+				<div class="progresspopup">
+					<div class="lineprogresso"></div>
+					<ul>
+						<li class="active">1</li>
+						<li class="stepmiddleprogress">2</li>
+						<li>3</li>
+					</ul>					
+				</div>
+				<?php /*?>///<?php */?>
+				<form>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Nome</label>
+							<input type="text" class="form-control" placeholder="Select country">
+						</div>
+						<div class="form-group">
+							<label>Slogan</label>
+							<input class="form-control" placeholder="">
+						</div>
+						<div class="form-group">
+							<label>Descição</label>
+							<textarea type="text" class="form-control" placeholder="Select carrier"></textarea>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Logo</label>
+							<div class="imguploadpopup">
+								<div class="imguploadpopupinner">+</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="labeltipobilhete btn btn-default">Cancelar</button>
+				<button type="button" class="criar btn btn-primary">Próximo</button>
 			</div>
 		</div>
 	</div>
