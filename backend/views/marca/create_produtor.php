@@ -9,7 +9,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
             <?php $form = ActiveForm::begin(["action"=>"index.php?r=marca/update-produtor&id={$newProdutor->idprodutor}"]); ?>
-                <div class="modal-header"><h4 class="modal-title">Criar Produtor</h4></div>
+                <div class="modal-header"><h4 class="modal-title">Informa&ccedil;&otilde;es</h4></div>
                 <div class="modal-body">
 				<div class="progresspopup stepthird">
 					<div class="lineprogresso"></div>
@@ -22,10 +22,10 @@
                     <?= $form->field($newProdutor, 'marca_idmarca')
                              ->hiddenInput(['value' => $marca->idmarca])
                              ->label(false); ?>
-                    <?= $form->field($newProdutor, 'nome'); ?>
+                    <?= $form->field($newProdutor, 'nome')->label('Nome do responsavel'); ?>
                     <label>Sobrenome</label> 
-                    <?= $form->field($newProdutor, 'apelido')->label(false); ?>
-                    <?= $form->field($newProdutor, 'telefone'); ?>
+                    <?= $form->field($newProdutor, 'apelido')->label('Apelido do responsavel'); ?>
+                    <?= $form->field($newProdutor, 'telefone')->label('Telefone do responsable'); ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

@@ -9,7 +9,7 @@
 	<div class="modal-dialog" role="document">
         <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create-user']); ?>
             <div class="modal-content">
-                <div class="modal-header"><h4 class="modal-title">Criar User</h4></div>
+                <div class="modal-header"><h4 class="modal-title">Dados de Acesso</h4></div>
                 <div class="modal-body">
 				<div class="progresspopup stepsecond">
 					<ul>
@@ -34,7 +34,7 @@
                         <?= $form->field($newUser, 'email')->textInput(['maxlength' => true]) ?>
                     </div>
                     <div class="form-group">
-                        <?= $form->field($newUser, 'password')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($newUser, 'password')->passwordInput(['maxlength' => true]) ?>
                     </div>
                 </div>
                 <div class="modal-footer">

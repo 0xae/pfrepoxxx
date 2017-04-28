@@ -10,7 +10,7 @@
 		<div class="modal-content">
             <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create', 'options'=>['enctype'=>'multipart/form-data']]); ?>
                 <div class="modal-header">
-                    <h4 class="modal-title">Criar Marca</h4>
+                    <h4 class="modal-title">Criar Produtor</h4>
                 </div>
                 <div class="modal-body">
                     <div class="progresspopup">
@@ -29,16 +29,16 @@
                             ])->label('Business');
                         ?>
                         <div class="form-group">
-                            <?php echo $form->field($newMarca, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
+                            <?php echo $form->field($newMarca, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']])->label('Foto');  ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($newMarca, 'nome')->textInput(['maxlength' => true]) ?>
+                            <?php echo $form->field($newMarca, 'nome')->textInput(['maxlength' => true])->label('Nome') ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($newMarca, 'email')->textInput(['maxlength' => true]) ?>
+                            <?php echo $form->field($newMarca, 'email')->textInput(['maxlength' => true])->label('Email') ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($newMarca, 'slogan')->textInput(['maxlength' => true]) ?>
+                            <?php echo $form->field($newMarca, 'slogan')->textInput(['maxlength' => true])->label('Slogan') ?>
                         </div>
                     </div>
                 </div>
