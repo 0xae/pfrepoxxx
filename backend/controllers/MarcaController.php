@@ -52,7 +52,10 @@ class MarcaController extends Controller {
         return $this->render('index', [
             'models' => $models,
             'newMarca' => new Marca(),
-            '_dataBusiness' => $_dataBusiness
+            '_dataBusiness' => $_dataBusiness,
+            'menu' => [
+                ['href'=>'index.php&r=business/create', 'label'=>'Criar Business']
+            ]
         ]);
     }
 
@@ -133,10 +136,7 @@ class MarcaController extends Controller {
     public function actionUpdateProdutor($id) {
         $model = Produtor::find()->where(['idprodutor' => $id])->One();
         if ($model->load(Yii::$app->request->post()) ) {
-            if (!$model->save()) {
-                var_dump($model->getErrors());
-                die;
-            }
+            $model->save();
             return $this->redirect(['update', 'id' => $model->marca_idmarca]);
         }
     }

@@ -179,11 +179,11 @@
 {
     text-transform: uppercase;
 }
-.modal-header, .modal-footer, .pagebusiness .panel-body table th, .pagebusiness .panel-body table td, .table > thead > tr > th, .pageusers .nav-tabs > li > a:hover
+.modal-header, .modal-footer, .pagebusiness .panel-body table th, .pagebusiness .panel-body table td, .table > thead > tr > th, .pageusers .nav-tabs > li > a:hover, .pageanalitics .accountingbox .nav > li > a:hover
 {
 	border: none;
 }
-.modal-header, .accountngpage .panel.accountingbox, .modal-footer, .descbussinessbox
+.modal-header, .accountngpage .panel.accountingbox, .modal-footer, .descbussinessbox, .pageanalitics .tab-content
 {
 	padding:20px;
 }
@@ -291,7 +291,7 @@
 {
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
 }
-.fundo_user_bilh h2
+.fundo_user_bilh h2, .pageanalitics .accountingbox .nav-tabs li a
 {
 	color:#333;
 }
@@ -329,7 +329,7 @@
 	background-color: #f7f7f7;
 	cursor: pointer;
 }
-.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs, .business-create .nav-tabs > li a, .nav > li > a:active,.business-create .nav-tabs > li > a:focus
+.business-create .nav-tabs > li > a:hover, .business-create .nav-tabs, .business-create .nav-tabs > li a, .nav > li > a:active,.business-create .nav-tabs > li > a:focus, .pageanalitics .accountingbox .nav-tabs
 {
 	border: none;
 }
@@ -854,7 +854,7 @@
 	margin-bottom: 30px;
 	box-shadow:0 2px 2px rgba(0, 0, 0, .05);
 }
-.pagebusiness .panel-body table thead tr th, #modalcriarmarca label
+.pagebusiness .panel-body table thead tr th, #modalcriarmarca label, .pageanalitics .accountingbox .nav-tabs a
 {
 	font:16px "DINBold", Helvetica, Arial, sans-serif !important;
 }
@@ -940,7 +940,7 @@
     margin-top: 9px;
 	background-color: #e0e0e0;
 }
-.accountngpage .panel .filtropanel, .table > thead > tr.active > th
+.accountngpage .panel .filtropanel, .table > thead > tr.active > th, .pageanalitics .accountingbox .nav-tabs
 {
     background-color: #f3f3f3;
 }
@@ -1020,7 +1020,7 @@
 	text-align: center;
 	background-color: #f1f0f0;
 }
-.pageusers .nav-tabs > li.active > a
+.pageusers .nav-tabs > li.active > a, .pageanalitics .accountingbox .nav-tabs li.active a
 {
 	border-bottom: 3px solid #058040;
 	background-color: #e4e9e6;
@@ -1152,4 +1152,8 @@
 .pageprodutor .panel .descbussinessbox
 {
 	font:14px "DINRegular", Helvetica, Arial, sans-serif !important;
+}
+.pageanalitics .accountingbox .nav-tabs li a
+{
+	padding: 15px 30px;
 }

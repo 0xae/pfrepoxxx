@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Marcas</span></h4>
+				<h4><div class="borderlefttitlo"></div><span>Produtores</span></h4>
 			</div>
 		</div>
 	</div>
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         <?php endforeach; ?>
         <div class="col-md-4">
-            <a href="#">
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal_criar_marca">
                 <div class="panel panel-default addbusiness">
                     <div class="panel-body">+</div>
                 </div>
@@ -61,9 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-    
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal_criar_marca">
-      Launch modal
-    </button>
-    <?php echo $this->render('create_marca', ['newMarca' => $newMarca, '_dataBusiness' => $_dataBusiness]); ?>
+
+<?php echo $this->render('create_marca', ['newMarca' => $newMarca, '_dataBusiness' => $_dataBusiness]); ?>
 </div>

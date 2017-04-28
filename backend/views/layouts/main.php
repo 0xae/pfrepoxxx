@@ -69,30 +69,16 @@ $this->registerJS($script);
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-fixed-top" role="navigation">
-			<?php /*?>Pesquisa<?php */?>
-			<form class="col-md-4">
-				<div>
-					<span><i class="glyphicon glyphicon-search"></i></span>
-					<input type="text" class="form-control" placeholder="pesquisar marcas, eventos em Cabo Verde">
-				</div>
-			</form>
-          <div class="navbar-custom-menu">
-            <ul class="list-unstyled">
-			  <li class="criar_evento text-center" id="btnstatements">
-				<button type="submit" class="btn btn-primary bt sair">Criar Evento</button>
-			  </li>
-              <li class="criar_evento text-center" id="btncriaruser">
-                <form action="/passa_free/admin/index.php?r=site%2Flogout" method="post">
-                  <?php /*?><input name="_csrf" value="S1F0czA2M0QiFTBEdF9DCzFhQTF2W0ARAxc4R1Z1Qg8xBSIVYFNwIA==" type="hidden">
-                  <button type="submit" class="btn btn-primary bt sair"> Criar User</button><?php */?>
-                  <button type="submit" class="btn btn-primary bt sair">Criar User</button>
-                </form>
-              </li>
-			<li class="criar_evento text-center" id="btnstatements">
-				<button type="submit" class="btn btn-primary bt sair">Statements</button>
-			</li>
-            </ul>
-          </div>
+               <form class="col-md-4">
+                    <div>
+                        <span><i class="glyphicon glyphicon-search"></i></span>
+                        <input type="text" class="form-control" placeholder="pesquisar marcas, eventos em Cabo Verde">
+                    </div>
+               </form>
+              <div class="navbar-custom-menu">
+                    <ul class="list-unstyled">
+                    </ul>
+              </div>
         </nav>
     </header>
 
@@ -128,7 +114,7 @@ $this->registerJS($script);
 
             <li class="treeview">
               <a href="index.php?r=marca">
-                <span>Marca</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
@@ -167,10 +153,6 @@ $this->registerJS($script);
 </body>
 </html>
 <?php $this->endPage() ?>
-
-
-
-
 
 <?php /*?>POPUP CRIAR USER<?php */?>
 <div class="modal fade popupcriarbilhete" id="modal-id">
