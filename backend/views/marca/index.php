@@ -11,20 +11,10 @@ $this->title = 'Marcas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
     
+<div class="container-fluid pagebusiness">
+    <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
+</div>
 <div class="container-fluid pagebusiness pagemarcas">
-	<?php /*?>///<?php */?>
-	<div class="row nomebusinessbt">
-		<div class="col-md-12 titulosection">
-			<div class="proximo_evento">
-				<div class="nomebusiness">
-					<div class="circulobusiness"></div>
-					<div>Nome de Business</div>
-				</div>
-				<div class="labeltipobilhete">Alterar</div>
-			</div>
-		</div>
-	</div>
-	<?php /*?>//<?php */?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">

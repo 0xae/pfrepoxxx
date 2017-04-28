@@ -3,19 +3,7 @@
 $this->title = 'Analitics';
 ?>
 <div class="container-fluid pagebusiness  pageanalitics">
-	<?php /*?>///<?php */?>
-	<div class="row nomebusinessbt">
-		<div class="col-md-12 titulosection">
-			<div class="proximo_evento">
-				<div class="nomebusiness">
-					<div class="circulobusiness"></div>
-					<div>Nome de Business</div>
-				</div>
-				<div class="labeltipobilhete">Alterar</div>
-			</div>
-		</div>
-	</div>
-	<?php /*?>TITULO, BT<?php */?>
+    <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">

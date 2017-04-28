@@ -31,7 +31,7 @@ class BusinessController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create', 'view', 'update', 'add-producer', 'remove-producer'],
+                        'actions' => ['index', 'create', 'view', 'update', 'add-producer', 'remove-producer', 'select'],
                         'roles' => ['passafree_staff', 'admin']
                     ],
                     [
@@ -121,6 +121,13 @@ class BusinessController extends Controller {
                 '_dataCountries' => $countries,
             ]);
         }
+    }
+
+    public function actionSelect($id) {
+        $session = Yii::$app->session;
+        $model = $this->findModel($id);
+        $session->set('business', $id);
+        $session->set('business_name', $model->name);
     }
 
     public function actionRemoveProducer($id) {

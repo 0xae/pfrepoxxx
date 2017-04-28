@@ -52,10 +52,7 @@ class MarcaController extends Controller {
         return $this->render('index', [
             'models' => $models,
             'newMarca' => new Marca(),
-            '_dataBusiness' => $_dataBusiness,
-            'menu' => [
-                ['href'=>'index.php&r=business/create', 'label'=>'Criar Business']
-            ]
+            '_dataBusiness' => $_dataBusiness
         ]);
     }
 

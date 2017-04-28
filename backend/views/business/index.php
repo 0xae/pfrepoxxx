@@ -8,8 +8,6 @@ use yii\grid\GridView;
 $this->title = 'Businesses';
 ?>
 
-
-
 <div class="container-fluid pagebusiness">
 	<div class="row">
 		<div class="col-md-12 titulosection">

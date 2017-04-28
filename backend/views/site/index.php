@@ -6,19 +6,8 @@ use yii\helpers\Html;
 	$this->title = 'Dashboard';
 ?>
 <div class="container-fluid pagebusiness">
-	<?php /*?>///<?php */?>
-	<div class="row nomebusinessbt">
-		<div class="col-md-12 titulosection">
-			<div class="proximo_evento">
-				<div class="nomebusiness">
-					<div class="circulobusiness"></div>
-					<div>Nome de Business</div>
-				</div>
-				<div class="labeltipobilhete">Alterar</div>
-			</div>
-		</div>
-	</div>
-	<?php /*?>TITULO, BT<?php */?>
+    <?php echo $this->render('business_modal.php', []); ?>
+
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">

@@ -35,6 +35,7 @@ class AppAsset extends AssetBundle
         #'js/bootstrap.min.js',
         #'js/app.min.js',
         #'js/bootstrap.js',
+        'js/passafree/app.js',
         'js/passafree/produtor.js'
     ];
 

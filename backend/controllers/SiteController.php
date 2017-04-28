@@ -70,13 +70,11 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionIndex()
-    {
+    public function actionIndex() {
         return $this->render('index'); 
     }
 
-    public function actionLogin()
-    {
+    public function actionLogin() {
         $this->layout = 'loginlayout';
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -84,6 +82,9 @@ class SiteController extends Controller
 
         $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if (\Yii::$app->user->can('admin') || \Yii::$app->user->can('passafree_staff')) {
+            } else {
+            }
             return $this->goBack();
         } else {
             return $this->render('login', [
