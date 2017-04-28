@@ -7,6 +7,7 @@ $this->title = 'Business';
 ?>
 
 <div class="container-fluid pagebusiness">
+    <!--
 	<div class="row nomebusinessbt">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -17,6 +18,7 @@ $this->title = 'Business';
 			</div>
 		</div>
 	</div>
+    -->
 
 	<div class="row">
 		<div class="col-md-12 titulosection">

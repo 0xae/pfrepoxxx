@@ -102,35 +102,35 @@ $this->registerJS($script);
         <br>
           <!-- Sidebar user panel -->
           <ul class="sidebar-menu text-center">
-            <li class="active treeview">
+            <li class="<?php if (Yii::$app->controller->id == 'site'){ echo 'active'; } ?> treeview">
               <a href="index.php"><span>Overview</span></a>
             </li>
 
-            <li class="treeview">
+            <li class="<?php if (Yii::$app->controller->id == 'business'){ echo 'active'; } ?> treeview">
               <a href="index.php?r=business">
                 <span>Business</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
-            <li class="treeview">
+            <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
               <a href="index.php?r=marca">
                 <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
-            <li class="treeview">
+            <li class="<?php if (Yii::$app->controller->id == 'accounting'){ echo 'active'; } ?> treeview">
               <a href="index.php?r=accounting">
                 <span>Accounting</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
-            <li class="treeview">
+            <li class="<?php if (Yii::$app->controller->id == 'analytics'){ echo 'active'; } ?> treeview">
               <a href="index.php?r=analytics">
                 <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
             </li>
 
-            <li class="treeview">
+            <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
               <a href="index.php?r=user">
                 <span>Settings</span> <!--i class="fa fa-angle-left pull-right"></i-->
               </a>
