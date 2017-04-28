@@ -2,4 +2,6 @@ backend/runtime/*
 fronted/runtime/*
 *.swp
 *.swn
+*.swo
+
 Thumbs.db

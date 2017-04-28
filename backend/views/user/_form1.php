@@ -35,6 +35,7 @@ $this->title = 'Utilizador';
 						  <ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Informa&ccedil;&otilde;es Gerais</a></li>
 						  </ul>
+
 						  <!-- Tab panes -->
 						  <div class="tab-content">
 								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
