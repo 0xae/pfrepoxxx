@@ -1157,3 +1157,7 @@
 {
 	padding: 15px 30px;
 }
+
+.modal-header {
+    margin-bottom: 30px;
+}
