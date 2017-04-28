@@ -223,6 +223,14 @@
 	margin-bottom: 10px;
 	display: table;
 }
+.detalhes_geral span span
+{
+	font: 30px "DINLight", Helvetica, Arial, sans-serif;
+	line-height: normal;
+	line-height: 34px;
+	display: table;
+	width: auto;
+}
 .detalhes_geral span, .nomebusinesscreate, .pagemarcas .contentbox .panel .descbussinessbox span
 {
 	font-family: "DINLight", Helvetica, Arial, sans-serif !important;
@@ -260,6 +268,7 @@
 	width: 22px;
 	text-align: center;
 	margin-right: 10px;
+	float: left;
 }
 .percentagem{
 	background: rgba(255, 255, 255, 0.5);
@@ -969,9 +978,9 @@
 .pagemarcas .contentbox .panel .descbussinessbox
 {
 	position: absolute;
-	bottom: 30px;
+	bottom: 73px;
 	color: #fff;
-	width: 91%;
+	width: 100%;
 	text-transform: capitalize;
 }
 .pagemarcas .contentbox .panel .descbussinessbox div
@@ -995,6 +1004,7 @@
 	right: 20px;
 	top: 20px;
 	border-radius: 50%;
+	z-index: 10;
 }
 .pageusers .col-md-12.imgbussinessbox
 {
