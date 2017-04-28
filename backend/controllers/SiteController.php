@@ -83,7 +83,7 @@ class SiteController extends Controller
         $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             if (\Yii::$app->user->can('admin') || \Yii::$app->user->can('passafree_staff')) {
-            } else {
+            } else if(\Yii::$app->user->can('business')) {
             }
             return $this->goBack();
         } else {

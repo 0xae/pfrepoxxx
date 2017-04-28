@@ -11,6 +11,12 @@ use kartik\select2\Select2;
 $this->title = 'Registrar Utilizador';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?= $this->render('_form1', [
+    'model' => $model,
+    'userPermissions' => $userPermissions,
+    '_dataPermissions' => $_dataPermissions
+]) ?>
+<!--
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -46,3 +52,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+-->

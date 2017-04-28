@@ -10,6 +10,7 @@ use Yii;
  * Signup form
  */
 class SignupForm extends Model {
+    public $id=null;
     public $nome;
     public $marca_id;
     public $username;

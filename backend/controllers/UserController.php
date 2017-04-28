@@ -45,12 +45,9 @@ class UserController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $dataProvider = new ActiveDataProvider([
-            'query' => User::find(),
-        ]);
-
+        $data = User::find()->all();
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'data' => $data
         ]);
     }
 

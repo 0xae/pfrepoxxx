@@ -1,45 +1,12 @@
-<?php /*?>CSS<?php */?>
-<style type="text/css">
-	.content.box_cont
-	{
-		padding-left: 0;
-		padding-right: 0;
-	}
-</style>
-
+<style type="text/css"> .content.box_cont { padding-left: 0; padding-right: 0; } </style> 
 <?php
-
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Users';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php /*?><div class="user-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            'id',
-            'username',
-            'email',
-            'created_at:datetime',
-            'updated_at:datetime',
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-</div><?php */?>
 <div class="container-fluid pagebusiness pageusers">
 	<div role="tabpanel" style="padding:0; display: table;margin-top: 5px">
-		<?php /*?>MENU<?php */?>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
 				<a href="#usertab" aria-controls="home" role="tab" data-toggle="tab">Users</a>
@@ -60,26 +27,26 @@ $this->params['breadcrumbs'][] = $this->title;
 						</div>
 					</div>
 				</div>
-				<?php /*?>//<?php */?>
 				<div class="col-md-12 contentbox">
+                    <?php foreach ($data as $u): ?>
+                        <a href="./index.php?r=user/update&id=<?= $u->id; ?>">
+                            <div class="col-md-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="col-md-12 imgbussinessbox">
+                                                <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+                                            </div>
+                                            <div class="col-md-12 descbussinessbox">
+                                                <span><?= $u->username; ?></span>
+                                                <span><?= $u->email; ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
 					<div class="col-md-3">
-						<a href="#">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<div class="col-md-12 imgbussinessbox">
-										<img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
-									</div>
-									<div class="col-md-12 descbussinessbox">
-										<span>Francis Johnson</span>
-										<span>Armenia</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<?php /*?>//<?php */?>
-					<div class="col-md-3">
-						<a href="index.php?r=business/create">
+						<a href="index.php?r=user/create">
 							<div class="panel panel-default addbusiness">
 								<div class="panel-body">+</div>
 							</div>
