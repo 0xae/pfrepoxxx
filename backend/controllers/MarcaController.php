@@ -122,20 +122,20 @@ class MarcaController extends Controller {
         $prod = Produtor::find()->where(['marca_idmarca' => $id])->one();
         if (!$prod) {
             $prod = new Produtor();
-        }
+        } 
 
         return $this->render('update', [
             'model' => $model,
-            '_dataBusiness' => $_dataBusiness,
             'newUser' => new SignupForm(),
             'newProdutor' => $prod,
-            'newMarca' => [],
+            '_dataBusiness' => $_dataBusiness,
         ]);
     }
 
     public function actionUpdateProdutor($id) {
         $model = Produtor::find()->where(['idprodutor' => $id])->One();
         if ($model->load(Yii::$app->request->post()) ) {
+            $model->estado = 1;
             $model->save();
             return $this->redirect(['update', 'id' => $model->marca_idmarca]);
         }
@@ -153,13 +153,16 @@ class MarcaController extends Controller {
                 $prod->public_email = $model->email;
                 $prod->marca_idmarca = $model->marca_id;
 
-                if ($prod->save()) {
+                if (!$prod->save()) {
                     $user->delete();
                     return;
                 }
 
                 return $this->redirect(['update', 'id' => $model->marca_id]);
-            }
+            } else {
+                var_dump($model->getErrors());
+                return;
+            } 
         }
     }
 

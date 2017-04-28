@@ -11,6 +11,15 @@
             <div class="modal-content">
                 <div class="modal-header"><h4 class="modal-title">Criar User</h4></div>
                 <div class="modal-body">
+				<div class="progresspopup stepsecond">
+					<ul>
+						<li class="active">1</li>
+						<div class="lineprogresso donefirst"></div>
+						<li class="active stepmiddleprogress">2</li>
+						<div class="lineprogresso inativeline"></div>
+						<li>3</li>
+					</ul>					
+				</div>
                     <?= $form->field($newUser, 'marca_id')
                              ->hiddenInput(['value'=>$marca->idmarca, 'maxlength' => true]) 
                              ->label(false);
@@ -30,7 +39,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="criar btn btn-primary">Finalizar</button>
+                    <button type="submit" class="criar btn btn-primary">Próximo</button>
                 </div>
             </div>
         <?php ActiveForm::end(); ?>

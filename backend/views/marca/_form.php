@@ -13,6 +13,7 @@ use kartik\select2\Select2;
 <div class="marca-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+        <?php echo $form->field($model, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
         <?php
             if (!$model->idmarca) {
                 echo $form->field($model, 'business_id')->widget(Select2::className(), [
@@ -24,7 +25,6 @@ use kartik\select2\Select2;
         <?php echo $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
         <?php echo $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
         <?php echo $form->field($model, 'slogan')->textInput(['maxlength' => true]) ?>
-        <?php echo $form->field($model, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
 
         <div class="form-group">
             <?php echo Html::submitButton($model->isNewRecord ? 'Criar' : 'Atualizar', ['class' => $model->isNewRecord ? 'btn btn-success bt' : 'btn btn-primary bt']) ?>

@@ -1,5 +1,5 @@
 $(function(){
-
+console.log('ad');
 
 	$('.modalButton').click(function(){
 		$('#modal').modal('show')
