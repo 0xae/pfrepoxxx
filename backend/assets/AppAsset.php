@@ -13,10 +13,10 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
-{
+class AppAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+
     public $css = [
         #'css/skin/_all-skins.min.css',
         #'css/bootstrap.min.css',
@@ -28,14 +28,11 @@ class AppAsset extends AssetBundle
         #'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
         #'css/skins/_all-skins.min.css',
         #'css/blue.css',
-        
     ];
 
     public $js = [
-        #'js/bootstrap.min.js',
-        #'js/app.min.js',
-        #'js/bootstrap.js',
         'js/lodash.js',
+        'js/jquery.steps.min.js',
         'js/passafree/app.js',
         'js/passafree/produtor.js'
     ];
@@ -43,6 +40,5 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-
     ];
 }
