@@ -29,13 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-12 imgbussinessbox">
-                                <div class="userciculo"></div>
-                                <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
-                            </div>
-                            <div class="col-md-12 descbussinessbox">
-                                <div class="linetopbox"></div>
-                                <div><?= $m->nome ?></div>
-                                <span><?= $m->slogan ?></span>
+                                <div class="filtro_eventos">
+                                	<div class="userciculo"></div>
+                                	<div class="col-md-12 descbussinessbox">
+										<div class="linetopbox"></div>
+										<div><?= $m->nome ?></div>
+										<span><?= $m->slogan ?></span>
+									</div>
+                                </div>
+                                <img class="img-responsive" src="../..//uploads/evento/nGHZqjFrZgMbLdue2zt9d5KGJrxrw37G.jpg" alt="" title="">
                             </div>
                         </div>
                     </div>
