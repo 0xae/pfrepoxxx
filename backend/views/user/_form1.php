@@ -39,7 +39,7 @@ $this->title = 'Utilizador';
 						  <!-- Tab panes -->
 						  <div class="tab-content">
 								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
-                                    <?php $form = ActiveForm::begin(['id' => 'business_form', 'options' => ['enctype' => 'multipart/form-data']]); ?>
+                                    <?php $form = ActiveForm::begin(['id' => 'business_form']); ?>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
@@ -50,7 +50,7 @@ $this->title = 'Utilizador';
                                                     echo Select2::widget([
                                                         'name' => 'permissions',
                                                         'value' => $userPermissions,
-                                                        'attribute' => 'name',
+                                                        'attribute' => 'permissions',
                                                         'data' => $_dataPermissions,
                                                         'options' => [
                                                             'multiple' => true
@@ -66,7 +66,7 @@ $this->title = 'Utilizador';
 
                                         <div class="biz-footer">
                                             <?php echo Html::submitButton(
-                                                    $model->id ? 'Guardar' : 'Actualizar', 
+                                                    'Save',
                                                     ['class' =>  'criar btn btn-success', 'id'=> 'submit_business']
                                                 );
                                             ?>

@@ -61,9 +61,7 @@ class UserController extends Controller {
 
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if ($model->permissions) {
-                    $this->addRoles($user, $model->permissions);
-                }
+                $this->addRoles($user, $this->getRequestPermissions());
                 Yii::$app->getSession()->setFlash('success', 'Utilizador criado com sucesso.');
                 return $this->redirect(['update', 'id'=>$user->id]);
             }
@@ -89,18 +87,20 @@ class UserController extends Controller {
         $auth = Yii::$app->authManager;
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
             $this->updateRoles($model, $this->getRequestPermissions());
             if ($model->password) {
                 $model->password = Yii::$app->security->generatePasswordHash($model->password);
             }
 
+            $model->save();
             Yii::$app->getSession()->setFlash('success', 'Utilizador actualizado com sucesso.');
             return $this->redirect(['update', 'id'=>$model->id]);
         } else {
             $data = Country::find()->asArray()->all();
             $permissionData = ArrayHelper::map(Role::find()->all(),'name','name');
             $userPermissions = ArrayHelper::map($auth->getRolesByUser($model->id), 'name', 'name');
+            $model->permissions = ArrayHelper::map($auth->getRolesByUser($model->id), 'name', 'name');
 
             return $this->render('update', [
                 'model' => $model,

@@ -22,6 +22,7 @@ use yii\web\NotFoundHttpException;
 class User extends \yii\db\ActiveRecord {
     public $nome;
     public $password;
+    public $permissions;
 
     /**
      * @inheritdoc
