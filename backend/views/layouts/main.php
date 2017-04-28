@@ -12,7 +12,7 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use kartik\sidenav\SideNav;
 
-//AppAsset::register($this);
+AppAsset::register($this);
 DashboardAsset::register($this);
 ?>
 

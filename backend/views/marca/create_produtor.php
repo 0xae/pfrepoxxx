@@ -11,10 +11,17 @@
             <?php $form = ActiveForm::begin(["action"=>"index.php?r=marca/update-produtor&id={$newProdutor->idprodutor}"]); ?>
                 <div class="modal-header"><h4 class="modal-title">Criar Produtor</h4></div>
                 <div class="modal-body">
+				<div class="progresspopup stepthird">
+					<div class="lineprogresso"></div>
+					<ul>
+						<li>1</li>
+						<li class="stepmiddleprogress">2</li>
+						<li class="active">3</li>
+					</ul>					
+				</div>
                     <?= $form->field($newProdutor, 'marca_idmarca')
                              ->hiddenInput(['value' => $marca->idmarca])
                              ->label(false); ?>
-                    <?= $form->field($newProdutor, 'foto')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
                     <?= $form->field($newProdutor, 'nome'); ?>
                     <label>Sobrenome</label> 
                     <?= $form->field($newProdutor, 'apelido')->label(false); ?>
@@ -22,7 +29,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="criar btn btn-primary">Próximo</button>
+                    <?php if ($newProdutor->estado == NULL): ?>
+                        <button type="submit" class="criar btn btn-primary">Finalizar</button>
+                    <?php else: ?>
+                        <button type="submit" class="criar btn btn-primary">Guardar</button>
+                    <?php endif; ?>
                 </div>
             <?php ActiveForm::end(); ?>
 		</div>
