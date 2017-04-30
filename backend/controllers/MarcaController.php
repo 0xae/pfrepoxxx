@@ -159,6 +159,7 @@ class MarcaController extends Controller {
         }
 
         $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
+        $model->file = $model->logo;
         return $this->render('update', [
             'model' => $model,
             'newUser' => $user,
