@@ -1,7 +1,5 @@
-<?php /*?>CSS<?php */?>
 <style type="text/css">
-	.content.box_cont
-	{
+	.content.box_cont {
 		padding-left: 0;
 		padding-right: 0;
 	}
@@ -12,16 +10,11 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model backend\models\Marca */
-
 $this->title = $model->nome;
-$this->params['breadcrumbs'][] = ['label' => 'Produtor', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container-fluid pagebusiness pageusers">
 	<div role="tabpanel" style="padding:0; display: table;margin-top: 5px; width: 100%">
-		<?php /*?>MENU<?php */?>
+        <!--
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
 				<a href="#eventotab" aria-controls="home" role="tab" data-toggle="tab">Eventos</a>
@@ -30,17 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
 				<a href="#informacaotab" aria-controls="profile" role="tab" data-toggle="tab">Informação</a>
 			</li>
 		</ul>
-		<?php /*?>//<?php */?>
+        -->
+
 		<div class="tab-content" style="padding: 0">
-			<?php /*?>Eventos<?php */?>
 			<div role="tabpanel" class="tab-pane active" id="eventotab">
-				<?php /*?>Eventos destaque<?php */?>
 				<div class="col-md-12 proximo">
 					<a href="#<?php /*?><?= Url::to($_model->idevento)?><?php */?>">
 						<div class="evento_proximo" style="margin:0">
 							<div class="filtro"></div>
 								<div id="event_cartaz" class="event_cartaz">
-									<img class="img-responsive" src="../../uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg<?php /*?><?= $_model->cartaz; ?><?php */?>">
+                                    <img class="img-responsive" src="uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg" />
 								</div>
 								<div class="info_cartaz">
 									<div class="row">
@@ -108,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							<div class="fundo_next_event">
 								<div class="filtro_eventos" style="background: #0f0<?php /*?><?= $model->filtro ?>; <?php */?>"></div>
 								<div id="img_eventos" style="height:300px">
-									<img class="img-responsive" src="../../uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg<?php /*?><?= $model->cartaz ?><?php */?>">
+									<img class="img-responsive" src="uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg<?php /*?><?= $model->cartaz ?><?php */?>">
 								</div>
 								<div class="info_next_event">
 									<div class="col-md-12">
@@ -134,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						<div class="evento_proximo" style="margin:0">
 							<div class="filtro"></div>
 								<div id="event_cartaz" class="event_cartaz">
-									<img class="img-responsive" src="../../uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg<?php /*?><?= $_model->cartaz; ?><?php */?>">
+									<img class="img-responsive" src="uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg<?php /*?><?= $_model->cartaz; ?><?php */?>">
 							</div>
 							<div class="info_cartaz">
 								<div class="row">
