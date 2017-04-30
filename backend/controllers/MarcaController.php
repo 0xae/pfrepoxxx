@@ -143,7 +143,13 @@ class MarcaController extends Controller {
 
         $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         $prod = Produtor::find()->where(['marca_idmarca' => $id])->one();
-        $user = AppUser::find()->where(['id' => $prod->idprodutor])->one();
+
+        if (!$prod) {
+            $prod = new Produtor();
+            $user = new SignupForm();
+        } else {
+            $user = AppUser::find()->where(['id' => $prod->idprodutor])->one();
+        }
 
         return $this->render('update', [
             'model' => $model,
@@ -180,10 +186,7 @@ class MarcaController extends Controller {
                 }
 
                 return $this->redirect(['update', 'id' => $model->marca_id]);
-            } else {
-                var_dump($model->getErrors());
-                return;
-            } 
+            }
         }
     }
 

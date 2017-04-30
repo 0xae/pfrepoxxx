@@ -34,11 +34,16 @@ $this->title = 'Form';
 						<div role="tabpanel" style="padding:20px">
 						  <!-- Nav tabs -->
 						  <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#info" aria-controls="home" role="tab" data-toggle="tab">
-                                    Informa&ccedil;&otilde;es Gerais
-                                </a>
-                            </li>
+                                <li role="presentation" class="active">
+                                    <a href="#info" aria-controls="home" role="tab" data-toggle="tab">
+                                        Informa&ccedil;&otilde;es Gerais
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#resp" aria-controls="resp" role="tab" data-toggle="tab">
+                                        Responsavel
+                                    </a>
+                                </li>
 						  </ul>
 
 						  <!-- Tab panes -->
@@ -76,7 +81,18 @@ $this->title = 'Form';
                                             ?>
                                         </div>
                                     <?php ActiveForm::end(); ?>
+                                    <!-- .tab-pane -->
 								</div>
+    
+								<div role="tabpanel" class="biz-pane tab-pane" id="resp">
+                                        <h1>User</h1>
+                                       <p> <?php echo $newUser->username; ?>  </p>
+                                       <p> <?php echo $newUser->email; ?> </p>
+
+                                        <h1>Produtor</h1> 
+                                       <p> <?php echo $newProdutor->nome; ?>  </p>
+                                       <p> <?php echo $newProdutor->public_email; ?> </p>
+                                </div>
 						  </div>
 						</div>
 					</div>

@@ -9,10 +9,6 @@
 </div>
 
 <div class="form-group">
-    <?= $form->field($newUser, 'nome', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]) ?>
-</div>
-
-<div class="form-group">
     <?= $form->field($newUser, 'username', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]) ?>
 </div>
 
