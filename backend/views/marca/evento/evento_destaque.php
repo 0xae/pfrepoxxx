@@ -1,6 +1,6 @@
 <?php if (isset($destaque)): ?>
     <div class="col-md-12 proximo">
-        <a href="#<?php /*?><?= Url::to($_model->idevento)?><?php */?>">
+        <a href="index.php?r=evento/view&id=<?= $destaque->idevento; ?>">
             <div class="evento_proximo" style="margin:0">
                 <div class="filtro"></div>
                 <div id="event_cartaz" class="event_cartaz">
