@@ -183,12 +183,6 @@ class Business extends \yii\db\ActiveRecord {
         return $data;
     }
 
-    public function removeProducer($id) {
-        Yii::$app->getDb()
-           ->createCommand('DELETE FROM business_producer where id=:id', [':id'=> $id])
-           ->execute();
-    }
-
     public function behaviors() {  
         return [  
             BlameableBehavior::className(),  

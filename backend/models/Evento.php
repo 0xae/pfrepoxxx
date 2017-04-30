@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\models;
 
 use Yii;
@@ -48,6 +47,7 @@ class Evento extends \yii\db\ActiveRecord {
 
     public $file;
     public $marca;
+    public $event_type_label;
 
     /**
      * @inheritdoc
@@ -84,16 +84,12 @@ class Evento extends \yii\db\ActiveRecord {
             [['nome', 'data', 'hora', 'local', 'cartaz', 'tipoevento_idtipoevento', 'ilha', 'filtro'], 'required'],
             [['produtor_idprodutor', 'tipoevento_idtipoevento', 'estado'], 'integer'],
             [['data', 'hora'], 'safe'],
-            [['descricao'], 'string'],
+            [['descricao', 'event_type_label'], 'string'],
             [['nome', 'local', 'cartaz'], 'string', 'max' => 100],
             [['ilha', 'filtro'], 'string', 'max' => 45],
             [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'checkExtensionByMimeType'=>false, 'maxFiles' => 1],
-            
-            //[['file'],"file","extensions"=>"png, gif, jpg"],
-            //['data', 'checkDate'],
         ];
     }
-
 
     public function checkDate($attribute, $param) {
         date_default_timezone_set('Atlantic/Cape_Verde');
@@ -149,16 +145,29 @@ class Evento extends \yii\db\ActiveRecord {
         return $models;
     }
 
-    public static function fromProducer($producerId) {
-        if (!$producerId) {
-            return []; 
-        }
-        return Evento::find()->where(['produtor_idprodutor' => $producer])->all();
+    public function getEventTypeLabel() {
+        return $this->hasOne(Tipoevento::className(), ['idtipoevento' => 'tipoevento_idtipoevento'])
+            ->one()
+            ->nome;
+    }
+
+    public static function nextEvents($producerId) {
+        $query = Evento::find()->orderBy('data ASC');
+        return $query->all();
     }
 
     public function getAllEventos(){
         $models = Evento::find()->where(['estado' => 1])->orderBy('data DESC')->limit(7)->all();
         return $models;
+    }
+
+    public function getMonth() {
+        $l=(int)date('m', strtotime($this->data));
+        return [1=>'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', "AGO", 'SET', "OUT", "NOV", "DEZ"][$l];
+    }
+
+    public function getDay() {
+        return date('d', strtotime($this->data));
     }
 }
 

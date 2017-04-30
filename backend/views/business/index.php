@@ -2,9 +2,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Businesses';
 ?>
 
@@ -12,7 +9,7 @@ $this->title = 'Businesses';
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Bussiness</span></h4>
+				<h4><div class="borderlefttitlo"></div><span>Business</span></h4>
 			</div>
 		</div>
 	</div>

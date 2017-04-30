@@ -1,6 +1,6 @@
 <?php
-
 namespace backend\models;
+
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -69,6 +69,12 @@ class Marca extends \yii\db\ActiveRecord {
             'slogan' => 'Slogan da Marca',
             'email' => 'Email da Marca',
         ];
+    }
+
+    public static function getProdutor($marcaId) {
+        return Produtor::find()
+               ->where(['marca_idmarca' => $marcaId])
+               ->one();
     }
 
     public function getMarcas() {

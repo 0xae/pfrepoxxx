@@ -18,6 +18,7 @@ use backend\models\Business;
 use backend\models\Produtor;
 use backend\models\SignupForm;
 use backend\models\UploadForm;
+use backend\models\Evento;
 use common\models\User as AppUser;
 
 /**
@@ -73,8 +74,14 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
+        $marca = $this->findMarcaModel($id);
+        $events = Evento::nextEvents(0);
+        $prod = [];
+
         return $this->render('view', [
-            'model' => $this->findMarcaModel($id),
+            'model' => $marca,
+            'produtor' => $prod,
+            'nextEvents' => $events
         ]);
     }
 

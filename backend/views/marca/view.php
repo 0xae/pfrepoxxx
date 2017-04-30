@@ -35,7 +35,7 @@ $this->title = $model->nome;
                         </div>
                     </div>
                 </div>
-                <?php echo $this->render('evento/evento_lista.php', []); ?>
+                <?php echo $this->render('evento/evento_lista.php', ['nextEvents' => $nextEvents]); ?>
             </div>
 			
 			<div role="tabpanel" class="tab-pane" id="informacaotab">
