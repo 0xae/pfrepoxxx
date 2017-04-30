@@ -1,5 +1,6 @@
 backend/runtime/*
 fronted/runtime/*
+uploads/*
 *.swp
 *.swn
 *.swo

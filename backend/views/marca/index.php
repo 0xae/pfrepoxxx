@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 										<span><?= $m->slogan ?></span>
 									</div>
                                 </div>
-                                <img class="img-responsive" src="../..//uploads/evento/nGHZqjFrZgMbLdue2zt9d5KGJrxrw37G.jpg" alt="" title="">
+                                <img class="img-responsive" src="../../<?= $m->logo ?>" alt="" title="">
                             </div>
                         </div>
                     </div>

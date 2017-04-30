@@ -17,6 +17,7 @@ use backend\models\MarcaSearch;
 use backend\models\Business;
 use backend\models\Produtor;
 use backend\models\SignupForm;
+use backend\models\UploadForm;
 use common\models\User as AppUser;
 
 /**
@@ -98,6 +99,11 @@ class MarcaController extends Controller {
                 return ActiveForm::validate($user, $marca, $produtor);
             }
 
+            $marca->file = UploadedFile::getInstance($marca, 'file');
+            if ($marca->file){
+                $marca->logo = UploadForm::upload($marca->file, 'marca');
+            }
+
             if ($marca->save() && ($us=$user->signup())) {
                 $produtor->idprodutor = $us->id;
                 $produtor->marca_idmarca = $marca->idmarca;
@@ -126,24 +132,13 @@ class MarcaController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            /*
-            $model->file = UploadedFile::getInstance($model, 'file');
-            if($model->file){
-                $ext = end((explode(".", $model->file)));
-                $generateRandomName = Yii::$app->security->generateRandomString().".{$ext}";
-                $model->file->saveAs('uploads/marca/'.$generateRandomName);
-                $model->logo = 'uploads/marca/'.$generateRandomName;
-            }
-             */
 
             if($model->save()){
                 return $this->redirect(['update', 'id' => $model->idmarca]);
             }
         } 
 
-        $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         $prod = Produtor::find()->where(['marca_idmarca' => $id])->one();
-
         if (!$prod) {
             $prod = new Produtor();
             $user = new SignupForm();
@@ -151,6 +146,7 @@ class MarcaController extends Controller {
             $user = AppUser::find()->where(['id' => $prod->idprodutor])->one();
         }
 
+        $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         return $this->render('update', [
             'model' => $model,
             'newUser' => $user,

@@ -13,13 +13,13 @@ $this->title = 'Form';
 			<div class="proximo_evento">
 				<h4>
                     <?php if ($model->idmarca): ?>
-                        <div class="borderlefttitlo"></div><span>Marca</span>
+                        <div class="borderlefttitlo"></div><span>Produtor</span>
                         <div class="nomebusinesscreate">
                             <div class="borderlefttitlo"></div>
                             <span><?= $model->nome; ?></span>
                         </div>
                     <?php else: ?>
-                        <div class="borderlefttitlo"></div><span>New Marca</span>
+                        <div class="borderlefttitlo"></div><span>New Produtor</span>
                     <?php endif; ?>
 				</h4>
 			</div>
@@ -85,13 +85,25 @@ $this->title = 'Form';
 								</div>
     
 								<div role="tabpanel" class="biz-pane tab-pane" id="resp">
-                                        <h1>User</h1>
-                                       <p> <?php echo $newUser->username; ?>  </p>
-                                       <p> <?php echo $newUser->email; ?> </p>
-
-                                        <h1>Produtor</h1> 
-                                       <p> <?php echo $newProdutor->nome; ?>  </p>
-                                       <p> <?php echo $newProdutor->public_email; ?> </p>
+                                    <?php $formu = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <?php echo $formu->field($newProdutor, 'nome')->textInput(['maxlength' => true]) ?>
+                                                <?php echo $formu->field($newProdutor, 'apelido')->textInput(['maxlength' => true]) ?>
+                                                <?php echo $formu->field($newUser, 'email')->textInput(['maxlength' => true]) ?>
+                                                <?php echo $formu->field($newUser, 'username')->textInput(['maxlength' => true]) ?>
+                                            </div>
+                                            <div class="col-md-6">
+                                            </div>
+                                        </div>
+                                        <div class="biz-footer">
+                                            <?php echo Html::submitButton(
+                                                    'Save',
+                                                    ['class' =>  'criar btn btn-success', 'id'=> 'submit_business']
+                                                );
+                                            ?>
+                                        </div>
+                                    <?php ActiveForm::end(); ?>
                                 </div>
 						  </div>
 						</div>
