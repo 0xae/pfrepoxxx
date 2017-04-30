@@ -77,7 +77,7 @@ class MarcaController extends Controller {
         $marca = $this->findMarcaModel($id);
         $events = $marca->getNextEvents();
         $prod = $marca->getProdutor();
-        $destaque = new Evento();
+        $destaque = null;
 
         if (!empty($events)) {
             # the most recent

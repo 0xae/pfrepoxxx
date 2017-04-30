@@ -31,7 +31,14 @@ $this->title = $model->nome;
                 <div class="row">
                     <div class="col-md-12 titulosection">
                         <div class="proximo_evento" style="padding: 0 15px">
-                            <h4><div class="borderlefttitlo"></div><span>Pr&oacute;ximos Eventos</span></h4>
+                            <h4>
+                                <div class="borderlefttitlo"></div>
+                                <?php if (empty($nextEvents)): ?>
+                                    <span>Sem eventos.</span>
+                                <?php else: ?>
+                                    <span>Pr&oacute;ximos Eventos</span>
+                                <?php endif; ?>
+                            </h4>
                         </div>
                     </div>
                 </div>

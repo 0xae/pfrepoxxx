@@ -4,7 +4,7 @@
             <div class="evento_proximo" style="margin:0">
                 <div class="filtro"></div>
                 <div id="event_cartaz" class="event_cartaz">
-                    <img class="img-responsive" src="uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg" />
+                <img class="img-responsive" src="<?= $destaque->cartaz?$destaque->cartaz:'uploads/evento/x22Ps-2U0zMCJvucY8GCY00uPocAtvon.jpg' ?>" />
                 </div>
                 <div class="info_cartaz">
                     <div class="row">
