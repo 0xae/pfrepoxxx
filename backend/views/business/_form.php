@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
-
+use kartik\file\FileInput;
 $this->title = 'Business';
 ?>
 
@@ -14,7 +14,7 @@ $this->title = 'Business';
                     <?php if ($model->id): ?>
                         <div class="borderlefttitlo"></div><span>Business</span>
                         <div class="nomebusinesscreate">
-                                <div class="borderlefttitlo"></div>
+                            <div class="borderlefttitlo"></div>
                             <span><?= $model->name ?></span>
                         </div>
                     <?php else: ?>
@@ -46,6 +46,13 @@ $this->title = 'Business';
                                     <?php $form = ActiveForm::begin(['id' => 'business_form', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <?php 
+                                                echo $form->field($model, 'file')
+                                                          ->widget(
+                                                                    FileInput::classname(), 
+                                                                    ['options' => ['accept'=>'image/*']]
+                                                                );  
+                                            ?>
                                             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                                             <?php
                                                 echo '<label class="control-label">Pa&iacute;s</label>';
@@ -103,7 +110,7 @@ $this->title = 'Business';
                                                         <div class="panel panel-default">
                                                             <div class="panel-body">
                                                                 <div class="col-md-4 imgbussinessbox">
-                                                                    <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+                                                                <img class="img-responsive" src="<?= $p->logo ?>" alt="" title="">
                                                                 </div>
                                                                 <div class="col-md-8 descbussinessbox">
                                                                     <div><?= $p->nome; ?></div>

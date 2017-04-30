@@ -32,6 +32,8 @@ use yii\behaviors\BlameableBehavior;
  * @property User $updatedBy
  */
 class Business extends \yii\db\ActiveRecord {
+    public $file;
+
     /**
      * @inheritdoc
      */
@@ -53,6 +55,7 @@ class Business extends \yii\db\ActiveRecord {
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['responsable'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['responsable' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpeg, jpg', 'checkExtensionByMimeType'=>true, 'maxFiles' => 1],
         ];
     }
 

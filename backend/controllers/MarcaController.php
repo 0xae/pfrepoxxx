@@ -140,6 +140,10 @@ class MarcaController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file){
+                $model->logo = UploadForm::upload($model->file, 'marca');
+            }
 
             if($model->save()){
                 return $this->redirect(['update', 'id' => $model->idmarca]);

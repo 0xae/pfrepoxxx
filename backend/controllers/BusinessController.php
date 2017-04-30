@@ -17,6 +17,7 @@ use backend\models\Country;
 use backend\models\User;
 use backend\models\AddProducerForm;
 use backend\models\Marca;
+use backend\models\UploadForm;
 
 /**
  * BusinessController implements the CRUD actions for Business model.
@@ -77,6 +78,10 @@ class BusinessController extends Controller {
      */
     public function actionCreate() {
         $model = new Business();
+        $model->file = UploadedFile::getInstance($model, 'file');
+        if ($model->file){
+            $model->picture = UploadForm::upload($model->file, 'business');
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->updateResponsable($model->responsable);
@@ -108,21 +113,28 @@ class BusinessController extends Controller {
         $this->verifyAccess($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file){
+                $model->picture = UploadForm::upload($model->file, 'business');
+                $model->save();
+            }
+
             $this->updateResponsable($model->responsable);
             Yii::$app->getSession()->setFlash('success', 'Business actualizado com sucesso.');
             return $this->redirect(['update', 'id' => $model->id]);
-        } else {
-            $data = Country::find()->asArray()->all();
-            $countries = ArrayHelper::map($data, 'id', 'name');
-            $_dataUsers = ArrayHelper::map(User::find()->asArray()->all(), 'id', 'username');
+        } 
 
-            return $this->render('update', [
-                'model' => $model,
-                'producers' => Marca::find()->where(['business_id' => $id])->all(),
-                '_dataUsers' => $_dataUsers,
-                '_dataCountries' => $countries,
-            ]);
-        }
+
+        $data = Country::find()->asArray()->all();
+        $countries = ArrayHelper::map($data, 'id', 'name');
+        $_dataUsers = ArrayHelper::map(User::find()->asArray()->all(), 'id', 'username');
+
+        return $this->render('update', [
+            'model' => $model,
+            'producers' => Marca::find()->where(['business_id' => $id])->all(),
+            '_dataUsers' => $_dataUsers,
+            '_dataCountries' => $countries,
+        ]);
     }
 
     public function actionSelect($id) {

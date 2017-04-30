@@ -49,10 +49,9 @@ $this->title = 'Form';
 						  <!-- Tab panes -->
 						  <div class="tab-content">
 								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
-                                    <?php $form = ActiveForm::begin(['id' => 'business_form']); ?>
+                                    <?php $form = ActiveForm::begin(['id' => 'business_form', 'options'=>['enctype'=>'multipart/form-data']]); ?>
                                         <div class="row">
                                             <div class="col-md-6">
-                                            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
                                                 <?php echo $form->field($model, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']]);  ?>
                                                 <?php
                                                     if (!$model->idmarca) {
@@ -63,9 +62,7 @@ $this->title = 'Form';
                                                     }
                                                 ?>
                                                 <?php echo $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
-
                                                 <?php echo $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
                                                 <?php echo $form->field($model, 'slogan')->textInput(['maxlength' => true]) ?>
                                             </div>
 
