@@ -4,6 +4,7 @@ namespace backend\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 
+
 /**
  * This is the model class for table "marca".
  *
@@ -71,10 +72,17 @@ class Marca extends \yii\db\ActiveRecord {
         ];
     }
 
-    public static function getProdutor($marcaId) {
+    public function getProdutor() {
         return Produtor::find()
-               ->where(['marca_idmarca' => $marcaId])
+               ->where(['marca_idmarca' => $this->idmarca])
                ->one();
+    }
+
+    public function getNextEvents() {
+        $query = Evento::find()
+                 ->where('data >= now()')
+                 ->orderBy('data ASC');
+        return $query->all();
     }
 
     public function getMarcas() {

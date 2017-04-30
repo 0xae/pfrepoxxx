@@ -40,7 +40,7 @@ return [
         ],
         
         'mycomponent' => [
-            'class' => 'app\components\MyComponent',
+            'class' => 'backend\components\MyComponent',
         ],
 
         'authManager'=>[ 

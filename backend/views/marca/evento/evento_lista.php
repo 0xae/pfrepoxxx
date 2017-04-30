@@ -1,6 +1,6 @@
 <?php foreach ($nextEvents as $e) : ?>
     <div class="col-md-6 next" style="margin-bottom: 30px">
-        <a href="#">
+        <a href="index.php?r=evento/view&id=<?= $e->idevento ?>">
             <div class="fundo_next_event">
                 <div class="filtro_eventos" style="background: <?= $e->filtro ?>; "></div>
                 <div id="img_eventos" style="height:300px">

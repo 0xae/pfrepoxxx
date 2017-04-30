@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
  * @author janito (possibly)
  * @author ayrton
  * @notes class constants (const) always come before instance members
+ *
  * @property string $idevento
  * @property string $produtor_idprodutor
  * @property string $nome
@@ -149,11 +150,6 @@ class Evento extends \yii\db\ActiveRecord {
         return $this->hasOne(Tipoevento::className(), ['idtipoevento' => 'tipoevento_idtipoevento'])
             ->one()
             ->nome;
-    }
-
-    public static function nextEvents($producerId) {
-        $query = Evento::find()->orderBy('data ASC');
-        return $query->all();
     }
 
     public function getAllEventos(){

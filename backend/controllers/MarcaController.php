@@ -75,12 +75,19 @@ class MarcaController extends Controller {
      */
     public function actionView($id) {
         $marca = $this->findMarcaModel($id);
-        $events = Evento::nextEvents(0);
-        $prod = [];
+        $events = $marca->getNextEvents();
+        $prod = $marca->getProdutor();
+        $destaque = new Evento();
+
+        if (!empty($events)) {
+            # the most recent
+            $destaque = array_shift($events);
+        }
 
         return $this->render('view', [
             'model' => $marca,
             'produtor' => $prod,
+            'destaque' => $destaque,
             'nextEvents' => $events
         ]);
     }
@@ -166,7 +173,6 @@ class MarcaController extends Controller {
         }
 
         $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
-        $model->file = $model->logo;
         return $this->render('update', [
             'model' => $model,
             'newUser' => $user,
