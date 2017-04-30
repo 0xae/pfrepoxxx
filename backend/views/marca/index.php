@@ -55,5 +55,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<?php echo $this->render('create_marca', ['newMarca' => $newMarca, '_dataBusiness' => $_dataBusiness]); ?>
+<?php
+    echo $this->render('create_marca', [
+                            'newMarca' => $newMarca,
+                            'newUser' => $newUser,
+                            'newProdutor' => $newProdutor,
+                            '_dataBusiness' => $_dataBusiness,
+                       ]);
+?>
 </div>
