@@ -9,16 +9,17 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
             <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create', 'enableAjaxValidation'=>true, 'enableClientValidation'=>true,'options'=>['enctype'=>'multipart/form-data']]); ?>
+                <input type="hidden" name="<?=Yii::$app->request->csrfParam?>" value="<?=Yii::$app->request->getCsrfToken()?>" />
                 <div class="modal-header">
                     <h4 class="modal-title">Criar Produtor</h4>
                 </div>
                 <div class="modal-body">
                     <div role="tabpanel">
-<ul class="nav nav-tabs" role="tablist" style="display:none">
-    <li role="presentation" class="active"><a href="#step1" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-    <li role="presentation"><a href="#step2" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#step3" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-  </ul>
+                        <ul class="nav nav-tabs" role="tablist" style="display:none">
+                            <li role="presentation" class="active"><a href="#step1" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                            <li role="presentation"><a href="#step2" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                            <li role="presentation"><a href="#step3" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+                          </ul>
                           <!-- Tab panes -->
                           <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane step1 active" id="step1">

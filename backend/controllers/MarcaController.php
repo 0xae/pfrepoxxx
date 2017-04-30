@@ -78,6 +78,14 @@ class MarcaController extends Controller {
         ]);
     }
 
+    public function beforeAction($action) {
+        if ($action->id == 'create') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * Creates a new Marca model.
      * If creation is successful, the browser will be redirected to the 'view' page.
