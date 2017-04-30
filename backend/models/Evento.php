@@ -149,6 +149,13 @@ class Evento extends \yii\db\ActiveRecord {
         return $models;
     }
 
+    public static function fromProducer($producerId) {
+        if (!$producerId) {
+            return []; 
+        }
+        return Evento::find()->where(['produtor_idprodutor' => $producer])->all();
+    }
+
     public function getAllEventos(){
         $models = Evento::find()->where(['estado' => 1])->orderBy('data DESC')->limit(7)->all();
         return $models;
