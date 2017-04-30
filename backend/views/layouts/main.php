@@ -12,7 +12,6 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use kartik\sidenav\SideNav;
 
-AppAsset::register($this);
 DashboardAsset::register($this);
 ?>
 
@@ -22,9 +21,6 @@ DashboardAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
-
 <?= Html::csrfMetaTags() ?>
 <title><?= Html::encode($this->title) ?></title>
 <style type="text/css">
@@ -57,7 +53,7 @@ $this->registerJS($script);
     <header class="main-header">
         <!-- Logo -->
         <a href=<?= \yii\helpers\Url::to(['index'])?> class="logo" style="position: fixed;">
-         <img src="<?= Yii::$app->request->baseUrl ?>/img/logo_passafree_white.png" alt="">
+         <img src="static/img/logo_passafree_white.png" alt="">
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -80,7 +76,7 @@ $this->registerJS($script);
       <section class="sidebar">
         <li class="perfil">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="img/logo.jpg" class="user-image" alt="User Image" style="width: 100%;">
+            <img src="static/img/logo.jpg" class="user-image" alt="User Image" style="width: 100%;">
           </a>
         </li>
         <li class="nome_user text-center">
