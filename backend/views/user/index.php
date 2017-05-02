@@ -6,7 +6,7 @@ use yii\grid\GridView;
 $this->title = 'Users';
 ?>
 <div class="container-fluid pagebusiness pageusers">
-	<div role="tabpanel" style="padding:0; display: table;margin-top: 5px">
+	<div role="tabpanel" style="padding:0;display:table;margin-top: 5px;width:100%">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
 				<a href="#usertab" aria-controls="home" role="tab" data-toggle="tab">Users</a>

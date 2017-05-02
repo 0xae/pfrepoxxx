@@ -954,6 +954,13 @@ a.desc:after {
 }
 /******************************MOBILE VERSION******************************/
 /*NÃO ALTERAR. ESCONDE TODO O CONTEUDO QUE ESTIVER NUMA RESOLUCAO MENOR QUE A INDICADA EM BAIXO*/
+@media (min-width: 1024px)
+{
+	.hidecontent
+	{
+		display:none;
+	}
+}
 @media (max-width: 1023px)
 {
 	.wrapper

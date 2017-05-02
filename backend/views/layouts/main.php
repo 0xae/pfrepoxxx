@@ -48,10 +48,13 @@ $this->registerJS($script);
 <div class="loading"></div>
 
 <?php if(!Yii::$app->user->isGuest): ?>
+
+ <?php /*?>MOBILE MESSAGE<?php */?>
   <div class="hidecontent">
 	  <span class="glyphicon glyphicon-warning-sign"></span>
 	  <h2>INDSPONIVEL NESTE RESOLUTCAO</h2>
   </div>
+  
   <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
