@@ -34,7 +34,7 @@ $this->title = 'Users';
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="col-md-12 imgbussinessbox">
-                                                <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+                                                <img class="img-responsive" src="static/img/Unitel_img.jpg" alt="" title="">
                                             </div>
                                             <div class="col-md-12 descbussinessbox">
                                                 <span><?= $u->username; ?></span>

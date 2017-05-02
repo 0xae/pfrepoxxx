@@ -1,77 +1,73 @@
 <?php
 namespace backend\components;
- 
- 
-use backend\models\CompraBilhete;
-use backend\models\Evento;
-use backend\models\UserHasBilhete;
-use backend\models\Utilizador;
+
 use Yii;
 use yii\base\Component;
 use yii\base\ErrorException;
 use yii\base\InvalidConfigException;
-use backend\models\Bilhete;
 use yii\db\Query;
 
-class MyComponent extends Component
-{
+use backend\models\Bilhete;
+use backend\models\CompraBilhete;
+use backend\models\Evento;
+use backend\models\UserHasBilhete;
+use backend\models\Utilizador;
 
-	public function welcome()
- 	{
-  
- 		$var = "Hello... Welcome to MyComponent";
- 		return $var;
- 	}
+class MyComponent extends Component {
+    public function welcome() {
+        $var = "Hello... Welcome to MyComponent";
+        return $var;
+    }
+
+    public static function MesExtenco($mes){		 	 
+        switch ($mes){		 
+        case 1: return $mes = "Jan"; break;
+        case 2: return $mes = "Feb"; break;
+        case 3: return $mes = "Mar"; break;
+        case 4: return $mes = "Apr"; break;
+        case 5: return $mes = "May"; break;
+        case 6: return $mes = "Jun"; break;
+        case 7: return $mes = "Jul"; break;
+        case 8: return $mes = "Aug"; break;
+        case 9: return $mes = "Sep"; break;
+        case 10: return $mes = "Oct"; break;
+        case 11: return $mes = "Nov"; break;
+        case 12: return $mes = "Dec"; break;
+        }
+    }
+
+    public static  function MesExtencoNome($mes){		 	 
+        switch ($mes){		 
+        case 1: return $mes = "Janeiro"; break;
+        case 2: return $mes = "Fevereiro"; break;
+        case 3: return $mes = "Março"; break;
+        case 4: return $mes = "Abril"; break;
+        case 5: return $mes = "Maio"; break;
+        case 6: return $mes = "Junho"; break;
+        case 7: return $mes = "Julho"; break;
+        case 8: return $mes = "Augosto"; break;
+        case 9: return $mes = "Setembro"; break;
+        case 10: return $mes = "Outubro"; break;
+        case 11: return $mes = "Novembro"; break;
+        case 12: return $mes = "Dezembro"; break;
+        }
+    }
+
+    public static  function Totalfaturado($idevento){		 	 
+
+        $modelBilhete =  Bilhete::find()->where(['estado' => 1, 'evento_idevento'=>$idevento])->all();
+        $subt=$total=0;
 
 
- 	public static  function MesExtenco($mes){		 	 
-		switch ($mes){		 
-			case 1: return $mes = "Jan"; break;
-			case 2: return $mes = "Feb"; break;
-			case 3: return $mes = "Mar"; break;
-			case 4: return $mes = "Apr"; break;
-			case 5: return $mes = "May"; break;
-			case 6: return $mes = "Jun"; break;
-			case 7: return $mes = "Jul"; break;
-			case 8: return $mes = "Aug"; break;
-			case 9: return $mes = "Sep"; break;
-			case 10: return $mes = "Oct"; break;
-			case 11: return $mes = "Nov"; break;
-			case 12: return $mes = "Dec"; break;
-		}
-	}
+        foreach ($modelBilhete as $key => $bi) {
+            $subt = $bi->preco * $bi->comprado; 
+            $total = $total + $subt;
+        }
 
-	public static  function MesExtencoNome($mes){		 	 
-		switch ($mes){		 
-			case 1: return $mes = "Janeiro"; break;
-			case 2: return $mes = "Fevereiro"; break;
-			case 3: return $mes = "Março"; break;
-			case 4: return $mes = "Abril"; break;
-			case 5: return $mes = "Maio"; break;
-			case 6: return $mes = "Junho"; break;
-			case 7: return $mes = "Julho"; break;
-			case 8: return $mes = "Augosto"; break;
-			case 9: return $mes = "Setembro"; break;
-			case 10: return $mes = "Outubro"; break;
-			case 11: return $mes = "Novembro"; break;
-			case 12: return $mes = "Dezembro"; break;
-		}
-	}
+        return $modelBilhete ? $total : 0;
+    }
 
-	public static  function Totalfaturado($idevento){		 	 
-		 
-		 $modelBilhete =  Bilhete::find()->where(['estado' => 1, 'evento_idevento'=>$idevento])->all();
-		 $subt=$total=0;
-		 
-		 
-		 foreach ($modelBilhete as $key => $bi) {
-		 	$subt = $bi->preco * $bi->comprado; 
-		 	$total = $total + $subt;
-		 }
-		return $modelBilhete ? $total : 0;
-	}
-
-	public static function Anversario($idevento){
+    public static function Anversario($idevento){
 
         $com=Yii::$app->db->createCommand("select distinct u.data_nascimento,u.nome,u.apelido,u.foto,u.email,u.sexo,
             u.idutilizador from utilizador u, bilhete b, compra_bilhete c where c.utilizador_idutilizador =u.idutilizador 
@@ -79,21 +75,21 @@ class MyComponent extends Component
 
         $modelEvento= Evento::find()->where(['estado'=>1,'idevento'=>$idevento])->one();
         $anivers=[];
-        
+
         if($modelEvento && $com){
-                foreach ($com as $con){
+            foreach ($com as $con){
 
-                    if(date('d',strtotime($con['data_nascimento']))==date('d',strtotime($modelEvento->data)) &&
-                        date('m',strtotime($con['data_nascimento']))==date('m',strtotime($modelEvento->data))) {
+                if(date('d',strtotime($con['data_nascimento']))==date('d',strtotime($modelEvento->data)) &&
+                    date('m',strtotime($con['data_nascimento']))==date('m',strtotime($modelEvento->data))) {
 
 
-                        $anivers[] = ['idutilizador' => $con['idutilizador'], 'email' => $con['email'],
-                            'data_nascimento' => $con['data_nascimento'], 'nome' => $con['nome'],
-                            'apelido' => $con['apelido'], 'foto' => $con['foto']];
-                    }
-
+                    $anivers[] = ['idutilizador' => $con['idutilizador'], 'email' => $con['email'],
+                        'data_nascimento' => $con['data_nascimento'], 'nome' => $con['nome'],
+                        'apelido' => $con['apelido'], 'foto' => $con['foto']];
                 }
-        
+
+            }
+
         }
         return $anivers;
 
@@ -124,12 +120,12 @@ class MyComponent extends Component
 
     }
 
-public static  function geralstocktotal($idevento){
+    public static  function geralstocktotal($idevento){
 
         $com=Yii::$app->db->createCommand("select DISTINCT(b.nome_bilhete), SUM(b.stock) 
             from bilhete b where b.evento_idevento=$idevento")
-        ->queryAll();
-        
+            ->queryAll();
+
         return $com?false:$com;
 
     }
@@ -151,7 +147,7 @@ public static  function geralstocktotal($idevento){
 
                 $bilhete=Bilhete::find()->where(['idbilhete'=>$idbilhete])->one();
                 $countPert=($count*100)/$bilhete->comprado;
-            
+
             }
 
 
@@ -206,28 +202,21 @@ public static  function geralstocktotal($idevento){
     }
 
     public static function bilheteValidado ($idcomprado){
-
-
         return UserHasBilhete::find()->where(['idcompra_bilhete'=>$idcomprado])->exists();
     }
 
 
-    public static function getNomeUser($iduser){
-
- 
-         $user=Utilizador::findOne(['idutilizador'=>$iduser]);
+    public static function getNomeUser($iduser) {
+        $user=Utilizador::findOne(['idutilizador'=>$iduser]);
         if($user){
-            
             return $users=['nome'=>$user->nome,'foto'=>$user->foto];
         }
-            
         else
-        return $users=['nome'=>'','foto'=>''];
+            return $users=['nome'=>'','foto'=>''];
     }
 
 
-    public function verificarEventoActivado($id){
-
+    public function verificarEventoActivado($id) {
         $bilhetess=Bilhete::find()->where(['evento_idevento'=>$id])->all();
         $activo=false;
 
@@ -242,7 +231,8 @@ public static  function geralstocktotal($idevento){
 
         if($activo)
             return true;
-        else return false;
+        else
+            return false;
     }
 
 }

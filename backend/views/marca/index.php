@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="col-md-12 contentbox">
         <?php foreach($models as $m): ?>
             <div class="col-md-4">
-                <a href="index.php?r=marca/update&id=<?= $m->idmarca ?>">
+                <a href="index.php?r=marca/view&id=<?= $m->idmarca ?>">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-12 imgbussinessbox">
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 										<span><?= $m->slogan ?></span>
 									</div>
                                 </div>
-                                <img class="img-responsive" src="../..//uploads/evento/nGHZqjFrZgMbLdue2zt9d5KGJrxrw37G.jpg" alt="" title="">
+                                <img class="img-responsive" src="<?= $m->logo ?>" alt="" title="">
                             </div>
                         </div>
                     </div>
@@ -55,5 +55,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<?php echo $this->render('create_marca', ['newMarca' => $newMarca, '_dataBusiness' => $_dataBusiness]); ?>
+<?php
+    echo $this->render('create_marca', [
+                            'newMarca' => $newMarca,
+                            'newUser' => $newUser,
+                            'newProdutor' => $newProdutor,
+                            '_dataBusiness' => $_dataBusiness,
+                       ]);
+?>
 </div>

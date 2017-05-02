@@ -16,6 +16,7 @@ class SignupForm extends Model {
     public $username;
     public $email;
     public $password;
+    public $password_confirmation;
     public $tipo_user;
     public $permissions;
 

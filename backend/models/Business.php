@@ -32,6 +32,8 @@ use yii\behaviors\BlameableBehavior;
  * @property User $updatedBy
  */
 class Business extends \yii\db\ActiveRecord {
+    public $file;
+
     /**
      * @inheritdoc
      */
@@ -53,6 +55,7 @@ class Business extends \yii\db\ActiveRecord {
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['responsable'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['responsable' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpeg, jpg', 'checkExtensionByMimeType'=>true, 'maxFiles' => 1],
         ];
     }
 
@@ -178,12 +181,6 @@ class Business extends \yii\db\ActiveRecord {
         $data= $conn->createCommand($sql, [':id'=> $id])
                     ->queryOne();
         return $data;
-    }
-
-    public function removeProducer($id) {
-        Yii::$app->getDb()
-           ->createCommand('DELETE FROM business_producer where id=:id', [':id'=> $id])
-           ->execute();
     }
 
     public function behaviors() {  

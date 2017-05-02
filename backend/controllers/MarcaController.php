@@ -9,12 +9,17 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 use backend\models\Marca;
 use backend\models\MarcaSearch;
 use backend\models\Business;
 use backend\models\Produtor;
 use backend\models\SignupForm;
+use backend\models\UploadForm;
+use backend\models\Evento;
+use common\models\User as AppUser;
 
 /**
  * MarcaController implements the CRUD actions for Marca model.
@@ -31,13 +36,7 @@ class MarcaController extends Controller {
                         'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ],
-            ],  
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+            ]
         ];
     }
 
@@ -47,9 +46,9 @@ class MarcaController extends Controller {
      */
     public function actionIndex() {
         $session = Yii::$app->session;
+        $user = Yii::$app->user;
         $models = Marca::find();
         $marca = new Marca();
-        $user = Yii::$app->user;
 
         if ($session->has('business')) {
             $bizId = $session->get('business');
@@ -63,6 +62,8 @@ class MarcaController extends Controller {
         return $this->render('index', [
             'models' => $models,
             'newMarca' => $marca,
+            'newUser' => new SignupForm(),
+            'newProdutor' => new Produtor(),
             '_dataBusiness' => $_dataBusiness
         ]);
     }
@@ -73,9 +74,30 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
+        $marca = $this->findMarcaModel($id);
+        $events = $marca->getNextEvents();
+        $prod = $marca->getProdutor();
+        $destaque = null;
+
+        if (!empty($events)) {
+            # the most recent
+            $destaque = array_shift($events);
+        }
+
         return $this->render('view', [
-            'model' => $this->findMarcaModel($id),
+            'model' => $marca,
+            'produtor' => $prod,
+            'destaque' => $destaque,
+            'nextEvents' => $events
         ]);
+    }
+
+    public function beforeAction($action) {
+        if ($action->id == 'create') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
     }
 
     /**
@@ -84,21 +106,42 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        $model = new Marca();
+        $marca = new Marca();
+        $user = new SignupForm();
+        $produtor = new Produtor();
+        $req = Yii::$app->request->post();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->estado = $model::STATUS_ACTIVE;
-            if($model->save()){
-                return $this->redirect(['update', 'id' => $model->idmarca]);
-            } 
-        } else {
-            $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
-            return $this->render('create', [
-                'model' => $model,
-                '_dataBusiness' => $_dataBusiness,
-                'newMarca' => new Marca()
-            ]);
-        }
+        if ($marca->load($req) && $user->load($req) && $produtor->load($req)) {
+            $marca->estado = Marca::STATUS_ACTIVE;
+            $user->tipo_user=3;
+            $produtor->public_email = $user->email;
+
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($user, $marca, $produtor);
+            }
+
+            $marca->file = UploadedFile::getInstance($marca, 'file');
+            if ($marca->file){
+                $marca->logo = UploadForm::upload($marca->file, 'marca');
+            }
+
+            if ($marca->save() && ($us=$user->signup())) {
+                $produtor->idprodutor = $us->id;
+                $produtor->marca_idmarca = $marca->idmarca;
+                if (!$produtor->save()) {
+                    $marca->delete();
+                    $us->delete();
+                    return $this->renderAjax('create_marca', [
+                        'newMarca' => $marca,
+                        'newUser' => $user,
+                        'newProdutor' => $produtor
+                    ]);
+                } else {
+                    return $this->redirect(['update', 'id' => $marca->idmarca]);
+                }
+            }
+        } 
     }
 
     /**
@@ -111,30 +154,28 @@ class MarcaController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            /*
             $model->file = UploadedFile::getInstance($model, 'file');
-            if($model->file){
-                $ext = end((explode(".", $model->file)));
-                $generateRandomName = Yii::$app->security->generateRandomString().".{$ext}";
-                $model->file->saveAs('uploads/marca/'.$generateRandomName);
-                $model->logo = 'uploads/marca/'.$generateRandomName;
+            if ($model->file){
+                $model->logo = UploadForm::upload($model->file, 'marca');
             }
-             */
 
             if($model->save()){
                 return $this->redirect(['update', 'id' => $model->idmarca]);
             }
         } 
 
-        $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         $prod = Produtor::find()->where(['marca_idmarca' => $id])->one();
         if (!$prod) {
             $prod = new Produtor();
-        } 
+            $user = new SignupForm();
+        } else {
+            $user = AppUser::find()->where(['id' => $prod->idprodutor])->one();
+        }
 
+        $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
         return $this->render('update', [
             'model' => $model,
-            'newUser' => new SignupForm(),
+            'newUser' => $user,
             'newProdutor' => $prod,
             '_dataBusiness' => $_dataBusiness,
         ]);
@@ -167,10 +208,7 @@ class MarcaController extends Controller {
                 }
 
                 return $this->redirect(['update', 'id' => $model->marca_id]);
-            } else {
-                var_dump($model->getErrors());
-                return;
-            } 
+            }
         }
     }
 

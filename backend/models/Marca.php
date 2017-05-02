@@ -1,8 +1,9 @@
 <?php
-
 namespace backend\models;
+
 use Yii;
 use yii\helpers\ArrayHelper;
+
 
 /**
  * This is the model class for table "marca".
@@ -47,10 +48,9 @@ class Marca extends \yii\db\ActiveRecord {
             [['email'], 'email'],
             [['telefone'], 'string', 'max' => 45],
             [['nome', 'logo', 'sede', 'email', 'slogan'], 'string', 'max' => 255],
-            [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'checkExtensionByMimeType'=>true, 'maxFiles' => 1],
-            /*
+            [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpeg, jpg', 'checkExtensionByMimeType'=>true, 'maxFiles' => 1],
+            ['email', 'unique',  'message' => 'This email address has already been taken.'],
             [['file'], 'required', 'on' => self::SCENARIO_CREATE],
-            */
         ];
     }
 
@@ -70,6 +70,21 @@ class Marca extends \yii\db\ActiveRecord {
             'slogan' => 'Slogan da Marca',
             'email' => 'Email da Marca',
         ];
+    }
+
+    public function getProdutor() {
+        return Produtor::find()
+               ->where(['marca_idmarca' => $this->idmarca])
+               ->one();
+    }
+
+    public function getNextEvents() {
+        $query = Evento::find()
+                 ->where('data >= now()')
+                 ->andWhere('produtor_idprodutor = (select idprodutor from produtor where marca_idmarca = :mid)')
+                 ->addParams([':mid'=>$this->idmarca])
+                 ->orderBy('data ASC');
+        return $query->all();
     }
 
     public function getMarcas() {

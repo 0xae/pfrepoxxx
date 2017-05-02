@@ -1,7 +1,8 @@
 backend/runtime/*
 fronted/runtime/*
+uploads/*
 *.swp
 *.swn
 *.swo
-
 Thumbs.db
+uploads_passa_free
