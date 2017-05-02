@@ -19,8 +19,10 @@ class DashboardAsset extends AssetBundle {
     public $css = [
         'static/css/AdminLTE.min.css',
         'static/css/style.css',
-        'static/css/AdminLTE.css',
+        // 'static/css/AdminLTE.css',
         'static/css/site.css',
+        'static/css/circle.css',
+        'static/css/font-awesome.min.css',
         'static/css/ionicons.min.css',
         'static/css/skins/_all-skins.min.css',
     ];
@@ -30,11 +32,14 @@ class DashboardAsset extends AssetBundle {
         'static/js/moment.min.js',
         'static/js/app.js',
         'static/js/lodash.js',
+        'static/js/highcharts.js',
+        'static/js/lodash.js',
         'static/plugins/jquery.sparkline.min.js',
         'static/plugins/fastclick.min.js',
         'static/plugins/jquery.slimscroll.min.js',
         'static/js/jquery.steps.min.js',
         'static/js/passafree/app.js',
+        'static/js/passafree/analytics.js',
         'static/js/passafree/produtor.js'
     ];
 

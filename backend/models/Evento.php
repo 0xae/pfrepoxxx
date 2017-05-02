@@ -165,5 +165,13 @@ class Evento extends \yii\db\ActiveRecord {
     public function getDay() {
         return date('d', strtotime($this->data));
     }
+
+    public function getBilhetes() {
+        $data = Bilhete::find()->where(['evento_idevento' => $this->idevento])->all();
+        if (!$data) { 
+            $data = []; 
+        }
+        return $data;
+    }
 }
 

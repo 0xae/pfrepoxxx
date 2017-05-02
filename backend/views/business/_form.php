@@ -22,9 +22,11 @@ $this->title = 'Business';
                     <?php endif; ?>
 				</h4>
 
+                <!--
 				<div class="pageventbtngroup">
 					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalcriarmarca">Guardar</a>
 				</div>
+                -->
 			</div>
 		</div>
 	</div>

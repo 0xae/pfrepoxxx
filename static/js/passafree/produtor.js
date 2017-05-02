@@ -1,11 +1,8 @@
 $(document).ready(function () {
-    var _sch = {};
     $(".pf-next-step").on("click", function (e) {
         var thisStep = $(this).attr("data-step");
         var target =$(this).attr("data-target");
-        if (!thisStep) { 
-            return;
-        }
+        if (!thisStep) { return; }
 
         e.stopPropagation();
         validateForm(false);

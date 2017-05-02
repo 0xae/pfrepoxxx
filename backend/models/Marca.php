@@ -81,7 +81,7 @@ class Marca extends \yii\db\ActiveRecord {
     public function getNextEvents() {
         $query = Evento::find()
                  ->where('data >= now()')
-                 ->andWhere('produtor_idprodutor = (select idprodutor from produtor where marca_idmarca = :mid)')
+                 ->andWhere('produtor_idprodutor = (select idprodutor from produtor where marca_idmarca = :mid limit 1)')
                  ->addParams([':mid'=>$this->idmarca])
                  ->orderBy('data ASC');
         return $query->all();

@@ -64,8 +64,10 @@ class EventoController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
+        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            '_dataBilhetes' => $model->getBilhetes() 
         ]);
     }
 
