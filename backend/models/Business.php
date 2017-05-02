@@ -183,6 +183,12 @@ class Business extends \yii\db\ActiveRecord {
         return $data;
     }
 
+    public function getCountryLabel() {
+        $c = $this->getCountry()->one();
+        if ($c) { return $c->name; }
+        return '';
+    }
+
     public function behaviors() {  
         return [  
             BlameableBehavior::className(),  
