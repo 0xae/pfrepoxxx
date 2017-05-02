@@ -30,6 +30,7 @@ $this->registerJs("
                         <div class="row">
                             <div class="col-md-5">
                                 <?php
+                                    /*
                                     $layout3 = '
                                     <span class="input-group-addon">From </span>
                                     {input1}
@@ -57,6 +58,7 @@ $this->registerJs("
                                             'format' => 'yyyy-mm-dd'
                                         ]
                                     ]);
+                                    */
                                 ?>
                             </div>
                             <div class="col-md-12">
