@@ -179,7 +179,7 @@
 {
     text-transform: uppercase;
 }
-.modal-header, .modal-footer, .pagebusiness .panel-body table th, .pagebusiness .panel-body table td, .table > thead > tr > th, .pageusers .nav-tabs > li > a:hover, .pageanalitics .accountingbox .nav > li > a:hover
+.modal-header, .modal-footer, .pagebusiness .panel-body table th, .pagebusiness .panel-body table td, .table > thead > tr > th, .pageanalitics .accountingbox .nav > li > a:hover
 {
 	border: none;
 }
@@ -380,7 +380,7 @@
 {
 	margin:40px 15px 20px;
 }
-.form-control:hover, .form-control:focus
+.form-control:hover, .form-control:focus, .filtropanel .btn-group .btn.btn-default:hover, .filtropanel .btn-group .btn.btn-default:focus
 {
 	border-color:#009447 !important;
 }
@@ -426,7 +426,7 @@
 }
 .accountngpage .accountingbox .col-md-6:last-child
 {
-	padding: 100px;
+	padding: 8%;
 }
 .accountngpage .accountingbox .col-md-6 .graficoacounting
 {
@@ -434,6 +434,7 @@
 	width:300px;
 	height: 300px;
 	border-radius: 50%;
+	margin: 0 auto;
 }
 .info_next_event .col-md-12 .col-md-1 .diaevento
 {
@@ -524,7 +525,7 @@
 .criar
 {
 	background: #009447!important;
-	border: 0px!important;
+	border:1px solid #009447 !important;
 	color: #fff!important;
 	padding: 8px 15px!important;
 	border-radius: 4px;
@@ -575,7 +576,7 @@
 }
 .labeltipobilhete
 {
-	border: 1px solid #009447;
+	border: 1px solid #009447 !important;
 	border-radius: 5px;
 	padding: 8px; 
 	color: #009447; 
@@ -730,7 +731,8 @@
 	background: #282c37!important;
 }
 
-.skin-blue .main-header .navbar .sidebar-toggle:hover{
+.skin-blue .main-header .navbar .sidebar-toggle:hover
+{
 	background: #009447!important;
 	color: #fff!important;
 }
@@ -744,9 +746,10 @@
     color: #282c37 !important;
 }
 
-.sidebar-menu.text-center {
-    font-weight: 800;
+.sidebar-menu.text-center
+{
     letter-spacing: 1px;
+	text-align: left;
 }
 
 .summary{
@@ -844,9 +847,9 @@
 	width: 112px;
 }
 
-.box_cont{
+/*.box_cont{
 	padding-top: 5%!important;
-}
+}*/
 
 .box.box-info{
 	border-top-color: #69b1d5!important;
@@ -930,23 +933,27 @@
 .addbusiness .plusicon
 {
 	padding: 41.5%;
+	height:283px;
 }
 .pagemarcas .addbusiness .panel-body
 {
-	padding: 24%;
+	padding: 24.5%;
+	height: 249px;
 }
 .pageusers .addbusiness .panel-body
 {
 	padding: 24.5%;
+	height: 209px;
 }
 .pageprodutor .addbusiness .panel-body
 {
-	padding: 12%;
+	padding: 14%;
+	height: 132px;
 }
 .nomebusinessbt
 {
 	padding: 0;
-    margin-top: 9px;
+    /*margin-top: 9px;*/
 	background-color: #e0e0e0;
 }
 .accountngpage .panel .filtropanel, .table > thead > tr.active > th, .pageanalitics .accountingbox .nav-tabs
@@ -966,9 +973,15 @@
 {
 	margin-left: 10px;
 }
-.filtropanel .btn-group .btn-default
+.filtropanel .btn-group .btn.btn-default
 {
 	background-color: #fff;
+	padding:8px 15px;
+}
+.filtropanel .btn-group .btn.btn-default:hover, .filtropanel .btn-group .btn.btn-default:focus
+{
+	background-color: #e4e9e6;
+	box-shadow: none;
 }
 .pagemarcas .contentbox .panel
 {
@@ -1016,6 +1029,10 @@
 	height:200px;
 	overflow: hidden;
 }
+.popupcriarbilhete .modal-body .boxconteinerbus .imgbussinessbox
+{
+	height:auto;
+}
 .pageusers .tab-content
 {
 	padding:0 15px;
@@ -1030,10 +1047,14 @@
 	text-align: center;
 	background-color: #f1f0f0;
 }
-.pageusers .nav-tabs > li.active > a, .pageanalitics .accountingbox .nav-tabs li.active a
+.pageusers .nav-tabs > li.active > a, .pageusers .nav-tabs > li a:hover, .pageanalitics .accountingbox .nav-tabs li.active a
 {
 	border-bottom: 3px solid #058040;
 	background-color: #e4e9e6;
+	color:#058040;
+	margin:0;
+	border-right: none;
+	border-left: none;
 }
 #modalcriarmarca .col-md-6:first-child
 {
@@ -1159,7 +1180,7 @@
 	height: 100px;
 	overflow: hidden;
 }
-.pageprodutor .panel .descbussinessbox
+.pageprodutor .panel .descbussinessbox, .popupcriarbilhete .modal-body .boxconteinerbus .descbussinessbox span:last-child
 {
 	font:14px "DINRegular", Helvetica, Arial, sans-serif !important;
 }
@@ -1167,8 +1188,7 @@
 {
 	padding: 15px 30px;
 }
-
-
-.modal-header {
-    margin-bottom: 30px;
+.modal-header
+{
+    margin-bottom: 20px;
 }

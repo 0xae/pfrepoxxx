@@ -87,7 +87,7 @@ $this->title = 'Business';
                                     <div class="biz-footer">
                                         <?php echo Html::submitButton(
                                                 $model->isNewRecord ? 'Guardar' : 'Actualizar', 
-                                                ['class' =>  'criar btn btn-success', 'id'=> 'submit_business']
+                                                ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
                                             );
                                         ?>
                                     </div>
@@ -95,7 +95,7 @@ $this->title = 'Business';
 								</div>
 
 								<div role="tabpanel" class="biz-pane tab-pane" id="access">
-                                    <div class="row contentbox">
+                                    <div class="row contentbox">                                                
                                         <?php if (isset($producers)): ?>
                                             <?php foreach ($producers as $p): ?>
                                                 <div class="col-md-4">
@@ -115,9 +115,7 @@ $this->title = 'Business';
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php else: ?>
-                                            <div class="col-md-4">
-                                                <h2>Sem produtores</h2>
-                                            </div>
+                                        	<div class="col-md-12"><div class="alert alert-info" style="margin:20px 0 0 0">Sem produtores</div></div>
                                         <?php endif; ?>
                                     </div>
 								</div>

@@ -36,29 +36,31 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">select a business</h4>
+                    <h4 class="modal-title">select business</h4>
                 </div>
                 <!-- .modal-header -->
 
                 <div class="modal-body">
-                    <div class="col-md-12 contentbox" style="height:500px; overflow-y:scroll; margin-bottom: 20px;">
-                        <?php foreach ($data as $d): ?>
-                            <div class="col-md-6 boxconteinerbus">
-                                <a href="javascript:void(0);" class="biz-choice" data-id="<?= $d->id; ?>">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="col-md-12 imgbussinessbox">
-                                                <img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
-                                            </div>
-                                            <div class="col-md-12 descbussinessbox">
-                                                <span><?php echo $d->name; ?></span>
-                                                <span><?php echo $d->getCountry()->one()->name; ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
+                   	<div class="row">
+						<div class="col-md-12 contentbox" style="padding: 0">
+							<?php foreach ($data as $d): ?>
+								<div class="col-md-6 boxconteinerbus">
+									<a href="javascript:void(0);" class="biz-choice" data-id="<?= $d->id; ?>">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="col-md-4 imgbussinessbox">
+													<img class="img-responsive" src="../../img/Unitel_img.jpg" alt="" title="">
+												</div>
+												<div class="col-md-8 descbussinessbox">
+													<span><?php echo $d->name; ?></span>
+													<span><?php echo $d->getCountry()->one()->name; ?></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							<?php endforeach; ?>
+						</div>
                     </div>
                 </div>
                 <!-- .modal-body -->

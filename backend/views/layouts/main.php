@@ -52,7 +52,10 @@ $this->registerJS($script);
 <div class="loading"></div>
 
 <?php if(!Yii::$app->user->isGuest): ?>
-
+  <div class="hidecontent">
+	  <span class="glyphicon glyphicon-warning-sign"></span>
+	  <h2>INDSPONIVEL NESTE RESOLUTCAO</h2>
+  </div>
   <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
@@ -76,7 +79,7 @@ $this->registerJS($script);
     </header>
 
     <!-- fim de header -->
-    <aside class="main-sidebar" style="position: fixed; box-shadow:1px 5px 2px rgba(0, 0, 0, 0.1);">
+    <aside class="main-sidebar" style="position: fixed; box-shadow:1px 5px 2px rgba(0, 0, 0, 0.1); overflow-y: scroll; height:100%; scrollbar-base-color: #C0C0C0;scrollbar-base-color: #C0C0C0;scrollbar-3dlight-color: #C0C0C0;scrollbar-highlight-color: #C0C0C0;scrollbar-track-color: #EBEBEB;scrollbar-arrow-color: blackscrollbar-shadow-color: #C0C0C0;scrollbar-dark-shadow-color: #C0C0C0;">
       <section class="sidebar">
         <li class="perfil">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -84,11 +87,30 @@ $this->registerJS($script);
           </a>
         </li>
         <li class="nome_user text-center">
-          <span>
+			<div class="nomeuser">
               <?php echo $user->identity->username; ?>
-            </span>
+            </div>
+			<small>1221 Seguidores</small>
+            <a class="btn btn-default edit_acount text-center" href=<?= \yii\helpers\Url::to(['site/update'])?>>
+            	<span>Editar Conta</span><i class="glyphicon glyphicon-pencil"></i>
+            </a>
         </li>
-        <br>
+        </li>
+        <ul class="list-unstyled notification">
+          <li><a href="#"><i class="glyphicon glyphicon-globe"></i></a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-comment"></i></a></li>
+          <li class="dropdown sair">
+            <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="glyphicon glyphicon-cog"></i><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+              <form action=<?= \yii\helpers\Url::to(['site/logout'])?> method="post">
+              	<input name="_csrf" value="OE9BLWtBeGdVOSp/DBsBEgslL0YAcAleaBwtYT4ZNh1bAxFeL3MiBA==" type="hidden">
+              	<button type="submit" class="btn btn-primary">Sair</button>
+              </form>
+            </ul>
+          </li>
+        </ul>
           <!-- Sidebar user panel -->
           <ul class="sidebar-menu text-center">
             <li class="<?php if (Yii::$app->controller->id == 'site'){ echo 'active'; } ?> treeview">
