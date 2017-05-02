@@ -1,9 +1,6 @@
 <?php
-
 use yii\helpers\Html;
-use kartik\date\DatePicker;
 use yii\widgets\DetailView;
-
 ?>
 
 <div class="" style="padding: 0px 55px;margin:0px;">
