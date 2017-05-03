@@ -24,12 +24,6 @@
         ])->label('Business');
     ?>
     <div class="form-group">
-        <?php echo $form->field($newMarca, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']])->label('Foto');  ?>
-    </div>
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
         <?php echo $form->field($newMarca, 'nome')->textInput(['maxlength' => true])->label('Nome') ?>
     </div>
     <div class="form-group">
@@ -37,6 +31,12 @@
     </div>
     <div class="form-group">
         <?php echo $form->field($newMarca, 'slogan')->textInput(['maxlength' => true])->label('Slogan') ?>
+    </div>
+</div>
+
+<div class="col-md-6" style="overflow: hidden">
+    <div class="form-group">
+        <?php echo $form->field($newMarca, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']])->label('Foto');  ?>
     </div>
 </div>
 
