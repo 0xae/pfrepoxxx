@@ -5,7 +5,6 @@ use Yii;
 
 /**
  * This is the model class for table "business".
- *
  */
 class AccountingReports {
     public function getTicketReport($filter) {

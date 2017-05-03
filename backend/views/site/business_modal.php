@@ -64,11 +64,7 @@
                     </div>
                 </div>
                 <!-- .modal-body -->
-
-                <div class="modal-footer">
-                    <button type="button" class="criar btn btn-primary">Select</button>
-                </div>
-                <!-- .modal-footer -->
 		</div>
 	</div>
 </div>
+
