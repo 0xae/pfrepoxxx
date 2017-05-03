@@ -182,7 +182,10 @@ class BusinessController extends Controller {
     private function updateResponsable($id) {
         $auth = Yii::$app->authManager;
         if (!$auth->checkAccess($id, 'business')) {
-            User::findModel($id)->addPermission('business');
+            $user = User::findModel($id);
+            $user->addPermission('business');
+            $user->tipo_user = 10;
+            $user->save();
         }
     }
 

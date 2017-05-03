@@ -1,44 +1,17 @@
 <?php
-
 namespace backend\models;
-
 use Yii;
 
-/**
- * This is the model class for table "compra_bilhete".
- *
- * @property string $idcompra_bilhete
- * @property string $utilizador_idutilizador
- * @property integer $id_donobilhete
- * @property string $bilhete_idbilhete
- * @property string $pin
- * @property string $face
- * @property integer $tipo
- * @property string $code
- * @property string $qr_code
- * @property string $codigo_QR
- * @property integer $pertence
- * @property string $dataCompra
- * @property integer $estado
- */
-class CompraBilhete extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
+class CompraBilhete extends \yii\db\ActiveRecord {
+    public static function tableName() {
         return 'compra_bilhete';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['utilizador_idutilizador', 'id_donobilhete', 'codigo_QR', 'dataCompra'], 'required'],
             [['utilizador_idutilizador', 'id_donobilhete', 'bilhete_idbilhete', 'tipo', 'pertence', 'estado'], 'integer'],
+            [['business_percent'], 'decimal'],
             [['codigo_QR'], 'string'],
             [['pin'], 'string', 'max' => 10],
             [['face'], 'string', 'max' => 100],
@@ -48,11 +21,7 @@ class CompraBilhete extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'idcompra_bilhete' => 'Idcompra Bilhete',
             'utilizador_idutilizador' => 'Utilizador Idutilizador',

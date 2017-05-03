@@ -13,7 +13,6 @@ use backend\models\ResetPasswordForm;
 use backend\models\SignupForm;
 use backend\models\Business;
 
-
 /**
  * Site controller
  */
@@ -51,9 +50,7 @@ class SiteController extends Controller {
         ];
     }
 
-
-     public function beforeAction($action)
-    {
+    public function beforeAction($action) {
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }

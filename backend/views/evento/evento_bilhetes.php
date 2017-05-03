@@ -25,6 +25,8 @@ $k=0;
                     <div class="col-md-6">
                         <h2 style="color: #313541; font-weight: 700;">Descrição</h2>
                         <p style="font-size: 17px;color: #313541;"> <?= $b->descricao_bilhete; ?> </p>
+                        <h2 style="color: #313541; font-weight: 700;">Business</h2>
+                        <h1 style="color: #009447; font-weight: 700; margin-top: -10px;"><?= $b->business_percent; ?>%</h1>
                         <h2 style="color: #313541; font-weight: 700;">Preço</h2>
                         <h1 style="color: #009447; font-weight: 700; margin-top: -10px;"><?= $b->preco; ?>ECV</h1>
                     </div>

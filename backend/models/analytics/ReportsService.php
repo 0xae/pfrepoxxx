@@ -40,7 +40,7 @@ class ReportsService {
 
     public function salesPerBusiness($filters) {
         $data = Reports::model('bilhete_reports')
-            ->fields(['business_name', 'business_id', 'total_sales' => 'sum(total_venda)'])
+            ->fields(['business_name', 'business_id', 'total_sales' => 'sum(total_venda_business)'])
             ->groupBy(['business_id'])
             ->fetch();
         return ['data' => $data];
@@ -48,7 +48,7 @@ class ReportsService {
 
     public function salesPerProducer($filters) {
         $data = Reports::model('bilhete_reports')
-            ->fields(['produtor_nome', 'produtor_id', 'total_sales' => 'sum(total_venda)'])
+            ->fields(['produtor_nome', 'produtor_id', 'total_sales' => 'sum(total_venda_produtor)'])
             ->groupBy(['produtor_id'])
             ->fetch();
         return ['data' => $data];

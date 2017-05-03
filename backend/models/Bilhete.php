@@ -14,25 +14,20 @@ use Yii;
  * @property integer $estado
  * @property integer $flag
  */
-class Bilhete extends \yii\db\ActiveRecord
-{
-    public $file;
-
-
-    public static function tableName()
-    {
-        return 'bilhete';
-    }
-
+class Bilhete extends \yii\db\ActiveRecord {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
 
+    public $file;
 
-    public function scenarios()
-    {
+    public static function tableName() {
+        return 'bilhete';
+    }
+
+    public function scenarios() {
         return [
             self::SCENARIO_CREATE => ['file', 'preco', 'evento_idevento', 'nome_bilhete', 'stock', 'descricao_bilhete'],
             self::SCENARIO_UPDATE => ['file', 'preco', 'evento_idevento', 'nome_bilhete', 'stock', 'descricao_bilhete'],
@@ -43,11 +38,11 @@ class Bilhete extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['preco', 'evento_idevento', 'nome_bilhete', 'stock'], 'required'],
             [['evento_idevento', 'estado', 'flag', 'idbilhete','preco','stock'], 'integer'],
+            [['business_percent'], 'decimal'],
             [['nome_bilhete'], 'string', 'max' => 45],
             [['imagem'], 'string', 'max' => 100],
             [['descricao_bilhete'], 'string'],
@@ -59,8 +54,7 @@ class Bilhete extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'idbilhete' => 'Idbilhete',
             'evento_idevento' => 'Evento Idevento',

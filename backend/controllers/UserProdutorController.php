@@ -177,13 +177,6 @@ class UserProdutorController extends Controller {
     }
 
     /**
-     * Deletes an existing UserProdutor model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-
-    /**
      * Finds the UserProdutor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
