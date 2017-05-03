@@ -35,6 +35,7 @@ class DashboardAsset extends AssetBundle {
         'static/js/lodash.js',
         'static/js/highcharts.js',
         'static/js/lodash.js',
+        'static/js/statistics.js',
         'static/plugins/jquery.sparkline.min.js',
         'static/plugins/fastclick.min.js',
         'static/plugins/jquery.slimscroll.min.js',

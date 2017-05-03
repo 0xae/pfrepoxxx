@@ -29,6 +29,46 @@ class ReportsService {
             ]
         ];
     }
+
+    public function eventsPerBusiness($filters) {
+        $data = Reports::model('bilhete_reports')
+            ->fields(['business_name', 'business_id', 'event_count' => 'count(1)'])
+            ->groupBy(['business_id'])
+            ->fetch();
+        return ['data' => $data];
+    }
+
+    public function salesPerBusiness($filters) {
+        $data = Reports::model('bilhete_reports')
+            ->fields(['business_name', 'business_id', 'total_sales' => 'sum(total_venda)'])
+            ->groupBy(['business_id'])
+            ->fetch();
+        return ['data' => $data];
+    }
+
+    public function salesPerProducer($filters) {
+        $data = Reports::model('bilhete_reports')
+            ->fields(['produtor_nome', 'produtor_id', 'total_sales' => 'sum(total_venda)'])
+            ->groupBy(['produtor_id'])
+            ->fetch();
+        return ['data' => $data];
+    }
+
+    public function salesPerEvent($filters) {
+        $data = Reports::model('bilhete_reports')
+            ->fields(['evento_nome', 'evento_id', 'total_sales' => 'sum(total_venda)'])
+            ->groupBy(['evento_id'])
+            ->fetch();
+        return ['data' => $data];
+    }
+
+    public function salesPerBilhete($filters) {
+        $data = Reports::model('bilhete_reports')
+            ->fields(['nome_bilhete', 'idbilhete', 'total_sales' => 'sum(total_venda)'])
+            ->groupBy(['idbilhete'])
+            ->fetch();
+        return ['data' => $data];
+    }
 }
 
 
