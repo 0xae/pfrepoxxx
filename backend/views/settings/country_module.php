@@ -1,5 +1,3 @@
-<?php /*?>TITULO<?php */?>
-
 <div class="container-fluid pagebusiness pageanalitics">
 	<?php /*?>TABELA<?php */?>
 	<div class="col-md-12 contentbox">
@@ -12,10 +10,10 @@
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Permission</span></h4>
+				<h4><div class="borderlefttitlo"></div><span>Country</span></h4>
             <div class="pageventbtngroup">
                 <button type="button" class="criar btn btn-primary" data-toggle="modal" data-target="#modalcriarmarca">
-                    New Permission
+                    New Country
                 </button>
             </div>
 			</div>
@@ -28,16 +26,16 @@
 				<table class="table table-striped">
 					<thead>
 						<tr class="active">
-							<th># Name</th>
-							<th>Description</th>
+							<th># ID</th>
+							<th>Name</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-                        <?php foreach ($permissions as $p): ?>
+                        <?php foreach ($countries as $c): ?>
                             <tr>
-                                <td><?= $p->name ?></td>
-                                <td><?= $p->description ?></td>
+                                <td><?= $c->id ?></td>
+                                <td><?= $c->name ?></td>
                                 <td><i class="fa fa-pencil"></i></td>
                             </tr>
                         <?php endforeach; ?>

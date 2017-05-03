@@ -42,6 +42,7 @@ $this->title = 'Analitics';
 			</div>
 		</div>
 	</div>
+
 	<?php /*?>TITULO, BT<?php */?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
@@ -50,6 +51,7 @@ $this->title = 'Analitics';
 			</div>
 		</div>
 	</div>
+
 	<?php /*?>TABELA<?php */?>
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">

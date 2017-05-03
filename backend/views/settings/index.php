@@ -32,7 +32,7 @@ $this->title = 'Settings';
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="countryTab">
-                <h1>Country module</h1>
+                <?php echo $this->render('country_module', ['countries' => $countries]); ?>
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="businessRule">
