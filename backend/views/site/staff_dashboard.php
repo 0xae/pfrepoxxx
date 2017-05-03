@@ -117,18 +117,6 @@
                 </div>
             </div>
         </div>
-
-        <?php /*?>04<?php */?>
-        <div class="col-md-3">
-            <a href="#">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="col-md-12 imgbussinessbox">
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
 </div>
 
 <?php /*?>body box<?php */?>

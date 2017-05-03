@@ -21,12 +21,6 @@ $this->title = 'Business';
                         <div class="borderlefttitlo"></div><span>New Business</span>
                     <?php endif; ?>
 				</h4>
-
-                <!--
-				<div class="pageventbtngroup">
-					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalcriarmarca">Guardar</a>
-				</div>
-                -->
 			</div>
 		</div>
 	</div>
@@ -69,7 +63,13 @@ $this->title = 'Business';
                                             ?>
 
                                             <?= $form->field($model, 'payment_channel')->textInput(['maxlength' => true]) ?>
-                                            <?= $form->field($model, 'cashout')->textInput(['maxlength' => true]) ?>
+                                            <?= $form->field($model, 'cashout')->dropDownList([
+                                                    'mensal' => 'Mensal',
+                                                    'semestral' => 'Semestral',
+                                                    'trimestral' => 'Trimestral',
+                                                    'anual' => 'Anual'
+                                                ]); ?>
+        
                                             <?= $form->field($model, 'privacy')->textInput(['maxlength' => true]) ?>
                                             <?php /*?><?= $form->field($model, 'Image')->textarea(['maxlength' => true]) ?><?php */?>
                                         </div>
