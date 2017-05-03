@@ -1,7 +1,6 @@
 function renderGraph(id) {
     Highcharts.chart(id, {
         chart: {
-            width: 1100,
             type: 'line'
         },
 
