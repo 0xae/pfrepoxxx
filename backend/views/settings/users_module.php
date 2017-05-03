@@ -43,9 +43,9 @@
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>User</span></h4>
                 <div class="pageventbtngroup">
-                    <button type="button" class="criar btn btn-primary" data-toggle="modal" data-target="#modalcriarmarca">
-                        New User
-                    </button>
+                    <a href="./index.php?r=user/create" class="criar btn btn-primary">
+                        New Country
+                    </a>
                 </div>
 			</div>
 		</div>

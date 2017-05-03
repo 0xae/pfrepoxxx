@@ -12,9 +12,9 @@
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>Country</span></h4>
             <div class="pageventbtngroup">
-                <button type="button" class="criar btn btn-primary" data-toggle="modal" data-target="#modalcriarmarca">
+                <a href="./index.php?r=country/create" class="criar btn btn-primary">
                     New Country
-                </button>
+                </a>
             </div>
 			</div>
 		</div>
@@ -28,6 +28,7 @@
 						<tr class="active">
 							<th># ID</th>
 							<th>Name</th>
+							<th>Code</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -36,8 +37,9 @@
                             <tr>
                                 <td><?= $c->id ?></td>
                                 <td><?= $c->name ?></td>
+                                <td><?= $c->code ?></td>
                                 <td>
-                                    <a href="./index.php?r=user/update&id=<?= $c->id ?>">
+                                    <a href="./index.php?r=country/update&id=<?= $c->id ?>">
                                         <span class="label label-primary">EDIT</span>
                                     </a>
                                 </td>

@@ -1,33 +1,44 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model backend\models\Rule */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="rule-form">
-
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'percentagem_bilhete')->textInput() ?>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'nome_regra')->textInput(['maxlength' => true]) ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'preco_min')->textInput() ?>
+        <div class="row">
+            <div class="col-md-3">
+                <?= $form->field($model, 'preco_min')->textInput() ?>
+            </div>
+            <div class="col-md-3">
+                <?= $form->field($model, 'preco_max')->textInput() ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'preco_max')->textInput() ?>
+        <div class="row">
+            <div class="col-md-3">
+                <?= $form->field($model, 'stockMin')->textInput() ?>
+            </div>
+            <div class="col-md-3">
+                <?= $form->field($model, 'stockMax')->textInput() ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'nome_regra')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'percentagem_bilhete')->textInput() ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'stockMin')->textInput() ?>
-
-    <?= $form->field($model, 'stockMax')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
-
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     <?php ActiveForm::end(); ?>
-
 </div>
+

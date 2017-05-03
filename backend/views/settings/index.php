@@ -36,7 +36,7 @@ $this->title = 'Settings';
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="businessRule">
-                <h1>Business rule module</h1>
+                <?php echo $this->render('bizrule_module', ['rules' => $rules]); ?>
 			</div>
 		</div>
 	</div>
