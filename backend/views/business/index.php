@@ -10,9 +10,15 @@ $this->title = 'Businesses';
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>Business</span></h4>
+                <?php if (Yii::$app->user->can('admin') || Yii::$app->user->can('passafree_staff')): ?>
+                    <div class="pageventbtngroup">
+                        <a class="criar btn btn-primary" href="index.php?r=business/create"> New Business </a>
+                    </div>
+                <?php endif; ?>
 			</div>
 		</div>
 	</div>
+
 	<div class="col-md-12 contentbox">
         <?php foreach ($data as $d): ?>
             <div class="col-md-3 boxconteinerbus">
@@ -32,14 +38,5 @@ $this->title = 'Businesses';
             </div>
         <?php endforeach; ?>
 
-        <?php if (Yii::$app->user->can('admin') || Yii::$app->user->can('passafree_staff')): ?>
-            <div class="col-md-3">
-                <a href="index.php?r=business/create">
-                    <div class="panel panel-default addbusiness">
-                        <div class="panel-body plusicon">+</div>
-                    </div>
-                </a>
-            </div>
-        <?php endif; ?>
 	</div>
 </div>

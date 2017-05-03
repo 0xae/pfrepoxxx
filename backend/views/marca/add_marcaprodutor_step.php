@@ -20,7 +20,7 @@
 
 <?= $form->field($newProdutor, 'telefone')->label('Telefone do responsable'); ?>
 
-<div class="modal-footer">
+<div class="modal-footer" style="padding-bottom:0px; margin-bottom:-30px;">
     <button type="button" data-step="step3" data-toggle="tab" data-target="#step2" class="btn pf-next-step btn-default">Anterior</button>
     <button type="submit" data-step="step3" id="submit_producer" class="criar btn pf-next-step btn-primary btn-next">Finalizar</button>
 </div>

@@ -126,7 +126,7 @@ $this->registerJS($script);
 
             <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
                   <a href="index.php?r=marca">
-                    <span>Produtor</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                    <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
                   </a>
             </li>
 

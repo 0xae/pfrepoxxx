@@ -18,7 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Produtores</span></h4>
+				<h4><div class="borderlefttitlo"></div><span>Producer</span></h4>
+                <div class="pageventbtngroup">
+                    <button type="button" class="criar btn btn-primary" data-toggle="modal" data-target="#modal_criar_marca"> New Producer </button>
+                </div>
 			</div>
 		</div>
 	</div>

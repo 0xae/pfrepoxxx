@@ -20,8 +20,7 @@
     <?= $form->field($newUser, 'password')->passwordInput(['maxlength' => true]) ?>
 </div>
 
-
-<div class="modal-footer">
+<div class="modal-footer" style="padding-bottom:0px; margin-bottom:-30px;">
     <button type="button" data-toggle="tab" data-step="step2"  data-target="#step1" class="btn btn-default pf-next-step">Anterior</button>
     <button type="button" data-toggle="tab" data-step="step2" data-target="#step3" class="criar btn btn-primary pf-next-step">Próximo</button>
 </div>
