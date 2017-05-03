@@ -976,3 +976,12 @@ a.desc:after {
 		background: #009447 url(../img/symbol.png) no-repeat;
 	}
 }
+
+
+.navbar-fixed-top,
+.navbar-fixed-bottom
+{
+    /* ayrton */
+    position: inherit !important;
+}
+
