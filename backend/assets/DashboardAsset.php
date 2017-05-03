@@ -25,6 +25,7 @@ class DashboardAsset extends AssetBundle {
         'static/css/font-awesome.min.css',
         'static/css/ionicons.min.css',
         'static/css/skins/_all-skins.min.css',
+        'static/css/dashboard.css'
     ];
 
     public $js = [
@@ -40,6 +41,8 @@ class DashboardAsset extends AssetBundle {
         'static/js/jquery.steps.min.js',
         'static/js/passafree/app.js',
         'static/js/passafree/analytics.js',
+        'static/js/passafree/service.js',
+        'static/js/passafree/dashboard.js',
         'static/js/passafree/produtor.js'
     ];
 
