@@ -91,7 +91,10 @@ $this->registerJS($script);
             </div>
 			<small>1221 Seguidores</small>
             <a class="btn btn-default edit_acount text-center" href=<?= \yii\helpers\Url::to(['site/update'])?>>
-            	<span>Editar Conta</span><i class="glyphicon glyphicon-pencil"></i>
+                <span>Editar Conta</span>
+                    <!--
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    -->
             </a>
         </li>
         </li>
@@ -104,7 +107,6 @@ $this->registerJS($script);
             </a>
             <ul class="dropdown-menu" aria-labelledby="dLabel">
               <form action=<?= \yii\helpers\Url::to(['site/logout'])?> method="post">
-              	<input name="_csrf" value="OE9BLWtBeGdVOSp/DBsBEgslL0YAcAleaBwtYT4ZNh1bAxFeL3MiBA==" type="hidden">
               	<button type="submit" class="btn btn-primary">Sair</button>
               </form>
             </ul>
@@ -144,7 +146,7 @@ $this->registerJS($script);
 
             <?php if (Yii::$app->user->can('admin')): ?>
                     <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
-                      <a href="index.php?r=user">
+                      <a href="index.php?r=settings/index">
                         <span>Settings</span> <!--i class="fa fa-angle-left pull-right"></i-->
                       </a>
                     </li>

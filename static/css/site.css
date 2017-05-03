@@ -985,3 +985,7 @@ a.desc:after {
     position: inherit !important;
 }
 
+
+.content {
+    padding: 0px;
+}
