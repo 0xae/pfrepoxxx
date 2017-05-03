@@ -1,0 +1,26 @@
+.box_icon .overview_icons {
+    width: 42px;
+    height: 42px;
+    text-indent: -99999px;
+    display: inline-block;
+    margin-top: 20px;
+    line-height: 80px;
+    background: url(../img/counters.svg) no-repeat;
+}
+
+.box_icon .overall_users {
+    background-position: left top !important;
+}
+
+.white_box_inner {
+    padding: 0px 20px;
+}
+
+.white_box {
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 5px;
+    border-radius: 5px;
+    padding: 20px;
+    background: rgb(255, 255, 255) !important;
+}
+
