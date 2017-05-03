@@ -38,7 +38,7 @@
                             <tr>
                                 <td><?= $p->name ?></td>
                                 <td><?= $p->description ?></td>
-                                <td><i class="fa fa-pencil"></i></td>
+                                <td></td>
                             </tr>
                         <?php endforeach; ?>
 					</tbody>

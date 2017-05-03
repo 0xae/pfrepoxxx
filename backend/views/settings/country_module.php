@@ -36,7 +36,11 @@
                             <tr>
                                 <td><?= $c->id ?></td>
                                 <td><?= $c->name ?></td>
-                                <td><i class="fa fa-pencil"></i></td>
+                                <td>
+                                    <a href="./index.php?r=user/update&id=<?= $c->id ?>">
+                                        <span class="label label-primary">EDIT</span>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
 					</tbody>
