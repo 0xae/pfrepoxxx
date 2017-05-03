@@ -42,6 +42,12 @@ class SettingsController extends Controller {
         $permissions = Role::find()->all();
         $country = Country::find()->all();
         $rules = Rule::find()->all();
-        return $this->render('index');
+
+        return $this->render('index', [
+            'users' => $users,
+            'permissions' => $permissions,
+            'countries' => $country,
+            'rules' => $rules
+        ]);
     }
 }
