@@ -18,11 +18,11 @@ SELECT
     count(1) as total_comprado,
     sum(B.preco) as total_venda
 
-FROM passafree_ultimate.bilhete B
-JOIN passafree_ultimate.evento E ON E.idevento = B.evento_idevento
-JOIN passafree_ultimate.produtor P ON P.idprodutor = E.produtor_idprodutor
-JOIN passafree_ultimate.compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
-JOIN passafree_ultimate.business BZ on BZ.id = BP.business_id
+FROM bilhete B
+JOIN evento E ON E.idevento = B.evento_idevento
+JOIN produtor P ON P.idprodutor = E.produtor_idprodutor
+JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
+JOIN business BZ on BZ.id = BP.business_id
 
 GROUP BY E.idevento
 ORDER BY CB.dataCompra,18 DESC
