@@ -184,7 +184,7 @@ class BusinessController extends Controller {
         if (!$auth->checkAccess($id, 'business')) {
             $user = User::findModel($id);
             $user->addPermission('business');
-            $user->tipo_user = 10;
+            # $user->tipo_user = 10;
             $user->save();
         }
     }
