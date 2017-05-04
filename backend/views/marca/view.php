@@ -14,17 +14,6 @@ $this->title = $model->nome;
 ?>
 <div class="container-fluid pagebusiness pageusers">
 	<div role="tabpanel" style="padding:0; display: table;margin-top: 5px; width: 100%">
-        <!--
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#eventotab" aria-controls="home" role="tab" data-toggle="tab">Eventos</a>
-                </li>
-                <li role="presentation">
-                    <a href="#informacaotab" aria-controls="profile" role="tab" data-toggle="tab">Informação</a>
-                </li>
-            </ul>
-        -->
-
 		<div class="tab-content" style="padding: 0">
 			<div role="tabpanel" class="tab-pane active" id="eventotab">
                 <?php echo $this->render('evento/evento_destaque', ['destaque' => $destaque]); ?>
@@ -34,7 +23,7 @@ $this->title = $model->nome;
                             <h4>
                                 <div class="borderlefttitlo"></div>
                                 <?php if (empty($nextEvents)): ?>
-                                    <span>Sem eventos.</span>
+                                    <span>Nothing to see here.</span>
                                 <?php else: ?>
                                     <span>Pr&oacute;ximos Eventos</span>
                                 <?php endif; ?>

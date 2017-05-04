@@ -20,11 +20,11 @@
                 </div>
                 <?php if (\Yii::$app->user->can('passafree_staff') || \Yii::$app->user->can('admin')): ?>
                     <a href="javascript:void(0)" style="color:#000;" data-toggle="modal" data-target="#choose_biz">
-                        <div class="labeltipobilhete">Alterar</div>
+                        <div class="labeltipobilhete">CHANGE</div>
                     </a>
                 <?php elseif ($bizId > 0): ?>
                     <a href="index.php?r=business/update&id=<?= $session->get('business'); ?>" style="color:#000;">
-                        <div class="labeltipobilhete">Editar</div>
+                        <div class="labeltipobilhete">EDIT</div>
                     </a>
                 <?php endif; ?>
             </div>
@@ -36,7 +36,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">select business</h4>
+                    <h4 class="modal-title">select a business</h4>
                 </div>
                 <!-- .modal-header -->
 

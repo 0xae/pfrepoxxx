@@ -15,6 +15,7 @@ SELECT
 	CB.dataCompra AS data_compra,
 	CB.business_percent as compra_business_percent,
 	B.business_percent as bilhete_business_percent,
+
 	(B.stock-count(1)) AS restante,
 	count(1) AS total_comprado,
 	sum(B.preco) AS total_venda,

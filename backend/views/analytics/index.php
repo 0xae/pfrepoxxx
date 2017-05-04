@@ -1,9 +1,12 @@
 <?php
 /* @var $this yii\web\View */
 $this->title = 'Analitics';
+$user = Yii::$app->user;
 ?>
 <div class="container-fluid pagebusiness  pageanalitics">
-    <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
+    <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
+        <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
+    <?php endif; ?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">

@@ -12,21 +12,18 @@ use Yii;
  * @property string $idcompra_bilhete
  * @property string $hora
  */
-class UserHasBilhete extends \yii\db\ActiveRecord
-{
+class UserHasBilhete extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'user_has_bilhete';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['evento_idevento', 'idcompra_bilhete', 'hora'], 'required'],
             [['evento_idevento', 'idcompra_bilhete'], 'integer'],
@@ -37,8 +34,7 @@ class UserHasBilhete extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'evento_idevento' => 'Evento Idevento',
@@ -47,3 +43,4 @@ class UserHasBilhete extends \yii\db\ActiveRecord
         ];
     }
 }
+

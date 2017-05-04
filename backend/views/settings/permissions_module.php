@@ -38,7 +38,11 @@
                             <tr>
                                 <td><?= $p->name ?></td>
                                 <td><?= $p->description ?></td>
-                                <td></td>
+                                <td>
+                                    <a href="./index.php?r=role/update&id=<?= $p->name ?>">
+                                        <span class="label label-primary">EDIT</span>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
 					</tbody>

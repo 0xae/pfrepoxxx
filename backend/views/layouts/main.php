@@ -13,6 +13,8 @@ use common\widgets\Alert;
 use kartik\sidenav\SideNav;
 
 DashboardAsset::register($this);
+$user = Yii::$app->user;
+$userProfile = $user->identity;
 ?>
 
 <?php $this->beginPage() ?>
@@ -127,9 +129,15 @@ $this->registerJS($script);
             <?php endif; ?>
 
             <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
-                  <a href="index.php?r=marca">
-                    <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                  </a>
+                  <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
+                      <a href="index.php?r=marca">
+                        <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                      </a>
+                  <?php elseif ($user->can('producer')): ?>
+                      <a href="index.php?r=marca">
+                        <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                      </a>
+                  <?php endif; ?>
             </li>
 
             <li class="<?php if (Yii::$app->controller->id == 'accounting'){ echo 'active'; } ?> treeview">
