@@ -44,7 +44,7 @@
 				<h4><div class="borderlefttitlo"></div><span>User</span></h4>
                 <div class="pageventbtngroup">
                     <a href="./index.php?r=user/create" class="criar btn btn-primary">
-                        New Country
+                        New User
                     </a>
                 </div>
 			</div>
