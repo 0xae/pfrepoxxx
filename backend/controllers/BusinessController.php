@@ -34,7 +34,7 @@ class BusinessController extends Controller {
                     [
                         'allow' => true,
                         'actions' => ['index', 'create', 'select'],
-                        'roles' => ['passafree_staff', 'admin']
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                     [
                         'allow' => true,
