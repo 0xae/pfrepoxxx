@@ -13,24 +13,21 @@ use Yii;
  * @property string $descricao
  * @property integer $estado
  */
-class Tipoevento extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'tipoevento';
-    }
-
+class Tipoevento extends \yii\db\ActiveRecord {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public static function tableName() {
+        return 'tipoevento';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules() {
         return [
             [['nome'], 'required'],
             [['descricao'], 'string'],
@@ -42,8 +39,7 @@ class Tipoevento extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'idtipoevento' => 'Idtipoevento',
             'nome' => 'Nome',
@@ -53,7 +49,6 @@ class Tipoevento extends \yii\db\ActiveRecord
     }
 
     public function getTipoeventos(){
-
         $models = ArrayHelper::map(Tipoevento::find()->where(['estado' => 1])->all(),'idtipoevento','nome');
         return $models;
     }

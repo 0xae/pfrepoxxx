@@ -18,10 +18,10 @@ HighchartsAsset::register($this)
                     </a>
               </div>
               <div class="media-body">
-              <h4 style="     margin-top: 5px; margin-bottom: -2px;" class="media-heading"><?= $model->name ?></h4>
-              <h3 style="display: inline"><small><?= $model->support_email; ?></small></h3><br/>
-              <span style="margin-top:4px" class="label label-primary">More options <span class="caret"></span> </span>
-              <span id="business_id" data-value="<?= $model->id; ?>"></span>
+                  <h4 style="margin-top: 5px; margin-bottom: -2px;" class="media-heading"><?= $model->name ?></h4>
+                  <h3 style="display: inline"><small><?= $model->support_email; ?></small></h3><br/>
+                  <span style="margin-top:4px" class="label label-primary">More options <span class="caret"></span> </span>
+                  <span id="business_id" data-value="<?= $model->id; ?>"></span>
               </div>
         </div>
     </div>
