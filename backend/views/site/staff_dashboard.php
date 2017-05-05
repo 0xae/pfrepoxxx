@@ -1,3 +1,7 @@
+<?php
+$user = \Yii::$app->user;
+?>
+
 <div class="row">
     <div class="col-md-12 titulosection">
         <div class="proximo_evento">
@@ -8,44 +12,46 @@
 
 <?php /*?>BOX TOP<?php */?>
 <div class="col-md-12 contentbox">
-        <?php /*?>01<?php */?>
-        <div class="col-md-3">
-            <div class="white_box">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="white_box_inner">
-                            <h3 id="biz_counter" style="font-weight: 700;">0</h3>
-                            <small>Business</small>
+    <?php if ($user->can('admin') || $user->can('passafree_staff')) :?>
+            <div class="col-md-3">
+                <div class="white_box">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="white_box_inner">
+                                <h3 id="biz_counter" style="font-weight: 700;">0</h3>
+                                <small>Business</small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="text-center box_icon">
-                            <i class="overview_icons overall_users">business</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <?php /*?>02<?php */?>
-        <div class="col-md-3">
-            <div class="white_box">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="white_box_inner">
-                            <h3 id="user_counter" style="font-weight: 700;">0</h3>
-                            <small>Users</small>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="text-center box_icon">
-                            <i class="overview_icons overall_users">users</i>
+                        <div class="col-md-5">
+                            <div class="text-center box_icon">
+                                <i class="overview_icons overall_users">business</i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <?php /*?>02<?php */?>
+            <div class="col-md-3">
+                <div class="white_box">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="white_box_inner">
+                                <h3 id="user_counter" style="font-weight: 700;">0</h3>
+                                <small>Users</small>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="text-center box_icon">
+                                <i class="overview_icons overall_users">users</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <?php endif; ?>
+
+    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business')) :?>
         <div class="col-md-3">
             <div class="white_box">
                 <div class="row">
@@ -63,6 +69,7 @@
                 </div>
             </div>
         </div>
+    <?php endif; ?>
 
         <div class="col-md-3">
             <div class="white_box">
@@ -82,7 +89,7 @@
             </div>
         </div>
 
-        <div class="col-md-3" style="margin-top: 10px">
+        <div class="col-md-3">
             <div class="white_box">
                 <div class="row">
                     <div class="col-md-7">
@@ -100,7 +107,7 @@
             </div>
         </div>
 
-        <div class="col-md-3" style="margin-top: 10px">
+        <div class="col-md-3" >
             <div class="white_box">
                 <div class="row">
                     <div class="col-md-7">
@@ -121,7 +128,8 @@
 
 <?php /*?>body box<?php */?>
 <div class="row">
-        <?php /*?>//<?php */?>
+
+    <?php if ($user->can('admin') || $user->can('passafree_staff')) :?>
         <div class="col-md-6">
             <div class=" titulosection">
                 <div class="proximo_evento">
@@ -130,8 +138,13 @@
                 </div>
             </div>
         </div>
+    <?php endif; ?>
 
+    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business')) :?>
         <div class="col-md-6 ">
+    <?php else: ?>
+        <div class="col-md-12 ">
+    <?php endif; ?>
             <div class="titulosection">
                 <div class="proximo_evento">
                     <h4><div class="borderlefttitlo"></div><span>Revenue per event</span></h4>
@@ -140,6 +153,7 @@
             </div>
         </div>
 
+    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business')) :?>
         <div class="col-md-6 ">
             <div class="titulosection">
                 <div class="proximo_evento">
@@ -148,15 +162,6 @@
                 </div>
             </div>
         </div>
-
-        <!--
-        <div class="col-md-6 ">
-            <div class="titulosection">
-                <div class="proximo_evento">
-                    <h4><div class="borderlefttitlo"></div><span>Sales per business</span></h4>
-                    <div id="sales_per_business"></div>
-                </div>
-            </div>
-        </div>
-        -->
+    <?php endif; ?>
 </div>
+

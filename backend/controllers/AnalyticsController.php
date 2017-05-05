@@ -11,7 +11,17 @@ class AnalyticsController extends \yii\web\Controller {
     }
 
     public function actionApi() {
+        $user = \Yii::$app->user;
+        $session = \Yii::$app->session;
         $filters = RestApp::parseQueryFilters($_GET);
+
+        if ($user->can('business')) {
+            $filters['business_id'] = $session->get('business');
+        } else if ($user->can('producer')) {
+            $filters['producer_id'] = Produtor::find()->where(['idprodutor'=>$user->id])->one()->marca_idmarca;
+        }
+
+
         $service = new AnalyticsService();
 
         $data = $service->getGlobalReport($filters);

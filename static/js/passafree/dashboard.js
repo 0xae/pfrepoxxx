@@ -36,7 +36,6 @@ function reloadDashboard() {
 
     $service.getReports($config)
     .then(function (data) {
-        console.info(data);
         updateDashboardCounters(data);
         updateDashboardGraphs(data);
     });
