@@ -76,6 +76,7 @@ $this->registerJS($script);
                     <ul class="list-unstyled">
                     </ul>
               </div>
+              <button type="button" class="criar btn btn-primary" data-toggle="modal" data-target="#modal_criar_marca"> New Producer </button>
         </nav>
     </header>
 
