@@ -113,7 +113,7 @@ if ($user->can('admin')) {
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3" style="margin-top:10px">
             <div class="white_box">
                 <div class="row">
                     <div class="col-md-7">
@@ -131,7 +131,7 @@ if ($user->can('admin')) {
             </div>
         </div>
 
-        <div class="col-md-3" >
+        <div class="col-md-3" style="margin-top:10px">
             <div class="white_box">
                 <div class="row">
                     <div class="col-md-7">
