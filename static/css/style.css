@@ -335,8 +335,9 @@
 }
 .business-create .nav-tabs > li > a:hover, .business-create .nav-tabs > li:active > a:hover,.business-create .nav-tabs > li > a:focus,.nav > li > a:active
 {
-	background-color: #f7f7f7;
+	background-color: #009447;
 	cursor: pointer;
+	color: #f8f8f8;
 }
 .business-create .nav-tabs > li > a:hover, .business-create .nav-tabs, .business-create .nav-tabs > li a, .nav > li > a:active,.business-create .nav-tabs > li > a:focus, .pageanalitics .accountingbox .nav-tabs
 {
@@ -531,6 +532,7 @@
 	border-radius: 4px;
 	font-size: 14px;
 	text-transform: uppercase;
+	float: right;
 }
 .edit{
 	background: #009447!important;
@@ -576,12 +578,13 @@
 }
 .labeltipobilhete
 {
-	border: 1px solid #009447 !important;
+	border: 2px solid #009447 !important;
 	border-radius: 5px;
 	padding: 8px; 
 	color: #009447; 
-	float: right;
+	float: left;
 	line-height: 0;
+	margin-left: 10px;
 }
 .rodape .btn
 {
@@ -697,12 +700,15 @@
 .skin-blue .main-header .logo{
 	background: #068141 !important;
 	color: #fff!important;
+	height: 65px;
 }
 .skin-blue .main-header .navbar
 {
 	padding:16px 4.6% 15px 3.7%;
     background-color: #fff!important;
     box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
+    position: fixed !important;
+    height: 65px !important;
 }
 .skin-blue .main-header form
 {
@@ -748,10 +754,11 @@
 
 .sidebar-menu.text-center
 {
-    letter-spacing: 1px;
-	text-align: left;
+	letter-spacing: 1px;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 600;
 }
-
 .summary{
 	display: none;
 }
@@ -954,7 +961,7 @@
 {
 	padding: 0;
     /*margin-top: 9px;*/
-	background-color: #e0e0e0;
+	/*background-color: #e0e0e0;*/
 }
 .accountngpage .panel .filtropanel, .table > thead > tr.active > th, .pageanalitics .accountingbox .nav-tabs
 {
@@ -985,13 +992,13 @@
 }
 .pagemarcas .contentbox .panel
 {
-	height: 250px;
+	height: auto;
 	overflow: hidden;
 }
 .pagemarcas .contentbox .panel .descbussinessbox
 {
 	position: absolute;
-	bottom: 73px;
+	top: 100px;
 	color: #fff;
 	width: 100%;
 	text-transform: capitalize;
@@ -1191,4 +1198,29 @@
 .modal-header
 {
     margin-bottom: 20px;
+    border-radius: 5px;
 }
+.modal-content {
+	border-radius: 5px;
+}
+.modal-content .btn-default {
+    color: #009447;
+    border: 1px solid #009447;
+}
+
+
+/*---Scroll---*/
+::-webkit-scrollbar {
+    width: 12px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #009447; 
