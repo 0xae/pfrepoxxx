@@ -52,18 +52,23 @@ function getConfig() {
     return d;
 }
 
+var _hash=false;
 function reloadDashboard() {
     var $service = AnalyticsService();
     var config = getConfig();
 
     $service.getReports(config.filters)
     .then(function (data) {
-        updateDashboardCounters(config, data);
-        updateDashboardGraphs(config, data);
+        if (!_hash || JSON.stringify(data) != _hash) {
+            _hash = JSON.stringify(data);
+            updateDashboardCounters(config, data);
+            updateDashboardGraphs(config, data);
+        }
     });
 }
 
 $(document).ready(function () {
     reloadDashboard();
+    setInterval(reloadDashboard, 3000);
 });
 
