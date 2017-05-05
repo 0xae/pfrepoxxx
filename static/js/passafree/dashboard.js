@@ -25,23 +25,31 @@ function updateDashboardCounters(config, data) {
 
 function updateDashboardGraphs(config, data) {
     var keys = data.business_data.map(function (d) { return d.business_name; });
-    var values = data.business_data.map(function (d) { return parseInt(d.passafree_revenue); });
+    var values = data.business_data.map(function (d) { 
+        return parseInt(d[config.context_graph_col]);
+    });
     LoadBarchart('#revenue_per_business', '', keys, values);
 
     var keys = data.event_data.map(function (d) { return d.event_name; });
-    var values = data.event_data.map(function (d) { return parseInt(d.passafree_revenue); });
+    var values = data.event_data.map(function (d) {
+        return parseInt(d.liquid_revenue);
+    });
     LoadBarchart('#revenue_per_event', '', keys, values);
 
     var keys = data.producer_data.map(function (d) { return d.producer_name; });
-    var values = data.producer_data.map(function (d) { return parseInt(d.passafree_revenue); });
+    var values = data.producer_data.map(function (d) {
+        return parseInt(d[config.context_graph_col]);
+    });
     LoadBarchart('#revenue_per_producer', '', keys, values);
 }
 
 function getConfig() {
-    return {
+    var d = {
         context: $("#dashboard_context").attr('data-value'),
         filters: {}
     };
+    d.context_graph_col = d.context+'_revenue';
+    return d;
 }
 
 function reloadDashboard() {
