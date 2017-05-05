@@ -3,21 +3,29 @@ function updateCounter(counterId, value) {
 }
 
 function reloadDashboard() {
-    var service = AnalyticsService();
+    var $service = AnalyticsService();
+    var $config = {};
     console.info('updating dashboard...');
+
+    $service.getReports($config)
+    .then(function (data) {
+        /*
+            var reactions = parseInt(data.reactions.comments) +
+                            parseInt(data.reactions.likes);
+            updateCounter('reactions_counter', reactions);
+        */
+        console.info(data);
+        updateCounter('user_counter', data.user_count);
+        updateCounter('biz_counter', data.business_count);
+        updateCounter('producer_counter', data.producer_count);
+        updateCounter('events_counter', data.event_count);
+        updateCounter('sales_counter', data.passafree_global_revenue+'$00');
+    });
 
     /*
     service.getDashboard()
     .then(function (resp) {
         var data = resp.data;
-        var reactions = parseInt(data.reactions.comments) +
-                        parseInt(data.reactions.likes);
-        updateCounter('user_counter', data.user_count);
-        updateCounter('biz_counter', data.business_count);
-        updateCounter('producer_counter', data.producer_count);
-        updateCounter('events_counter', data.events_count);
-        updateCounter('sales_counter', data.sales+'$00');
-        updateCounter('reactions_counter', reactions);
     });
 
     service.getEventsPerBusiness()

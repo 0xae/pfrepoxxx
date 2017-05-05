@@ -26,7 +26,7 @@ function AnalyticsService() {
     return {
         getReports : function (filters) {
             var filtersf = process(filters);
-            return _parse($.get(API + filtersf));
+            return _parse($.get(API+filtersf));
         }
     };
 }
