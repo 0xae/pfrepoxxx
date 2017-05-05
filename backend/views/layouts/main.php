@@ -76,6 +76,7 @@ $this->registerJS($script);
                     <ul class="list-unstyled">
                     </ul>
               </div>
+              <button type="button" class="criar btn btn-primary" data-toggle="modal" data-target="#modal_criar_marca"> New Producer </button>
         </nav>
     </header>
 
@@ -129,11 +130,7 @@ $this->registerJS($script);
             <?php endif; ?>
 
             <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
-                  <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
-                      <a href="index.php?r=marca">
-                        <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                      </a>
-                  <?php elseif ($user->can('producer')): ?>
+                  <?php if ($user->can('admin') || $user->can('business')): ?>
                       <a href="index.php?r=marca">
                         <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
                       </a>

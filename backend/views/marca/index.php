@@ -27,13 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 	<div class="col-md-12 contentbox">
         <?php foreach($models as $m): ?>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="index.php?r=marca/view&id=<?= $m->idmarca ?>">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-12 imgbussinessbox">
                                 <div class="filtro_eventos">
-                                	<div class="userciculo"></div>
                                 	<div class="col-md-12 descbussinessbox">
 										<div class="linetopbox"></div>
 										<div><?= $m->nome ?></div>
