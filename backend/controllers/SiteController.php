@@ -97,7 +97,7 @@ class SiteController extends Controller {
                 }
             }
 
-            return $this->goBack();
+            return $this->goHome();
         } else {
             return $this->render('login', [
                 'model' => $model,

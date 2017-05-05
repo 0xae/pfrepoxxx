@@ -2,7 +2,7 @@ function updateCounter(counterId, value) {
     $('#'+counterId).text(value);
 }
 
-function updateDashboardCounters(data) {
+function updateDashboardCounters(config, data) {
     /*
        var reactions = parseInt(data.reactions.comments) +
        parseInt(data.reactions.likes);
@@ -13,10 +13,17 @@ function updateDashboardCounters(data) {
     updateCounter('biz_counter', data.business_count);
     updateCounter('producer_counter', data.producer_count);
     updateCounter('events_counter', data.event_count);
-    updateCounter('sales_counter', data.passafree_global_revenue+'$00');
+
+    if (config.context == 'business') {
+        updateCounter('sales_counter', data.business_data[0].liquid_revenue+'$00');
+    } else if (config.context == 'producer') {
+        updateCounter('sales_counter', data.producer_data[0].liquid_revenue+'$00');
+    } else if (config.context == 'passafree') {
+        updateCounter('sales_counter', data.passafree_global_revenue+'$00');
+    }
 }
 
-function updateDashboardGraphs(data) {
+function updateDashboardGraphs(config, data) {
     var keys = data.business_data.map(function (d) { return d.business_name; });
     var values = data.business_data.map(function (d) { return parseInt(d.passafree_revenue); });
     LoadBarchart('#revenue_per_business', '', keys, values);
@@ -30,14 +37,21 @@ function updateDashboardGraphs(data) {
     LoadBarchart('#revenue_per_producer', '', keys, values);
 }
 
+function getConfig() {
+    return {
+        context: $("#dashboard_context").attr('data-value'),
+        filters: {}
+    };
+}
+
 function reloadDashboard() {
     var $service = AnalyticsService();
-    var $config = {};
+    var config = getConfig();
 
-    $service.getReports($config)
+    $service.getReports(config.filters)
     .then(function (data) {
-        updateDashboardCounters(data);
-        updateDashboardGraphs(data);
+        updateDashboardCounters(config, data);
+        updateDashboardGraphs(config, data);
     });
 }
 

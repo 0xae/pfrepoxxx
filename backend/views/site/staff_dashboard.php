@@ -1,11 +1,35 @@
 <?php
 $user = \Yii::$app->user;
+$context = '';
+if ($user->can('admin')) {
+    $context = 'passafree';
+} else if ($user->can('producer')) {
+    $context = 'producer';
+} else if ($user->can('business')) {
+    $context = 'business';
+}
 ?>
+
+<span id="dashboard_context" data-value="<?php echo $context; ?>"></span>
 
 <div class="row">
     <div class="col-md-12 titulosection">
         <div class="proximo_evento">
             <h4><div class="borderlefttitlo"></div><span>Overview</span></h4>
+            <div class="pageventbtngroup">
+                <a id="iiidLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h4>
+                    <div class=""></div>
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                </h4>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                  <form action=<?= \yii\helpers\Url::to(['site/logout'])?> method="post">
+                    <button type="submit" class="btn btn-primary">Sair</button>
+                  </form>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -112,7 +136,7 @@ $user = \Yii::$app->user;
                 <div class="row">
                     <div class="col-md-7">
                         <div class="white_box_inner">
-                            <h3 id="sales_counter" style="font-weight: 700;">0ECV</h3>
+                            <h3 id="sales_counter" style="font-weight: 700;">0.00$00</h3>
                             <small>Sales</small>
                         </div>
                     </div>
