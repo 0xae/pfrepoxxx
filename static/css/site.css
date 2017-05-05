@@ -103,6 +103,7 @@ a.edit_acount{
 	display: inline;
 	float: left;
 	margin-right: 27px;
+    cursor: pointer;
 }
 .notification li:last-child
 {
@@ -375,10 +376,11 @@ a.edit_acount{
 	display:table;
 	font: 20px "DINBold", Helvetica, Arial, sans-serif !important;
 	line-height: 36px !important;
+    font-weight: 600 !important;
 }
 .pagebusiness .proximo_evento .labeltipobilhete, #modalcriarmarca .labeltipobilhete
 {
-	padding:17px 15px;
+	padding: 12px 15px;
 }
 .pagebusiness .proximo_evento .labeltipobilhete:hover, .pagebusiness .proximo_evento .labeltipobilhete:focus, #modalcriarmarca .labeltipobilhete:hover
 {
