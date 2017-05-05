@@ -42,13 +42,6 @@ $this->title = 'Business';
                                     <?php $form = ActiveForm::begin(['id' => 'business_form', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <?php 
-                                                echo $form->field($model, 'file')
-                                                          ->widget(
-                                                                    FileInput::classname(), 
-                                                                    ['options' => ['accept'=>'image/*']]
-                                                                );  
-                                            ?>
                                             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                                             <?php
                                                 echo '<label class="control-label">Pa&iacute;s</label>';
@@ -72,6 +65,17 @@ $this->title = 'Business';
         
                                             <?= $form->field($model, 'privacy')->textInput(['maxlength' => true]) ?>
                                             <?php /*?><?= $form->field($model, 'Image')->textarea(['maxlength' => true]) ?><?php */?>
+
+
+                                            <?php 
+                                                echo $form->field($model, 'file')
+                                                          ->widget(
+                                                                    FileInput::classname(), 
+                                                                    ['options' => ['accept'=>'image/*']]
+                                                                );  
+                                            ?>
+
+
                                         </div>
 
                                         <div class="col-md-6">

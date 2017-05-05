@@ -72,6 +72,9 @@ $this->registerJS($script);
                         <input type="text" class="form-control" placeholder="pesquisar marcas, eventos em Cabo Verde">
                     </div>
                </form>
+               <div class="pageventbtngroup">
+                        <a class="criar btn btn-primary" href="index.php?r=business/create"> New Business </a>
+                    </div>
               <div class="navbar-custom-menu">
                     <ul class="list-unstyled">
                     </ul>
@@ -93,10 +96,7 @@ $this->registerJS($script);
             </div>
 			<small>1221 Seguidores</small>
             <a class="btn btn-default edit_acount text-center" href=<?= \yii\helpers\Url::to(['site/update'])?>>
-                <span>Editar Conta</span>
-                    <!--
-                    <i class="glyphicon glyphicon-pencil"></i>
-                    -->
+                <span>Editar Conta <i class="glyphicon glyphicon-pencil"></i></span>
             </a>
         </li>
         </li>
