@@ -707,7 +707,7 @@
 	padding:16px 4.6% 15px 3.7%;
     background-color: #fff!important;
     box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
-    position: fixed !important;
+    /* position: fixed !important; */
     height: 65px !important;
 }
 .skin-blue .main-header form

@@ -125,8 +125,8 @@
         <div class="col-md-6">
             <div class=" titulosection">
                 <div class="proximo_evento">
-                    <h4><div class="borderlefttitlo"></div><span>Events per business</span></h4>
-                    <div id="events_per_business"></div>
+                    <h4><div class="borderlefttitlo"></div><span>Revenue per Business</span></h4>
+                    <div id="revenue_per_business"></div>
                 </div>
             </div>
         </div>
@@ -134,8 +134,8 @@
         <div class="col-md-6 ">
             <div class="titulosection">
                 <div class="proximo_evento">
-                    <h4><div class="borderlefttitlo"></div><span>Sales per event</span></h4>
-                    <div id="sales_per_event"></div>
+                    <h4><div class="borderlefttitlo"></div><span>Revenue per event</span></h4>
+                    <div id="revenue_per_event"></div>
                 </div>
             </div>
         </div>
@@ -143,12 +143,13 @@
         <div class="col-md-6 ">
             <div class="titulosection">
                 <div class="proximo_evento">
-                    <h4><div class="borderlefttitlo"></div><span>Sales per producer</span></h4>
-                    <div id="sales_per_producer"></div>
+                    <h4><div class="borderlefttitlo"></div><span>Revenue per producer</span></h4>
+                    <div id="revenue_per_producer"></div>
                 </div>
             </div>
         </div>
 
+        <!--
         <div class="col-md-6 ">
             <div class="titulosection">
                 <div class="proximo_evento">
@@ -157,4 +158,5 @@
                 </div>
             </div>
         </div>
+        -->
 </div>
