@@ -31,3 +31,4 @@ JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
 
 GROUP BY E.idevento, B.idbilhete, CB.dataCompra
 ORDER BY E.idevento ASC
+

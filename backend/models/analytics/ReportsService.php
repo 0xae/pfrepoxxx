@@ -10,7 +10,7 @@ class ReportsService {
         $users = Reports::sql("user")->count()->fetch();
         $sales = Reports::model('bilhete_reports')
                  ->fields(['total_sales' => 'coalesce(sum(total_venda), 0)'])
-                 ->filter('data_compra', '=', 'current_date()')
+                 // ->filter('data_compra', '=', 'current_date()')
                  ->fetch();
 
         $reactions = [
@@ -31,7 +31,7 @@ class ReportsService {
     }
 
     public function eventsPerBusiness($filters) {
-        $data = Reports::model('bilhete_reports')
+        $data = Reports::model('evento_report')
             ->fields(['business_name', 'business_id', 'event_count' => 'count(1)'])
             ->groupBy(['business_id'])
             ->fetch();
@@ -48,8 +48,8 @@ class ReportsService {
 
     public function salesPerProducer($filters) {
         $data = Reports::model('bilhete_reports')
-            ->fields(['produtor_nome', 'produtor_id', 'total_sales' => 'sum(total_venda_produtor)'])
-            ->groupBy(['produtor_id'])
+            ->fields(['produtor_nome' => 'marca_nome', 'marca_id', 'total_sales' => 'sum(total_venda_produtor)'])
+            ->groupBy(['marca_id'])
             ->fetch();
         return ['data' => $data];
     }
