@@ -37,7 +37,7 @@ class Reports {
     }
 
     public function count() {
-        $this->query->select(['total_count' => 'count(1)']);
+        $this->query->select(['total_count' => 'sum(1)']);
         return $this;
     }
 
@@ -51,6 +51,13 @@ class Reports {
         return $this;
     }
 
+    public function withFilters($filters) {
+        foreach ($filters as $f) {
+            $this->query->andFilterWhere([$f['op'], $f['field'], $f['val']]);
+        }
+        return $this;
+    }
+
     public function groupBy($f) {
         $this->query->groupBy($f);
         return $this;
@@ -58,6 +65,19 @@ class Reports {
 
     public function fetch() {
         return $this->query->all();
+    }
+
+    /**
+     * because i am nice and cool
+     * but i assume you're not
+     * ;)
+    */
+    public function fetchIt($cool=false) {
+        $nice = $this->query->one();
+        if ($nice && $cool) {
+            return $nice[$cool];
+        }
+        return $nice;
     }
 
     /**

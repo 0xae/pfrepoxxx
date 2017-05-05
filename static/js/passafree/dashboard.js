@@ -6,6 +6,7 @@ function reloadDashboard() {
     var service = AnalyticsService();
     console.info('updating dashboard...');
 
+    /*
     service.getDashboard()
     .then(function (resp) {
         var data = resp.data;
@@ -55,6 +56,8 @@ function reloadDashboard() {
 
         LoadBarchart('#sales_per_business', '', keys, values);
     });
+
+    */
 }
 
 $(document).ready(function () {

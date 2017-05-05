@@ -1,29 +1,32 @@
 function AnalyticsService() {
+    var API = './index.php?r=analytics/api';
+
     function _parse(pr) {
         return pr.then(function (d) {
             return JSON.parse(d);
         }); 
     }
 
+    function process(filters) {
+        var fkeys = Object.keys(filters);
+        var buf = [];
+        fkeys.forEach(function (f) { 
+            var fval = filters[f];          
+            if ($.isPlainObject(fval)) {
+                var k=Object.keys(fval)[0];
+                var ffval = fval[k]; 
+                buf.push(f+'='+k+':'+ffval);
+            } else {
+                buf.push(f+'='+fval);
+            }
+        });
+        return buf.join('&');
+    }
+
     return {
-        getDashboard: function () {
-            return _parse($.get('./index.php?r=analytics/dashboard-business'));
-        },
-
-        getEventsPerBusiness: function () {
-            return _parse($.get('./index.php?r=analytics/events-per-business'));
-        },
-
-        getSalesPerEvent: function () {
-            return _parse($.get('./index.php?r=analytics/sales-per-event'));
-        },
-
-        getSalesPerProducer: function () {
-            return _parse($.get('./index.php?r=analytics/sales-per-producer'));
-        },
-
-        getSalesPerBusiness: function () {
-            return _parse($.get('./index.php?r=analytics/sales-per-business'));
+        getReports : function (filters) {
+            var filtersf = process(filters);
+            return _parse($.get(API + filtersf));
         }
     };
 }

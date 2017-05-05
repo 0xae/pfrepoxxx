@@ -3,6 +3,7 @@ namespace backend\models\analytics;
 
 class ReportsService {
     public function dashboardReports($filters) {
+        $today = date('Y-m-d');
         $data = [];
         $biz = Reports::sql("business")->count()->fetch();
         $prod = Reports::sql("produtor")->count()->fetch();
@@ -10,7 +11,7 @@ class ReportsService {
         $users = Reports::sql("user")->count()->fetch();
         $sales = Reports::model('bilhete_reports')
                  ->fields(['total_sales' => 'coalesce(sum(total_venda), 0)'])
-                 // ->filter('data_compra', '=', 'current_date()')
+                 ->filter('data_compra', '=', $today)
                  ->fetch();
 
         $reactions = [
