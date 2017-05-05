@@ -117,6 +117,50 @@ class Business extends \yii\db\ActiveRecord {
         return '';
     }
 
+    public function getRange() {
+        $biz = $this;
+        $today = date('Y-m-d');
+        if ($biz->cashout == 'mensal') {
+            return [
+                date('Y-m-01'), date("Y-m-t", strtotime($today))
+            ];
+        } else if ($biz->cashout == 'trimestral') {
+            $s1 = [date('Y-01-01'), date('Y-03-31')];
+            $s2 = [date('Y-04-01'), date('Y-06-31')];
+            $s3 = [date('Y-07-01'), date('Y-09-31')];
+            $s4 = [date('Y-10-01'), date('Y-12-31')];
+            if ($this->inRange($s1[0], $s1[1], $today)) {
+                return $s1;
+            } else if ($this->inRange($s2[0], $s2[1], $today)) {
+                return $s2;
+            } else if ($this->inRange($s3[0], $s3[1], $today)) {
+                return $s3;
+            } else if ($this->inRange($s4[0], $s4[1], $today)) {
+                return $s4;
+            }
+
+        } else if ($biz->cashout == 'semestral') {
+            $s1 = [date('Y-01-01'), date('Y-06-31')];
+            $s2 = [date('Y-07-01'), date('Y-12-31')];
+            if ($this->inRange($s1[0], $s1[1], $today)) {
+                return $s1;
+            } else return $s2;
+        } else if ($biz->cashout == 'anual') {
+            return [
+                date('Y-01-01'), date('Y-12-31')
+            ];
+        }
+    }
+
+    private function inRange($start_date, $end_date, $date_from_user) {
+        $start_ts = strtotime($start_date);
+        $end_ts = strtotime($end_date);
+        $user_ts = strtotime($date_from_user);
+
+        // Check that user date is between start & end
+        return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
+    }
+
     public function behaviors() {  
         return [  
             BlameableBehavior::className(),  

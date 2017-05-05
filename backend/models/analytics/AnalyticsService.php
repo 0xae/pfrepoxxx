@@ -53,6 +53,7 @@ class AnalyticsService {
             'gross_revenue' => 'sum(total_producer_gross)',
             'liquid_revenue' => 'sum(total_producer_liquid)',
             'business_revenue' => 'sum(total_business_liquid)',
+            'business_gross_revenue' => 'sum(total_business_gross)',
             'passafree_revenue' => 'sum(total_passafree_revenue)'
         ];
 
