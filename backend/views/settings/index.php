@@ -5,7 +5,7 @@ use yii\grid\GridView;
 
 $this->title = 'Settings';
 ?>
-<div class="container-fluid">
+<div class="container-fluid settings">
 	<div role="tabpanel" style="padding:0;">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">

@@ -63,7 +63,7 @@
 {
 	display:table;
 	float:right;
-	margin: 5px 0;
+	margin: 0 0;
 }
 .pageventbtngroup a
 {
@@ -347,6 +347,9 @@
 {
 	padding:30px 10px 0 13px !important;
 }
+.business-create .form-control {
+	border-radius: 5px !important;
+}
 .paginatiogerel
 {
 	margin: 30px auto;
@@ -519,7 +522,7 @@
     background: #313541 !important;
 	border: 0px !important;
 	color: #fff !important;
-	padding: 8px 15px !important;
+	padding: 6px 15px !important;
 	text-transform: uppercase;
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
 }
@@ -528,7 +531,7 @@
 	background: #009447!important;
 	border:1px solid #009447 !important;
 	color: #fff!important;
-	padding: 8px 15px!important;
+	padding: 6px 15px!important;
 	border-radius: 4px;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -538,7 +541,7 @@
 	background: #009447!important;
 	border: 0px!important;
 	color: #fff!important;
-	padding: 8px 15px!important;
+	padding: 6px 15px!important;
 	border-radius: 4px;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -547,7 +550,7 @@
 	background: #ecf0f1!important;
 	border: 0px!important;
 	color: #c0392b!important;
-	padding: 8px 15px!important;
+	padding: 6px 15px!important;
 	border-radius: 4px;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -707,7 +710,7 @@
 	padding:16px 4.6% 15px 3.7%;
     background-color: #fff!important;
     box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
-    /* position: fixed !important; */
+    /*position: fixed !important;*/
     height: 65px !important;
 }
 .skin-blue .main-header form
@@ -758,6 +761,9 @@
 	text-align: center;
 	font-size: 13px;
 	font-weight: 600;
+}
+.sidebar .glyphicon.glyphicon-pencil {
+    left: 2px;
 }
 .summary{
 	display: none;
@@ -960,8 +966,8 @@
 .nomebusinessbt
 {
 	padding: 0;
-    /*margin-top: 9px;*/
-	/*background-color: #e0e0e0;*/
+	background-color: #e0e0e0;
+	height: 65px;
 }
 .accountngpage .panel .filtropanel, .table > thead > tr.active > th, .pageanalitics .accountingbox .nav-tabs
 {
@@ -1206,8 +1212,11 @@
 .modal-content .btn-default {
     color: #009447;
     border: 1px solid #009447;
+    font-weight: 600;
 }
-
+.settings .nav-tabs {
+    margin-top: 20px !important;
+}
 
 /*---Scroll---*/
 ::-webkit-scrollbar {
