@@ -21,21 +21,18 @@ use Yii;
  * @property string $last_login
  * @property string $timelogin
  */
-class Utilizador extends \yii\db\ActiveRecord
-{
+class Utilizador extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'utilizador';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['data_nascimento', 'last_login'], 'safe'],
             [['foto', 'password', 'registration_id', 'last_login', 'timelogin'], 'required'],
@@ -49,8 +46,7 @@ class Utilizador extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'idutilizador' => 'Idutilizador',
             'nome' => 'Nome',

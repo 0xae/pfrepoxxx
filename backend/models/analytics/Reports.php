@@ -37,7 +37,7 @@ class Reports {
     }
 
     public function count() {
-        $this->query->select(['total_count' => 'sum(1)']);
+        $this->query->select(['total_count' => 'count(1)']);
         return $this;
     }
 
@@ -73,6 +73,8 @@ class Reports {
      * ;)
     */
     public function fetchIt($cool=false) {
+        #var_dump($this->query->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);
+        #die;
         $nice = $this->query->one();
         if ($nice && $cool) {
             return $nice[$cool];

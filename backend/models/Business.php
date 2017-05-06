@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\models;
 
 use Yii;
@@ -144,7 +143,9 @@ class Business extends \yii\db\ActiveRecord {
             $s2 = [date('Y-07-01'), date('Y-12-31')];
             if ($this->inRange($s1[0], $s1[1], $today)) {
                 return $s1;
-            } else return $s2;
+            } else {
+                return $s2;
+            }
         } else if ($biz->cashout == 'anual') {
             return [
                 date('Y-01-01'), date('Y-12-31')

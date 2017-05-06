@@ -1,12 +1,13 @@
 <?php
 namespace backend\models\analytics;
 
+/**
+ * XXX: deal with filters
+ * @author ayrton
+ */
 class AnalyticsService {
-    /**
-     * XXX: deal with filters
-     * @author ayrton
-    */
     public function getGlobalReport($filters) {
+
         $data = [
             'business_count' => Reports::sql("business")->count()->fetchIt('total_count'),
             'user_count' => Reports::sql("user")->count()->fetchIt('total_count'),

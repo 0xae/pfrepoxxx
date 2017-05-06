@@ -50,5 +50,4 @@ JOIN marca M ON M.idmarca = P.marca_idmarca
 JOIN business BIZ ON BIZ.id = M.business_id
 JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
 
-GROUP BY E.idevento, B.idbilhete, CB.dataCompra
 ORDER BY E.idevento ASC
