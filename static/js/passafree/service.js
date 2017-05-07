@@ -1,5 +1,5 @@
 function AnalyticsService() {
-    var API = './index.php?r=analytics/api';
+    var API = './index.php?r=analytics/dashboard';
 
     function _parse(pr) {
         return pr.then(function (d) {

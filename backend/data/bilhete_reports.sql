@@ -2,22 +2,27 @@ SELECT
 		BIZ.id AS business_id,
 		BIZ.name AS business_name,
 		BIZ.responsable_percent AS business_percent,
+
 		M.idmarca AS marca_id,
 		M.nome AS marca_nome,
+
 		P.idprodutor AS produtor_id,
 		P.nome as produtor_nome,
+
 		E.idevento AS evento_id,
 		E.nome AS evento_nome,
         E.data as evento_data,
         E.estado as evento_estado,
+
 		B.descricao_bilhete as bilhete_nome,
 		B.idbilhete as bilhete_id,
 		B.preco as bilhete_preco,
 		B.stock as bilhete_stock,
+		B.business_percent as business_bilhete_percent,
+
 		CB.dataCompra AS data_compra,
 		CB.dataCompra AS date,
 		CB.business_percent as business_compra_percent,
-		B.business_percent as business_bilhete_percent,
 
 		-- some tickets aggs
 		greatest(B.stock-count(1), 0)  AS tickets_current_stock,

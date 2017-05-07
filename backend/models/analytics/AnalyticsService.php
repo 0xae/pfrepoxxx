@@ -6,29 +6,49 @@ namespace backend\models\analytics;
  * @author ayrton
  */
 class AnalyticsService {
-    public function getGlobalReport($filters) {
-
+    public function getDashboardReport($filters) {
         $data = [
-            'business_count' => Reports::sql("business")->count()->fetchIt('total_count'),
-            'user_count' => Reports::sql("user")->count()->fetchIt('total_count'),
-            'producer_count' => (int) Reports::model("bilhete_reports")
-                                ->count()
-                                ->withFilters($filters)
-                                ->groupBy('produtor_id')
-                                ->fetchIt('total_count'),
-            'event_count' => (int) Reports::model("bilhete_reports")
-                                ->count()
-                                ->filter('evento_estado','=',1)
-                                ->withFilters($filters)
-                                ->groupBy('evento_id')
-                                ->fetchIt('total_count'),
-            'passafree_global_revenue' => Reports::model('bilhete_reports')
-                                       ->fields(['t' => 'coalesce(sum(total_passafree_revenue), 0)'])
-                                       ->withFilters($filters)
-                                       ->fetchIt('t')
+            'business_count' => Reports::sql("business")->count()
+                                       ->fetchIt('total_count'),
+
+            'user_count' => Reports::sql("user")->count()
+                                   ->fetchIt('total_count'),
+
+            'producer_count' => (int) Reports::model("producer_report")
+                                        ->count()
+                                        ->filter('marca_estado', '=', 1) 
+                                        ->withFilters($filters)
+                                        ->fetchIt('total_count'),
+
+            'event_count' => (int) Reports::model("evento_report")
+                                        ->count()
+                                        ->filter('evento_estado','=',1)
+                                        ->withFilters($filters)
+                                        ->fetchIt('total_count')
         ];
 
         return $data;
+    }
+
+    public function getProducerRevenue($filters) {
+        return Reports::model('bilhete_reports')
+                ->fields(['t' => 'coalesce(sum(total_producer_liquid), 0)'])
+                ->withFilters($filters)
+                ->fetchIt('t');
+    }
+
+    public function getBusinessRevenue($filters) {
+        return Reports::model('bilhete_reports')
+                ->fields(['t' => 'coalesce(sum(total_business_liquid), 0)'])
+                ->withFilters($filters)
+                ->fetchIt('t');
+    }
+
+    public function getPassaFreeRevenue($filters) {
+        return Reports::model('bilhete_reports')
+                ->fields(['t' => 'coalesce(sum(total_passafree_revenue), 0)'])
+                ->withFilters($filters)
+                ->fetchIt('t');
     }
 
     public function getBusinessReport($filters) {
@@ -73,6 +93,7 @@ class AnalyticsService {
             'tickets_sold' => 'tickets_sold',
             'raw_revenue' => 'sum(total_producer_gross)',
             'liquid_revenue' => 'sum(total_producer_liquid)',
+            'business_revenue' => 'sum(total_business_liquid)',
             'passafree_revenue' => 'sum(total_passafree_revenue)'
         ];
 

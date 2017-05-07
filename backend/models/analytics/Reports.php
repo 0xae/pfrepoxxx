@@ -73,8 +73,6 @@ class Reports {
      * ;)
     */
     public function fetchIt($cool=false) {
-        #var_dump($this->query->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);
-        #die;
         $nice = $this->query->one();
         if ($nice && $cool) {
             return $nice[$cool];
@@ -90,7 +88,7 @@ class Reports {
      * XXX: check this dir thing
     */
     private static function load($file) {
-        $sql = file_get_contents("backend/data/{$file}.sql");
+        $sql = @file_get_contents("backend/data/{$file}.sql");
         if ($sql == '') {
             throw new Exception("Invalid analytics file: $file!");
         }

@@ -6,10 +6,17 @@ SELECT
     P.idprodutor AS producer_id,
     P.nome AS producer_name,
     P.foto AS producer_picture,
+    
+    M.idmarca as marca_id,
+    M.nome as marca_nome,
+    M.logo as marca_picture,
 
     E.idevento as evento_id,
 	E.nome AS evento_nome,
-    E.data AS evento_data
+    E.data AS evento_data,
+    E.estado as evento_estado,
+    (select count(1) from gosto where evento_idevento = E.idevento) as evento_likes,
+    (select count(1) from comentario where evento_idevento = E.idevento) as evento_comments
 
 FROM evento E 
 JOIN produtor P ON P.idprodutor = E.produtor_idprodutor
