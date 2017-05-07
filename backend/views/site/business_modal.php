@@ -6,6 +6,7 @@
     use backend\models\Business;
 
     $data = Business::find()->all();
+    $user = Yii::$app->user;
     $session = Yii::$app->session;
 ?>
 
@@ -32,6 +33,7 @@
     </div>
 <?php endif; ?>
 
+<?php if ($user->can('admin') || $user->can('business')): ?>
 <div class="modal fade popupcriarbilhete " id="choose_biz" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -67,4 +69,4 @@
 		</div>
 	</div>
 </div>
-
+<?php endif; ?>
