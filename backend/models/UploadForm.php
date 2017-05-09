@@ -14,7 +14,8 @@ class UploadForm {
         $randomName = Yii::$app->security->generateRandomString().".{$ext}";
         $filename = $n1.'/'.$randomName;
         $file->saveAs($filename, false);
-        return "uploads/{$subdir}/{$randomName}";
+
+        return "{$subdir}/{$randomName}";
     }
 }
 
