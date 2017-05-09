@@ -72,9 +72,11 @@ $this->registerJS($script);
                         <input type="text" class="form-control" placeholder="pesquisar marcas, eventos em Cabo Verde">
                     </div>
                </form>
-               <div class="pageventbtngroup">
+                <!--
+                   <div class="pageventbtngroup">
                         <a class="criar btn btn-primary" href="index.php?r=business/create"> New Business </a>
                     </div>
+                -->
               <div class="navbar-custom-menu">
                     <ul class="list-unstyled">
                     </ul>

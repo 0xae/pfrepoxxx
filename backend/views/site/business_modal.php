@@ -51,7 +51,7 @@
 										<div class="panel panel-default">
 											<div class="panel-body">
 												<div class="col-md-4 imgbussinessbox">
-													<img class="img-responsive" src="<?= $d->picture; ?>" alt="" title="">
+													<img class="img-responsive" src="../passafree_uploads/<?= $d->picture; ?>" alt="" title="">
 												</div>
 												<div class="col-md-8 descbussinessbox">
 													<span><?php echo $d->name; ?></span>

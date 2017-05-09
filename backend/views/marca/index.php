@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 										<span><?= $m->slogan ?></span>
 									</div>
                                 </div>
-                                <img class="img-responsive" src="/passafree_uploads/<?= $m->logo ?>" alt="" title="">
+                                <img class="img-responsive" src="../passafree_uploads/<?= $m->logo ?>" alt="" title="">
                             </div>
                         </div>
                     </div>
