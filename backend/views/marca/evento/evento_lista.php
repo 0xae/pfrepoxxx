@@ -4,7 +4,7 @@
             <div class="fundo_next_event">
                 <div class="filtro_eventos" style="background: <?= $e->filtro ?>; "></div>
                 <div id="img_eventos" style="height:300px">
-                    <img class="img-responsive" src="<?php echo $e->cartaz ?>" />
+                    <img class="img-responsive" src="../passafree_uploads/<?php echo $e->cartaz ?>" />
                 </div>
                 <div class="info_next_event">
                     <div class="col-md-12">

@@ -121,7 +121,7 @@ if ($model->id) { $responsableOptions['disabled'] = true; }
                                                         <div class="panel panel-default">
                                                             <div class="panel-body">
                                                                 <div class="col-md-4 imgbussinessbox">
-                                                                <img class="img-responsive" src="<?= $p->logo ?>" alt="" title="">
+                                                                <img class="img-responsive" src="../passafree_uploads/<?= $p->logo ?>" alt="" title="">
                                                                 </div>
                                                                 <div class="col-md-8 descbussinessbox">
                                                                     <div><?= $p->nome; ?></div>
