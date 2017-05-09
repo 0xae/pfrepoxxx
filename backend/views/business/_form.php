@@ -6,7 +6,7 @@ use kartik\file\FileInput;
 $this->title = 'Business';
 ?>
 
-<div class="container-fluid pagebusiness">
+<div class="container-fluid business_page pagebusiness">
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -21,6 +21,13 @@ $this->title = 'Business';
                         <div class="borderlefttitlo"></div><span>New Business</span>
                     <?php endif; ?>
 				</h4>
+                <div class="biz-footer">
+                     <?php echo Html::submitButton(
+                        $model->isNewRecord ? 'Guardar' : 'Actualizar', 
+                             ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
+                          );
+                     ?>
+                 </div>
 			</div>
 		</div>
 	</div>
@@ -97,13 +104,7 @@ $this->title = 'Business';
                                         </div>
                                     </div>
 
-                                    <div class="biz-footer">
-                                        <?php echo Html::submitButton(
-                                                $model->isNewRecord ? 'Guardar' : 'Actualizar', 
-                                                ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
-                                            );
-                                        ?>
-                                    </div>
+                                    
                                     <?php ActiveForm::end(); ?>
 								</div>
 

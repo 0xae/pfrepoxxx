@@ -134,4 +134,4 @@ $user = Yii::$app->user;
 			</div>
 		</div>
 	</div>
-</DIV>
+</div>

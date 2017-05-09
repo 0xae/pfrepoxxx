@@ -63,7 +63,7 @@
 {
 	display:table;
 	float:right;
-	margin: 0 0;
+	margin: 0 -15px;
 }
 .pageventbtngroup a
 {
@@ -350,6 +350,11 @@
 .business-create .form-control {
 	border-radius: 5px !important;
 }
+.business-create .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #f8f8f8 !important;
+    color: #666 !important;
+    border-color: #666;
+}
 .paginatiogerel
 {
 	margin: 30px auto;
@@ -585,9 +590,9 @@
 	border-radius: 5px;
 	padding: 8px; 
 	color: #009447; 
-	float: left;
+	float: right;
 	line-height: 0;
-	margin-left: 10px;
+	margin-right: 16px;
 }
 .rodape .btn
 {
@@ -761,6 +766,8 @@
 	text-align: center;
 	font-size: 13px;
 	font-weight: 600;
+	font-family: "DIN", Helvetica, Arial, sans-serif !important;
+
 }
 .sidebar .glyphicon.glyphicon-pencil {
     left: 2px;
@@ -875,9 +882,11 @@
 {
 	border-radius: 5px;
 	overflow: hidden;
-	border-color:#eee;
+	border: none;
 	margin-bottom: 30px;
 	box-shadow:0 2px 2px rgba(0, 0, 0, .05);
+	border: 1px solid #f8f8f8;
+
 }
 .pagebusiness .panel-body table thead tr th, #modalcriarmarca label, .pageanalitics .accountingbox .nav-tabs a
 {
@@ -919,6 +928,30 @@
 .pagebusiness .panel-body, .imgbussinessbox
 {
 	padding:0;
+}
+.overview {
+    top: -30px;
+}
+.business_page .imgbussinessbox .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+.business_page .col-md-4 a .panel:hover, .pagebusiness .col-md-4 a .panel:focus
+{
+	box-shadow:0 0 10px rgba(0, 0, 0, .09);
+	transition: ease;
+}
+.pagemarcas .imgbussinessbox .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+	max-width: 100%;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+.pagemarcas .imgbussinessbox {
+    height: 200px;
 }
 .descbussinessbox
 {
@@ -1018,7 +1051,7 @@
 	width: 21%;
 	height: 2px;
 	background-color: #fff;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	border-radius: 3px;
 }
 .userciculo
@@ -1216,8 +1249,34 @@
 }
 .settings .nav-tabs {
     margin-top: 20px !important;
+    background: #f3f3f3;
+    font: 16px "DINBold", Helvetica, Arial, sans-serif !important;
+    margin-left: 22px;
+	margin-right: 33px;
+	border-radius: 5px;
 }
-
+.settings .nav-tabs > li.active > a {
+    border-bottom: 3px solid #058040;
+    background-color: #e4e9e6;
+    color: #058040;
+    border-right: none;
+    border-left: none;
+}
+.settings .nav-tabs > li:first-child {
+	border-top-left-radius: 5px;
+}
+.settings .nav > li > a {
+    padding: 15px 20px !important;
+    color: #333;
+    margin-right: 0 !important;
+}
+.settings .label-primary, .modal-primary .modal-body {
+    background-color: #009447 !important;
+    padding-top: 5px !important;
+}
+.highcharts-root {
+	font-family: "DinRegular" !important;
+}
 /*---Scroll---*/
 ::-webkit-scrollbar {
     width: 12px;

@@ -155,6 +155,13 @@ $this->registerJS($script);
                       </a>
                     </li>
             <?php endif; ?>
+            
+            <li class="<?php if (Yii::$app->controller->id == 'analytics'){ echo 'active'; } ?> treeview">
+                  <a href="index.php?r=analytics">
+                    <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                  </a>
+            </li>
+            
           </ul>
         </section>
         <!-- /.sidebar -->
