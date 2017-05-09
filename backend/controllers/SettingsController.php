@@ -28,7 +28,7 @@ class SettingsController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','location'],
+                        'actions' => ['index','location','updatelocation'],
                         'allow' => true,
                         'roles' => ['passafree_staff', 'admin']
                     ],
@@ -67,28 +67,24 @@ class SettingsController extends Controller {
         $modelLocation = (new \yii\db\Query())
         ->select(['l.idlocation', 'l.nome'])
         ->from('location l')
-        ->where(['l.bussiness_id'=>Yii::$app->session['business']]);
+        ->where(['l.bussiness_id'=>3]);
 
         $pages = new Pagination(['totalCount' => $modelLocation->count(), 'pageSize'=>15]);
         $modelsLocation = $modelLocation->offset($pages->offset)
         ->groupBy('nome')
         ->orderBy(['idlocation' => SORT_ASC])
         ->limit($pages->limit)
+        ->where(['bussiness_id'=>Yii::$app->session['business']])
         ->all();
-
-        
         if ($Location->load(Yii::$app->request->post())) {
-
-            if ($modelsLocation) {
-                foreach ($modelsLocation as $key => $value) {
-                    $Location->bussiness_id = $value['id'];
-                }
-            }
+        
+            $Location->bussiness_id = Yii::$app->session['business'];
             $Location->data_log = date('Y-m-d H:m:s', time());
 
             if ($Location->save()) {
                 return $this->redirect(['location']);
             }
+            
 
         }else {
             return $this->render('location', [
@@ -111,5 +107,26 @@ class SettingsController extends Controller {
             '_dataFiltros'=>$_dataFiltros,
             '_dataTipoevento'=>$_dataTipoevento
         ]);
+    }
+    
+    public function actionUpdatelocation(){
+
+        if (Yii::$app->request->isAjax) {
+
+            $id = Yii::$app->request->post('idlocation');
+            $nome = Yii::$app->request->post('nome');
+            $model = Location::find()->where(['idlocation'=>$id])->one();
+            $model->nome=$nome;
+
+            if (Yii::$app->request->isPost) {
+
+                if ($model->save()) {
+//                     $model = $this->findModelLocation($id);
+                    echo '1';
+                }else{
+                    echo '0';
+                }
+            }
+        }
     }
 }
