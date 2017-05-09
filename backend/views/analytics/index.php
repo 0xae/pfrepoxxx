@@ -66,8 +66,8 @@ $user = Yii::$app->user;
                                 </div>
 							</div>
 
-							<div role="tabpanel" class="fade tab-pane" id="usage">
-                                <div id="usage_growth"></div>
+							<div role="tabpanel" style="width:100%" class="fade tab-pane" id="usage">
+                                <div id="usage_growth" style="width:100%"></div>
 							</div>
 
 							<div role="tabpanel" class="fade tab-pane" id="interation">

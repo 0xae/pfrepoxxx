@@ -41,8 +41,8 @@ class AnalyticsController extends \yii\web\Controller {
             ]
         ];
 
-        $d1 = $service->getProducerAnalytics($filters);
-        $d2 = $service->getProducerReport($filters);
+        $d1 = $service->getProducerAnalytics($filters, ['order_by' => 'total_eventos desc']);
+        $d2 = $service->getProducerReport($filters, ['order_by' => 'tickets_sold desc']);
         $data = [
             'eventsPerProducer' => $d1,
             'ticketsPerProducer' => $d2

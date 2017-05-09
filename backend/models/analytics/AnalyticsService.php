@@ -37,7 +37,7 @@ class AnalyticsService {
                 ->fetchIt('t');
     }
 
-    public function getProducerAnalytics($filters) {
+    public function getProducerAnalytics($filters, $mods=false) {
         $fields = [
             'marca_id',
             'marca_nome',
@@ -47,12 +47,18 @@ class AnalyticsService {
             'total_eventos' => 'count(1)'    
         ];
 
-        return Reports::model('evento_report')
+        $q = Reports::model('evento_report')
                ->fields($fields)
                ->groupBy('marca_id')
-               ->orderBy('total_eventos desc')
-               ->withFilters($filters)
-               ->fetch();
+               ->withFilters($filters);
+
+        if ($mods) {
+            if (isset($mods['order_by'])) {
+                $q->orderBy($mods['order_by']);
+            }
+        }
+        
+        return $q->fetch();
     }
 
     public function getBusinessRevenue($filters) {
@@ -85,7 +91,7 @@ class AnalyticsService {
                       ->fetch();
     }
 
-    public function getProducerReport($filters) {
+    public function getProducerReport($filters, $mods=false) {
         $fields = [
             'producer_id' => 'marca_id',
             'producer_name' => 'marca_nome',
@@ -98,11 +104,18 @@ class AnalyticsService {
             'passafree_revenue' => 'sum(total_passafree_revenue)'
         ];
 
-        return Reports::model('bilhete_reports')
+        $q =  Reports::model('bilhete_reports')
                       ->fields($fields)
                       ->withFilters($filters)
-                      ->groupBy('marca_id')
-                      ->fetch();
+                      ->groupBy('marca_id');
+
+        if ($mods) {
+            if (isset($mods['order_by'])) {
+                $q->orderBy($mods['order_by']);
+            }
+        }
+
+        return $q->fetch();
     }
 
     public function getEventReport($filters) {
