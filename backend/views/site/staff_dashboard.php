@@ -136,7 +136,7 @@ if ($user->can('admin')) {
                 <div class="row">
                     <div class="col-md-7">
                         <div class="white_box_inner">
-                            <h3 id="sales_counter" style="font-weight: 700;">0.00$00</h3>
+                            <h3 style="font-weight: 700;"><span id="sales_counter" class="money">0</span>$00</h3>
                             <small>Sales</small>
                         </div>
                     </div>

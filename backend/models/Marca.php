@@ -28,16 +28,6 @@ class Marca extends \yii\db\ActiveRecord {
         return 'marca';
     }
 
-    /*
-    public function scenarios() {
-        return [
-            self::SCENARIO_CREATE => ['file', 'nome', 'telefone', 'sede', 'email', 'slogan'],
-            self::SCENARIO_UPDATE => ['file', 'nome', 'telefone', 'sede', 'email', 'slogan'],
-            'default' => ['file', 'nome'],
-        ];
-    }
-    */
-
     /**
      * @inheritdoc
      */
@@ -72,12 +62,19 @@ class Marca extends \yii\db\ActiveRecord {
         ];
     }
 
+    /**
+     * TODO: rename this to getResponsable() 
+    */
     public function getProdutor() {
         return Produtor::find()
                ->where(['marca_idmarca' => $this->idmarca])
                ->one();
     }
 
+    /**
+     * TODO: work on this
+     * XXX: maybe enhance it a little more
+    */
     public function getNextEvents() {
         $query = Evento::find()
                  ->where('data >= now()')

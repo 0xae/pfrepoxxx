@@ -1,5 +1,5 @@
 function AnalyticsService() {
-    var API = './index.php?r=analytics/api';
+    var API = './index.php?r=analytics';
 
     function _parse(pr) {
         return pr.then(function (d) {
@@ -24,9 +24,20 @@ function AnalyticsService() {
     }
 
     return {
+        getDashboard : function (filters) {
+            var filtersf = process(filters);
+            return _parse($.get(API+'/dashboard'+filtersf));
+        },
+
         getReports : function (filters) {
             var filtersf = process(filters);
-            return _parse($.get(API+filtersf));
+            return _parse($.get(API+'/dashboard'+filtersf));
+        },
+
+        get: function (endp, filters) {
+            var filtersf = process(filters);
+            endp = endp || '';
+            return _parse($.get(API+endp+filtersf));
         }
     };
 }

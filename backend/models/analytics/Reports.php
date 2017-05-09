@@ -37,7 +37,7 @@ class Reports {
     }
 
     public function count() {
-        $this->query->select(['total_count' => 'sum(1)']);
+        $this->query->select(['total_count' => 'count(1)']);
         return $this;
     }
 
@@ -60,6 +60,11 @@ class Reports {
 
     public function groupBy($f) {
         $this->query->groupBy($f);
+        return $this;
+    }
+
+    public function orderBy($f) {
+        $this->query->orderBy($f);
         return $this;
     }
 
@@ -88,7 +93,7 @@ class Reports {
      * XXX: check this dir thing
     */
     private static function load($file) {
-        $sql = file_get_contents("backend/data/{$file}.sql");
+        $sql = @file_get_contents("backend/data/{$file}.sql");
         if ($sql == '') {
             throw new Exception("Invalid analytics file: $file!");
         }

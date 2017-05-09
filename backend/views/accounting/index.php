@@ -75,13 +75,13 @@ $range = $model->getRange();
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div>Passa Free Discount</div>
+                                        <div>Passa Free</div>
                                         <div><?= $b['passafree_revenue']; ?>$00</div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div>Balance</div>
+                                    <div><?= $model->name; ?></div>
                                         <div><?= $b['liquid_revenue']; ?>$00</div>
                                     </td>
                                 </tr>

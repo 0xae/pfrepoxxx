@@ -4,6 +4,11 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use kartik\file\FileInput;
 $this->title = 'Business';
+$responsableOptions = [
+    'placeholder' => 'Responsable ...',
+];
+
+if ($model->id) { $responsableOptions['disabled'] = true; }
 ?>
 
 <div class="container-fluid business_page pagebusiness">
@@ -51,12 +56,11 @@ $this->title = 'Business';
                                         <div class="col-md-6">
                                             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                                             <?php
-                                                echo '<label class="control-label">Pa&iacute;s</label>';
+                                                echo '<label class="control-label">Country</label>';
                                                 echo Select2::widget([
                                                     'model' => $model,
                                                     'attribute' => 'country_id',
                                                     'data' => $_dataCountries,
-                                                    'options' => ['placeholder' => 'Selecione o pais ...'],
                                                     'pluginOptions' => ['allowClear' => false],
                                                 ]);
                                                 echo '<br/>';
@@ -71,8 +75,6 @@ $this->title = 'Business';
                                                 ]); ?>
         
                                             <?= $form->field($model, 'privacy')->textInput(['maxlength' => true]) ?>
-                                            <?php /*?><?= $form->field($model, 'Image')->textarea(['maxlength' => true]) ?><?php */?>
-
 
                                             <?php 
                                                 echo $form->field($model, 'file')
@@ -81,20 +83,22 @@ $this->title = 'Business';
                                                                     ['options' => ['accept'=>'image/*']]
                                                                 );  
                                             ?>
-
-
                                         </div>
 
                                         <div class="col-md-6">
                                             <?php
-                                                echo '<label class="control-label">Responsavel</label>';
+                                                echo '<label class="control-label">Responsable</label>';
                                                 echo Select2::widget([
                                                     'model' => $model,
                                                     'attribute' => 'responsable',
                                                     'data' => $_dataUsers,
-                                                    'options' => ['placeholder' => 'Selecione o responsavel ...'],
+                                                    'options' => $responsableOptions,
                                                     'pluginOptions' => ['allowClear' => false],
                                                 ]);
+                                                if (isset($responsableOptions['disabled'])) {
+                                                    echo '<small style="color: gray">The responsable cannot be changed</small>';
+                                                }
+                                                echo '<br/>';
                                                 echo '<br/>';
                                             ?>
                                             <?= $form->field($model, 'responsable_percent')->textInput(['maxlength' => true, 'placeholder'=>'ex: 15']) ?>

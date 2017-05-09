@@ -13,14 +13,7 @@ function updateDashboardCounters(config, data) {
     updateCounter('biz_counter', data.business_count);
     updateCounter('producer_counter', data.producer_count);
     updateCounter('events_counter', data.event_count);
-
-    if (config.context == 'business') {
-        updateCounter('sales_counter', data.business_data[0].liquid_revenue+'$00');
-    } else if (config.context == 'producer') {
-        updateCounter('sales_counter', data.producer_data[0].liquid_revenue+'$00');
-    } else if (config.context == 'passafree') {
-        updateCounter('sales_counter', data.passafree_global_revenue+'$00');
-    }
+    updateCounter('sales_counter', formatMoney(data.global_revenue));
 }
 
 function updateDashboardGraphs(config, data) {
@@ -71,4 +64,8 @@ $(document).ready(function () {
     reloadDashboard();
     setInterval(reloadDashboard, 3000);
 });
+
+function formatMoney(num) {
+    return Number(num).toLocaleString('en');
+}
 

@@ -119,7 +119,6 @@ class BusinessController extends Controller {
                 $model->save();
             }
 
-            $this->updateResponsable($model->responsable);
             Yii::$app->getSession()->setFlash('success', 'Business actualizado com sucesso.');
             return $this->redirect(['update', 'id' => $model->id]);
         } 
@@ -144,29 +143,6 @@ class BusinessController extends Controller {
         $session->set('business_name', $model->name);
     }
 
-    public function actionRemoveProducer($id) {
-        $b = (new Business())->getProducerById($id);
-        (new Business())->removeProducer($id);
-        return $this->redirect(['update', 'id' => $b['business_id']]);
-    }
-
-    public function actionAddProducer() {
-        $model = new AddProducerForm();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-        }
-
-        return $this->redirect(['update', 'id' => $model->business_id]);
-    }
-
-    public function verifyAccess($model) {
-        if (!Yii::$app->user->can('admin')) {
-            if ($model->responsable != Yii::$app->user->identity->id) {
-                throw new ForbiddenHttpException('Acesso negado ao objecto.');
-            }
-        }
-    }
 
     /**
      * Deletes an existing Business model.
@@ -177,6 +153,14 @@ class BusinessController extends Controller {
     public function actionDelete($id) {
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
+    }
+
+    private function verifyAccess($model) {
+        if (!Yii::$app->user->can('admin')) {
+            if ($model->responsable != Yii::$app->user->identity->id) {
+                throw new ForbiddenHttpException('Acesso negado ao objecto.');
+            }
+        }
     }
 
     private function updateResponsable($id) {

@@ -44,7 +44,9 @@ class DashboardAsset extends AssetBundle {
         'static/js/passafree/analytics.js',
         'static/js/passafree/service.js',
         'static/js/passafree/dashboard.js',
-        'static/js/passafree/produtor.js'
+        'static/js/passafree/produtor.js',
+        // XXX: remove this
+        'static/js/dumps/timeseries.js'
     ];
 
     public $depends = [

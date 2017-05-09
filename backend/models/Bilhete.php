@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\models;
 
 use Yii;
@@ -17,7 +16,6 @@ use Yii;
 class Bilhete extends \yii\db\ActiveRecord {
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
-
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
 

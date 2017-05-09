@@ -84,6 +84,16 @@ class User extends \yii\db\ActiveRecord {
         $auth->assign($permissionObj, $this->id);
     }
 
+    private function updateResponsable($id) {
+        $auth = Yii::$app->authManager;
+        if (!$auth->checkAccess($id, 'business')) {
+            $user = User::findModel($id);
+            $user->addPermission('business');
+            # $user->tipo_user = 10;
+            $user->save();
+        }
+    }
+
     public function removePermission($permisssion) {
         $auth = Yii::$app->authManager;
         $permissionObj = $this->getPerm($permission);
