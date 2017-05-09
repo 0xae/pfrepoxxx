@@ -4,6 +4,8 @@ namespace backend\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\helpers\ArrayHelper;
+use yii\db\Query;
 
 /**
  * This is the model class for table "business".
@@ -162,6 +164,33 @@ class Business extends \yii\db\ActiveRecord {
         return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
     }
 
+    public static function getResponsableSugestions() {
+        $sql = "(
+            SELECT 
+                U.ID as id,
+                U.USERNAME as username,
+                U.EMAIL as email
+            FROM USER U
+            LEFT JOIN BUSINESS B ON B.RESPONSABLE=U.ID
+            JOIN AUTH_ASSIGNMENT P ON P.ITEM_NAME='BUSINESS' AND P.USER_ID=U.ID
+            WHERE B.ID IS NULL
+        )";
+
+        $ret = [];
+        $data = (new Query())
+                ->select(['*'])
+                ->from(['f'=>$sql])
+                ->all();
+
+        foreach ($data as $k) {
+            $key = $k['id'];
+            $value= $k['username'];
+            $ret[$key] = $value;
+        }
+
+        return $ret;
+    }
+
     public function behaviors() {  
         return [  
             BlameableBehavior::className(),  
@@ -169,3 +198,4 @@ class Business extends \yii\db\ActiveRecord {
         ];  
     } 
 }
+

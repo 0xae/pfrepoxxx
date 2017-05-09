@@ -157,13 +157,6 @@ $this->registerJS($script);
                       </a>
                     </li>
             <?php endif; ?>
-            
-            <li class="<?php if (Yii::$app->controller->id == 'analytics'){ echo 'active'; } ?> treeview">
-                  <a href="index.php?r=analytics">
-                    <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                  </a>
-            </li>
-            
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -193,11 +186,9 @@ $this->registerJS($script);
 			<div class="modal-body" style="padding-bottom: 0">
                 <div class="row">
                     <div class="col-md-6 infoput" style="padding:0 10px">
-
                     </div>
 
                     <div class="col-md-6" style="padding:0 0 0 10px">
-
                     </div>
                 </div>
             </div>
@@ -217,11 +208,9 @@ $this->registerJS($script);
 			<div class="modal-body" style="padding-bottom: 0">
                 <div class="row">
                     <div class="col-md-6 infoput" style="padding:0 10px">
-
                     </div>
 
                     <div class="col-md-6" style="padding:0 0 0 10px">
-
                     </div>
                 </div>
             </div>

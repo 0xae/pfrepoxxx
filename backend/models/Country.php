@@ -31,7 +31,7 @@ class Country extends \yii\db\ActiveRecord {
         return [
             [['name', 'code'], 'required'],
             [['logo'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
+            [['created_at', 'business_id', 'updated_at'], 'integer'],
             [['name', 'code'], 'string', 'max' => 255],
             [['code'], 'unique'],
         ];
@@ -55,5 +55,13 @@ class Country extends \yii\db\ActiveRecord {
         return [
             TimestampBehavior::className()
         ];
+    }
+
+    public function getBusinessLabel() {
+        $biz = $this->hasOne(Business::className(), ['id' => 'business_id'])->one();
+        if ($biz) {
+            return $biz->name;
+        }
+        return null;
     }
 }

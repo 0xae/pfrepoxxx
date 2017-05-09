@@ -7,8 +7,13 @@ $this->title = 'Business';
 $responsableOptions = [
     'placeholder' => 'Responsable ...',
 ];
+$countryOpts = [
+];
 
-if ($model->id) { $responsableOptions['disabled'] = true; }
+if ($model->id) { 
+    $responsableOptions['disabled'] = true;
+    $countryOpts['disabled'] = true;
+}
 ?>
 
 <div class="container-fluid business_page pagebusiness">
@@ -61,6 +66,7 @@ if ($model->id) { $responsableOptions['disabled'] = true; }
                                                     'model' => $model,
                                                     'attribute' => 'country_id',
                                                     'data' => $_dataCountries,
+                                                    'options' => $countryOpts,
                                                     'pluginOptions' => ['allowClear' => false],
                                                 ]);
                                                 echo '<br/>';

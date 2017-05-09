@@ -29,6 +29,7 @@
 							<th># ID</th>
 							<th>Name</th>
 							<th>Code</th>
+							<th>Business</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -38,6 +39,9 @@
                                 <td><?= $c->id ?></td>
                                 <td><?= $c->name ?></td>
                                 <td><?= $c->code ?></td>
+                                <td>
+                                    <?= $c->getBusinessLabel(); ?>
+                                </td>
                                 <td>
                                     <a href="./index.php?r=country/update&id=<?= $c->id ?>">
                                         <span class="label label-primary">EDIT</span>

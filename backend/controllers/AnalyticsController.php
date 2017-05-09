@@ -32,7 +32,10 @@ class AnalyticsController extends \yii\web\Controller {
         $service = new AnalyticsService();
         $session = \Yii::$app->session;
         $biz = $session->get('business');
-        if (!$biz) $biz = -1;
+        if (!$biz) {
+            $biz = -1;
+        }
+
         $filters = [
             [
                 'op' => '=',

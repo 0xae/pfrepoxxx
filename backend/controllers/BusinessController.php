@@ -85,12 +85,19 @@ class BusinessController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->updateResponsable($model->responsable);
+            /* Update the respective country */
+            $c = Country::find()
+                ->where(['id' => $model->country_id])
+                ->one();
+                $c->business_id = $model->id;
+                $c->save();
             Yii::$app->getSession()->setFlash('success', 'Business criado com sucesso.');
-            return $this->redirect(['update', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
-            $data = Country::find()->asArray()->all();
+            $data = Country::find()->where(['business_id' => null])
+                                   ->asArray()->all();
             $countries = ArrayHelper::map($data, 'id', 'name');
-            $_dataUsers = ArrayHelper::map(User::find()->asArray()->all(), 'id', 'username');
+            $_dataUsers = Business::getResponsableSugestions();
             
             return $this->render('create', [
                 'model' => $model,
@@ -120,13 +127,12 @@ class BusinessController extends Controller {
             }
 
             Yii::$app->getSession()->setFlash('success', 'Business actualizado com sucesso.');
-            return $this->redirect(['update', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } 
 
-
-        $data = Country::find()->asArray()->all();
+        $data = Country::find()->where(['id'=>$model->country_id])->asArray()->all();
         $countries = ArrayHelper::map($data, 'id', 'name');
-        $_dataUsers = ArrayHelper::map(User::find()->asArray()->all(), 'id', 'username');
+        $_dataUsers = ArrayHelper::map(User::find()->where(['id'=>$model->responsable])->asArray()->all(), 'id', 'username');
 
         return $this->render('update', [
             'model' => $model,
@@ -142,7 +148,6 @@ class BusinessController extends Controller {
         $session->set('business', $id);
         $session->set('business_name', $model->name);
     }
-
 
     /**
      * Deletes an existing Business model.
