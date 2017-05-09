@@ -11,6 +11,7 @@ use backend\models\analytics\AnalyticsService;
 use backend\components\RestApp;
 
 class AnalyticsController extends \yii\web\Controller {
+    /*
     public function behaviors() {
         return [
             [
@@ -25,9 +26,29 @@ class AnalyticsController extends \yii\web\Controller {
             ]
         ];
     }
+     */
 
     public function actionIndex() {
-        return $this->render('index', []);
+        $service = new AnalyticsService();
+        $session = \Yii::$app->session;
+        $biz = $session->get('business');
+        if (!$biz) $biz = -1;
+        $filters = [
+            [
+                'op' => '=',
+                'field' => 'business_id',
+                'val'  => $biz 
+            ]
+        ];
+
+        $d1 = $service->getProducerAnalytics($filters);
+        $d2 = $service->getProducerReport($filters);
+        $data = [
+            'eventsPerProducer' => $d1,
+            'ticketsPerProducer' => $d2
+        ];
+
+        return $this->render('index', $data);
     }
 
     public function actionDashboard() {
@@ -74,11 +95,20 @@ class AnalyticsController extends \yii\web\Controller {
     }
 
     public function actionProducer() {
-        $filters = [];
+        $filters = RestApp::parseQueryFilters($_GET);
         $service = new AnalyticsService();
 
         echo json_encode([
             'data' => $service->getProducerReport($filters)
+        ]);
+    }
+
+    public function actionProducerAnalytics() {
+        $filters = RestApp::parseQueryFilters($_GET);
+        $service = new AnalyticsService();
+
+        echo json_encode([
+            'data' => $service->getProducerAnalytics($filters)
         ]);
     }
 
@@ -91,6 +121,25 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 
+    public function actionUser() {
+        $filters = RestApp::parseQueryFilters($_GET);
+        $service = new AnalyticsService();
+
+        echo json_encode([
+            'data' => $service->getUserGrowth($filters)
+        ]);
+    }
+
+    public function actionReactions() {
+        $filters = RestApp::parseQueryFilters($_GET);
+        $service = new AnalyticsService();
+
+        echo json_encode([
+            'data' => $service->getReactionGrowth($filters)
+        ]);
+    }
+
+
     public function actionTicket() {
         $filters = [];
         $service = new AnalyticsService();
@@ -100,4 +149,3 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 }
-

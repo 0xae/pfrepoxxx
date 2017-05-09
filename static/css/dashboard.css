@@ -24,3 +24,49 @@
     background: rgb(255, 255, 255) !important;
 }
 
+.red-box {
+    /* width: 7%; */
+    background-color: rgb(208, 148, 171);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
+    border-radius: 2px;
+    padding: 7px;
+    display: inline-table;
+}
+
+.yellow-box {
+    background-color: rgb(255, 202, 135);
+}
+
+.progress-stats {
+    background-color: inherit;
+}
+
+.progress-stats .progress-bar {
+    background-color: rgb(208, 148, 171);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
+    border-radius: 2px;
+}
+
+.fb-header {
+    background: linear-gradient(#fff, #f6f7f9);
+    border: 1px solid gainsboro;
+    color: #333;
+    font-size: 14px !important;
+}
+
+.fb-col {
+    padding-top: 17px !important;
+}
+
+.fb-table-header {
+    border: 1px solid rgba(0,0,0,.05);
+}
+
+.table tr td .progress {
+    /* margin-top: 5px; */
+    margin-top: 0px !important;
+}
+
+table.fb-stats tbody tr td {
+    margin-top: 10px;
+}

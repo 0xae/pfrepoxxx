@@ -5,6 +5,7 @@ SELECT
 
 		M.idmarca AS marca_id,
 		M.nome AS marca_nome,
+        M.logo as marca_picture,
 
 		P.idprodutor AS produtor_id,
 		P.nome as produtor_nome,

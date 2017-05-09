@@ -13,7 +13,7 @@ function updateDashboardCounters(config, data) {
     updateCounter('biz_counter', data.business_count);
     updateCounter('producer_counter', data.producer_count);
     updateCounter('events_counter', data.event_count);
-    updateCounter('sales_counter', data.global_revenue+'$00');
+    updateCounter('sales_counter', formatMoney(data.global_revenue));
 }
 
 function updateDashboardGraphs(config, data) {
@@ -64,4 +64,8 @@ $(document).ready(function () {
     reloadDashboard();
     setInterval(reloadDashboard, 3000);
 });
+
+function formatMoney(num) {
+    return Number(num).toLocaleString('en');
+}
 

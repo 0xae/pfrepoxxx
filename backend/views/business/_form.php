@@ -8,9 +8,7 @@ $responsableOptions = [
     'placeholder' => 'Responsable ...',
 ];
 
-if ($model->id) {
-    $responsableOptions['disabled'] = true;
-}
+if ($model->id) { $responsableOptions['disabled'] = true; }
 ?>
 
 <div class="container-fluid pagebusiness">

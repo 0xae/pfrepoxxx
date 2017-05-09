@@ -12,6 +12,12 @@ $(document).ready(function () {
     if (isNaN(sessionBusiness)) {
         $("#choose_biz").modal();
     } 
+
+    $(".money").each(function () {
+        var item = $(this).text();
+        var num = Number(item).toLocaleString('en');
+        $(this).text(num);
+    });
 });
 
 function selectBiz(bizId) {

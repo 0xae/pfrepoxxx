@@ -1,12 +1,19 @@
 <?php
-/* @var $this yii\web\View */
 $this->title = 'Analitics';
 $user = Yii::$app->user;
 ?>
+
 <div class="container-fluid pagebusiness  pageanalitics">
-    <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
-        <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
-    <?php endif; ?>
+    <?php
+        if ($user->can('admin') || $user->can('passafree_staff')) {
+            echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', [
+                'onChange' => "
+                    function (newBusiness) {
+                    }
+                "
+            ]);
+        }
+    ?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -14,30 +21,57 @@ $user = Yii::$app->user;
 			</div>
 		</div>
 	</div>
-	<?php /*?>TABELA<?php */?>
+
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<?php /*?>//<?php */?>
 				<div class="accountingbox">
-					<?php /*?>tab<?php */?>
 					<div role="tabpanel">
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#new" aria-controls="home" role="tab" data-toggle="tab">New</a></li>
-							<li role="presentation"><a href="#usage" aria-controls="profile" role="tab" data-toggle="tab">Usage</a></li>
-							<li role="presentation"><a href="#interation" aria-controls="profile" role="tab" data-toggle="tab">Interation</a></li>
+                            <li role="presentation" class="active"><a href="#new" aria-controls="home" role="tab" data-toggle="tab">
+                                Growth
+                            </a></li>
+                            <!--
+                            <li role="presentation"><a href="#usage" aria-controls="profile" role="tab" data-toggle="tab">
+                                Usage
+                            </a></li>
+                            -->
+                            <li role="presentation"><a href="#interation" aria-controls="profile" role="tab" data-toggle="tab">
+                                Interation
+                            </a></li>
 						</ul>
-						<?php /*?>conteudo<?php */?>
+
 						<div class="tab-content">
-							<?php /*?>New<?php */?>
-							<div role="tabpanel" class="tab-pane active" id="new">New
+                            <div role="tabpanel" class="tab-pane active" id="new">
+                                <div class="col-md-12">
+                                    <!--
+                                    <div class="btn-group" data-toggle="buttons">
+                                          <label class="btn btn-sm btn-primary active">
+                                                <input type="radio" name="options" id="option1" autocomplete="off" checked> This week
+                                          </label>
+                                          <label class="btn btn-sm btn-primary">
+                                                <input type="radio" name="options" id="option2" autocomplete="off"> This month
+                                          </label>
+                                          <label class="btn btn-sm btn-primary">
+                                                <input type="radio" name="options" id="option3" autocomplete="off"> This year
+                                          </label>
+                                          <label class="btn btn-sm btn-primary">
+                                                <input type="radio" name="options" id="option3" autocomplete="off"> 
+                                                <span class="glyphicon glyphicon-filter"></span>
+                                          </label>
+                                    </div>
+                                    -->
+                                    <div id="user_growth"></div>
+                                </div>
 							</div>
-							<?php /*?>Usage<?php */?>
-							<div role="tabpanel" class="fade tab-pane" id="usage">Usage
+
+							<div role="tabpanel" class="fade tab-pane" id="usage">
+                                <div id="usage_growth"></div>
 							</div>
-							<?php /*?>Interation<?php */?>
-							<div role="tabpanel" class="fade tab-pane" id="interation">Interation
+
+							<div role="tabpanel" class="fade tab-pane" id="interation">
+                                <div id="interaction_growth"></div>
 							</div>
 						</div>
 					</div>
@@ -46,7 +80,6 @@ $user = Yii::$app->user;
 		</div>
 	</div>
 
-	<?php /*?>TITULO, BT<?php */?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -64,19 +97,29 @@ $user = Yii::$app->user;
 					<div role="tabpanel">
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#maisfestas" aria-controls="home" role="tab" data-toggle="tab">Mais Festas</a></li>
-							<li role="presentation"><a href="#maisvendidos" aria-controls="profile" role="tab" data-toggle="tab">Mais Bilhetes Vendidos</a></li>
-							<li role="presentation"><a href="#maisrendimento" aria-controls="profile" role="tab" data-toggle="tab">Mais Rendimento</a></li>
+                            <li role="presentation" class="active"><a href="#maisfestas" aria-controls="home" role="tab" data-toggle="tab">
+                                Most popular
+                            </a></li>
+							<li role="presentation"><a href="#maisvendidos" aria-controls="profile" role="tab" data-toggle="tab">
+                                Top sellers  
+                            </a></li>
+                            <li role="presentation"><a href="#maisrendimento" aria-controls="profile" role="tab" data-toggle="tab">
+                               Most profitable
+                            </a></li>
 						</ul>
-						<?php /*?>conteudo<?php */?>
-						<div class="tab-content">
-							<?php /*?>Mais Festas<?php */?>
-							<div role="tabpanel" class="tab-pane active" id="maisfestas">Mais Festas
+						<div class="tab-content" style="padding:0px">
+							<div role="tabpanel" style="padding:0px" class="tab-pane active" id="maisfestas">
+                                <?php echo $this->render('events_per_producer', [
+                                            'eventsPerProducer' => $eventsPerProducer
+                                        ]); ?>
 							</div>
-							<?php /*?>Mais Bilhetes Vendidos<?php */?>
-							<div role="tabpanel" class="fade tab-pane" id="maisvendidos">Mais Bilhetes Vendidos
+
+							<div role="tabpanel" class="fade tab-pane" id="maisvendidos">
+                                <?php echo $this->render('tickets_per_producer', [
+                                            'ticketsPerProducer' => $ticketsPerProducer
+                                        ]); ?>
 							</div>
-							<?php /*?>Mais Rendimento<?php */?>
+
 							<div role="tabpanel" class="fade tab-pane" id="maisrendimento">Mais Rendimento
 							</div>
 						</div>
@@ -85,7 +128,7 @@ $user = Yii::$app->user;
 			</div>
 		</div>
 	</div>
-	<?php /*?>TITULO, BT<?php */?>
+<!--
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -93,7 +136,7 @@ $user = Yii::$app->user;
 			</div>
 		</div>
 	</div>
-	<?php /*?>TABELA<?php */?>
+
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -134,4 +177,6 @@ $user = Yii::$app->user;
 			</div>
 		</div>
 	</div>
-</DIV>
+-->
+
+</div>

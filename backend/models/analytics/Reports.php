@@ -63,6 +63,11 @@ class Reports {
         return $this;
     }
 
+    public function orderBy($f) {
+        $this->query->orderBy($f);
+        return $this;
+    }
+
     public function fetch() {
         return $this->query->all();
     }

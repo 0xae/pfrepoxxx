@@ -37,6 +37,24 @@ class AnalyticsService {
                 ->fetchIt('t');
     }
 
+    public function getProducerAnalytics($filters) {
+        $fields = [
+            'marca_id',
+            'marca_nome',
+            'marca_picture',
+            'evento_likes' => 'sum(evento_likes)',
+            'evento_comments' => 'sum(evento_comments)',
+            'total_eventos' => 'count(1)'    
+        ];
+
+        return Reports::model('evento_report')
+               ->fields($fields)
+               ->groupBy('marca_id')
+               ->orderBy('total_eventos desc')
+               ->withFilters($filters)
+               ->fetch();
+    }
+
     public function getBusinessRevenue($filters) {
         return Reports::model('bilhete_reports')
                 ->fields(['t' => 'coalesce(sum(total_business_liquid), 0)'])
@@ -71,7 +89,9 @@ class AnalyticsService {
         $fields = [
             'producer_id' => 'marca_id',
             'producer_name' => 'marca_nome',
+            'producer_logo' => 'marca_picture',
             'gross_revenue' => 'sum(total_producer_gross)',
+            'tickets_sold',
             'liquid_revenue' => 'sum(total_producer_liquid)',
             'business_revenue' => 'sum(total_business_liquid)',
             'business_gross_revenue' => 'sum(total_business_gross)',
@@ -104,10 +124,31 @@ class AnalyticsService {
                       ->fetch();
     }
 
-    public function getTicketReport($filters) {
-        $data = [
+    public function getUserGrowth($filters) {
+        return Reports::model('user_report')
+                      ->withFilters($filters)
+                      ->fetch();
+    }
+
+    public function getReactionGrowth($filters) {
+        $fields = [
+            'date' => 'evento_data',
+            'total_likes' => 'sum(evento_likes)',
+            'total_comments' => 'sum(evento_comments)'
         ];
+
+        return Reports::model('evento_report')
+                      ->fields($fields)
+                      ->withFilters($filters)
+                      ->groupBy('evento_data')
+                      ->fetch();
+    }
+
+
+    public function getTicketReport($filters) {
+        $data = [];
         return $data;
     }
+
 }
 
