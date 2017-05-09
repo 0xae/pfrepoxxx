@@ -341,11 +341,12 @@ a.edit_acount{
 }
 .pagebusiness .col-md-12.contentbox
 {
-	padding:0 4.5% 0 2%;
+	padding:0 2.9% 0 2%;
+    /*top: -20px;*/
 }
-.accountngpage .col-md-12.contentbox
+.accountngpage .col-md-12.
 {
-	padding: 0 4.5% 0 3%;
+	padding: 0 2.9% 0 3%;
 }
 .pageusers .col-md-12.contentbox
 {
@@ -368,6 +369,7 @@ a.edit_acount{
 	font: 14px "DINBold", Helvetica, Arial, sans-serif !important;
 }
 .nomebusiness
+
 {
 	float:left;
 }

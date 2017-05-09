@@ -11,7 +11,7 @@ $responsableOptions = [
 if ($model->id) { $responsableOptions['disabled'] = true; }
 ?>
 
-<div class="container-fluid pagebusiness">
+<div class="container-fluid business_page pagebusiness">
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -26,6 +26,13 @@ if ($model->id) { $responsableOptions['disabled'] = true; }
                         <div class="borderlefttitlo"></div><span>New Business</span>
                     <?php endif; ?>
 				</h4>
+                <div class="biz-footer">
+                     <?php echo Html::submitButton(
+                        $model->isNewRecord ? 'Guardar' : 'Actualizar', 
+                             ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
+                          );
+                     ?>
+                 </div>
 			</div>
 		</div>
 	</div>
@@ -101,13 +108,7 @@ if ($model->id) { $responsableOptions['disabled'] = true; }
                                         </div>
                                     </div>
 
-                                    <div class="biz-footer">
-                                        <?php echo Html::submitButton(
-                                                $model->isNewRecord ? 'Guardar' : 'Actualizar', 
-                                                ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
-                                            );
-                                        ?>
-                                    </div>
+                                    
                                     <?php ActiveForm::end(); ?>
 								</div>
 

@@ -35,7 +35,7 @@ if ($user->can('admin')) {
 </div>
 
 <?php /*?>BOX TOP<?php */?>
-<div class="col-md-12 contentbox">
+<div class="col-md-12 contentbox overview">
     <?php if ($user->can('admin') || $user->can('passafree_staff')) :?>
             <div class="col-md-3">
                 <div class="white_box">
@@ -113,7 +113,7 @@ if ($user->can('admin')) {
             </div>
         </div>
 
-        <div class="col-md-3" style="margin-top:10px">
+        <div class="col-md-3">
             <div class="white_box">
                 <div class="row">
                     <div class="col-md-7">
@@ -131,7 +131,7 @@ if ($user->can('admin')) {
             </div>
         </div>
 
-        <div class="col-md-3" style="margin-top:10px">
+        <div class="col-md-3">
             <div class="white_box">
                 <div class="row">
                     <div class="col-md-7">
