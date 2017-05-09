@@ -111,6 +111,8 @@ class MarcaController extends Controller {
         $produtor = new Produtor();
         $req = Yii::$app->request->post();
 
+        $user->nome = $produtor->nome;
+
         if ($marca->load($req) && $user->load($req) && $produtor->load($req)) {
             $marca->estado = Marca::STATUS_ACTIVE;
             $user->tipo_user=3;

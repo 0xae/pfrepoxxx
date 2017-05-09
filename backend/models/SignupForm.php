@@ -30,7 +30,8 @@ class SignupForm extends Model {
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            /*['nome', 'required'],
+            /*
+            ['nome', 'required'],
             ['apelido', 'required'],
             [['nome', 'apelido'], 'string', 'max' => 100],
             [['nome', 'apelido'], 'safe'],*/
@@ -64,13 +65,9 @@ class SignupForm extends Model {
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
+
+        $p = new Profile();
         return $user->save() ? $user : null;
-    }
-
-
-    public function getUsers(){
-        return $model = User::find()->all();
     }
 
     public function profileIdProfile($id){
