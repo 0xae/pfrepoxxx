@@ -30,7 +30,10 @@ $this->title = 'Businesses';
                             </div>
                             <div class="col-md-12 descbussinessbox">
                             	<span><?php echo $d->name; ?></span>
-                                <span><?php echo $d->getCountryLabel(); ?></span>
+                                <span><?php 
+                                        $c=$d->getCountry();
+                                        if ($c) { echo $c->name; } 
+                                ?></span>
                             </div>
                         </div>
                     </div>

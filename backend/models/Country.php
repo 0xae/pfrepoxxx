@@ -62,6 +62,15 @@ class Country extends \yii\db\ActiveRecord {
         if ($biz) {
             return $biz->name;
         }
+
         return null;
+    }
+
+    public static function findModel($id) {
+        if (($model = Country::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }

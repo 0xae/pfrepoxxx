@@ -3,6 +3,7 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use backend\models\User;
 
 /**
  * Login form
@@ -12,7 +13,6 @@ class AdminLoginForm extends Model {
     public $password;
     public $rememberMe = false;
     private $_user;
-
 
     /**
      * @inheritdoc

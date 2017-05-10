@@ -36,6 +36,7 @@ class Produtor extends \yii\db\ActiveRecord {
             [['nome', 'apelido', 'foto'], 'string', 'max' => 100],
             [['public_email', 'sexo', 'telefone'], 'string', 'max' => 45],
             ['public_email', 'unique',  'message' => 'This email address has already been taken.'],
+            ['marca_idmarca', 'unique'],
         ];
     }
 

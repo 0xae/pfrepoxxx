@@ -42,6 +42,17 @@ class Business extends \yii\db\ActiveRecord {
         return 'business';
     }
 
+    public function save($runValidation=true, $attributeNames=NULL) {
+        $isNew = !$this->id;
+        $t = parent::save($runValidation, $attributeNames);
+        if ($t && $isNew) {
+            $c = Country::find()->where(['id' => $this->country_id])->one();
+            $c->business_id = $model->id;
+            $c->save();
+        }
+        return $t;
+    }
+
     /**
      * @inheritdoc
      */
@@ -88,7 +99,7 @@ class Business extends \yii\db\ActiveRecord {
      * @return \yii\db\ActiveQuery
      */
     public function getCountry() {
-        return $this->hasOne(Country::className(), ['id' => 'country_id']);
+        return $this->hasOne(Country::className(), ['id' => 'country_id'])->one();
     }
 
     /**
@@ -112,12 +123,6 @@ class Business extends \yii\db\ActiveRecord {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 
-    public function getCountryLabel() {
-        $c = $this->getCountry()->one();
-        if ($c) { return $c->name; }
-        return '';
-    }
-
     public function getRange() {
         $biz = $this;
         $today = date('Y-m-d');
@@ -130,6 +135,7 @@ class Business extends \yii\db\ActiveRecord {
             $s2 = [date('Y-04-01'), date('Y-06-31')];
             $s3 = [date('Y-07-01'), date('Y-09-31')];
             $s4 = [date('Y-10-01'), date('Y-12-31')];
+
             if ($this->inRange($s1[0], $s1[1], $today)) {
                 return $s1;
             } else if ($this->inRange($s2[0], $s2[1], $today)) {
@@ -143,6 +149,7 @@ class Business extends \yii\db\ActiveRecord {
         } else if ($biz->cashout == 'semestral') {
             $s1 = [date('Y-01-01'), date('Y-06-31')];
             $s2 = [date('Y-07-01'), date('Y-12-31')];
+
             if ($this->inRange($s1[0], $s1[1], $today)) {
                 return $s1;
             } else {
@@ -164,15 +171,20 @@ class Business extends \yii\db\ActiveRecord {
         return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
     }
 
+    /**
+     * TODO: maybe rewrite this using yii's ActiveQuery api
+     * i feel like this code is too much long
+    */
     public static function getResponsableSugestions() {
         $sql = "(
             SELECT 
                 U.ID as id,
-                U.USERNAME as username,
-                U.EMAIL as email
+                U.EMAIL as email,
+                COALESCE(F.NAME, U.USERNAME) AS username
             FROM USER U
             LEFT JOIN BUSINESS B ON B.RESPONSABLE=U.ID
-            JOIN AUTH_ASSIGNMENT P ON P.ITEM_NAME='BUSINESS' AND P.USER_ID=U.ID
+            JOIN AUTH_ASSIGNMENT P ON P.ITEM_NAME='business' AND P.USER_ID=U.ID
+            LEFT JOIN PROFILE F ON F.user_id = U.id
             WHERE B.ID IS NULL
         )";
 
@@ -190,6 +202,27 @@ class Business extends \yii\db\ActiveRecord {
 
         return $ret;
     }
+
+    public function getProducers() {
+        return Marca::find()->where(['business_id' => $this->id])->all();
+    }
+
+    public static function getProducersFromSession() {
+        $session = \Yii::$app->session;
+        $id = $session->get('business');
+        return Marca::find()
+                ->where(['business_id' => $id])
+                ->all();
+    }
+
+    public static function findModel($id) {
+        if (($model = Business::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
 
     public function behaviors() {  
         return [  

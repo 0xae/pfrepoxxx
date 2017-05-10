@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\controllers;
 
 use Yii;
@@ -19,7 +18,8 @@ use backend\models\Produtor;
 use backend\models\SignupForm;
 use backend\models\UploadForm;
 use backend\models\Evento;
-use common\models\User as AppUser;
+use backend\models\User;
+use backend\components\FormData;
 
 /**
  * MarcaController implements the CRUD actions for Marca model.
@@ -32,8 +32,8 @@ class MarcaController extends Controller {
                 'rules' => [
                     [
                         'actions' => ['index', 'create', 'update', 'view', 'delete', 'update-produtor', 'create-user'],
-                        'allow' => true,
-                        'roles' => ['passafree_staff', 'admin', 'business']
+                        'roles' => ['passafree_staff', 'admin', 'business'],
+                        'allow' => true
                     ],
                 ],
             ]
@@ -74,7 +74,7 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $marca = $this->findMarcaModel($id);
+        $marca = Marca::findModel($id);
         $events = $marca->getNextEvents();
         $prod = $marca->getProdutor();
         $destaque = null;
@@ -96,73 +96,58 @@ class MarcaController extends Controller {
         if ($action->id == 'create') {
             $this->enableCsrfValidation = false;
         }
-
         return parent::beforeAction($action);
     }
 
     /**
      * Creates a new Marca model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * FIXME: ho
      * @return mixed
      */
     public function actionCreate() {
-        $marca = new Marca();
-        $user = new SignupForm();
-        $produtor = new Produtor();
         $req = Yii::$app->request->post();
+        $marca = $this->getMarca($req);
+        $user = $this->getUser($req);
+        $produtor = $this->getProdutor($req, $user->data, $marca->data);
 
-        $user->nome = $produtor->nome;
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($user->data, $marca->data, $produtor->data);
+        }
 
-        if ($marca->load($req) && $user->load($req) && $produtor->load($req)) {
-            $marca->estado = Marca::STATUS_ACTIVE;
-            $user->tipo_user=3;
-            $produtor->public_email = $user->email;
-
-            if (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                return ActiveForm::validate($user, $marca, $produtor);
-            }
-
-            $marca->file = UploadedFile::getInstance($marca, 'file');
-            if ($marca->file){
-                $marca->logo = UploadForm::upload($marca->file, 'marca');
-            }
-
-            if ($marca->save() && ($us=$user->signup())) {
-                $produtor->idprodutor = $us->id;
-                $produtor->marca_idmarca = $marca->idmarca;
-                if (!$produtor->save()) {
-                    $marca->delete();
-                    $us->delete();
-                    return $this->renderAjax('create_marca', [
-                        'newMarca' => $marca,
-                        'newUser' => $user,
-                        'newProdutor' => $produtor
-                    ]);
-                } else {
-                    return $this->redirect(['update', 'id' => $marca->idmarca]);
-                }
+        $this->uploadFileIfExists($marca->data);
+        if ($user->isValid && $marca->isValid && $produtor->isValid) {
+            if ($this->saveThem($user, $marca, $produtor)) {
+                return $this->redirect(['index']);
             }
         } 
+
+        # assume we created everything
+        # XXX (ayrton): find a better way to do this
+        # TODO: show the error on the modal
+        $this->deleteAll($user->data, $marca->data, $produtor->data);
+
+        return $this->render('index', [
+            'newMarca' => $marca->data,
+            'newUser' => $user->data,
+            'newProdutor' => $produtor->data,
+            'models' => Business::getProducersFromSession(),
+            '_dataBusiness' => ArrayHelper::map(Business::find()->all(), 'id', 'name')
+        ]);
     }
 
     /**
-     * Updates an existing Marca model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Updates the model
      * @param string $id
      * @return mixed
      */
     public function actionUpdate($id) {
-        $model = $this->findModel($id);
+        $model = Marca::findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->file = UploadedFile::getInstance($model, 'file');
-            if ($model->file){
-                $model->logo = UploadForm::upload($model->file, 'marca');
-            }
-
+            $this->uploadFileIfExists($model);
             if($model->save()){
-                return $this->redirect(['update', 'id' => $model->idmarca]);
+                return $this->redirect(['index']);
             }
         } 
 
@@ -171,7 +156,7 @@ class MarcaController extends Controller {
             $prod = new Produtor();
             $user = new SignupForm();
         } else {
-            $user = AppUser::find()->where(['id' => $prod->idprodutor])->one();
+            $user = User::find()->where(['id' => $prod->idprodutor])->one();
         }
 
         $_dataBusiness = ArrayHelper::map(Business::find()->all(), 'id', 'name');
@@ -183,79 +168,78 @@ class MarcaController extends Controller {
         ]);
     }
 
-    public function actionUpdateProdutor($id) {
-        $model = Produtor::find()->where(['idprodutor' => $id])->One();
-        if ($model->load(Yii::$app->request->post()) ) {
-            $model->estado = 1;
-            $model->save();
-            return $this->redirect(['update', 'id' => $model->marca_idmarca]);
-        }
-    }
-
-    public function actionCreateUser() {
-        $model = new SignupForm();
-        $model->tipo_user = 3;
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                $this->addRoles($user, ['business']);
-                $prod = new Produtor();
-                $prod->idprodutor = $user->id;
-                $prod->nome = $model->nome;
-                $prod->public_email = $model->email;
-                $prod->marca_idmarca = $model->marca_id;
-
-                if (!$prod->save()) {
-                    $user->delete();
-                    return;
-                }
-
-                return $this->redirect(['update', 'id' => $model->marca_id]);
-            }
-        }
-    }
-
-    private function addRoles($user, $rolesArray) {
-        $auth = Yii::$app->authManager;
-        foreach($rolesArray as $roleName) {
-            $roleObj = $auth->getRole($roleName);
-            if (!$roleObj) {
-                throw new NotFoundHttpException("Invalid role ${roleName}.");
-            }
-            $auth->assign($roleObj, $user->id);
-        }
-    }
-
     /**
-     * Deletes an existing Marca model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     */
+     * deletes the marca
+     * @author ayrton
+    */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        Marca::findModel($id)->delete();
         return $this->redirect(['index']);
     }
+    
+    /**
+     * uploads the marca file
+     * @author ayrton
+    */
+    private function uploadFileIfExists($model) {
+        $model->file = UploadedFile::getInstance($model, 'file');
+        if ($model->file){
+            $model->logo = UploadForm::upload($model->file, 'marca');
+        }
+    }
 
     /**
-     * Finds the Marca model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Marca the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id) {
-        if (($model = Marca::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+     * XXX
+     * helpers to create a producer
+     * they are very much self explanatory
+     * so no need for excessive comments here
+     * @author ayrton
+    */
+    private function saveThem($user, $marca, $produtor) {
+        if ($marca->data->save()) {
+            if ($user->data->signup(false)) {
+                $produtor->idprodutor = $user->data->id;
+                $produtor->data->marca_idmarca = $marca->data->idmarca;
+                if ($produtor->data->save()) {
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
-    protected function findMarcaModel($id) {
-        if (($model = Marca::find()->where(['idmarca' => $id, 'estado' => 1])->One()) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+    private function deleteAll($user, $marca, $produtor) {
+        # xxx
+        $u=User::find()->where(['id' => $user->id])->one();
+        if ($u && $u->delete());
+
+        $m = Marca::find()->where(['idmarca' => $marca->idmarca])->one();
+        if ($m && $m->delete());
+
+        $p = Produtor::find()->where(['idprodutor' => $produtor->idprodutor])->one();
+        if ($p && $p->delete());
+    }
+
+    private function getMarca($request) {
+        $marca = new Marca();
+        $marca->estado = Marca::STATUS_ACTIVE;
+        return new FormData($marca, $marca->load($request));
+    }
+
+    private function getUser($request) {
+        $user = new SignupForm();
+        $user->tipo_user=3;
+        $l = $user->load($request);
+        return new FormData($user, $l);
+    }
+
+    private function getProdutor($request, $user, $marca) {
+        $produtor = new Produtor();
+        $produtor->public_email = $user->email;
+        $produtor->idprodutor = $user->id;
+        $produtor->marca_idmarca = $marca->idmarca;
+        $user->nome = $produtor->nome;
+        return new FormData($produtor, $produtor->load($request));
     }
 }
+

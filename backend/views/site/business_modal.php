@@ -55,7 +55,10 @@
 												</div>
 												<div class="col-md-8 descbussinessbox">
 													<span><?php echo $d->name; ?></span>
-													<span><?php echo $d->getCountry()->one()->name; ?></span>
+                                                    <span><?php 
+                                                            $c=$d->getCountry();
+                                                            if ($c) { echo $c->name; } 
+                                                    ?></span>
 												</div>
 											</div>
 										</div>

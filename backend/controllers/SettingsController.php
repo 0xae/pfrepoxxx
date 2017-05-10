@@ -15,6 +15,7 @@ use backend\models\Evento;
 use backend\models\Tipoevento;
 use backend\models\Location;
 use yii\data\Pagination;
+
 /**
  * Site controller
  */
@@ -55,8 +56,7 @@ class SettingsController extends Controller {
         ]);
     }
     
-    public function actionLocation()
-    {
+    public function actionLocation() {
         $modelEvento = new Evento(['scenario' => Evento::SCENARIO_CREATE]);
         $Location = new Location();
 

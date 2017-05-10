@@ -21,7 +21,7 @@ $range = $model->getRange();
 			</div>
 		</div>
 	</div>
-	<?php /*?>TABELA<?php */?>
+
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -97,7 +97,7 @@ $range = $model->getRange();
 			</div>
 		</div>
 	</div>
-	<?php /*?>TITULO, BT<?php */?>
+
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -105,9 +105,10 @@ $range = $model->getRange();
 			</div>
 		</div>
 	</div>
-	<?php /*?>TABELA<?php */?>
+
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
+            <!--
 			<div class="panel-body">
 				<table class="table table-striped">
 					<thead>
@@ -144,6 +145,7 @@ $range = $model->getRange();
 					</tbody>
 				</table>
 			</div>
+            -->
 		</div>
 	</div>
-</DIV>
+</div>

@@ -3,7 +3,6 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Business;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -13,10 +12,11 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
-use backend\models\Country;
-use backend\models\User;
 use backend\models\AddProducerForm;
+use backend\models\Business;
+use backend\models\Country;
 use backend\models\Marca;
+use backend\models\User;
 use backend\models\UploadForm;
 
 /**
@@ -64,8 +64,7 @@ class BusinessController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $model = $this->findModel($id);
-        $this->verifyAccess($model);
+        $model = Business::findModel($id);
         return $this->render('view', [
             'model' => $model 
         ]);
@@ -78,65 +77,46 @@ class BusinessController extends Controller {
      */
     public function actionCreate() {
         $model = new Business();
-        $model->file = UploadedFile::getInstance($model, 'file');
-        if ($model->file){
-            $model->picture = UploadForm::upload($model->file, 'business');
-        }
+        $this->uploadFileIfExists($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->updateResponsable($model->responsable);
-            /* Update the respective country */
-            $c = Country::find()
-                ->where(['id' => $model->country_id])
-                ->one();
-                $c->business_id = $model->id;
-                $c->save();
-            Yii::$app->getSession()->setFlash('success', 'Business criado com sucesso.');
             return $this->redirect(['index']);
-        } else {
-            $data = Country::find()->where(['business_id' => null])
-                                   ->asArray()->all();
-            $countries = ArrayHelper::map($data, 'id', 'name');
-            $_dataUsers = Business::getResponsableSugestions();
-            
-            return $this->render('create', [
-                'model' => $model,
-                'producerForm' => [],
-                '_dataUsers' => $_dataUsers,
-                '_dataCountries' => $countries,
-                '_dataProducers' => []
-            ]);
-        }
+        } 
+
+        $data = Country::find()->where(['business_id' => null])->asArray()->all();
+        $countries = ArrayHelper::map($data, 'id', 'name');
+        $_dataUsers = Business::getResponsableSugestions();
+
+        return $this->render('create', [
+            'model' => $model,
+            'producerForm' => [],
+            '_dataUsers' => $_dataUsers,
+            '_dataCountries' => $countries,
+            '_dataProducers' => []
+        ]);
     }
 
     /**
      * Updates an existing Business model.
-     * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id) {
-        $model = $this->findModel($id);
-        $this->verifyAccess($model);
+        $model = Business::findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->file = UploadedFile::getInstance($model, 'file');
-            if ($model->file){
-                $model->picture = UploadForm::upload($model->file, 'business');
-                $model->save();
-            }
-
-            Yii::$app->getSession()->setFlash('success', 'Business actualizado com sucesso.');
-            return $this->redirect(['index']);
+            $this->uploadFileIfExists($model);
+            $model->save();
+            return $this->redirect(['business/index']);
         } 
 
-        $data = Country::find()->where(['id'=>$model->country_id])->asArray()->all();
+        $data = [$model->getCountry()];
         $countries = ArrayHelper::map($data, 'id', 'name');
-        $_dataUsers = ArrayHelper::map(User::find()->where(['id'=>$model->responsable])->asArray()->all(), 'id', 'username');
+        $_dataUsers = ArrayHelper::map([User::findModel($model->responsable)], 'id', 'nome');
 
         return $this->render('update', [
             'model' => $model,
-            'producers' => Marca::find()->where(['business_id' => $id])->all(),
+            'producers' => $model->getProducers(),
             '_dataUsers' => $_dataUsers,
             '_dataCountries' => $countries,
         ]);
@@ -144,7 +124,7 @@ class BusinessController extends Controller {
 
     public function actionSelect($id) {
         $session = Yii::$app->session;
-        $model = $this->findModel($id);
+        $model = Business::findModel($id);
         $session->set('business', $id);
         $session->set('business_name', $model->name);
     }
@@ -156,40 +136,15 @@ class BusinessController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        Business::findModel($id)->delete();
         return $this->redirect(['index']);
     }
 
-    private function verifyAccess($model) {
-        if (!Yii::$app->user->can('admin')) {
-            if ($model->responsable != Yii::$app->user->identity->id) {
-                throw new ForbiddenHttpException('Acesso negado ao objecto.');
-            }
-        }
-    }
-
-    private function updateResponsable($id) {
-        $auth = Yii::$app->authManager;
-        if (!$auth->checkAccess($id, 'business')) {
-            $user = User::findModel($id);
-            $user->addPermission('business');
-            # $user->tipo_user = 10;
-            $user->save();
-        }
-    }
-
-    /**
-     * Finds the Business model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Business the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id) {
-        if (($model = Business::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+    private function uploadFileIfExists($model) {
+        $model->file = UploadedFile::getInstance($model, 'file');
+        if ($model->file){
+            $model->picture = UploadForm::upload($model->file, 'business');
         }
     }
 }
+

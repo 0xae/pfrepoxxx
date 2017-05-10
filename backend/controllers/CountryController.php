@@ -3,12 +3,13 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Country;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+
+use backend\models\Country;
 
 /**
  * CountryController implements the CRUD actions for Country model.
@@ -89,21 +90,6 @@ class CountryController extends Controller {
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }
-    }
-
-    /**
-     * Finds the Country model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Country the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id) {
-        if (($model = Country::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 }

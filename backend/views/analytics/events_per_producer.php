@@ -36,7 +36,7 @@
         <?php foreach ($eventsPerProducer as $p): $reactions = ((int) $p['evento_likes']) + ((int) $p['evento_comments']); ?>
             <tr>
                 <td style="padding-left: 70px;width: 450px;">
-                    <img src="<?= $p['marca_picture']; ?>" style="width:44px; height:44px" />
+                    <img src="../passafree_uploads/<?= $p['marca_picture']; ?>" style="width:44px; height:44px" />
                     <h4 style="display:inline">
                         <a href="#" style="font-weight: bolder; margin-left: 10px">
                             <?= $p['marca_nome']; ?>

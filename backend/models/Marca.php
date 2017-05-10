@@ -50,15 +50,15 @@ class Marca extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'idmarca' => 'Idmarca',
-            'nome' => 'Nome da Marca',
+            'nome' => 'Nome ',
             'logo' => 'Logo',
-            'file' => 'Logo da Marca',
+            'file' => 'Logo ',
             'estado' => 'Estado',
 
-            'telefone' => 'Telefone da Marca',
-            'sede' => 'Sede da Marca',
-            'slogan' => 'Slogan da Marca',
-            'email' => 'Email da Marca',
+            'telefone' => 'Telefone ',
+            'sede' => 'Sede ',
+            'slogan' => 'Slogan ',
+            'email' => 'Email ',
         ];
     }
 
@@ -74,6 +74,7 @@ class Marca extends \yii\db\ActiveRecord {
     /**
      * TODO: work on this
      * XXX: maybe enhance it a little more
+     * XXX: make sure the subquery never returns more than one result after removing 'limit 1'
     */
     public function getNextEvents() {
         $query = Evento::find()
@@ -84,8 +85,12 @@ class Marca extends \yii\db\ActiveRecord {
         return $query->all();
     }
 
-    public function getMarcas() {
-        $models = ArrayHelper::map(Marca::find()->where(['estado' => 1])->all(),'idmarca','nome');
-        return $models;
+    public function findModel($id) {
+        if (($model = Marca::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }
+

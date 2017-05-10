@@ -57,8 +57,8 @@ $this->title = 'Utilizador';
                                                             'multiple' => true
                                                         ]
                                                     ]);
-                                                    echo '<br/>';
                                                 ?>
+                                                <br />
                                             </div>
 
                                             <div class="col-md-6">

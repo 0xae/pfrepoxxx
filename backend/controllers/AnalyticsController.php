@@ -37,11 +37,7 @@ class AnalyticsController extends \yii\web\Controller {
         }
 
         $filters = [
-            [
-                'op' => '=',
-                'field' => 'business_id',
-                'val'  => $biz 
-            ]
+            ['op' => '=', 'field' => 'business_id', 'val'  => $biz]
         ];
 
         $d1 = $service->getProducerAnalytics($filters, ['order_by' => 'total_eventos desc']);

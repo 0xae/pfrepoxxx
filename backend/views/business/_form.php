@@ -31,13 +31,6 @@ if ($model->id) {
                         <div class="borderlefttitlo"></div><span>New Business</span>
                     <?php endif; ?>
 				</h4>
-                <div class="biz-footer">
-                     <?php echo Html::submitButton(
-                        $model->isNewRecord ? 'Guardar' : 'Actualizar', 
-                             ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
-                          );
-                     ?>
-                 </div>
 			</div>
 		</div>
 	</div>
@@ -84,10 +77,8 @@ if ($model->id) {
 
                                             <?php 
                                                 echo $form->field($model, 'file')
-                                                          ->widget(
-                                                                    FileInput::classname(), 
-                                                                    ['options' => ['accept'=>'image/*']]
-                                                                );  
+                                                      ->widget(FileInput::classname(), 
+                                                               ['options' => ['accept'=>'image/*']]);  
                                             ?>
                                         </div>
 
@@ -114,6 +105,13 @@ if ($model->id) {
                                         </div>
                                     </div>
 
+                                    <div class="biz-footer">
+                                         <?php echo Html::submitButton(
+                                            $model->isNewRecord ? 'Guardar' : 'Save', 
+                                                 ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
+                                              );
+                                         ?>
+                                     </div>
                                     
                                     <?php ActiveForm::end(); ?>
 								</div>

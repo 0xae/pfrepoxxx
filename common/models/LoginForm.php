@@ -3,12 +3,12 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use backend\models\User;
 
 /**
  * Login form
  */
-class LoginForm extends Model
-{
+class LoginForm extends Model {
     public $username;
     public $password;
     public $rememberMe = false;
@@ -62,8 +62,7 @@ class LoginForm extends Model
      *
      * @return boolean whether the user is logged in successfully
      */
-    public function login()
-    {
+    public function login() {
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 20 * 20 * 20 : 0);
         } else {
@@ -76,8 +75,7 @@ class LoginForm extends Model
      *
      * @return User|null
      */
-    protected function getUser()
-    {
+    protected function getUser() {
         if ($this->_user === null) {
             $this->_user = User::findByUsername($this->username);
         }
