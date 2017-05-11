@@ -52,7 +52,6 @@ $this->title = 'Form';
                                     <?php $form = ActiveForm::begin(['id' => 'business_form', 'options'=>['enctype'=>'multipart/form-data']]); ?>
                                         <div class="row">
                                             <div class="col-md-6">
-                                            
                                                 <?php
                                                     if (!$model->idmarca) {
                                                         echo $form->field($model, 'business_id')->widget(Select2::className(), [
@@ -64,7 +63,9 @@ $this->title = 'Form';
                                                 <?php echo $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
                                                 <?php echo $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
                                                 <?php echo $form->field($model, 'slogan')->textInput(['maxlength' => true]) ?>
+                                            </div>
 
+                                            <div class="col-md-6">
                                                 <?php //upload image
                                                     echo $form->field($model, 'file')->fileInput(['onchange'=>'readURL(this)','id'=>"file",'accept' => 'image/*'])->label(false) ?>
                                                     <div class="upload text-center">
@@ -77,9 +78,6 @@ $this->title = 'Form';
                                                         </div>
                                                         <i class="fa fa-trash" id="trashd"></i>
                                                     </div>
-                                            </div>
-
-                                            <div class="col-md-6">
                                             </div>
                                         </div>
 

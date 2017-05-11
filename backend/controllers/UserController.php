@@ -113,7 +113,11 @@ class UserController extends Controller {
     private function getRequestPermissions() {
         $data = Yii::$app->request->post();
         if (array_key_exists('permissions', $data)) {
-            return $data['permissions'];
+            $d=$data['permissions'];
+            if (!is_array($d)) {
+                $d = [$d];
+            }
+            return $d;
         }
         return [];
     }
