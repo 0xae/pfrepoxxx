@@ -20,7 +20,7 @@ $k=0;
 
     <div class="tab-content">
         <?php foreach ($_dataBilhetes as $b): ?>
-            <div role="tabpanel" class="tab-pane fade <? if ($b->idbilhete==$k) echo 'active'; ?> in" id="bil_<?= $b->idbilhete ?>">
+            <div role="tabpanel" class="tab-pane fade <?php if ($b->idbilhete==$k) echo 'active'; ?> in" id="bil_<?= $b->idbilhete ?>">
                 <div class="row">
                     <div class="col-md-6">
                         <h2 style="color: #313541; font-weight: 700;">Descrição</h2>

@@ -26,7 +26,7 @@ $this->registerJs("
 
             <div class="tab-content" style="padding: 10px">
                 <?php foreach ($_dataBilhetes as $b): ?>
-                    <div role="tabpanel" class="tab-pane fade <? if ($b->idbilhete==$k) echo 'active'; ?> in" id="graph_<?= $b->idbilhete ?>">
+                    <div role="tabpanel" class="tab-pane fade <?php if ($b->idbilhete==$k) echo 'active'; ?> in" id="graph_<?= $b->idbilhete ?>">
                         <div class="row">
                             <div class="col-md-5">
                                 <?php
@@ -46,17 +46,10 @@ $this->registerJs("
                                         'name' => 'start_date',
                                         'name2' => 'end_date',
                                         'separator' => '<i class="glyphicon glyphicon-resize-horizontal"></i>',
-                                        'options' => [
-                                            'class' => 'show'
-                                        ],
-                                        'options2' => [
-                                            'id' => "HC_{$b->idbilhete}_end_date"
-                                        ],
+                                        'options' => [ 'class' => 'show' ],
+                                        'options2' => [ 'id' => "HC_{$b->idbilhete}_end_date" ],
+                                        'pluginOptions' => [ 'autoclose' => true, 'format' => 'yyyy-mm-dd' ]
                                         'layout' => $layout3,
-                                        'pluginOptions' => [
-                                            'autoclose' => true,
-                                            'format' => 'yyyy-mm-dd'
-                                        ]
                                     ]);
                                     */
                                 ?>
