@@ -47,7 +47,7 @@ class Business extends \yii\db\ActiveRecord {
         $t = parent::save($runValidation, $attributeNames);
         if ($t && $isNew) {
             $c = Country::find()->where(['id' => $this->country_id])->one();
-            $c->business_id = $model->id;
+            $c->business_id = $this->id;
             $c->save();
         }
         return $t;
