@@ -28,7 +28,7 @@
 							<th># ID</th>
 							<th>Username</th>
 							<th>Email</th>
-							<th>Permissions</th>
+							<th>Tipo</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -38,11 +38,23 @@
                                 <td><?= $u->id ?></td>
                                 <td><?= $u->username ?></td>
                                 <td><?= $u->email ?></td>
-                                <td><?= $u->email ?></td>
                                 <td>
-                                    <a href="./index.php?r=user/update&id=<?= $u->id ?>">
-                                        <span class="label label-primary">EDIT</span>
-                                    </a>
+                                    <?php 
+                                        if ($u->tipo_user == '3') { 
+                                            echo '<span class="label label-primary">Producer</span>';
+                                        } else if ($u->tipo_user == '10') {
+                                            echo '<span class="label label-warning">Business</span>';
+                                        } else {
+                                            echo '<span class="label label-default">system</span>';
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <center>
+                                        <a style="color: #999" href="./index.php?r=user/update&id=<?= $u->id ?>">
+                                            <span class="glyphicon glyphicon-pencil text-default"></span>
+                                        </a>
+                                    </center>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

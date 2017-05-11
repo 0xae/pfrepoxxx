@@ -43,11 +43,23 @@ $this->title = 'Utilizador';
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
-                                                <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
                                                 <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+                                                <?php
+                                                    echo '<label class="control-label">Country</label>';
+                                                    echo Select2::widget([
+                                                        'model' => $model,
+                                                        'attribute' => 'country_id',
+                                                        'data' => $_dataCountry,
+                                                    ]);
+                                                ?>
+                                                <br />
+                                            </div>
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-6">
+                                                <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
                                                 <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
                                                 <?php
-                                                    echo '<label class="control-label">Permissoes</label>';
+                                                    echo '<label class="control-label">Permissions</label>';
                                                     echo Select2::widget([
                                                         'name' => 'permissions',
                                                         'value' => $userPermissions,
@@ -59,9 +71,6 @@ $this->title = 'Utilizador';
                                                     ]);
                                                 ?>
                                                 <br />
-                                            </div>
-
-                                            <div class="col-md-6">
                                             </div>
                                         </div>
 

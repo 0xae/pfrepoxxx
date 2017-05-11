@@ -9,5 +9,6 @@ use yii\helpers\Html;
 <?= $this->render('_form1', [
     'model' => $model,
     'userPermissions' => $userPermissions,
-    '_dataPermissions' => $_dataPermissions
+    '_dataPermissions' => $_dataPermissions,
+    '_dataCountry' => $_dataCountry,
 ]) ?>

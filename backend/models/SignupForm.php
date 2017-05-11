@@ -12,6 +12,7 @@ use backend\models\Profile;
 class SignupForm extends Model {
     public $id = null;
     public $tipo_user = 0;
+    public $country_id = null;
     public $nome;
     public $marca_id;
     public $username;
@@ -30,15 +31,15 @@ class SignupForm extends Model {
             ['username', 'unique', 'targetClass' => '\backend\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            ['nome', 'required'],
+            [['nome', 'country_id'], 'required'],
             /*
             ['apelido', 'required'],
             [['nome', 'apelido'], 'string', 'max' => 100],
             [['nome', 'apelido'], 'safe'],
             */
             
-            ['tipo_user', 'integer'],
-            [['nome', 'marca_id'], 'safe'],
+            [['tipo_user', 'country_id'], 'integer'],
+            [['nome', 'country_id', 'marca_id'], 'safe'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -66,6 +67,7 @@ class SignupForm extends Model {
         $user->setPassword($this->password);
         $user->auth_key = Yii::$app->security->generateRandomString();
         $user->tipo_user = $this->tipo_user;
+        $user->country_id = $this->country_id;
 
         if ($user->save($validate)) {
             $user->saveProfile();

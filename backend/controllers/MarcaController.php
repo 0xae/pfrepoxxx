@@ -107,7 +107,7 @@ class MarcaController extends Controller {
     public function actionCreate() {
         $req = Yii::$app->request->post();
         $marca = $this->getMarca($req);
-        $user = $this->getUser($req);
+        $user = $this->getUser($req, $marca->data);
         $produtor = $this->getProdutor($req, $user->data, $marca->data);
 
         if (Yii::$app->request->isAjax) {
@@ -226,9 +226,13 @@ class MarcaController extends Controller {
         return new FormData($marca, $marca->load($request));
     }
 
-    private function getUser($request) {
+    private function getUser($request, $marca) {
         $user = new SignupForm();
         $user->tipo_user=3;
+        $user->country_id=Business::find()
+                        ->where(['id'=>$marca->business_id])
+                        ->one()
+                        ->country_id;
         $l = $user->load($request);
         return new FormData($user, $l);
     }

@@ -67,11 +67,13 @@ class UserController extends Controller {
 
         $model->permissions = [];
         $permissionData = ArrayHelper::map(Role::find()->all(),'name','name');
+        $countryData = ArrayHelper::map(Country::find()->all(), 'id', 'name');
 
         return $this->render('create', [
             'model' => $model,
             'userPermissions' => [],
-            '_dataPermissions' => $permissionData
+            '_dataPermissions' => $permissionData,
+            '_dataCountry' => $countryData
         ]);
     }
 
@@ -88,14 +90,14 @@ class UserController extends Controller {
             $model->updatePermissions($this->getRequestPermissions());
             $model->saveProfile();
             if ($model->password) {
-                $model->updatePassword($model->password);
+                $model->setPassword($model->password);
             }
 
             if ($model->save())
                 return $this->redirect(['settings/index']);
         } 
 
-        $data = Country::find()->asArray()->all();
+        $countryData = ArrayHelper::map(Country::find()->all(), 'id', 'name');
         $permissionData = ArrayHelper::map(Role::find()->all(),'name','name');
         $userPermissions = ArrayHelper::map($auth->getRolesByUser($model->id), 'name', 'name');
         $model->permissions = $userPermissions;
@@ -103,7 +105,8 @@ class UserController extends Controller {
         return $this->render('update', [
             'model' => $model,
             'userPermissions' => $userPermissions,
-            '_dataPermissions' => $permissionData
+            '_dataPermissions' => $permissionData,
+            '_dataCountry' => $countryData
         ]);
     }
 

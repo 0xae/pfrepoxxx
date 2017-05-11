@@ -37,7 +37,7 @@ class User extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['username', 'auth_key', 'password_hash', 'email'], 'required'],
-            [['status', 'tipo_user', 'created_at', 'updated_at'], 'integer'],
+            [['status', 'country_id', 'tipo_user', 'created_at', 'updated_at'], 'integer'],
             [['nome', 'username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
