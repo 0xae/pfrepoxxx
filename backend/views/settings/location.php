@@ -81,7 +81,7 @@ $this->title = 'Localização';
 
 <?php
 
- $urlUpdate=Yii::$app->getUrlManager()->createUrl('evento/updatelocation');
+ $urlUpdate=Yii::$app->getUrlManager()->createUrl('settings/updatelocation');
 
 $scrip= <<< JS
 
