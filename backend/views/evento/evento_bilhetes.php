@@ -10,10 +10,10 @@ $k=0;
 <div role="tabpanel">
     <ul class="nav nav-tabs bilhte" role="tablist">
         <?php foreach ($bilhetesLabel as $id=>$label): ?>
-        <li role="presentation" <? if (!$k){ $k=$id; echo 'class="active"'; }?>>
-                <a href="#bil_<?= $id ?>" 
-                   aria-controls="home" role="tab" 
-                   data-toggle="tab" aria-expanded="false"><?= $label ?></a>
+            <li role="presentation" <?php if (!$k){ $k=$id; echo 'class="active"'; } ?>>
+                    <a href="#bil_<?= $id ?>" 
+                       aria-controls="home" role="tab" 
+                       data-toggle="tab" aria-expanded="false"><?= $label ?></a>
             </li>
         <?php endforeach; ?>
     </ul>
