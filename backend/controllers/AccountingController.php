@@ -55,7 +55,7 @@ class AccountingController extends Controller {
         if (($model = Business::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException("The business with id {$id} does not exist.");
         }
     }
 }

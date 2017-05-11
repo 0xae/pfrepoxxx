@@ -25,7 +25,8 @@ function updateDashboardGraphs(config, data) {
 
     var keys = data.event_data.map(function (d) { return d.event_name; });
     var values = data.event_data.map(function (d) {
-        return parseInt(d.liquid_revenue);
+        // return parseInt(d.liquid_revenue);
+        return parseInt(d[config.context_graph_col]);
     });
     LoadBarchart('#revenue_per_event', '', keys, values);
 
