@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 
 $this->title = $model->nome;
 ?>
-<div class="container-fluid pagebusiness pageusers">
+<div class="container-fluid pagebusiness pageusers" ng-controller="EventController">
 	<div role="tabpanel" style="padding:0; display: table;margin-top: 5px; width: 100%">
 		<div class="tab-content" style="padding: 0">
 			<div role="tabpanel" class="tab-pane active" id="eventotab">

@@ -1,10 +1,4 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
-
 namespace backend\assets;
 
 use yii\web\AssetBundle;
@@ -42,11 +36,15 @@ class DashboardAsset extends AssetBundle {
         'static/plugins/jquery.slimscroll.min.js',
         'static/js/jquery.steps.min.js',
         'static/js/passafree/app.js',
+        /* Event Module */
+        'static/js/passafree/events/event.module.js',
+        'static/js/passafree/events/event.service.js',
+        'static/js/passafree/events/event.controller.js',
         'static/js/passafree/analytics.js',
         'static/js/passafree/service.js',
         'static/js/passafree/dashboard.js',
         'static/js/passafree/produtor.js',
-        // XXX: remove this
+        // TODO: remove this
         'static/js/dumps/timeseries.js'
     ];
 

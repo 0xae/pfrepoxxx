@@ -24,3 +24,10 @@ function selectBiz(bizId) {
     return $.get("./index.php?r=business/select&id="+bizId);
 }
 
+(function () {
+    angular.module('passafree', [
+        'eventModule'
+    ]);
+    console.info('== angular inited ==');
+})();
+
