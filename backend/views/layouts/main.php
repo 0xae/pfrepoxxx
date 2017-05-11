@@ -86,7 +86,7 @@ $this->registerJS($script);
     </header>
 
     <!-- fim de header -->
-    <aside class="main-sidebar" style="position: fixed; box-shadow:1px 5px 2px rgba(0, 0, 0, 0.1); overflow-y: scroll; height:100%; scrollbar-base-color: #C0C0C0;scrollbar-base-color: #C0C0C0;scrollbar-3dlight-color: #C0C0C0;scrollbar-highlight-color: #C0C0C0;scrollbar-track-color: #EBEBEB;scrollbar-arrow-color: blackscrollbar-shadow-color: #C0C0C0;scrollbar-dark-shadow-color: #C0C0C0;">
+    <aside class="main-sidebar" ng-controller="UserController" style="position: fixed; box-shadow:1px 5px 2px rgba(0, 0, 0, 0.1); overflow-y: scroll; height:100%; scrollbar-base-color: #C0C0C0;scrollbar-base-color: #C0C0C0;scrollbar-3dlight-color: #C0C0C0;scrollbar-highlight-color: #C0C0C0;scrollbar-track-color: #EBEBEB;scrollbar-arrow-color: blackscrollbar-shadow-color: #C0C0C0;scrollbar-dark-shadow-color: #C0C0C0;">
       <section class="sidebar">
         <li class="perfil">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -105,7 +105,15 @@ $this->registerJS($script);
         </li>
         <ul class="list-unstyled notification">
           <li><a href="#"><i class="glyphicon glyphicon-globe"></i></a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-comment"></i></a></li>
+          <?php $user=\Yii::$app->user; if ($user->can('business')): ?>
+                <li>
+                    <span class="badge" ng-if="newMessages" style="position: absolute;margin: -8px 0 0 -12px;z-index:10;background: #f00;">
+                        {{ newMessages }}
+                    </span>
+                    <a href="./index.php?r=chat/unread" ng-if="newMessages"> <i class="glyphicon glyphicon-comment"></i> </a>
+                    <a href="./index.php?r=chat" ng-if="!newMessages"> <i class="glyphicon glyphicon-comment"></i> </a>
+                </li>
+          <?php endif; ?>
           <li class="dropdown sair">
             <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="glyphicon glyphicon-cog"></i><span class="caret"></span>
@@ -159,11 +167,13 @@ $this->registerJS($script);
                     </li>
             <?php endif; ?>
             
+            <?php if (Yii::$app->user->can('admin')): ?>
             <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
                 <a href="index.php?r=settings/location">
                 <span>Location</span> <!--i class="fa fa-angle-left pull-right"></i-->
                 </a>
             </li>
+            <?php endif; ?>
           </ul>
         </section>
         <!-- /.sidebar -->

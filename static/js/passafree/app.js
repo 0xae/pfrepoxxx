@@ -27,8 +27,8 @@ function selectBiz(bizId) {
 (function () {
     angular.module('passafree', [
         'eventModule',
-        'analyticsModule'
+        'analyticsModule',
+        'userModule'
     ]);
-    console.info('inited');
 })();
 

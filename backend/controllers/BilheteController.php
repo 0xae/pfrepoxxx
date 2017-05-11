@@ -1,17 +1,16 @@
 <?php
-
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Bilhete;
-use backend\models\BilheteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\models\Evento;
 
+use backend\models\Evento;
+use backend\models\Bilhete;
+use backend\models\BilheteSearch;
 
 /**
  * BilheteController implements the CRUD actions for Bilhete model.
