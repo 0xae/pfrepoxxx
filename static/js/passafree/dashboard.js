@@ -62,7 +62,9 @@ function reloadDashboard() {
 
 $(document).ready(function () {
     reloadDashboard();
+    /*
     setInterval(reloadDashboard, 3000);
+    */
 });
 
 function formatMoney(num) {

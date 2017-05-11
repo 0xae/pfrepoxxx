@@ -22,7 +22,7 @@ $user = Yii::$app->user;
 		</div>
 	</div>
 
-	<div class="col-md-12 contentbox">
+	<div class="col-md-12 contentbo " ng-controller="UserAnalyticsController">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="accountingbox">
@@ -88,8 +88,7 @@ $user = Yii::$app->user;
 		</div>
 	</div>
 
-	<?php /*?>TABELA<?php */?>
-	<div class="col-md-12 contentbox">
+	<div class="col-md-12 contentbox" ng-controller="ProducerAnalyticsController">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="accountingbox">
@@ -107,19 +106,18 @@ $user = Yii::$app->user;
                                Most profitable
                             </a></li>
 						</ul>
+
 						<div class="tab-content" style="padding:0px">
 							<div role="tabpanel" style="padding:0px" class="tab-pane active" id="maisfestas">
                                 <?php echo $this->render('events_per_producer', [
                                             'eventsPerProducer' => $eventsPerProducer
                                         ]); ?>
 							</div>
-
 							<div role="tabpanel" class="fade tab-pane" id="maisvendidos">
                                 <?php echo $this->render('tickets_per_producer', [
                                             'ticketsPerProducer' => $ticketsPerProducer
                                         ]); ?>
 							</div>
-
 							<div role="tabpanel" class="fade tab-pane" id="maisrendimento">Mais Rendimento
 							</div>
 						</div>
@@ -128,53 +126,3 @@ $user = Yii::$app->user;
 			</div>
 		</div>
 	</div>
-<!--
-	<div class="row">
-		<div class="col-md-12 titulosection">
-			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Digital Revenue Breakdown</span></h4>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-12 contentbox">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<table class="table table-striped">
-					<thead>
-						<tr class="active">
-							<th>Subscriber</th>
-							<th>Country</th>
-							<th>Age</th>
-							<th>Period</th>
-							<th>Expira</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td>Larry</td>
-							<td>the Bird</td> 
-							<td>@twitter</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-</div>

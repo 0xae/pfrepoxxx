@@ -36,11 +36,17 @@ class DashboardAsset extends AssetBundle {
         'static/plugins/jquery.slimscroll.min.js',
         'static/js/jquery.steps.min.js',
         'static/js/passafree/app.js',
+
         /* Event Module */
         'static/js/passafree/events/event.module.js',
         'static/js/passafree/events/event.service.js',
         'static/js/passafree/events/event.controller.js',
-        'static/js/passafree/analytics.js',
+
+        /* Analytics Module */
+        'static/js/passafree/analytics/mod.module.js',
+        'static/js/passafree/analytics/mod.service.js',
+        'static/js/passafree/analytics/mod.controller.js',
+
         'static/js/passafree/service.js',
         'static/js/passafree/dashboard.js',
         'static/js/passafree/produtor.js',

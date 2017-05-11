@@ -138,7 +138,6 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 
-
     public function actionTicket() {
         $filters = [];
         $service = new AnalyticsService();
