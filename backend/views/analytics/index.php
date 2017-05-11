@@ -71,7 +71,9 @@ $user = Yii::$app->user;
 							</div>
 
 							<div role="tabpanel" class="fade tab-pane" id="interation">
-                                <div id="interaction_growth"></div>
+                                <div class="col-md-12">
+                                <div style="width:80%" id="interaction_growth"></div>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -108,17 +110,27 @@ $user = Yii::$app->user;
 						</ul>
 
 						<div class="tab-content" style="padding:0px">
-							<div role="tabpanel" style="padding:0px" class="tab-pane active" id="maisfestas">
-                                <?php echo $this->render('events_per_producer', [
+							<div role="tabpanel" style="padding:10px" class="tab-pane active" id="maisfestas">
+                                <div class="col-md-12">
+                                    <div id="most_popular"></div>
+                                </div>
+                                <?php /*
+                                        echo $this->render('events_per_producer', [
                                             'eventsPerProducer' => $eventsPerProducer
-                                        ]); ?>
+                                        ]); */
+                                ?>
 							</div>
-							<div role="tabpanel" class="fade tab-pane" id="maisvendidos">
-                                <?php echo $this->render('tickets_per_producer', [
+							<div role="tabpanel" class="fade tab-pane" id="maisvendidos" style="padding: 10px">
+                                <div class="col-md-12">
+                                    <div id="top_sellers" style="width: 90%"></div>
+                                </div>
+                                <?php /* echo $this->render('tickets_per_producer', [
                                             'ticketsPerProducer' => $ticketsPerProducer
-                                        ]); ?>
+                                        ]);*/ 
+                                 ?>
 							</div>
-							<div role="tabpanel" class="fade tab-pane" id="maisrendimento">Mais Rendimento
+                            <div role="tabpanel" class="fade tab-pane" id="maisrendimento">
+                                <div id="most_profitable" style="width: 90%"></div>
 							</div>
 						</div>
 					</div>

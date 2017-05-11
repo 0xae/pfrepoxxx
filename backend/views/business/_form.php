@@ -44,7 +44,7 @@ if ($model->id) {
 						  <!-- Nav tabs -->
 						  <ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Informa&ccedil;&otilde;es Gerais</a></li>
-							<li role="presentation"><a href="#access" aria-controls="profile" role="tab" data-toggle="tab">Produtores</a></li>
+							<li role="presentation"><a href="#access" aria-controls="profile" role="tab" data-toggle="tab">Producers</a></li>
 						  </ul>
 						  <!-- Tab panes -->
 						  <div class="tab-content">
@@ -137,7 +137,7 @@ if ($model->id) {
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php else: ?>
-                                        	<div class="col-md-12"><div class="alert alert-info" style="margin:20px 0 0 0">Sem produtores</div></div>
+                                        	<div class="col-md-12"><div class="alert alert-info" style="margin:20px 0 0 0">No producers.</div></div>
                                         <?php endif; ?>
                                     </div>
 								</div>

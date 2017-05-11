@@ -29,25 +29,40 @@ class AnalyticsController extends \yii\web\Controller {
      */
 
     public function actionIndex() {
+        return $this->render('index', []);
+    }
+
+    public function actionProducerAnalytics() {
         $service = new AnalyticsService();
         $session = \Yii::$app->session;
         $biz = $session->get('business');
-        if (!$biz) {
-            $biz = -1;
-        }
-
-        $filters = [
-            ['op' => '=', 'field' => 'business_id', 'val'  => $biz]
+        $user = \Yii::$app->user;
+        $filters = RestApp::parseQueryFilters($_GET);
+        $filters[] = [
+            'op' => '=',
+            'field' => 'business_id',
+            'val'  => $biz
         ];
 
         $d1 = $service->getProducerAnalytics($filters, ['order_by' => 'total_eventos desc']);
         $d2 = $service->getProducerReport($filters, ['order_by' => 'tickets_sold desc']);
-        $data = [
-            'eventsPerProducer' => $d1,
-            'ticketsPerProducer' => $d2
-        ];
 
-        return $this->render('index', $data);
+        # lets do it man
+        foreach ($d2 as &$dk) {
+            $field = 'business_revenue';
+            if ($user->can('admin') || $user->can('passafree_admin')) {
+                $field = 'passafree_revenue';
+            } 
+            $dk['relative_revenue'] = $dk[$field];
+            $dk['relative_revenue_of'] = $field;
+        }
+
+        echo json_encode([
+            'data' => [
+                'eventsPerProducer' => $d1,
+                'ticketsPerProducer' => $d2
+            ]
+        ]);
     }
 
     public function actionDashboard() {
@@ -102,15 +117,6 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 
-    public function actionProducerAnalytics() {
-        $filters = RestApp::parseQueryFilters($_GET);
-        $service = new AnalyticsService();
-
-        echo json_encode([
-            'data' => $service->getProducerAnalytics($filters)
-        ]);
-    }
-
     public function actionEvent() {
         $filters = RestApp::parseQueryFilters($_GET);
         $service = new AnalyticsService();
@@ -120,18 +126,30 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 
-    public function actionUser() {
+    public function actionUserGrowth() {
         $filters = RestApp::parseQueryFilters($_GET);
         $service = new AnalyticsService();
+        $session = \Yii::$app->session;
+        $bizId = $session->get('business');
+        if ($bizId) {
+            $countryId = Business::find()->where(['id' => $bizId])->one()->country_id;
+            $filters[] = [
+                'op'=>'=', 'field'=>'country_id', 'val'=>$countryId
+            ];
+        }
 
         echo json_encode([
             'data' => $service->getUserGrowth($filters)
         ]);
     }
 
-    public function actionReactions() {
+    public function actionInteractionGrowth() {
         $filters = RestApp::parseQueryFilters($_GET);
         $service = new AnalyticsService();
+        $session = \Yii::$app->session;
+        $filters[] = [
+            'op'=>'=', 'field'=>'business_id', 'val'=>$session->get('business')
+        ];
 
         echo json_encode([
             'data' => $service->getReactionGrowth($filters)

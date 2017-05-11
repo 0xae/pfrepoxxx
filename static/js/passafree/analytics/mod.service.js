@@ -48,17 +48,26 @@
             return [objs];
         }
 
+        function sequentialTs(ary) {
+           var d=[];
+           if (ary.length) {
+               var start = ary[0];
+           }
+           return d;
+        }
+
         return {
             getUserGrowth : function (filters) {
                 var defer = $q.defer();
 
-                _get('/user', filters)
+                _get('/user-growth', filters)
                 .then(function (resp) {
                     var data = resp.data.data;
                     var userData = parseTimeseries(data,
                                         'date',
                                         'total_registrations'
                                     );
+                    userData[0] = _.sortBy(userData[0], function (k) { return k[0]; });
                     defer.resolve(userData);
                 }, function (error) {
                     defer.reject(error);
@@ -70,7 +79,7 @@
             getInteraction: function (filters) {
                 var defer = $q.defer();
 
-                _get('/reactions', filters)
+                _get('/interaction-growth', filters)
                 .then(function (resp) {
                     var data = resp.data.data;
                     var likes = parseTimeseries(data, 'date', 'total_likes');
@@ -84,6 +93,18 @@
                     defer.reject(error);
                 });
 
+                return defer.promise;
+            },
+
+            getProducerAnalytics: function (filters) {
+                var defer = $q.defer();
+                _get('/producer-analytics', filters)
+                .then(function (resp) {
+                    var data = resp.data;
+                    defer.resolve(data);
+                }, function (error) {
+                    defer.reject(error);
+                });
                 return defer.promise;
             }
         }

@@ -29,6 +29,6 @@ function selectBiz(bizId) {
         'eventModule',
         'analyticsModule'
     ]);
-    console.info('== angular inited ==');
+    console.info('inited');
 })();
 
