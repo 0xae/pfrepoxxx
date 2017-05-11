@@ -43,13 +43,9 @@ class Business extends \yii\db\ActiveRecord {
     }
 
     public function save($runValidation=true, $attributeNames=NULL) {
-        $isNew = !$this->id;
-        $t = parent::save($runValidation, $attributeNames);
-        if ($t && $isNew) {
-            $c = Country::find()->where(['id' => $this->country_id])->one();
-            $c->business_id = $this->id;
-            $c->save();
-        }
+        $c = Country::find()->where(['id' => $this->country_id])->one();
+        $c->business_id = $this->id;
+        $c->save();
         return $t;
     }
 
