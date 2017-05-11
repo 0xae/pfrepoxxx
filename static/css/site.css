@@ -511,6 +511,7 @@ float: true;
 }
 .proximo{
     padding: 0px!important;
+    top: -5px;
 }
 .evproximo a:hover{
     text-decoration: none!important;

@@ -249,6 +249,9 @@
 {
 	background-color:#FFF;
 }
+.detalhes_geral a {
+	color: #068141 !important;
+}
 .info_cartaz h1
 {
 	color: #fff!important;
@@ -506,7 +509,9 @@
 {
 	font:16px "DINBold", Helvetica, Arial, sans-serif !important;
 	display: table;
-	margin: 20% auto;
+	/*margin: 20% auto;*/
+	margin: 23% 37%;
+	position: absolute;
 }
 #papelFundo .papelFundoinner i.fa
 {
@@ -1295,6 +1300,12 @@
 .up-img_producer .upload.text-center {
     margin-top: -14px !important;
     height: 255px;
+}
+.up-img_producer #papelFundo .papelFundoinner {
+    font: 16px "DINBold", Helvetica, Arial, sans-serif !important;
+    display: table;
+    margin: 35%;
+    position: absolute;
 }
 /*---Scroll---*/
 ::-webkit-scrollbar {

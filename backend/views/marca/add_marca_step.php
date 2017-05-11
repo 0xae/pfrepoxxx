@@ -100,15 +100,14 @@
 
  
 
-    #blah{
-
-        /*height: 210px;*/
-        width: 100%;
-        left: 0px;
-        position: absolute;
-        clip: rect(0px,600px,300px,0px);
-
-    }
+    #blah {
+    height: 255px;
+    width: 90%;
+    border-radius: 4px;
+    object-fit: cover;
+    object-position: 0% 50%;
+    position: absolute;
+}
     #trashd{
         position: relative;
 /*         top: 10px; */
@@ -121,10 +120,10 @@
         -moz-opacity: 0.5;
         filter: alpha(opacity=5);
         width: 100%;
-        height: 200px;
+        height: 255px;
         position: relative;
         clear: right;
-        margin-top: 0px;
+        margin-top: 0;
     }
 
     <?php /*?>._filtroCr{
