@@ -60,7 +60,7 @@ class UserController extends Controller {
 
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                User::updatePermissionsOf($user->id, $this->getRequestPermissions());
+                User::updatePermissionsOf($model->id, $this->getRequestPermissions());
                 return $this->redirect(['settings/index']);
             }
         }

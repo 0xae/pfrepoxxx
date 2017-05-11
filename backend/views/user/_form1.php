@@ -65,9 +65,7 @@ $this->title = 'Utilizador';
                                                         'value' => $userPermissions,
                                                         'attribute' => 'permissions',
                                                         'data' => $_dataPermissions,
-                                                        'options' => [
-                                                            'multiple' => true
-                                                        ]
+                                                        'options' => ['multiple' => false]
                                                     ]);
                                                 ?>
                                                 <br />
