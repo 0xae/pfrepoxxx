@@ -107,7 +107,7 @@ $this->registerJS($script);
           <li><a href="#"><i class="glyphicon glyphicon-globe"></i></a></li>
           <?php $user=\Yii::$app->user; if ($user->can('business')): ?>
                 <li>
-                    <span class="badge" ng-if="newMessages" style="position: absolute;margin: -8px 0 0 -12px;z-index:10;background: #f00;">
+                    <span class="badge" ng-if="newMessages" style="position: absolute;margin: -8px 0 0 -13px;z-index:10;background: #f00;">
                         {{ newMessages }}
                     </span>
                     <a href="./index.php?r=chat/unread" ng-if="newMessages"> <i class="glyphicon glyphicon-comment"></i> </a>
