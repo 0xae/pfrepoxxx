@@ -5,7 +5,7 @@ use yii\grid\GridView;
 $this->title = 'Businesses';
 ?>
 
-<div class="container-fluid pagebusiness">
+<div class="container-fluid pagebusiness page_bussiness">
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">

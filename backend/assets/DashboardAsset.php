@@ -19,7 +19,8 @@ class DashboardAsset extends AssetBundle {
         'static/css/font-awesome.min.css',
         'static/css/ionicons.min.css',
         'static/css/skins/_all-skins.min.css',
-        'static/css/dashboard.css'
+        'static/css/dashboard.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css',
     ];
 
     public $js = [

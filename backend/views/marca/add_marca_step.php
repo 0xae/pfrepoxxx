@@ -34,9 +34,21 @@
     </div>
 </div>
 
-<div class="col-md-6" style="overflow: hidden">
+<div class="col-md-6 up-img_producer" style="overflow: hidden">
     <div class="form-group">
-        <?php echo $form->field($newMarca, 'file')->widget(FileInput::classname(), ['options' => ['accept'=>'image/*']])->label('Foto');  ?>
+        
+        <?php //upload image
+        echo $form->field($newMarca, 'file')->fileInput(['onchange'=>'readURL(this)','id'=>"file",'accept' => 'image/*'])->label('Foto') ?>
+        <div class="upload text-center">
+            <img class="img-responsive" id="blah" src="#" alt="" />
+            <div id="papelFundo">
+                <div class="papelFundoinner">
+                    <i class="fa fa-upload" id='upload'></i>
+                    <span id="ecrevCriv">Carregar Imagem</span>
+                </div>
+            </div>
+            <i class="fa fa-trash" id="trashd"></i>
+        </div>
     </div>
 </div>
 
@@ -48,3 +60,145 @@
 </div>
 
 </div>
+
+
+<script type="text/javascript">
+
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                    $('#upload').hide();
+                    $('#papelFundo').show();
+                    $('#blah').show();
+                    $('#ecrevCriv').hide();
+                    $('#trashd').show();
+                    $('#trashd').hover($('#trashd').css('cursor','pointer'));
+                    $('#papelFundo').css('opacity',0);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+
+        }
+
+
+        var filtroConj=document.getElementsByClassName('filtro');
+        var i=0;
+        for(i=0;i<filtroConj.length;i++){
+
+            filtroConj[i].style.background=filtroConj[i].getAttribute('value');
+
+        }
+    </script>
+
+<style>
+
+ 
+
+    #blah{
+
+        /*height: 210px;*/
+        width: 100%;
+        left: 0px;
+        position: absolute;
+        clip: rect(0px,600px,300px,0px);
+
+    }
+    #trashd{
+        position: relative;
+/*         top: 10px; */
+        bottom:20px
+
+    }
+
+    #papelFundo{
+        opacity:0.5;
+        -moz-opacity: 0.5;
+        filter: alpha(opacity=5);
+        width: 100%;
+        height: 200px;
+        position: relative;
+        clear: right;
+        margin-top: 0px;
+    }
+
+    <?php /*?>._filtroCr{
+        border-radius: 4px;
+        margin-right: 8px;
+        margin-left: 8px;
+        width:80px;
+        height:30px;
+    }<?php */?>
+
+
+</style>
+    <?php
+
+    $scrip=<<<JS
+        if($('#blah').attr('src')=='#'){
+        
+            $('#trashd').hide();
+            $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
+            $('#file').hide();
+            $('#formFilro').hide();
+            $('#papelFundo').css('opacity',1);
+            $('#papelFundo').css('background','#f4f7fa');
+        }
+        
+
+        $('#trashd').hide();
+        $('#blah').hide();
+        $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
+        $('#file').hide();
+        $('#formFilro').hide();
+        $('#papelFundo').css('opacity',1);
+        $('#papelFundo').css('background','#f4f7fa');
+
+         $('#papelFundo').click(function() {
+            if( $('#blah').attr('src')=='#'){
+            $('#file').click();
+
+          }
+         }
+        );
+
+        $('._filtroCr').hover(function() {
+            if( $('#blah').attr('src')!='#')
+            $('#papelFundo').css('background',$(this).attr('value'));
+            $('#formFilro').val($(this).attr('value'));
+            
+        
+        });
+
+            if( $('#blah').attr('src')=='#'){
+            $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
+        }
+        else{
+
+            $('#papelFundo').hover($('#papelFundo').css('cursor','crosshair'));
+        }
+
+        $('#trashd').click(function() {
+            $('#file').val('');
+            $('#upload').show();
+            $('#ecrevCriv').show();
+            $('#blah').attr('src','#');
+            $('#file').val('');
+            $('#trashd').hide();
+            $('#papelFundo').css('opacity',1);
+            $('#papelFundo').css('background','#f4f7fa');
+            $('#formFilro').val('')
+             $('#blah').hide();
+
+        })
+JS;
+
+$this->registerJs($scrip);
+
+
+?>

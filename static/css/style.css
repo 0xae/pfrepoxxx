@@ -478,12 +478,12 @@
 	margin-bottom: -7px!important;
 	margin-top: 9px;	
 }
-.upload
-{
-	background: #f4f7fa;
-	height: 300px;
-	overflow: hidden;
-	margin-top: -15px;
+.upload {
+    background: #f4f7fa;
+    height: 300px;
+    overflow: hidden;
+    margin-top: 26px !important;
+    border-radius: 4px;
 }
 .upload .fa-trash{
 	background: #fff;
@@ -929,13 +929,20 @@
 {
 	padding:0;
 }
+.page_bussiness .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 .overview {
     top: -30px;
 }
 .business_page .imgbussinessbox .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     display: block;
     max-width: 100%;
-    height: 100px;
+    height: 100%;
     object-fit: cover;
 }
 .business_page .col-md-4 a .panel:hover, .pagebusiness .col-md-4 a .panel:focus
@@ -956,6 +963,7 @@
 .descbussinessbox
 {
 	font: 20px "DINLight", Helvetica, Arial, sans-serif !important;
+	min-height: 109px;
 }
 .descbussinessbox span
 {
@@ -1276,6 +1284,17 @@
 }
 .highcharts-root {
 	font-family: "DinRegular" !important;
+}
+/*--- /New Comment---*/
+.biz-choice .img-responsive {
+    height: 109px;
+    object-fit: cover;
+    object-position: 50% 100%;
+}
+/*--- /New Comment---*/
+.up-img_producer .upload.text-center {
+    margin-top: -14px !important;
+    height: 255px;
 }
 /*---Scroll---*/
 ::-webkit-scrollbar {
