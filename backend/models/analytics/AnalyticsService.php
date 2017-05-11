@@ -157,11 +157,9 @@ class AnalyticsService {
                       ->fetch();
     }
 
-
     public function getTicketReport($filters) {
         $data = [];
         return $data;
     }
-
 }
 

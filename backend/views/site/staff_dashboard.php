@@ -21,7 +21,6 @@ if ($user->can('admin')) {
                 <h4>
                     <div class=""></div>
                     <span class="glyphicon glyphicon-filter"></span>
-
                 </h4>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dLabel">

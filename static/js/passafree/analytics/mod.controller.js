@@ -33,13 +33,13 @@
         }
 
         function loadTopSellersG(data) {
-            var ks = data.map(function (d) { return d.marca_nome });
+            var ks = data.map(function (d) { return d.producer_name; });
             var vs = data.map(function (d) { return parseInt(d.tickets_sold); });
             LoadBarchart('#top_sellers', '', ks, vs);
         }
 
         function loadMostProfitableG(data) {
-            var ks = data.map(function (d) { return d.marca_nome });
+            var ks = data.map(function (d) { return d.producer_name; });
             var vs = data.map(function (d) { return parseInt(d.relative_revenue); });
             LoadBarchart('#most_profitable', '', ks, vs);
         }
