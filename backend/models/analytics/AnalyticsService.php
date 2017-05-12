@@ -61,10 +61,11 @@ class AnalyticsService {
         return $q->fetch();
     }
 
-    public function getBusinessRevenue($filters) {
+    public function getBusinessRevenue($bizId, $filters) {
         return Reports::model('bilhete_reports')
                 ->fields(['t' => 'coalesce(sum(total_business_liquid), 0)'])
                 ->withFilters($filters)
+                ->filter('business_id', '=', $bizId)
                 ->fetchIt('t');
     }
 

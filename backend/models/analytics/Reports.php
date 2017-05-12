@@ -72,11 +72,6 @@ class Reports {
         return $this->query->all();
     }
 
-    /**
-     * because i am nice and cool
-     * but i assume you're not
-     * ;)
-    */
     public function fetchIt($cool=false) {
         $nice = $this->query->one();
         if ($nice && $cool) {

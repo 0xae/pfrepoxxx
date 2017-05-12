@@ -106,10 +106,6 @@ if ($model->id) {
                                                     'options' => $responsableOptions,
                                                     'pluginOptions' => ['allowClear' => false],
                                                 ]);
-                                                if (isset($responsableOptions['disabled'])) {
-                                                    echo '<small style="color: gray">The responsable cannot be changed</small>';
-                                                }
-                                                echo '<br/>';
                                                 echo '<br/>';
                                             ?>
                                             <?= $form->field($model, 'responsable_percent')->textInput(['maxlength' => true, 'placeholder'=>'ex: 15']) ?>

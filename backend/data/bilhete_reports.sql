@@ -69,7 +69,6 @@ SELECT
 		M.nome AS marca_nome,
         M.logo as marca_picture,
 
-
 		E.idevento AS evento_id,
 		E.nome AS evento_nome,
         E.data as evento_data,

@@ -14,6 +14,7 @@ use kartik\sidenav\SideNav;
 
 DashboardAsset::register($this);
 $user = Yii::$app->user;
+$session = Yii::$app->session;
 $userProfile = $user->identity;
 ?>
 
@@ -97,7 +98,11 @@ $this->registerJS($script);
 			<div class="nomeuser">
               <?php echo $user->identity->username; ?>
             </div>
-			<small>1221 Seguidores</small>
+            <?php if ($user->can('business')): ?>
+                <small> <?= $session->get('business_name'); ?> </small>
+            <?php else: ?>
+                <small> </small> 
+            <?php endif; ?>
             <a class="btn btn-default edit_acount text-center" href=<?= \yii\helpers\Url::to(['site/update'])?>>
                 <span>Editar Conta <i class="glyphicon glyphicon-pencil"></i></span>
             </a>

@@ -62,16 +62,3 @@
 .fb-col {
     padding-top: 17px !important;
 }
-
-.fb-table-header {
-    border: 1px solid rgba(0,0,0,.05);
-}
-
-.table tr td .progress {
-    /* margin-top: 5px; */
-    margin-top: 0px !important;
-}
-
-table.fb-stats tbody tr td {
-    margin-top: 10px;
-}

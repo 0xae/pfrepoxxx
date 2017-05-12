@@ -3,15 +3,11 @@
 use yii\helpers\Html;
 use kartik\date\DatePicker;
 use miloschuman\highcharts\HighchartsAsset; 
-HighchartsAsset::register($this)
-->withScripts(['highstock', 'modules/drilldown']);
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Accounting';
 $range = $model->getRange();
 ?>
+
 <div class="container-fluid pagebusiness accountngpage">
     <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
 	<div class="row">
@@ -41,9 +37,6 @@ $range = $model->getRange();
                                 </button>
 							</div>
 						</div>
-                        <!--
-						<button type="submit" class="criar btn btn-primary">Apply</button>
-                        -->
 					</form>
 				</div>
 
@@ -52,37 +45,43 @@ $range = $model->getRange();
 						<table class="table table-striped">
 						<tbody>
 							<tr>
-								<td>
-									<div>Gross Revenue per Producer</div>
-								</td>
+								<td> <div>Revenue per Producer</div> </td>
 							</tr>
 
                             <?php foreach ($producers as $p): ?>
                                 <tr>
                                     <td class="childtd">
                                         <div><?= $p['producer_name']; ?></div>
-                                        <div><?= $p['business_gross_revenue']; ?>$00</div>
+                                        <div style="text-align:right">
+                                            <span class="money"><?= $p['business_revenue']; ?></span> 
+                                             ECV
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
 
                             <?php foreach ($businessData as $b): ?>
                                 <tr>
-                                    <td>
-                                        <div>Total Gross</div>
-                                        <div><?= $b['gross_revenue']; ?>$00</div>
+                                    <td class="childtd">
+                                        <div><strong>Total</strong></div>
+                                        <div style="text-align:right">
+                                            <strong>
+                                                <span class="money"><?= $b['liquid_revenue']; ?></span> 
+                                                ECV
+                                            </strong>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <div>Passa Free</div>
-                                        <div><?= $b['passafree_revenue']; ?>$00</div>
+                                        <div style="text-align:right"><span class="money"><?= $b['passafree_revenue']; ?></span> ECV</div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                    <div><?= $model->name; ?></div>
-                                        <div><?= $b['liquid_revenue']; ?>$00</div>
+                                        <div><?= $model->name; ?></div>
+                                        <div style="text-align:right"><span class="money"><?= $b['liquid_revenue']; ?></span> ECV</div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

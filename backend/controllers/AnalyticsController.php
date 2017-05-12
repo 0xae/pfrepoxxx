@@ -75,11 +75,13 @@ class AnalyticsController extends \yii\web\Controller {
          * XXX: work on these filters
         */
         $globalRevenue=0;
+        $filters = RestApp::parseQueryFilters($_GET);
 
         if ($user->can('business')) {
             $businessId  = $session->get('business');
+            $filters[] = ['field'=>'business_id','op'=>'=', 'val'=>$businessId];
             $_GET['business_id'] = $businessId;
-            $globalRevenue = $service->getBusinessRevenue(['business_id' => $businessId]);
+            $globalRevenue = $service->getBusinessRevenue($businessId, ['business_id' => $businessId]);
         } else if ($user->can('producer')) {
             $producerId = Produtor::find()->where(['idprodutor'=>$user->id])->one()->marca_idmarca;
             $_GET['producer_id'] = $producerId;
@@ -87,8 +89,6 @@ class AnalyticsController extends \yii\web\Controller {
         } else {
             $globalRevenue = $service->getPassaFreeRevenue([]);
         }
-
-        $filters = RestApp::parseQueryFilters($_GET);
 
         $data = $service->getDashboardReport($filters);
         $data['business_data'] = $service->getBusinessReport($filters);
