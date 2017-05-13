@@ -1,7 +1,7 @@
 (function () {
     angular.module('analyticsModule')
     .controller('UserAnalyticsController', ['AnalyticsService', '$scope',
-    function (analyticsService) {
+    function (analyticsService, $scope) {
         var userConfig = {};
 
         analyticsService.getUserGrowth(userConfig)
@@ -14,6 +14,10 @@
             LoadTimeseriesChart('interaction_growth', data.likes);
         });
 
+        $scope.hello = function (e) {
+            console.info('hello');
+            e.stopPropagation();
+        }
     }])
 
     .controller('ProducerAnalyticsController', ['AnalyticsService', '$scope', function (analyticsService, $scope) {

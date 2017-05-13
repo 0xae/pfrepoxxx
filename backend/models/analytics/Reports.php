@@ -86,6 +86,10 @@ class Reports {
      * as possible and thus avoiding bugs ;)
      * beware of insanity!!!
      * XXX: check this dir thing
+     * XXX(ayrton): 2017-05-13 : added caching capabilities,
+     *                   we need to check if this is really sometin
+     *                   alter all the process is destroyed when the response is sent
+     *                   and all the processing is done ?
     */
     private static function load($file) {
         $sql = @file_get_contents("backend/data/{$file}.sql");

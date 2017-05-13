@@ -3,14 +3,13 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
-use common\models\AdminLoginForm;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 
 use backend\models\PasswordResetRequestForm;
+use common\models\AdminLoginForm;
 use backend\models\ResetPasswordForm;
-use backend\models\SignupForm;
 use backend\models\Business;
 
 /**
@@ -77,9 +76,7 @@ class SiteController extends Controller {
                 if ($b) {
                     $session->set('business', $b->id);
                     $session->set('business_name', $b->name);
-                } else {
-                    $session->set('business', -1);
-                }
+                }   
             }
 
             return $this->goHome();
@@ -95,3 +92,4 @@ class SiteController extends Controller {
         return $this->goHome();
     }
 }
+
