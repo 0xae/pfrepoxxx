@@ -98,6 +98,7 @@
 
             getProducerAnalytics: function (filters) {
                 var defer = $q.defer();
+
                 _get('/producer-analytics', filters)
                 .then(function (resp) {
                     var data = resp.data;
@@ -105,6 +106,7 @@
                 }, function (error) {
                     defer.reject(error);
                 });
+
                 return defer.promise;
             }
         }

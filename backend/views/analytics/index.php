@@ -18,23 +18,26 @@ $user = Yii::$app->user;
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>User Analitics</span></h4>
-                <div class="pageventbtngroup">
+                <div class="">
+                    <!--
                     <a id="iiidLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <h4>
                             <div class=""></div> <span class="glyphicon glyphicon-filter"></span>
                         </h4>
                     </a>
+                    -->
                     <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            Action <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                      </ul>
+                          <input type="text" name="daterange" value="01/01/2015 - 01/31/2015" />
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                Action <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                          </ul>
                     </div>
                 </div>
 			</div>

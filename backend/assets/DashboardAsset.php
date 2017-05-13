@@ -19,8 +19,7 @@ class DashboardAsset extends AssetBundle {
         'static/css/font-awesome.min.css',
         'static/css/ionicons.min.css',
         'static/css/skins/_all-skins.min.css',
-        'static/css/dashboard.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css',
+        'static/css/dashboard.css'
     ];
 
     public $js = [
@@ -32,6 +31,7 @@ class DashboardAsset extends AssetBundle {
         'static/js/lodash.js',
         'static/js/statistics.js',
         'static/lib/angular.min.js',
+        'static/lib/daterange/daterangepicker.js',
         'static/plugins/jquery.sparkline.min.js',
         'static/plugins/fastclick.min.js',
         'static/plugins/jquery.slimscroll.min.js',
@@ -53,10 +53,10 @@ class DashboardAsset extends AssetBundle {
         'static/js/passafree/user/mod.service.js',
         'static/js/passafree/user/mod.controller.js',
 
+        // TODO: remove these
         'static/js/passafree/service.js',
         'static/js/passafree/dashboard.js',
         'static/js/passafree/produtor.js',
-        // TODO: remove this
         'static/js/dumps/timeseries.js'
     ];
 

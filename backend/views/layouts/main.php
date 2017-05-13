@@ -24,7 +24,6 @@ $userProfile = $user->identity;
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <?= Html::csrfMetaTags() ?>
 <title><?= Html::encode($this->title) ?></title>
 <style type="text/css">
