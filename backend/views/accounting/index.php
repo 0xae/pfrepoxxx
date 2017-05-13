@@ -53,7 +53,7 @@ $range = $model->getRange();
                                     <td class="childtd">
                                         <div><?= $p['producer_name']; ?></div>
                                         <div style="text-align:right">
-                                            <span class="money"><?= $p['business_revenue']; ?></span> 
+                                            <span class="money"><?= $p['business_gross_revenue']; ?></span> 
                                              ECV
                                         </div>
                                     </td>
@@ -66,7 +66,7 @@ $range = $model->getRange();
                                         <div><strong>Total</strong></div>
                                         <div style="text-align:right">
                                             <strong>
-                                                <span class="money"><?= $b['liquid_revenue']; ?></span> 
+                                                <span class="money"><?= $b['gross_revenue']; ?></span> 
                                                 ECV
                                             </strong>
                                         </div>
