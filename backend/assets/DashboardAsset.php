@@ -13,13 +13,14 @@ class DashboardAsset extends AssetBundle {
     public $css = [
         'static/css/AdminLTE.min.css',
         'static/css/style.css',
-        // 'static/css/AdminLTE.css',
         'static/css/site.css',
         'static/css/circle.css',
-        'static/css/font-awesome.min.css',
+        'static/css/dashboard.css',
         'static/css/ionicons.min.css',
+        'static/css/font-awesome.min.css',
         'static/css/skins/_all-skins.min.css',
-        'static/css/dashboard.css'
+        'static/lib/daterange/daterangepicker.css',
+        // 'static/css/AdminLTE.css',
     ];
 
     public $js = [
@@ -32,11 +33,15 @@ class DashboardAsset extends AssetBundle {
         'static/js/statistics.js',
         'static/lib/angular.min.js',
         'static/lib/daterange/daterangepicker.js',
+        'static/lib/moment/moment-range.min.js',
         'static/plugins/jquery.sparkline.min.js',
         'static/plugins/fastclick.min.js',
         'static/plugins/jquery.slimscroll.min.js',
         'static/js/jquery.steps.min.js',
+
+        /* App */
         'static/js/passafree/app.js',
+        'static/js/passafree/core/analytics.service.js',
 
         /* Event Module */
         'static/js/passafree/events/event.module.js',
@@ -46,7 +51,8 @@ class DashboardAsset extends AssetBundle {
         /* Analytics Module */
         'static/js/passafree/analytics/mod.module.js',
         'static/js/passafree/analytics/mod.service.js',
-        'static/js/passafree/analytics/mod.controller.js',
+        'static/js/passafree/analytics/producer.controller.js',
+        'static/js/passafree/analytics/user.controller.js',
 
         /* User Module */
         'static/js/passafree/user/mod.module.js',
@@ -66,3 +72,4 @@ class DashboardAsset extends AssetBundle {
         'yii\web\JqueryAsset'
     ];
 }
+

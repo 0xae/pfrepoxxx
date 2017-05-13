@@ -32,10 +32,6 @@ function LoadCircular(id, title, data){
 }
 
 function LoadTimeseriesChart(container, data) {
-    var series = data.map(function (d) {
-        return {type: 'area', data:d } 
-    });
-
     $('#'+container).highcharts({
         credits: { enabled: false },
         chart: { zoomType: 'x' },
@@ -59,7 +55,10 @@ function LoadTimeseriesChart(container, data) {
             }
         },
 
-        series: series
+        series: [{
+            type:'area',
+            data:data
+        }]
     });
 }
 

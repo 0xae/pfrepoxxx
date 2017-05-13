@@ -20,7 +20,7 @@ function AnalyticsService() {
                 buf.push(f+'='+fval);
             }
         });
-        return buf.join('&');
+        return '&' + buf.join('&');
     }
 
     return {

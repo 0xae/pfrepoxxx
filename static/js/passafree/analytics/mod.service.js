@@ -1,6 +1,7 @@
 (function () {
     angular.module('analyticsModule')
-    .factory('AnalyticsService', ['$http', '$q', function ($http, $q) {
+    .factory('AnalyticsService', ['$http', '$q', 'AnalyticsCore', 
+    function ($http, $q, analyticsCore) {
         var API = './index.php?r=analytics';
 
         function _parse(pr) {
@@ -22,7 +23,11 @@
                     buf.push(f+'='+fval);
                 }
             });
-            return buf.join('&');
+            return '&' + buf.join('&');
+        }
+
+        function format(date) {
+            return date.format('YYYY-MM-DD');
         }
 
         function _get(endp, filters) {
@@ -31,43 +36,26 @@
             return $http.get(API+endp+filtersf);
         }
 
-        function parseTimestamp(date) {
-            var m=moment(date);
-            var year=parseInt(m.format("YYYY"));
-            var month=parseInt(m.format("M"));
-            var day=parseInt(m.format("D"));
-            return Date.UTC(year, month, day);
-        }
-
-        function parseTimeseries(data, dateCol, countCol){
-            var objs = data.map(function (d) {
-                var time = parseTimestamp(d[dateCol]);
-                return [time, parseInt(d[countCol])];
-            });
-
-            return [objs];
-        }
-
-        function sequentialTs(ary) {
-           var d=[];
-           if (ary.length) {
-               var start = ary[0];
-           }
-           return d;
-        }
-
         return {
             getUserGrowth : function (filters) {
                 var defer = $q.defer();
+                var conf = {
+                    date: {
+                        $in: format(filters.start)+ ',' +
+                            format(filters.end)
+                    }
+                };
 
-                _get('/user-growth', filters)
+                _get('/user-growth', conf)
                 .then(function (resp) {
                     var data = resp.data.data;
-                    var userData = parseTimeseries(data,
-                                        'date',
-                                        'total_registrations'
-                                    );
-                    userData[0] = _.sortBy(userData[0], function (k) { return k[0]; });
+                    var userData = analyticsCore.generateTS(
+                        filters.start,
+                        filters.end,
+                        data,
+                        'date',
+                        'total_registrations'
+                    );
                     defer.resolve(userData);
                 }, function (error) {
                     defer.reject(error);
@@ -78,12 +66,18 @@
 
             getInteraction: function (filters) {
                 var defer = $q.defer();
+                var conf = {
+                    evento_data: {
+                        $in: format(filters.start) + ',' +
+                            format(filters.end)
+                    }
+                };
 
-                _get('/interaction-growth', filters)
+                _get('/interaction-growth', conf)
                 .then(function (resp) {
                     var data = resp.data.data;
-                    var likes = parseTimeseries(data, 'date', 'total_likes');
-                    var comments = parseTimeseries(data, 'date', 'total_comments');
+                    var likes = analyticsCore.generateTS(filters.start, filters.end, data, 'date', 'total_likes');
+                    var comments = analyticsCore.generateTS(filters.start, filters.end, data, 'date', 'total_comments');
 
                     defer.resolve({
                         likes: likes,
@@ -108,7 +102,9 @@
                 });
 
                 return defer.promise;
-            }
+            },
+
+            dateFormat: format
         }
     }]);
 })();
