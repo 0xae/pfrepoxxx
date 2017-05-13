@@ -36,11 +36,28 @@
             console.info(ts);
             var dict = {};
             ts.forEach(function (t) {
-                // var k = _parseTimestamp(t);
                 var k = t.format('YYYY-MM-DD');
                 dict[k] = 0;
             });
             return dict;
+        }
+
+        function getWeek(m) {
+            var m1 = moment(m);
+            var k = m1.weekday();
+            m1.subtract(k, 'day');
+            var m2 = moment(m1);
+            m2.add(7, 'day');
+            return [m1,m2];
+        }
+
+        function thisWeek() {
+            var today = moment();
+            var w = getWeek(today);
+            return {
+                start: moment(w[0]),
+                end: moment(w[1])
+            };
         }
 
         function parseTimeseries(start, end, data, dateCol, countCol){
@@ -62,7 +79,9 @@
         }
 
         return {
-            generateTS: parseTimeseries
+            generateTS: parseTimeseries,
+            getWeek: getWeek,
+            thisWeek: thisWeek
         };
     }]);
 })();

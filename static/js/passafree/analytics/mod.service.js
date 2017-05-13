@@ -92,8 +92,14 @@
 
             getProducerAnalytics: function (filters) {
                 var defer = $q.defer();
+                var conf = {
+                    evento_data: {
+                        $in: format(filters.start) + ',' +
+                            format(filters.end)
+                    }
+                };
 
-                _get('/producer-analytics', filters)
+                _get('/producer-analytics', conf)
                 .then(function (resp) {
                     var data = resp.data;
                     defer.resolve(data);

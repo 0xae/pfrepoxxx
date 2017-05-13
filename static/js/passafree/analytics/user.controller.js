@@ -1,25 +1,7 @@
 (function () {
     angular.module('analyticsModule')
-    .controller('UserAnalyticsController', ['AnalyticsService', '$scope',
-    function (analyticsService, $scope) {
-        function getweek(m) {
-            var m1 = moment(m);
-            var k = m1.weekday();
-            m1.subtract(k, 'day');
-            var m2 = moment(m1);
-            m2.add(7, 'day');
-            return [m1,m2];
-        }
-
-        function ThisWeek() {
-            var today = moment();
-            var w = getweek(today);
-            return {
-                start: moment(w[0]),
-                end: moment(w[1])
-            };
-        }
-
+    .controller('UserAnalyticsController', ['AnalyticsService', '$scope', 'AnalyticsCore',
+    function (analyticsService, $scope, analyticsCore) {
         function loadUserGrowth(c) {
             analyticsService.getUserGrowth(c)
             .then(function (data) {
@@ -34,7 +16,7 @@
             });
         }
 
-        var thisWeek = ThisWeek();
+        var thisWeek = analyticsCore.thisWeek();
         loadUserGrowth(thisWeek);
         loadInteractionGrowth(thisWeek);
 

@@ -48,7 +48,7 @@ function LoadTimeseriesChart(container, data) {
                         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
                     ]
                 },
-                marker: { radius: 2 },
+                marker: { radius: 1 },
                 lineWidth: 1,
                 states: { hover: { lineWidth: 1 } },
                 threshold: null
@@ -56,8 +56,8 @@ function LoadTimeseriesChart(container, data) {
         },
 
         series: [{
-            type:'area',
-            data:data
+            type: 'area',
+            data: data
         }]
     });
 }

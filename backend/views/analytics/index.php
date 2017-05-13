@@ -110,8 +110,8 @@ $user = Yii::$app->user;
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Producer Analitics</span></h4>
-                          <input class="form-control" type="text" id="daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
+                <h4><div class="borderlefttitlo"></div><span>Producer Analitics</span></h4>
+                <input class="form-control" type="text" id="producer_daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
 			</div>
 		</div>
 	</div>
