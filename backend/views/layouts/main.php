@@ -141,12 +141,22 @@ $this->registerJS($script);
                         <span>Business</span> <!--i class="fa fa-angle-left pull-right"></i-->
                       </a>
                 </li>
+            <?php elseif ($user->can('business') && $session->get('business')): ?>
+                <li class="<?php if (Yii::$app->controller->id == 'business'){ echo 'active'; } ?> treeview">
+                    <a href="index.php?r=business/update&id=<?= $session->get('business'); ?>">
+                        <span>My Business</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                      </a>
+                </li>
             <?php endif; ?>
 
             <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
-                  <?php if ($user->can('admin') || $user->can('business')): ?>
+                  <?php if (($isAdmin=$user->can('admin')) || (($isBiz=$user->can('business')) && $session->has('business'))): ?>
                       <a href="index.php?r=marca">
-                        <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                        <?php if ($isAdmin): ?>
+                            <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                        <?php elseif ($isBiz): ?>
+                            <span>My Producers</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                        <?php endif; ?>
                       </a>
                   <?php endif; ?>
             </li>

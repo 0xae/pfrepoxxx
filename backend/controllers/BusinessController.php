@@ -59,18 +59,6 @@ class BusinessController extends Controller {
     }
 
     /**
-     * Displays a single Business model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id) {
-        $model = Business::findModel($id);
-        return $this->render('view', [
-            'model' => $model 
-        ]);
-    }
-
-    /**
      * Creates a new Business model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed

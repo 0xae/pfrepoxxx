@@ -9,6 +9,8 @@ use yii\grid\GridView;
 
 $this->title = 'Marcas';
 $this->params['breadcrumbs'][] = $this->title;
+$user = Yii::$app->user;
+$session = Yii::$app->session;
 ?>
     
 <div class="container-fluid pagebusiness">

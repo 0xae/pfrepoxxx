@@ -20,6 +20,12 @@ $this->title = 'Settings';
 			<li role="presentation">
 				<a href="#businessRule" aria-controls="business" role="tab" data-toggle="tab">Business Rule</a>
 			</li>
+			<li role="presentation">
+				<a href="#paymentChannel" aria-controls="payment_channel" role="tab" data-toggle="tab">Payment Channels</a>
+			</li>
+			<li role="presentation">
+				<a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a>
+			</li>
 		</ul>
 
 		<div class="tab-content">

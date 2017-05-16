@@ -19,6 +19,16 @@ $(document).ready(function () {
         $(this).text(num);
     });
 
+    $("#business-privacy").on("change", function (data) {
+        // console.info(data);
+        $("#privacy_input").val(data.target.value);
+    });
+
+    $("#business-privacy-descr").on("change", function (data) {
+        // console.info(data);
+        $("#privacy_content_input").val(data.target.value);
+    });
+
     $(".pf-next-step").on("click", function (e) {
         var thisStep = $(this).attr("data-step");
         var target =$(this).attr("data-target");

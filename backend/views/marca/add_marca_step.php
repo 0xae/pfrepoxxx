@@ -3,6 +3,8 @@
     use yii\widgets\ActiveForm;
     use kartik\file\FileInput;
     use kartik\select2\Select2;
+    $user = Yii::$app->user;
+    $session = Yii::$app->session;
 ?>
 
 <div class="progresspopup">
@@ -18,10 +20,16 @@
 
 <div class="col-md-6">
     <?php
-        echo $form->field($newMarca, 'business_id')->widget(Select2::className(), [
-            'data' => $data = $_dataBusiness,
-            'options' => ['placeholder' => 'Clique para selecionar...', 'multiple' => false],
-        ])->label('Business');
+        if ($user->can('admin') || $user->can('passafree_staff')) {
+            echo $form->field($newMarca, 'business_id')->widget(Select2::className(), [
+                'data' => $data = $_dataBusiness,
+                'options' => ['multiple'=>false],
+            ])->label('Business');
+        } else {
+            echo $form->field($newMarca, 'business_id')
+              ->hiddenInput(['value' => $session->get('business')])
+              ->label(false);
+        }
     ?>
     <div class="form-group">
         <?php echo $form->field($newMarca, 'nome')->textInput(['maxlength' => true])->label('Nome') ?>

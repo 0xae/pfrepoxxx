@@ -31,16 +31,11 @@ if ($model->id) {
                         <div class="borderlefttitlo"></div><span>New Business</span>
                     <?php endif; ?>
 				</h4>
-                <?php echo Html::submitButton(
-                                            $model->isNewRecord ? 'Guardar' : 'Save', 
-                                                 ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
-                                              );
-                                         ?>
 			</div>
 		</div>
 	</div>
 
-	<div class="col-md-12 contentbox">
+    <div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="business-create">
@@ -49,12 +44,15 @@ if ($model->id) {
 						  <!-- Nav tabs -->
 						  <ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Informa&ccedil;&otilde;es Gerais</a></li>
+							<li role="presentation"><a href="#privacy" aria-controls="privacy" role="tab" data-toggle="tab">Privacy Policy</a></li>
+                            <?php if (isset($producers) && !empty($producers)): ?>
 							<li role="presentation"><a href="#access" aria-controls="profile" role="tab" data-toggle="tab">Producers</a></li>
+                            <?php endif; ?>
 						  </ul>
 						  <!-- Tab panes -->
 						  <div class="tab-content">
 								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
-                                    <?php $form = ActiveForm::begin(['id' => 'business_form', 'options' => ['enctype' => 'multipart/form-data']]); ?>
+                                <?php $form = ActiveForm::begin(['id' => 'business_form', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
@@ -78,8 +76,15 @@ if ($model->id) {
                                                     'anual' => 'Anual'
                                                 ]); ?>
         
-                                            <?= $form->field($model, 'privacy')->textInput(['maxlength' => true]) ?>
+                                            <?= $form->field($model, 'privacy')->hiddenInput([
+                                                'id' => 'privacy_input',
+                                                'maxlength' => true
+                                            ])->label(false); ?>
 
+                                            <?= $form->field($model, 'privacy_content')->hiddenInput([
+                                                'id' => 'privacy_content_input',
+                                                'maxlength' => true
+                                            ])->label(false); ?>
                                             
                                             <?php //upload image
                                                 echo $form->field($model, 'file')->fileInput(['onchange'=>'readURL(this)','id'=>"file",'accept' => 'image/*'])->label(false) ?>
@@ -122,9 +127,29 @@ if ($model->id) {
                                               );
                                          ?>
                                      </div>
-                                    
-                                    <?php ActiveForm::end(); ?>
+                                <?php ActiveForm::end(); ?>
 								</div>
+
+								<div role="tabpanel" class="biz-pane tab-pane" id="privacy" style="padding:20px;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group field-business-privacy required">
+                                                <label class="control-label" for="business-privacy">Privacy</label>
+                                                <input type="text" id="business-privacy" 
+                                                         value="<?php echo $model->privacy; ?>"
+                                                         class="form-control ng-valid-maxlength ng-not-empty" 
+                                                         maxlength="255" 
+                                                         placeholder="Link"
+                                                         />
+                                                <div class="help-block"></div>
+                                            </div>
+                                            <div class="form-group field-business-privacy required">
+                                                <textarea id="business-privacy-descr" value="" class="form-control" rows="10" placeholder="Description"><?php echo $model->privacy_content; ?></textarea>
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 								<div role="tabpanel" class="biz-pane tab-pane" id="access">
                                     <div class="row contentbox">                                                
@@ -151,7 +176,6 @@ if ($model->id) {
                                         <?php endif; ?>
                                     </div>
 								</div>
-								<!-- panel -->
 						  </div>
 						</div>
 					</div>
