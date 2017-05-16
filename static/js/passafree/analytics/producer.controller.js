@@ -38,6 +38,7 @@
             "linkedCalendars": false,
         }, function(start, end, label) {
             var conf = {start: start, end: end};
+            console.info(conf);
             loadData(conf);
         });
     }]);

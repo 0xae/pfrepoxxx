@@ -25,7 +25,11 @@ function AnalyticsService() {
 
     return {
         getDashboard : function (filters) {
-            var filtersf = process(filters);
+            var conf = {};
+            if (filters.start && filters.end) {
+            }
+
+            var filtersf = process(conf);
             return _parse($.get(API+'/dashboard'+filtersf));
         },
 

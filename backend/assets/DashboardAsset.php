@@ -59,10 +59,11 @@ class DashboardAsset extends AssetBundle {
         'static/js/passafree/user/mod.service.js',
         'static/js/passafree/user/mod.controller.js',
 
+        /* Dashboard Module */
+        'static/js/passafree/dashboard/dashboard.js',
+
         // TODO: remove these
         'static/js/passafree/service.js',
-        'static/js/passafree/dashboard.js',
-        'static/js/passafree/produtor.js',
         'static/js/dumps/timeseries.js'
     ];
 

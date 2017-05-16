@@ -10,6 +10,8 @@ if ($user->can('admin')) {
 }
 ?>
 
+<div class="global-controller" ng-controller="DashboardController" >
+
 <span id="dashboard_context" data-value="<?php echo $context; ?>"></span>
 
 <div class="row">
@@ -18,16 +20,15 @@ if ($user->can('admin')) {
             <h4><div class="borderlefttitlo"></div><span>Overview</span></h4>
             <div class="pageventbtngroup">
                 <a id="iiidLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <h4>
-                    <div class=""></div>
-                    <span class="glyphicon glyphicon-filter"></span>
-                </h4>
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon " id="sizing-addon3">
+                           <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                      <input type="text" style="color:gray" 
+                             id="dashboard_datefilter" class="form-control" 
+                             placeholder="Filters here..." aria-describedby="sizing-addon3">
+                    </div>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                  <form action=<?= \yii\helpers\Url::to(['site/logout'])?> method="post">
-                    <button type="submit" class="btn btn-primary">Sair</button>
-                  </form>
-                </ul>
             </div>
         </div>
     </div>
@@ -188,3 +189,4 @@ if ($user->can('admin')) {
     <?php endif; ?>
 </div>
 
+</div>

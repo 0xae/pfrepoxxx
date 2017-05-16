@@ -37,7 +37,7 @@ function LoadTimeseriesChart(container, data) {
         chart: { zoomType: 'x' },
         title: { text: '' },
         xAxis: { type: 'datetime' },
-        yAxis: { min:0, title: { text: '' } },
+        yAxis: { min:1, title: { text: '' } },
         legend: { enabled: false },
         plotOptions: {
             area: {
