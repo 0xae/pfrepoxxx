@@ -17,6 +17,7 @@ use backend\models\Tipoevento;
 use backend\models\Location;
 use backend\models\PaymentChannel;
 use backend\models\PaymentCard;
+use backend\models\Faq;
 
 /**
  * Site controller
@@ -50,13 +51,15 @@ class SettingsController extends Controller {
         $country = Country::find()->all();
         $rules = Rule::find()->all();
         $paymentChannels = PaymentChannel::find()->all();
+        $faqs = Faq::find()->all();
 
         return $this->render('index', [
             'users' => $users,
             'permissions' => $permissions,
             'countries' => $country,
             'rules' => $rules,
-            'paymentChannels' => $paymentChannels
+            'paymentChannels' => $paymentChannels,
+            'faqs' => $faqs
         ]);
     }
     

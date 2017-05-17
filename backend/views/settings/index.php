@@ -50,7 +50,7 @@ $this->title = 'Settings';
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="faq">
-                <?php echo $this->render('faq_module', []); ?>
+                <?php echo $this->render('faq_module', ['faqs' => $faqs]); ?>
 			</div>
 		</div>
 	</div>

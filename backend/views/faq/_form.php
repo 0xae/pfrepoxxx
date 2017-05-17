@@ -1,27 +1,55 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model backend\models\Faq */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="faq-form">
+<div class="container-fluid pagebusiness">
+	<div class="row">
+		<div class="col-md-12 titulosection">
+			<div class="proximo_evento">
+				<h4>
+                    <?php if ($model->id): ?>
+                        <div class="borderlefttitlo"></div><span>FAQ #<?= $model->id ?></span>
+                    <?php endif; ?>
+				</h4>
+			</div>
+		</div>
+	</div>
 
-    <?php $form = ActiveForm::begin(); ?>
+	<div class="col-md-12 contentbox">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="business-create">
+					<div class="business-form">
+						<div role="tabpanel" style="padding:20px">
+						  <!-- Nav tabs -->
+						  <ul class="nav nav-tabs" role="tablist">
+						  </ul>
 
-    <?= $form->field($model, 'pergunta')->textarea(['rows' => 6]) ?>
+						  <!-- Tab panes -->
+						  <div class="tab-content">
+								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
+                                    <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'resposta')->textarea(['rows' => 6]) ?>
+                                    <?= $form->field($model, 'pergunta')->textarea(['rows' => 3]) ?>
+                                    <?= $form->field($model, 'resposta')->textarea(['rows' => 6]) ?>
+                                    <?php if ($model->isNewRecord) {
+                                            echo $form->field($model, 'estado')->textInput();
+                                        }
+                                    ?>
 
-    <?= $form->field($model, 'estado')->textInput() ?>
+                                    <div class="form-group">
+                                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
+                                    <?php ActiveForm::end(); ?>
+								</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+

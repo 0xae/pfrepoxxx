@@ -1,8 +1,7 @@
 <?php
-
 namespace backend\models;
-
 use Yii;
+
 
 /**
  * This is the model class for table "faqs".
@@ -12,21 +11,18 @@ use Yii;
  * @property string $resposta
  * @property integer $estado
  */
-class Faq extends \yii\db\ActiveRecord
-{
+class Faq extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'faqs';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['pergunta', 'resposta', 'estado'], 'required'],
             [['pergunta', 'resposta'], 'string'],
@@ -37,8 +33,7 @@ class Faq extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'pergunta' => 'Pergunta',
