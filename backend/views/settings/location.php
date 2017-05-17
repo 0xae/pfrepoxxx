@@ -6,8 +6,8 @@ use backend\models\Tipoevento;
 $this->title = 'Localização';
 ?>
     
-<div class="container-fluid historicoevento localizacao">
-   <!--inicio de eventos proximos-->
+<div class="container-fluid pagebusiness historicoevento localizacao">
+   <!--inicio de localizaçao-->
 
 	<div class="row">
 		<div class="col-md-12 titulosection">
@@ -60,7 +60,7 @@ $this->title = 'Localização';
             <div class="modal-body">
 
                 <label class="control-label" for="_nomeLocation">Nome</label>
-                 <input name="nome" type="text" id="_nomeLocation" class="form-control">
+                <input name="nome" type="text" id="_nomeLocation" class="form-control">
 
                 <div class="modal-footer">
                     <div class="form-group">
