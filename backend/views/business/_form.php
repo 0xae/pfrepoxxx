@@ -68,7 +68,12 @@ if ($model->id) {
                                                 echo '<br/>';
                                             ?>
 
-                                            <?= $form->field($model, 'payment_channel')->textInput(['maxlength' => true]) ?>
+                                            <?php
+                                                echo $form->field($model, 'payment_channel')->widget(Select2::classname(), [
+                                                    'data' => $paymentChannels,
+                                                    'options' => ['multiple' => false],
+                                                ]);
+                                            ?>
                                             <?= $form->field($model, 'cashout')->dropDownList([
                                                     'mensal' => 'Mensal',
                                                     'semestral' => 'Semestral',

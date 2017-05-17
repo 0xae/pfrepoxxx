@@ -12,6 +12,7 @@ use yii\helpers\Html;
         'model' => $model,
         'producers' => $producers,
         '_dataUsers' => $_dataUsers,
+        'paymentChannels' => $paymentChannels,
         '_dataCountries' => $_dataCountries,
     ]) ?>
 </div>

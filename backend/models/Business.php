@@ -59,10 +59,10 @@ class Business extends \yii\db\ActiveRecord {
         return [
             [['name', 'payment_channel', 'cashout', 'privacy', 'responsable_percent', 'responsable', 'support_name', 'support_email', 'support_phone', 'country_id'], 'required'],
             [['responsable_percent'], 'number'],
-            [['responsable',  'country_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['responsable',  'country_id', 'payment_channel', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['picture'], 'string'],
             [['privacy_content'], 'string'],
-            [['name',  'payment_channel','cashout', 'privacy', 'support_name', 'support_email', 'support_phone'], 'string', 'max' => 255],
+            [['name',  'cashout', 'privacy', 'support_name', 'support_email', 'support_phone'], 'string', 'max' => 255],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['country_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['responsable'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['responsable' => 'id']],

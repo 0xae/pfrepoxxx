@@ -16,6 +16,7 @@ use backend\models\AddProducerForm;
 use backend\models\Business;
 use backend\models\Country;
 use backend\models\Marca;
+use backend\models\PaymentChannel;
 use backend\models\User;
 use backend\models\UploadForm;
 
@@ -73,11 +74,13 @@ class BusinessController extends Controller {
 
         $data = Country::find()->where(['business_id' => null])->asArray()->all();
         $countries = ArrayHelper::map($data, 'id', 'name');
+        $paymentChannels = ArrayHelper::map(PaymentChannel::find()->asArray()->all(), 'id', 'name');
         $_dataUsers = Business::getResponsableSugestions();
 
         return $this->render('create', [
             'model' => $model,
             'producerForm' => [],
+            'paymentChannels' => $paymentChannels,
             '_dataUsers' => $_dataUsers,
             '_dataCountries' => $countries,
             '_dataProducers' => []
@@ -101,10 +104,13 @@ class BusinessController extends Controller {
         $data = [$model->getCountry()];
         $countries = ArrayHelper::map($data, 'id', 'name');
         $_dataUsers = ArrayHelper::map([User::findModel($model->responsable)], 'id', 'nome');
+        $_data = PaymentChannel::find()->all();
+        $paymentChannels = ArrayHelper::map($_data, 'id', 'name');
 
         return $this->render('update', [
             'model' => $model,
             'producers' => $model->getProducers(),
+            'paymentChannels' => $paymentChannels,
             '_dataUsers' => $_dataUsers,
             '_dataCountries' => $countries,
         ]);
