@@ -20,7 +20,8 @@ class DashboardAsset extends AssetBundle {
         'static/css/font-awesome.min.css',
         'static/css/skins/_all-skins.min.css',
         'static/lib/daterange/daterangepicker.css',
-        // 'static/css/AdminLTE.css',
+        'static/lib/editor/trumbowyg.min.css',
+        'static/lib/editor/plugins/colors/ui/trumbowyg.colors.min.css',
     ];
 
     public $js = [
@@ -34,10 +35,11 @@ class DashboardAsset extends AssetBundle {
         'static/lib/angular.min.js',
         'static/lib/daterange/daterangepicker.js',
         'static/lib/moment/moment-range.min.js',
+        'static/lib/editor/trumbowyg.min.js',
+        'static/lib/editor/plugins/colors/trumbowyg.colors.js',
         'static/plugins/jquery.sparkline.min.js',
         'static/plugins/fastclick.min.js',
         'static/plugins/jquery.slimscroll.min.js',
-        'static/js/jquery.steps.min.js',
 
         /* App */
         'static/js/passafree/app.js',

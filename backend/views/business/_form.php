@@ -88,7 +88,7 @@ if ($model->id) {
 
                                             <?= $form->field($model, 'privacy_content')->hiddenInput([
                                                 'id' => 'privacy_content_input',
-                                                'maxlength' => true
+                                                'maxlength' => true,
                                             ])->label(false); ?>
                                             
                                             <?php //upload image
@@ -139,19 +139,12 @@ if ($model->id) {
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group field-business-privacy required">
-                                                <label class="control-label" for="business-privacy">Privacy</label>
-                                                <input type="text" id="business-privacy" 
-                                                         value="<?php echo $model->privacy; ?>"
-                                                         class="form-control ng-valid-maxlength ng-not-empty" 
-                                                         maxlength="255" 
-                                                         placeholder="Link"
-                                                         />
+                                                <textarea id="business-privacy-descr" value="" class="form-control text-editor" rows="10" placeholder="Description"><?php echo $model->privacy_content; ?></textarea>
                                                 <div class="help-block"></div>
                                             </div>
-                                            <div class="form-group field-business-privacy required">
-                                                <textarea id="business-privacy-descr" value="" class="form-control" rows="10" placeholder="Description"><?php echo $model->privacy_content; ?></textarea>
-                                                <div class="help-block"></div>
-                                            </div>
+                                            <?php if (!$model->isNewRecord): ?>
+                                            <label><a target="_blank" href="./index.php?r=business/privacy&id=<?=$model->id?>">Click here</a> to view the raw privacy policy.</label>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>

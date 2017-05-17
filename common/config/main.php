@@ -7,7 +7,7 @@ return [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=127.0.0.1;dbname=passafree',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=passafree_teste',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

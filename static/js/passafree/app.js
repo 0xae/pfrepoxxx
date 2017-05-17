@@ -1,5 +1,11 @@
 $(document).ready(function () {
     var sessionBusiness = parseInt($("#session_business").val());
+    $("#business-privacy-descr")
+    .trumbowyg({
+        btnsAdd: ['foreColor', 'backColor']
+    }).on('tbwchange', function(e){
+        $("#privacy_content_input").val(e.target.value);
+    });
 
     $(".biz-choice").on("click", function () {
         var bizId = $(this).attr('data-id');

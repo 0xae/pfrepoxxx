@@ -39,7 +39,7 @@ class BusinessController extends Controller {
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['view', 'update'],
+                        'actions' => ['view', 'update', 'privacy'],
                         'roles' => ['passafree_staff', 'admin', 'business']
                     ]
                 ]
@@ -121,6 +121,11 @@ class BusinessController extends Controller {
         $model = Business::findModel($id);
         $session->set('business', $id);
         $session->set('business_name', $model->name);
+    }
+
+    public function actionPrivacy($id) {
+        $biz = Business::findModel($id);
+        echo $biz->privacy_content;
     }
 
     /**
