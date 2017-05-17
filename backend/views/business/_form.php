@@ -143,7 +143,12 @@ if ($model->id) {
                                                 <div class="help-block"></div>
                                             </div>
                                             <?php if (!$model->isNewRecord): ?>
-                                            <label><a target="_blank" href="./index.php?r=business/privacy&id=<?=$model->id?>">Click here</a> to view the raw privacy policy.</label>
+                                            <label>
+                                                <a target="_blank" 
+                                                   href="./index.php?r=business/privacy&id=<?=$model->id?>">
+                                                    Click here
+                                                </a> to view the raw privacy policy.
+                                            </label>
                                             <?php endif; ?>
                                         </div>
                                     </div>

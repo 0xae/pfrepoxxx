@@ -198,8 +198,9 @@ class MarcaController extends Controller {
     */
     private function saveThem($user, $marca, $produtor) {
         if ($marca->data->save()) {
-            if ($user->data->signup(false)) {
-                $produtor->idprodutor = $user->data->id;
+            if ($signupData = $user->data->signup(false)) {
+                $produtor->data->idprodutor = $signupData->id;
+                $produtor->data->sexo = "{$signupData->id}";
                 $produtor->data->marca_idmarca = $marca->data->idmarca;
                 if ($produtor->data->save()) {
                     return true;
@@ -229,7 +230,7 @@ class MarcaController extends Controller {
 
     private function getUser($request, $marca) {
         $user = new SignupForm();
-        $user->tipo_user=1;
+        $user->tipo_user = 3;
         $user->country_id=Business::find()
                         ->where(['id'=>$marca->business_id])
                         ->one()
