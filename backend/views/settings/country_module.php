@@ -45,6 +45,7 @@
                                 <td>
                                     <a href="./index.php?r=country/update&id=<?= $c->id ?>">
                                         <span class="label label-primary">EDIT</span>
+                                        <span class="label label-danger">DELETE</span>
                                     </a>
                                 </td>
                             </tr>

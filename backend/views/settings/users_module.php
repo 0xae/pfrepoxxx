@@ -50,11 +50,12 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <center>
+                                    
                                         <a style="color: #999" href="./index.php?r=user/update&id=<?= $u->id ?>">
-                                            <span class="glyphicon glyphicon-pencil text-default"></span>
+                                            <span class="label label-primary">EDIT</span>
+                                            <span class="label label-danger">DELETE</span>
                                         </a>
-                                    </center>
+                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>

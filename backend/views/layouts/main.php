@@ -55,7 +55,7 @@ $this->registerJS($script);
  <?php /*?>MOBILE MESSAGE<?php */?>
   <div class="hidecontent">
 	  <span class="glyphicon glyphicon-warning-sign"></span>
-	  <h2>INDSPONIVEL NESTE RESOLUTCAO</h2>
+	  <h2>INDISPONÍVEL NESTA RESOLUÇÃO</h2>
   </div>
   
   <div class="wrapper">
@@ -89,9 +89,7 @@ $this->registerJS($script);
     <aside class="main-sidebar" ng-controller="UserController" style="position: fixed; box-shadow:1px 5px 2px rgba(0, 0, 0, 0.1); overflow-y: scroll; height:100%; scrollbar-base-color: #C0C0C0;scrollbar-base-color: #C0C0C0;scrollbar-3dlight-color: #C0C0C0;scrollbar-highlight-color: #C0C0C0;scrollbar-track-color: #EBEBEB;scrollbar-arrow-color: blackscrollbar-shadow-color: #C0C0C0;scrollbar-dark-shadow-color: #C0C0C0;">
       <section class="sidebar">
         <li class="perfil">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="static/img/logo.jpg" class="user-image" alt="User Image" style="width: 100%;">
-          </a>
         </li>
         <li class="nome_user text-center">
 			<div class="nomeuser">
@@ -99,12 +97,13 @@ $this->registerJS($script);
             </div>
 			<small>1221 Seguidores</small>
             <a class="btn btn-default edit_acount text-center" href=<?= \yii\helpers\Url::to(['site/update'])?>>
-                <span>Editar Conta <i class="glyphicon glyphicon-pencil"></i></span>
+                <span>Editar Conta</span> 
+                <i class="fa fa-pencil"></i>
             </a>
-        </li>
         </li>
         <ul class="list-unstyled notification">
           <li><a href="#"><i class="glyphicon glyphicon-globe"></i></a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-comment"></i></a></li>
           <?php $user=\Yii::$app->user; if ($user->can('business')): ?>
                 <li>
                     <span class="badge" ng-if="newMessages" style="position: absolute;margin: -8px 0 0 -12px;z-index:10;background: #f00;">

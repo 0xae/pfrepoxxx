@@ -59,11 +59,15 @@ body
     margin: 0 auto;
     margin-bottom: 7%;
     margin-top: 21%;
+    display: table;
 }
+.perfil img {
+    height: 100%;
+} 
 .nome_user span
 {
 	font-family: "DINBold", Helvetica, Arial, sans-serif !important;
-	margin-right: 8px;
+	margin-right: 6px;
 	line-height: 0;
 }
 .nome_user small
@@ -72,7 +76,7 @@ body
     font-size: 14px;
 	display: table;
 	width: 100%;
-	margin: 10px 0 30px 0;
+	margin: 0px 0 30px 0;
 }
 .edit_acount
 {
@@ -115,9 +119,8 @@ a.edit_acount{
 }
 .notification
 {
-	margin: 50px 36px;
+	margin: 35px 0 30px 39px;
     display: table;
-    width: 66%;
 }
 .coment{
     float: left;
@@ -355,6 +358,7 @@ a.edit_acount{
 .business-create .tab-content .contentbox .panel
 {
 	margin: 30px 0 0 0;
+    border: 1px solid rgba(0, 0, 0, .05);
 }
 .business-create .tab-content .contentbox .descbussinessbox, .pageusers .descbussinessbox, .pageprodutor .panel .descbussinessbox, .popupcriarbilhete .modal-body .boxconteinerbus .descbussinessbox
 {
@@ -444,7 +448,6 @@ a.edit_acount{
 {
 	background: #fff;
 	color: #666;
-	width: 100%;
 	border-radius: 3px;
 	padding:3px 5px 0;
 	font: 16px "DINRegular", Helvetica, Arial, sans-serif !important;
@@ -511,7 +514,6 @@ float: true;
 }
 .proximo{
     padding: 0px!important;
-    top: -5px;
 }
 .evproximo a:hover{
     text-decoration: none!important;
@@ -654,7 +656,6 @@ float: true;
     width: 100%;
 }
 
-/*
 .filtro {
     position: absolute;
     width: 100%;
@@ -663,7 +664,6 @@ float: true;
     margin-left: 0px;
     opacity: 0.5;
 }
-*/
 
 .filtro_eventos {
     position: absolute;
@@ -965,7 +965,7 @@ a.desc:after {
 {
 	.hidecontent
 	{
-		display:none;
+		display: none;
 	}
 }
 @media (max-width: 1023px)
@@ -983,16 +983,12 @@ a.desc:after {
 		background: #009447 url(../img/symbol.png) no-repeat;
 	}
 }
-
-
 .navbar-fixed-top,
 .navbar-fixed-bottom
 {
     /* ayrton */
     position: inherit !important;
 }
-
-
 .content {
     padding: 0px;
 }

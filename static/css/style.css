@@ -198,12 +198,11 @@
 	padding: 10px;
 	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
-.info_cartaz
-{
-	position: absolute;
-	padding: 5%;
-	width: 100%;
-	margin-top: -33%;
+.info_cartaz {
+    position: absolute;
+    margin-top: -315px;
+    margin-left: 4.6%;
+    width: 90.5%;
 }
 .info_cartaz span
 {
@@ -241,9 +240,14 @@
 }
 .detalhes_geral button.btn-default
 {
-	font:14px "DINBlack", Helvetica, Arial, sans-serif !important;
-	border:none;
-	margin-top: 35px;
+	font: 14px "DINBlack", Helvetica, Arial, sans-serif !important;
+    margin-top: 35px;
+    background-color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    padding: 8px 15px;
+    width: 26.4%;
+    border-radius: 3px;
 }
 .detalhes_geral button.btn-default:hover, a.edit_acount:hover, a.edit_acount:focus
 {
@@ -285,6 +289,14 @@
 	overflow: hidden;
 	height: 300px;
 }
+.fundo_next_event .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0% 0%;
+}
 .info_next_event
 {
 	bottom: 0;
@@ -296,7 +308,7 @@
 }
 .info_next_event .col-md-12
 {
-	padding: 15px;
+	padding: 30px;
 	font:18px "DINBold", Helvetica, Arial, sans-serif !important;
 }
 .nome_user div.nomeuser, .fundo_user_bilh h2, .fundo_user_bilh span, .bilhte > li > a, #producer_form button, .criar, .filtropanel .btn-group .btn-default, .pagemarcas .contentbox .panel .descbussinessbox, #modalcriarmarca .col-md-6 label, #modalcriarmarca .labeltipobilhete
@@ -321,12 +333,10 @@
 {
 	margin-right: 10px;
 }
-.historicoevento .titulosection
-{
-	margin-top:6%;
+.historicoevento .titulosection {
+    margin-top: 65px;
 }
-.proximo_evento h4
-{
+.proximo_evento h4 {
 	float: left;
 	margin: 12px 0;
 }
@@ -450,7 +460,7 @@
 }
 .info_next_event .col-md-12 .col-md-1 .diaevento
 {
-	margin-bottom:7px;
+	margin-bottom: 0px;
 }
 .info_next_event .col-md-12 .col-md-11
 {
@@ -475,6 +485,8 @@
 .info_next_event a, .nome_user div.nomeuser
 {
 	color: #fff;
+	position: relative;
+	margin-top: -10px;
 }
 .info_next_event .media-heading
 {
@@ -729,6 +741,7 @@
 	border-radius: 3px;
 	padding:0;
 	overflow: hidden;
+	left: -13px;
 }
 .skin-blue .main-header form span
 {
@@ -825,6 +838,7 @@
 	border: 0px!important;
 	background: transparent!important;
 	color: #333;
+	padding: 4px 12px;
 }
 .sair .caret{
 	color: #fff;
@@ -832,6 +846,11 @@
 .sair .dropdown-menu{
 	min-width: 25px!important;
 	padding: 0px!important;
+	top: 25px;
+    left: -15px;
+}
+.sair .dropdown-menu button:hover {
+    background: #ccc !important;
 }
 
 .pag .active a{
@@ -890,7 +909,7 @@
 	border: none;
 	margin-bottom: 30px;
 	box-shadow:0 2px 2px rgba(0, 0, 0, .05);
-	border: 1px solid #f8f8f8;
+	border: none;
 
 }
 .pagebusiness .panel-body table thead tr th, #modalcriarmarca label, .pageanalitics .accountingbox .nav-tabs a
@@ -947,7 +966,7 @@
 .business_page .imgbussinessbox .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     display: block;
     max-width: 100%;
-    height: 100%;
+    height: 109px;
     object-fit: cover;
 }
 .business_page .col-md-4 a .panel:hover, .pagebusiness .col-md-4 a .panel:focus
@@ -1247,6 +1266,10 @@
 {
 	padding: 15px 30px;
 }
+/*
+#top_sellers .highcharts-root {
+    width: 82%;
+}*/
 .modal-header
 {
     margin-bottom: 20px;
@@ -1259,6 +1282,7 @@
     color: #009447;
     border: 1px solid #009447;
     font-weight: 600;
+    font-family: 'Din';
 }
 .settings .nav-tabs {
     margin-top: 20px !important;
@@ -1287,6 +1311,9 @@
     background-color: #009447 !important;
     padding-top: 5px !important;
 }
+.settings .label-warning, .label-warning .modal-body, .label-danger, .label-default  {
+    padding-top: 5px !important;
+}
 .highcharts-root {
 	font-family: "DinRegular" !important;
 }
@@ -1307,6 +1334,90 @@
     margin: 35%;
     position: absolute;
 }
+/*--- /LOCALIZAÇÃO ---*/
+.localizacao {
+    position: absolute;
+    top: 0;
+}
+.localizacao .btn-success {
+    border-color: #008d4c;
+    background: #068141;
+    border-radius: 3px;
+    padding: 8px 15px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: normal;
+    font-family: "DINBold", Helvetica, Arial, sans-serif !important;
+}
+.popuplocalizacao .criar, .popupupdate .criar {
+	letter-spacing: 1px;
+    line-height: normal;
+    font-family: "DINBold", Helvetica, Arial, sans-serif !important;
+    margin-right: -18px;
+    padding: 7px 15px !important;
+}
+.popuplocalizacao .btn-sucesss, .popupupdate .btn-sucesss {
+	letter-spacing: 1px;
+    line-height: normal;
+    font-family: "DINBold", Helvetica, Arial, sans-serif !important;
+    padding: 7px 15px !important;
+    background: #313541 !important;
+	color: #fff;
+	text-transform: uppercase;
+}
+.popupupdate input {
+    border-radius: 4px !important;
+}
+#location-nome {
+    border-radius: 4px;
+}
+#_location a {
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    background: #E0DFDF;
+    padding: 40px;
+    border-radius: 5px;
+    margin: 18px;
+    width: 28.8% !important;
+    font-family: "DINBlack" !important;
+	font-size: 20px;
+	color: #282C37;
+}
+#_location {
+    margin: 20px 45px 40px 35px !important;
+    background: #edece9;
+    padding: 20px;
+    border-radius: 5px;
+}
+#_location .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+/*------Create Role/Country/Rule------*/
+.create-role .business-create {
+    width: 50%;
+    padding: 30px;
+}
+.create-country .business-create .business-form .col-md-6 {
+    padding: 30px 10px 30px 13px !important;
+}
+/*
+.create-country .business-create {
+    width: 50%;
+    padding: 30px;
+}
+*/
+.create-rule .business-create .business-form .col-md-6 {
+    padding: 0px 15px 0 13px !important;
+}
+.create-rule .business-form {
+    margin-top: 30px;
+}
+.create-rule #percentagem_bilhete {
+    margin-bottom: 30px;
+}
 /*---Scroll---*/
 ::-webkit-scrollbar {
     width: 12px;
@@ -1321,4 +1432,5 @@
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: #009447; 
+    background: #009447;
+}

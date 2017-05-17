@@ -105,6 +105,7 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
+        
         $req = Yii::$app->request->post();
         $marca = $this->getMarca($req);
         $user = $this->getUser($req, $marca->data);
@@ -228,7 +229,7 @@ class MarcaController extends Controller {
 
     private function getUser($request, $marca) {
         $user = new SignupForm();
-        $user->tipo_user=3;
+        $user->tipo_user=1;
         $user->country_id=Business::find()
                         ->where(['id'=>$marca->business_id])
                         ->one()

@@ -41,6 +41,7 @@
                                 <td>
                                     <a href="./index.php?r=role/update&id=<?= $p->name ?>">
                                         <span class="label label-primary">EDIT</span>
+                                        <span class="label label-danger">DELETE</span>
                                     </a>
                                 </td>
                             </tr>

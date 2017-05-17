@@ -51,6 +51,7 @@
                                 <td>
                                     <a href="./index.php?r=rule/update&id=<?= $r->id ?>">
                                         <span class="label label-primary">EDIT</span>
+                                        <span class="label label-danger">DELETE</span>
                                     </a>
                                 </td>
                             </tr>
