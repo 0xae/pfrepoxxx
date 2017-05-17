@@ -5,7 +5,7 @@ use yii\grid\GridView;
 $this->title = 'Settings';
 ?>
 
-<div class="container-fluid settings">
+<div class="container-fluid settings" ng-controller="SettingsController">
 	<div role="tabpanel" style="padding:0;">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
@@ -46,7 +46,7 @@ $this->title = 'Settings';
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="paymentChannel">
-                <?php echo $this->render('paymentchannel_module', []); ?>
+                <?php echo $this->render('paymentchannel_module', ['paymentChannels' => $paymentChannels]); ?>
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="faq">

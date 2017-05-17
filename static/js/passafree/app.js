@@ -64,6 +64,7 @@ function validateForm(m) {
     angular.module('passafree', [
         'eventModule',
         'analyticsModule',
+        'settingsModule',
         'userModule'
     ]);
 })();

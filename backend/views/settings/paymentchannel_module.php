@@ -1,7 +1,3 @@
-<?php
-$paymentChanels = [];
-?>
-
 <div class="container-fluid pagebusiness pageanalitics">
 	<?php /*?>TABELA<?php */?>
 	<div class="col-md-12 contentbox">
@@ -16,7 +12,7 @@ $paymentChanels = [];
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>Payment Channels</span></h4>
                 <div class="pageventbtngroup">
-                    <a href="./index.php?r=country/create" class="criar btn btn-primary">
+                    <a href="#new_paymentchannel" data-toggle="modal" class="criar btn btn-primary">
                         New Payment Channel
                     </a>
                 </div>
@@ -37,14 +33,14 @@ $paymentChanels = [];
 						</tr>
 					</thead>
 					<tbody>
-                        <?php foreach ($paymentChanels as $c): ?>
+                        <?php foreach ($paymentChannels as $c): ?>
                             <tr>
                                 <td><?= $c->id ?></td>
                                 <td><?= $c->name ?></td>
                                 <td><?= $c->link ?></td>
                                 <td>
-                                    <a href="./index.php?r=country/update&id=<?= $c->id ?>">
-                                        <span class="label label-primary">EDIT</span>
+                                    <a href="./index.php?r=payment-channel/update&id=<?=$c->id?>"  style="color: #999" >
+                                        <span class="glyphicon glyphicon-pencil text-default"></span>
                                     </a>
                                 </td>
                             </tr>
@@ -54,4 +50,19 @@ $paymentChanels = [];
 			</div>
 		</div>
 	</div>
-</DIV>
+</div>
+
+<div class="modal fade popupcriarbilhete popuplocalizacao" id="new_paymentchannel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <?php echo $this->render('paymentchannel_modal', []); ?>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade popupcriarbilhete popuplocalizacao" id="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\models;
 
 use Yii;
@@ -11,21 +10,18 @@ use Yii;
  * @property string $name
  * @property integer $payment_channel_id
  */
-class PaymentCard extends \yii\db\ActiveRecord
-{
+class PaymentCard extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'payment_channel_card';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'payment_channel_id'], 'required'],
             [['payment_channel_id'], 'integer'],
