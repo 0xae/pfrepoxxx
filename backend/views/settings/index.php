@@ -44,6 +44,14 @@ $this->title = 'Settings';
 			<div role="tabpanel" class="biz-pane tab-pane" id="businessRule">
                 <?php echo $this->render('bizrule_module', ['rules' => $rules]); ?>
 			</div>
+
+			<div role="tabpanel" class="biz-pane tab-pane" id="paymentChannel">
+                <?php echo $this->render('paymentchannel_module', []); ?>
+			</div>
+
+			<div role="tabpanel" class="biz-pane tab-pane" id="faq">
+                <?php echo $this->render('faq_module', []); ?>
+			</div>
 		</div>
 	</div>
 </div>

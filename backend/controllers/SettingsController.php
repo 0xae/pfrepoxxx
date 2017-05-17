@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -14,7 +15,8 @@ use backend\models\Rule;
 use backend\models\Evento;
 use backend\models\Tipoevento;
 use backend\models\Location;
-use yii\data\Pagination;
+use backend\models\PaymentChannel;
+use backend\models\PaymentCard;
 
 /**
  * Site controller
@@ -59,34 +61,31 @@ class SettingsController extends Controller {
     public function actionLocation() {
         $modelEvento = new Evento(['scenario' => Evento::SCENARIO_CREATE]);
         $Location = new Location();
-
         $_dataIlhas = Location::getLocation();
         $_dataFiltros = $modelEvento->getFiltros();
         $_dataTipoevento = Tipoevento::getTipoeventos();
 
         $modelLocation = (new \yii\db\Query())
-        ->select(['l.idlocation', 'l.nome'])
-        ->from('location l')
-        ->where(['l.bussiness_id'=>3]);
+            ->select(['l.idlocation', 'l.nome'])
+            ->from('location l')
+            ->where(['l.bussiness_id'=>3]);
 
         $pages = new Pagination(['totalCount' => $modelLocation->count(), 'pageSize'=>15]);
         $modelsLocation = $modelLocation->offset($pages->offset)
-        ->groupBy('nome')
-        ->orderBy(['idlocation' => SORT_ASC])
-        ->limit($pages->limit)
-        ->where(['bussiness_id'=>Yii::$app->session['business']])
-        ->all();
+            ->groupBy('nome')
+            ->orderBy(['idlocation' => SORT_ASC])
+            ->limit($pages->limit)
+            ->where(['bussiness_id'=>Yii::$app->session['business']])
+            ->all();
+
         if ($Location->load(Yii::$app->request->post())) {
-        
             $Location->bussiness_id = Yii::$app->session['business'];
             $Location->data_log = date('Y-m-d H:m:s', time());
 
             if ($Location->save()) {
                 return $this->redirect(['location']);
             }
-            
-
-        }else {
+        } else {
             return $this->render('location', [
                 'modelsLocation' => $modelsLocation,
                 'pages' => $pages,
