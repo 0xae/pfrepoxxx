@@ -21,7 +21,7 @@ $this->title = 'Settings';
 				<a href="#businessRule" aria-controls="business" role="tab" data-toggle="tab">Business Rule</a>
 			</li>
 			<li role="presentation">
-				<a href="#paymentChannel" aria-controls="payment_channel" role="tab" data-toggle="tab">Payment Channels</a>
+				<a href="#paymentChannel" aria-controls="payment_channel" role="tab" data-toggle="tab">Payments</a>
 			</li>
 			<li role="presentation">
 				<a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a>

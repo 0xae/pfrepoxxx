@@ -1,3 +1,13 @@
+<style>
+h4.active div.borderlefttitlo {
+    background-color: #009447 !important;
+}
+
+h4.active span {
+    color: #009447 !important;
+}
+</style>
+
 <div class="container-fluid pagebusiness pageanalitics">
 	<?php /*?>TABELA<?php */?>
 	<div class="col-md-12 contentbox">
@@ -10,10 +20,15 @@
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Payment Channels</span></h4>
+                <h4 ng-class="{'active':paymentView == 'channels'}" style="cursor:pointer" ng-click="setPaymentView('channels')">
+                    <div style="background-color: gainsboro;" class="borderlefttitlo"></div>
+                    <span style="color: gainsboro">Channels</span>
+                </h4>
+                <h4 ng-class="{'active':paymentView == 'cards'}" style="cursor:pointer" ng-click="setPaymentView('cards')">
+                    <div style="background-color: gainsboro;" class="borderlefttitlo"></div>
+                    <span style="color: gainsboro">Cards</span>
+                </h4>
                 <div class="pageventbtngroup">
-                    <!--
-                    -->
                     <div class="btn-group">
                       <button type="button" class="criar btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         New <span class="caret"></span>
