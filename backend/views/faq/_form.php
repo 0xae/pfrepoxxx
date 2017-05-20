@@ -31,15 +31,15 @@ use yii\widgets\ActiveForm;
 								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
                                     <?php $form = ActiveForm::begin(); ?>
 
-                                    <?= $form->field($model, 'pergunta')->textarea(['rows' => 3]) ?>
-                                    <?= $form->field($model, 'resposta')->textarea(['rows' => 6]) ?>
+                                    <?= $form->field($model, 'pergunta')->textarea(['rows' => 3])->label('Question') ?>
+                                    <?= $form->field($model, 'resposta')->textarea(['rows' => 6, 'class' => 'pf-text-editor'])->label('Answer') ?>
                                     <?php if ($model->isNewRecord) {
                                             echo $form->field($model, 'estado')->textInput();
                                         }
                                     ?>
 
                                     <div class="form-group">
-                                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                        <?= Html::submitButton('Save', ['class' => 'btn btn-primary criar']) ?>
                                     </div>
 
                                     <?php ActiveForm::end(); ?>

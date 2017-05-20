@@ -21,93 +21,62 @@ use yii\widgets\ActiveForm;
             <div class="panel-body">
                 <div class="business-create">
                     <div class="business-form">
-                        <form class="col-md-6">
+                        <?php $form = ActiveForm::begin(); ?>
                           <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="name" class="form-control" id="name" placeholder="Name">
+                            <!--<label for="name">Name</label>
+                            <input type="name" class="form-control" id="name" placeholder="Name"> -->
+                            <?= $form->field($model, 'nome_regra')->textInput(['maxlength' => true]) ?>
                           </div>
 
                             <div class="row">
                                 <div class="col-md-6 form-group">
+                                    <!--
                                     <label for="preco_min">Preço Mínimo</label>
                                     <input type="preco_min" class="form-control" id="preco_min" placeholder="Preço Mínimo">
+                                    -->
+                                    <?= $form->field($model, 'preco_min')->textInput() ?>
                                 </div>
                                 <div class="col-md-6 form-group">
+                                    <!--
                                     <label for="preco_max">Preço Máximo</label>
                                     <input type="preco_max" class="form-control" id="preco_max" placeholder="Preço Máximo">
+                                    -->
+                                    <?= $form->field($model, 'preco_max')->textInput() ?>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 form-group">
+                                    <!--
                                     <label for="stockMin">Stock Mínimo</label>
                                     <input type="stockMin" class="form-control" id="stockMin" placeholder="Stock Mínimo">
+                                    -->
+                                    <?= $form->field($model, 'stockMin')->textInput() ?>
                                 </div>
                                 <div class="col-md-6 form-group">
+                                    <!--
                                     <label for="stockMax">Stock Máximo</label>
                                     <input type="stockMax" class="form-control" id="stockMax" placeholder="Stock Máximo">
+                                    -->
+                                    <?= $form->field($model, 'stockMax')->textInput() ?>
                                 </div>
                             </div>
 
                             <div class="form-group">
+                                <!--
                                 <label for="percentagem_bilhete">Percentagem Bilhete</label>
                                 <input type="percentagem_bilhete" class="form-control" id="percentagem_bilhete" placeholder="Percentagem bilhete">
+                                -->
+                                <?= $form->field($model, 'percentagem_bilhete')->textInput() ?>
+                            </div>
+                            <div class="form-group">
+                                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                             </div>
 
-                        </form>
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<div class="rule-form">
-    <?php $form = ActiveForm::begin(); ?>
-
-        <div class="row">
-            <div class="col-md-6">
-                <?= $form->field($model, 'nome_regra')->textInput(['maxlength' => true]) ?>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3">
-                <?= $form->field($model, 'preco_min')->textInput() ?>
-            </div>
-            <div class="col-md-3">
-                <?= $form->field($model, 'preco_max')->textInput() ?>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3">
-                <?= $form->field($model, 'stockMin')->textInput() ?>
-            </div>
-            <div class="col-md-3">
-                <?= $form->field($model, 'stockMax')->textInput() ?>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <?= $form->field($model, 'percentagem_bilhete')->textInput() ?>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        </div>
-    <?php ActiveForm::end(); ?>
-</div>
-

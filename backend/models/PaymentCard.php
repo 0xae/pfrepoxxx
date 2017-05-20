@@ -1,21 +1,24 @@
 <?php
+
 namespace backend\models;
 
 use Yii;
 
 /**
- * This is the model class for table "payment_channel_card".
+ * This is the model class for table "payment_card".
  *
  * @property integer $id
  * @property string $name
- * @property integer $payment_channel_id
+ * @property string $description
+ * @property integer $is_active
+ * @property string $logo
  */
 class PaymentCard extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
     public static function tableName() {
-        return 'payment_channel_card';
+        return 'payment_card';
     }
 
     /**
@@ -23,8 +26,9 @@ class PaymentCard extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'payment_channel_id'], 'required'],
-            [['payment_channel_id'], 'integer'],
+            [['name'], 'required'],
+            [['description', 'logo'], 'string'],
+            [['is_active'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
     }
@@ -32,12 +36,13 @@ class PaymentCard extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'payment_channel_id' => 'Payment Channel ID',
+            'description' => 'Description',
+            'is_active' => 'Is Active',
+            'logo' => 'Logo',
         ];
     }
 }

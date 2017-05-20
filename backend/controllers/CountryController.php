@@ -64,7 +64,7 @@ class CountryController extends Controller {
         $model = new Country();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['settings/index', 'view' => 'countryTab']);
         } else {
             return $this->render('create', ['model' => $model]);
         }
@@ -79,7 +79,7 @@ class CountryController extends Controller {
         $model = Country::findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['settings/index', 'view' => 'countryTab']);
         } else {
             return $this->render('update', ['model' => $model]);
         }

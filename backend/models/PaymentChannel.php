@@ -27,6 +27,7 @@ class PaymentChannel extends \yii\db\ActiveRecord {
             [['name'], 'required'],
             [['link'], 'string'],
             [['supported_cards'], 'safe'],
+            [['is_active'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['name'], 'unique']
         ];
@@ -40,27 +41,32 @@ class PaymentChannel extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'name' => 'Name',
             'link' => 'Link',
+            'is_active' => 'Is Active',
         ];
     }
 
     public function getCards() {
-        $data = PaymentCard::find()
-               ->where(['payment_channel_id' => $this->id])
-               ->all();
+        $data = (new \yii\db\Query())
+                ->select(['card.id', 'card.name'])
+                ->from('payment_channel_card cc')
+                ->join('JOIN', 'payment_channel channel', 'channel.id = cc.payment_channel_id')
+                ->join('JOIN', 'payment_card card', 'card.id = cc.payment_card_id')
+                ->where(['channel.id'=>$this->id])
+                ->all();
         if (!$data) { $data = []; }
         return $data;
     }
 
     public function updateCards($cards) {
-        if (!$cards ) {
+        if (!$cards) {
             return; 
         }
 
-        PaymentCard::deleteAll('payment_channel_id = :id', ['id' => $this->id]);
+        PaymentChannelCard::deleteAll('payment_channel_id = :id', ['id' => $this->id]);
         foreach($cards as $c) {
-            $card = new PaymentCard();
-            $card->name = $c;
+            $card = new PaymentChannelCard();
             $card->payment_channel_id=$this->id;
+            $card->payment_card_id = $c;
             $card->save();
         }
     }

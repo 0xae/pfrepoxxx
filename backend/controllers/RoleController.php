@@ -18,8 +18,7 @@ class RoleController extends Controller {
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             [
                 'class' => AccessControl::className(),
@@ -38,8 +37,7 @@ class RoleController extends Controller {
      * Lists all Role models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $dataProvider = new ActiveDataProvider([
             'query' => Role::find(),
         ]);
@@ -54,8 +52,7 @@ class RoleController extends Controller {
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -71,7 +68,7 @@ class RoleController extends Controller {
         $model->type = 1;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+            return $this->redirect(['settings/index', 'view' => 'permissaotab']);
         } else {
             $data = ArrayHelper::map(Role::find()->all(),'name','name');
             return $this->render('create', [
@@ -87,12 +84,11 @@ class RoleController extends Controller {
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+            return $this->redirect(['settings/index', 'view' => 'permissaotab']);
         } else {
             $data = ArrayHelper::map(Role::find()->all(),'name','name');
             return $this->render('update', [

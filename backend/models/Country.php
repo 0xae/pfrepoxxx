@@ -43,8 +43,8 @@ class Country extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID #',
-            'name' => 'Nome',
-            'code' => 'Codigo',
+            'name' => 'Name',
+            'code' => 'Code',
             'logo' => 'Logo',
             'created_at' => 'Data de criacao',
             'updated_at' => 'Data de modificacao',

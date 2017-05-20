@@ -21,7 +21,7 @@ $model = new Faq();
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span></span></h4>
+				<h4><div class="borderlefttitlo"></div><span>FAQ</span></h4>
                 <div class="pageventbtngroup">
                     <a href="#newfaq" data-toggle="modal" class="criar btn btn-primary">
                         New FAQ

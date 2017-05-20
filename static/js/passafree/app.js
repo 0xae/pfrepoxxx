@@ -7,6 +7,8 @@ $(document).ready(function () {
         $("#privacy_content_input").val(e.target.value);
     });
 
+    $(".pf-text-editor").trumbowyg();
+
     $(".biz-choice").on("click", function () {
         var bizId = $(this).attr('data-id');
         selectBiz(bizId)

@@ -12,9 +12,27 @@
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>Payment Channels</span></h4>
                 <div class="pageventbtngroup">
-                    <a href="#new_paymentchannel" data-toggle="modal" class="criar btn btn-primary">
-                        New Payment Channel
-                    </a>
+                    <!--
+                    -->
+                    <div class="btn-group">
+                      <button type="button" class="criar btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        New <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#new_paymentchannel" data-toggle="modal" class="">
+                                <span class="glyphicon glyphicon-random"></span>
+                                Payment Channel
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#new_paymentcard" data-toggle="modal" class="">
+                                <span class="glyphicon glyphicon-credit-card"></span>
+                                Payment Card
+                            </a>
+                        </li>
+                      </ul>
+                    </div>
                 </div>
 			</div>
 		</div>
@@ -52,17 +70,5 @@
 	</div>
 </div>
 
-<div class="modal fade popupcriarbilhete popuplocalizacao" id="new_paymentchannel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <?php echo $this->render('paymentchannel_modal', []); ?>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade popupcriarbilhete popuplocalizacao" id="modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        </div>
-    </div>
-</div>
+<?php echo $this->render('paymentchannel_modal', []); ?>
+<?php echo $this->render('paymentcard_modal', []); ?>

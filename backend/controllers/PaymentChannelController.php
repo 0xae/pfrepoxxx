@@ -3,10 +3,12 @@ namespace backend\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\PaymentChannel;
+use backend\models\PaymentCard;
 
 /**
  * PaymentChannelController implements the CRUD actions for PaymentChannel model.
@@ -25,6 +27,7 @@ class PaymentChannelController extends Controller {
 
     /**
      * Creates a new PaymentChannel model.
+     * FIXME: find a way to return this model back to settings in case of validation errors 
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -33,10 +36,13 @@ class PaymentChannelController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->updateCards($model->supported_cards);
-            return $this->redirect(['settings/index', 'view' => 'pc']);
+            return $this->redirect(['settings/index', 'view' => 'paymentChannel']);
         } else {
+            $data = PaymentCard::find()->all();
+            $cards = ArrayHelper::map($data, 'id', 'name');
             return $this->render('create', [
                 'model' => $model,
+                'cards' => $cards
             ]);
         }
     }
@@ -52,29 +58,17 @@ class PaymentChannelController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->updateCards($model->supported_cards);
-            return $this->redirect(['settings/index', 'view' => 'pc']);
+            return $this->redirect(['settings/index', 'view' => 'paymentChannel']);
         } else {
+            $data = PaymentCard::find()->all();
+            $cards = ArrayHelper::map($data, 'id', 'name');
+            $model->supported_cards = ArrayHelper::map($model->getCards(), 'id', 'name');
+
             return $this->render('update', [
                 'model' => $model,
+                'cards' => $cards
             ]);
         }
-    }
-
-    /**
-     * Deletes an existing PaymentChannel model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id) {
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
-    }
-
-    public function actionView($id) {
-        $model = $this->findModel($id);
-        $model->supported_cards = $model->getCards();
-        echo $this->renderPartial('@app/views/settings/paymentchannel_modal', ['model'=>$model]);
     }
 
     /**

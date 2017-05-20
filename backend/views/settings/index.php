@@ -12,7 +12,7 @@ $this->title = 'Settings';
 				<a href="#usertab" aria-controls="home" role="tab" data-toggle="tab">Users</a>
 			</li>
 			<li role="presentation">
-				<a href="#permissaotab" aria-controls="profile" role="tab" data-toggle="tab">Permissao</a>
+				<a href="#permissaotab" aria-controls="profile" role="tab" data-toggle="tab">Permissions</a>
 			</li>
 			<li role="presentation">
 				<a href="#countryTab" aria-controls="country" role="tab" data-toggle="tab">Country</a>
@@ -55,3 +55,14 @@ $this->title = 'Settings';
 		</div>
 	</div>
 </div>
+
+<?php
+$view = @$_GET['view'];
+$script = <<<JS
+var tab = '$view';
+$("a[href='#"+tab+"']").tab('show');
+JS;
+
+$this->registerJs($script);
+?>
+

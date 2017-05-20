@@ -123,9 +123,6 @@ class MarcaController extends Controller {
             }
         } 
 
-        # assume we created everything
-        # XXX (ayrton): find a better way to do this
-        # TODO: show the error on the modal
         $this->deleteAll($user->data, $marca->data, $produtor->data);
 
         return $this->render('index', [

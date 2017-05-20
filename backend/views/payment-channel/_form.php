@@ -1,13 +1,10 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use kartik\select2\Select2;
 use backend\models\PaymentChannel;
-
-$model->supported_cards = ArrayHelper::map($model->getCards(), 'name', 'name');
 ?>
 
 <div class="container-fluid pagebusiness">
@@ -40,23 +37,25 @@ $model->supported_cards = ArrayHelper::map($model->getCards(), 'name', 'name');
 						  <div class="tab-content">
 								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
                                     <?php $form = ActiveForm::begin(); ?>
-
-                                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-                                    <?= $form->field($model, 'link')->textarea(['rows' => 6]) ?>
-                                    <?php
-                                        echo $form->field($model, 'supported_cards')->widget(Select2::classname(), [
-                                            'options' => ['multiple' => true],
-                                            'pluginOptions' => [
-                                                'tags' => true,
-                                                'tokenSeparators' => [' '],
-                                                'maximumInputLength' => 10
-                                            ],
-                                        ])->label('Supported cards');
-                                    ?>
-                                    <div class="form-group">
-                                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                                    </div>
-
+                                        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                                        <?= $form->field($model, 'link')->textarea(['rows' => 2]) ?>
+                                        <?php
+                                            echo $form->field($model, 'supported_cards')
+                                                        ->label('Supported cards')
+                                                        ->widget(Select2::classname(), [
+                                                            'data' => $cards,
+                                                            'value' => $model->supported_cards,
+                                                            'options' => ['multiple' => true],
+                                                        ]);
+                                            foreach ($model->supported_cards as $c){
+                                                echo "<span style='margin-right:5px' class='label label-default'> {$c} </span>";
+                                            }
+                                        ?>
+                                        <br />
+                                        <br />
+                                        <div class="form-group">
+                                            <?= Html::submitButton('Save', ['class' => 'btn btn-primary criar']) ?>
+                                        </div>
                                     <?php ActiveForm::end(); ?>
 								</div>
 						  </div>

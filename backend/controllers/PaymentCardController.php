@@ -12,10 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * PaymentCardController implements the CRUD actions for PaymentCard model.
  */
-class PaymentCardController extends Controller
-{
-    public function behaviors()
-    {
+class PaymentCardController extends Controller {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -27,43 +25,15 @@ class PaymentCardController extends Controller
     }
 
     /**
-     * Lists all PaymentCard models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => PaymentCard::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single PaymentCard model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new PaymentCard model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new PaymentCard();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['settings/index', 'view' => 'paymentChannel']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -77,8 +47,7 @@ class PaymentCardController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -91,27 +60,13 @@ class PaymentCardController extends Controller
     }
 
     /**
-     * Deletes an existing PaymentCard model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
      * Finds the PaymentCard model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return PaymentCard the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = PaymentCard::findOne($id)) !== null) {
             return $model;
         } else {
