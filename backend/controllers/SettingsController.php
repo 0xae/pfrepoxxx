@@ -32,7 +32,12 @@ class SettingsController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','location','updatelocation'],
+                        'actions' => ['location','updatelocation'],
+                        'allow' => true,
+                        'roles' => ['business', 'passafree_staff', 'admin']
+                    ],
+                    [
+                        'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['passafree_staff', 'admin']
                     ],
@@ -116,18 +121,14 @@ class SettingsController extends Controller {
     }
     
     public function actionUpdatelocation(){
-
         if (Yii::$app->request->isAjax) {
-
             $id = Yii::$app->request->post('idlocation');
             $nome = Yii::$app->request->post('nome');
             $model = Location::find()->where(['idlocation'=>$id])->one();
             $model->nome=$nome;
 
             if (Yii::$app->request->isPost) {
-
                 if ($model->save()) {
-//                     $model = $this->findModelLocation($id);
                     echo '1';
                 }else{
                     echo '0';

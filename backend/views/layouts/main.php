@@ -174,7 +174,7 @@ $this->registerJS($script);
                   </a>
             </li>
 
-            <?php if (Yii::$app->user->can('admin')): ?>
+            <?php if ($user->can('admin')): ?>
                     <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
                       <a href="index.php?r=settings/index">
                         <span>Settings</span> <!--i class="fa fa-angle-left pull-right"></i-->
@@ -182,7 +182,7 @@ $this->registerJS($script);
                     </li>
             <?php endif; ?>
             
-            <?php if (Yii::$app->user->can('admin')): ?>
+            <?php if ($user->can('admin') || $user->can('business')): ?>
             <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
                 <a href="index.php?r=settings/location">
                 <span>Location</span> <!--i class="fa fa-angle-left pull-right"></i-->

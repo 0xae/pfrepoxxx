@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
 
-<?php $form = ActiveForm::begin(['options' => ['class' => 'col-md-12', 'enctype' => 'multipart/form-data']]); ?>
+<?php $form = ActiveForm::begin(['options' => ['class' => 'col-md-12','enctype' => 'multipart/form-data']]); ?>
 <div class="container-fluid pagebusiness create-country">
     <div class="row">
         <div class="col-md-12 titulosection">

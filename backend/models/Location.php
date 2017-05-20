@@ -12,21 +12,18 @@ use Yii;
  * @property string $nome
  * @property integer $bussiness_id
  */
-class Location extends \yii\db\ActiveRecord
-{
+class Location extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'location';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['nome', 'bussiness_id'], 'required'],
             [['bussiness_id'], 'integer'],
@@ -37,8 +34,7 @@ class Location extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'idlocation' => 'Idlocation',
             'nome' => 'Nome',
@@ -47,28 +43,25 @@ class Location extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getLocation(){
+    /**
+     * XXX: what a uggly code (ayrton)
+     */
+    public function getLocation() {
+        $user = Yii::$app->user;
+        $models = Location::find()
+            ->join('INNER JOIN','business','bussiness_id=business.id')
+            ->join('INNER JOIN','marca','business.id=marca.business_id')
+            ->join('INNER JOIN','produtor','marca.idmarca=produtor.marca_idmarca');
 
-        $models = ArrayHelper::map(Location::find()
-        ->join('INNER JOIN','business','bussiness_id=business.id')
-        ->join('INNER JOIN','marca','business.id=marca.business_id')
-        ->join('INNER JOIN','produtor','marca.idmarca=produtor.marca_idmarca')
-        ->where(['idprodutor'=>Yii::$app->user->identity->id])
-        ->groupBy('nome')
-        ->orderBy(['nome' => SORT_ASC])
-        ->all(),'nome','nome');
+        if ($user->can('producer')) {
+            $models = $models->where(['idprodutor'=>$user->identity->id]);
+        } else if ($user->can('business')) {
+            $bizId = Yii::$app->session->get('business');
+            $models = $models->where(['business.id'=>$bizId]);
+        }
 
-        /*$models = (new \yii\db\Query())
-        ->select(['l.idlocation', 'l.nome', 'b.id', 'p.idprodutor'])
-        ->from('location l')
-        ->join('join','business b','l.bussiness_id=b.id')
-        ->join('join','marca m','b.id=m.business_id')
-        ->join('join','produtor p','m.idmarca=p.marca_idmarca')
-        ->where(['p.idprodutor'=>Yii::$app->user->identity->id])
-        ->groupBy('nome')
-        ->orderBy(['idlocation' => SORT_ASC])
-        ->all();*/
-
-        return $models;
+        $models = $models->orderBy(['nome' => SORT_ASC])->all();
+        $data = ArrayHelper::map($models, 'nome', 'nome');
+        return $data;
     }
 }
