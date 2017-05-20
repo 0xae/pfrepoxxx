@@ -90,18 +90,15 @@ $(document).ready(function () {
     );
 
     $('._filtroCr').hover(function() {
-        if( $('#blah').attr('src')!='#')
+        if($('#blah').attr('src')!='#') {
             $('#papelFundo').css('background',$(this).attr('value'));
+        }
         $('#formFilro').val($(this).attr('value'));
-
-
     });
 
-    if( $('#blah').attr('src')=='#'){
+    if($('#blah').attr('src')=='#'){
         $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
-    }
-    else{
-
+    } else {
         $('#papelFundo').hover($('#papelFundo').css('cursor','crosshair'));
     }
 
@@ -162,7 +159,6 @@ function readURL(input) {
             $('#trashd').hover($('#trashd').css('cursor','pointer'));
             $('#papelFundo').css('opacity',0);
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }
