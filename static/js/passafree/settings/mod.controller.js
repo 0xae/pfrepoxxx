@@ -1,7 +1,8 @@
 (function () {
     angular.module('settingsModule')
     .controller('SettingsController', ['$scope', function ($scope) {
-        $scope.paymentView = 'cards';
+        $scope.paymentView = 'channels';
+
         $scope.openModal = function (objid) {
             $.get('./index.php?r=payment-channel/view&id='+objid)
             .then(function (data) {

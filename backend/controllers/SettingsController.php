@@ -52,6 +52,7 @@ class SettingsController extends Controller {
         $rules = Rule::find()->all();
         $paymentChannels = PaymentChannel::find()->all();
         $faqs = Faq::find()->all();
+        $paymentCards = PaymentCard::find()->all();
 
         return $this->render('index', [
             'users' => $users,
@@ -59,6 +60,7 @@ class SettingsController extends Controller {
             'countries' => $country,
             'rules' => $rules,
             'paymentChannels' => $paymentChannels,
+            'paymentCards' => $paymentCards,
             'faqs' => $faqs
         ]);
     }

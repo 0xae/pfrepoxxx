@@ -1,5 +1,4 @@
 <?php
-
 namespace backend\controllers;
 
 use Yii;
@@ -7,7 +6,9 @@ use backend\models\PaymentCard;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+use backend\models\UploadForm;
 
 /**
  * PaymentCardController implements the CRUD actions for PaymentCard model.
@@ -33,6 +34,7 @@ class PaymentCardController extends Controller {
         $model = new PaymentCard();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->uploadFileIfExists($model);
             return $this->redirect(['settings/index', 'view' => 'paymentChannel']);
         } else {
             return $this->render('create', [
@@ -51,11 +53,11 @@ class PaymentCardController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $this->uploadFileIfExists($model);
+            $model->save();
+            return $this->redirect(['settings/index', 'view' => 'paymentChannel']);
         } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return $this->render('update', ['model' => $model]);
         }
     }
 
@@ -66,11 +68,19 @@ class PaymentCardController extends Controller {
      * @return PaymentCard the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
+    private function findModel($id) {
         if (($model = PaymentCard::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    private function uploadFileIfExists($model) {
+        $model->file = UploadedFile::getInstance($model, 'file');
+        if ($model->file){
+            $model->logo = UploadForm::upload($model->file, 'payment-cards');
+            $model->save();
         }
     }
 }

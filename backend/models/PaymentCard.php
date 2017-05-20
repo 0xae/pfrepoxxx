@@ -14,6 +14,8 @@ use Yii;
  * @property string $logo
  */
 class PaymentCard extends \yii\db\ActiveRecord {
+    public $file;
+
     /**
      * @inheritdoc
      */
@@ -28,6 +30,7 @@ class PaymentCard extends \yii\db\ActiveRecord {
         return [
             [['name'], 'required'],
             [['description', 'logo'], 'string'],
+            [['file'], 'safe'],
             [['is_active'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];

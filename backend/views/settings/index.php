@@ -46,7 +46,8 @@ $this->title = 'Settings';
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="paymentChannel">
-                <?php echo $this->render('paymentchannel_module', ['paymentChannels' => $paymentChannels]); ?>
+                <?php echo $this->render('paymentchannel_module', ['paymentChannels' => $paymentChannels,
+                                                                   'paymentCards'=>$paymentCards]); ?>
 			</div>
 
 			<div role="tabpanel" class="biz-pane tab-pane" id="faq">

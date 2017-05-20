@@ -12,11 +12,11 @@ use backend\models\PaymentChannel;
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
 				<h4>
-                    <div class="borderlefttitlo"></div><span>Payment Channel</span>
-                    <div class="nomebusinesscreate">
-                        <div class="borderlefttitlo"></div>
-                        <span><?= $model->name ?></span>
-                    </div>
+                    <?php if ($model->id): ?>
+                        <div class="borderlefttitlo"></div><span><?= $model->name ?></span>
+                    <?php else: ?>
+                        <div class="borderlefttitlo"></div><span>New Payment Channel</span>
+                    <?php endif; ?>
 				</h4>
 			</div>
 		</div>
