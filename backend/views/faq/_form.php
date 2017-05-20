@@ -1,6 +1,9 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+if ($model->estado == null) {
+    $model->estado=1;
+}
 ?>
 
 <div class="container-fluid pagebusiness">
@@ -33,10 +36,7 @@ use yii\widgets\ActiveForm;
 
                                     <?= $form->field($model, 'pergunta')->textarea(['rows' => 3])->label('Question') ?>
                                     <?= $form->field($model, 'resposta')->textarea(['rows' => 6, 'class' => 'pf-text-editor'])->label('Answer') ?>
-                                    <?php if ($model->isNewRecord) {
-                                            echo $form->field($model, 'estado')->textInput();
-                                        }
-                                    ?>
+                                    <?= $form->field($model, 'estado')->hiddenInput()->label(false); ?>
 
                                     <div class="form-group">
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-primary criar']) ?>

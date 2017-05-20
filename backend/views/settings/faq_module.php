@@ -73,13 +73,12 @@ $model = new Faq();
             <div class="modal-body">
                 <?php $form = ActiveForm::begin(['action'=>'./index.php?r=faq/create']); ?>
 
-                <?= $form->field($model, 'pergunta')->textarea(['rows' => 2]) ?>
-
-                <?= $form->field($model, 'resposta')->textarea(['rows' => 6]) ?>
+                <?= $form->field($model, 'pergunta')->textarea(['rows' => 2])->label('Question')?>
+                <?= $form->field($model, 'resposta')->textarea(['rows' => 6,'class'=>'pf-text-editor'])->label('Answer') ?>
                 <?= $form->field($model, 'estado')->hiddenInput(['value' => 1])->label(false); ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                <div class="form-group" style="float: left">
+                    <?= Html::submitButton('Save', ['class' => 'btn btn-primary criar']) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>
