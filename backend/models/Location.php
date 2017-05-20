@@ -61,7 +61,7 @@ class Location extends \yii\db\ActiveRecord {
         }
 
         $models = $models->orderBy(['nome' => SORT_ASC])->all();
-        $data = ArrayHelper::map($models, 'nome', 'nome');
-        return $data;
+        return ArrayHelper::map($models, 'nome', 'nome');
     }
 }
+
