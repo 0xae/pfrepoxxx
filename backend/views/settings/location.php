@@ -1,27 +1,28 @@
 <?php
-use backend\models\Evento;
 use yii\helpers\Url;
+use backend\models\Evento;
 use backend\models\Tipoevento;
 
 $this->title = 'Localização';
+$user = Yii::$app->user;
 ?>
     
-<div class="container-fluid pagebusiness historicoevento localizacao">
+<div class="container-fluid pagebusiness ">
    <!--inicio de localizaçao-->
 
+    <?php
+        echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []);
+    ?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>Localização</span></h4>
+                <div class="pageventbtngroup">
+                    <a href="#location" class="criar btn btn-primary" id="criaEventos" data-toggle="modal">New Location</a>
+                </div>
 			</div>
 		</div>
 	</div>
-
-    <div class="row">
-        <div class="col-md-6 next">
-            <a href="#location" class="btn btn-success" id="criaEventos" data-toggle="modal">Criar Localização</a>
-        </div>
-    </div><br>
 
     <div class="row">
         <div class="col-md-12">
