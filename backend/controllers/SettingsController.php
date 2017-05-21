@@ -3,9 +3,9 @@ namespace backend\controllers;
 
 use Yii;
 use yii\data\Pagination;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 
 use backend\models\LoginForm;
 use backend\models\User;

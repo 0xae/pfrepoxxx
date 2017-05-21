@@ -8,12 +8,14 @@ use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 
 use backend\models\PasswordResetRequestForm;
-use common\models\AdminLoginForm;
 use backend\models\ResetPasswordForm;
 use backend\models\Business;
+use common\models\AdminoginForm;
 
 /**
  * Site controller
+ * XXX: this is the only place we mess
+ *      arround the app session
  */
 class SiteController extends Controller {
     /**
@@ -24,6 +26,11 @@ class SiteController extends Controller {
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
+                    [
+                        'actions' => ['set-biz'],
+                        'allow' => true,
+                        'roles' => ['admin', 'passafree_staff']
+                    ],
                     [
                         'actions' => ['login', 'error'],
                         'allow' => true,
@@ -85,6 +92,13 @@ class SiteController extends Controller {
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionSetBiz($id) {
+        $session = Yii::$app->session;
+        $model = Business::findModel($id);
+        $session->set('business', $id);
+        $session->set('business_name', $model->name);
     }
 
     public function actionLogout() {

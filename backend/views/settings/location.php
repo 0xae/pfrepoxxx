@@ -8,11 +8,7 @@ $user = Yii::$app->user;
 ?>
     
 <div class="container-fluid pagebusiness ">
-   <!--inicio de localizaçao-->
-
-    <?php
-        echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []);
-    ?>
+    <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -32,7 +28,7 @@ $user = Yii::$app->user;
                       echo '<div class="row">';
                       foreach ($modelsLocation as $key => $location) {
                           echo "<a idlocation='".$location['idlocation']."' nome='".$location['nome']."' class='_update col-md-4'>";
-                              echo $location['nome'];
+                          echo $location['nome'];
                           echo '</a>';
                       }
                       echo '</div>';

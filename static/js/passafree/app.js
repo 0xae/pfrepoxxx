@@ -125,7 +125,7 @@ $(document).ready(function () {
 });
 
 function selectBiz(bizId) {
-    return $.get("./index.php?r=business/select&id="+bizId);
+    return $.get("./index.php?r=site/set-biz&id="+bizId);
 }
 
 function validateForm(m) {

@@ -117,13 +117,6 @@ class BusinessController extends Controller {
         ]);
     }
 
-    public function actionSelect($id) {
-        $session = Yii::$app->session;
-        $model = Business::findModel($id);
-        $session->set('business', $id);
-        $session->set('business_name', $model->name);
-    }
-
     public function actionPrivacy($id) {
         $biz = Business::findModel($id);
         echo $biz->privacy_content;

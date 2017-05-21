@@ -133,6 +133,31 @@ class User extends \yii\db\ActiveRecord {
     }
 
     /**
+     *
+     */
+    public static function getAuthProfile() {
+        $appUser = Yii::$app->user;
+        $session = Yii::$app->session;
+        $user = [
+            'id' => $appUser->identity->id,
+            'username' => $appUser->identity->username,
+            'business_id' => $session->get('business'),
+            'producer_id' => null
+        ];
+
+        if ($appUser->can('admin')) {
+            $user['role'] = 'admin';
+        } else if ($appUser->can('business')) {
+            $user['role'] = 'business';
+        } else if ($appUser->can('producer')) {
+            $user['role'] = 'producer';
+            $user['producer_id'] = $session->get('business');
+        }
+
+        return $user;
+    }
+
+    /**
      * TODO: support more fields of profie
      * TODO 2: use a join instead
      */
