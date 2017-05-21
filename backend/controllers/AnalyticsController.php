@@ -4,11 +4,11 @@ namespace backend\controllers;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use backend\components\RestApp;
 use backend\models\UploadForm;
 use backend\models\Business;
 use backend\models\analytics\ReportsService;
 use backend\models\analytics\AnalyticsService;
-use backend\components\RestApp;
 
 class AnalyticsController extends \yii\web\Controller {
     /*

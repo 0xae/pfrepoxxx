@@ -10,7 +10,7 @@ use yii\web\ForbiddenHttpException;
 use backend\models\PasswordResetRequestForm;
 use backend\models\ResetPasswordForm;
 use backend\models\Business;
-use common\models\AdminoginForm;
+use common\models\AdminLoginForm;
 
 /**
  * Site controller

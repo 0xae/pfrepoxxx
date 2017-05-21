@@ -20,6 +20,7 @@ use backend\models\UploadForm;
 use backend\models\Evento;
 use backend\models\User;
 use backend\components\FormData;
+use backend\models\analytics\EventReport;
 
 /**
  * MarcaController implements the CRUD actions for Marca model.
@@ -75,19 +76,34 @@ class MarcaController extends Controller {
      */
     public function actionView($id) {
         $marca = Marca::findModel($id);
+        $service = new EventReport();
         $events = $marca->getNextEvents();
         $prod = $marca->getProdutor();
         $destaque = null;
+        $stats = [
+            'stock_total' => 0,
+            'stock_percent' => 0
+        ];
 
         if (!empty($events)) {
             # the most recent
             $destaque = array_shift($events);
+            $ret = $service->getReportById(User::getAppUser(), $destaque->idevento);
+            if ($ret) {
+                $ticketsTotal = (int)$ret['tickets_total'];
+                $ticketsSold = (int)$ret['tickets_sold'];
+                if ($ticketsTotal > 0) {
+                    $stats['stock_total'] = $ticketsTotal;
+                    $stats['stock_percent'] = floor(($ticketsSold * 100) / $ticketsTotal);
+                }
+            }
         }
 
         return $this->render('view', [
             'model' => $marca,
             'produtor' => $prod,
             'destaque' => $destaque,
+            'stats' => $stats,
             'nextEvents' => $events
         ]);
     }

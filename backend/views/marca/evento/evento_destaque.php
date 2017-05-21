@@ -29,27 +29,15 @@
                             </div>
                         </div>
 
+                        <div class="col-md-3"></div>
                         <div class="col-md-3 text-center"><br><br>
                             <div class="fundo_circle">
-                                <div class="c100 p50">
-                                    <span>35% <br/> <span class="value">1500</span> </span>
-                                    <div class="slice">
-                                        <div class="bar"></div>
-                                        <div class="fill"></div>
-                                    </div>
-                                </div>
-                                <span>Entrada</span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 text-center"><br><br>
-                            <div class="fundo_circle">
-                                <div class="c100 p50">
-                                    <span>75% <br/> <span class="value">30000</span> </span>
-                                    <!--
-                                    <span>75%</span>
-                                    <span class="value">de 30000</span>
-                                    -->
+                                <div class="c100 p50" style="margin-bottom:13px">
+                                    <span>
+                                         <span id=""><?= $stats['stock_percent'] ?>%</span>
+                                         <br/>
+                                         <span id="" class="value"><?= $stats['stock_total'] ?></span>
+                                     </span>
                                     <div class="slice">
                                         <div class="bar"></div>
                                         <div class="fill"></div>
@@ -58,6 +46,20 @@
                                 <span>Stock</span>
                             </div>
                         </div>
+                        <!--
+                        <div class="col-md-3 text-center"><br><br>
+                            <div class="fundo_circle">
+                                <div class="c100 p50">
+                                    <span>75% <br/> <span class="value">30000</span> </span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                                <span>Stock</span>
+                            </div>
+                        </div>
+                        -->
                     </div>
                 </div>
             </div>

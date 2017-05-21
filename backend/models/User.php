@@ -7,17 +7,6 @@ use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "user".
- *
- * @property integer $id
- * @property string $username
- * @property string $auth_key
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property string $country
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
  */
 class User extends \yii\db\ActiveRecord {
     public $nome;
@@ -45,6 +34,12 @@ class User extends \yii\db\ActiveRecord {
             [['password_reset_token'], 'unique'],
             ['password', 'string', 'min' => 6],
             [['tipo_user'], 'safe']
+        ];
+    }
+
+    public function behaviors() {
+        return [
+            TimestampBehavior::className(),
         ];
     }
 
@@ -133,9 +128,9 @@ class User extends \yii\db\ActiveRecord {
     }
 
     /**
-     *
+     * TODO (ayrton): add support for producers
      */
-    public static function getAuthProfile() {
+    public static function getAppUser() {
         $appUser = Yii::$app->user;
         $session = Yii::$app->session;
         $user = [
@@ -151,7 +146,6 @@ class User extends \yii\db\ActiveRecord {
             $user['role'] = 'business';
         } else if ($appUser->can('producer')) {
             $user['role'] = 'producer';
-            $user['producer_id'] = $session->get('business');
         }
 
         return $user;
@@ -177,6 +171,7 @@ class User extends \yii\db\ActiveRecord {
         }
     }
 
+
     private static function getPerm($permission) {
         $auth = Yii::$app->authManager;
         $permissionObj = $auth->getRole($permission);
@@ -187,12 +182,6 @@ class User extends \yii\db\ActiveRecord {
         }
 
         return $permissionObj;
-    }
-
-    public function behaviors() {
-        return [
-            TimestampBehavior::className(),
-        ];
     }
 }
 

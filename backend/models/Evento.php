@@ -6,20 +6,10 @@ use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "evento".
- *
  * @author janito (possibly)
  * @author ayrton
  * @notes class constants (const) always come before instance members
  *
- * @property string $idevento
- * @property string $produtor_idprodutor
- * @property string $nome
- * @property string $data
- * @property string $hora
- * @property string $local
- * @property string $descricao
- * @property string $cartaz
- * @property integer $estado
  */
 
 class Evento extends \yii\db\ActiveRecord {
@@ -139,11 +129,6 @@ class Evento extends \yii\db\ActiveRecord {
             self::FILTRO4 => self::FILTRO4,
             self::FILTRO5 => self::FILTRO5
         ];
-    }
-
-    public function getEventos(){
-        $models = ArrayHelper::map(Evento::find()->where(['estado' => 1])->all(),'idevento','nome');
-        return $models;
     }
 
     public function getEventTypeLabel() {
