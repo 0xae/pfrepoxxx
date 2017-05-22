@@ -32,12 +32,7 @@ class SignupForm extends Model {
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             [['nome', 'country_id'], 'required'],
-            /*
-            ['apelido', 'required'],
-            [['nome', 'apelido'], 'string', 'max' => 100],
-            [['nome', 'apelido'], 'safe'],
-            */
-            
+
             [['tipo_user', 'country_id'], 'integer'],
             [['nome', 'country_id', 'marca_id'], 'safe'],
 
@@ -68,6 +63,7 @@ class SignupForm extends Model {
         $user->auth_key = Yii::$app->security->generateRandomString();
         $user->tipo_user = $this->tipo_user;
         $user->country_id = $this->country_id;
+        $user->password_md5 = md5($this->password);
 
         if ($user->save($validate)) {
             $user->saveProfile();
