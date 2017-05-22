@@ -367,6 +367,7 @@
     background-color: #f8f8f8 !important;
     color: #666 !important;
     border-color: #666;
+    border-color: #eee !important;
 }
 .paginatiogerel
 {
@@ -558,6 +559,7 @@
 	font-size: 14px;
 	text-transform: uppercase;
 	float: right;
+	margin: 20px 0; 
 }
 .edit{
 	background: #009447!important;
@@ -963,6 +965,14 @@
 .overview {
     top: -30px;
 }
+/*
+.overview-page {
+	margin-top: 65px;
+}
+.main-header {
+    position: fixed !important;
+}
+*/
 .business_page .imgbussinessbox .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     display: block;
     max-width: 100%;
