@@ -3,7 +3,6 @@ namespace backend\controllers;
 
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-
 use backend\components\RestApp;
 use backend\models\UploadForm;
 use backend\models\Business;
@@ -65,15 +64,16 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 
+    /*
+     * TODO: make this code prettier
+     *       add default date filter
+     * XXX: work on these filters
+    */
     public function actionDashboard() {
         $user = \Yii::$app->user;
         $session = \Yii::$app->session;
         $service = new AnalyticsService();
 
-        /*
-         * TODO: make this code prettier
-         * XXX: work on these filters
-        */
         $globalRevenue=0;
         $filters = RestApp::parseQueryFilters($_GET);
 
