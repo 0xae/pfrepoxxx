@@ -77,6 +77,25 @@ class PaymentChannelController extends Controller {
         }
     }
 
+    public function actionView($id) {
+        $model = $this->findModel($id);
+        $cards = [];
+        foreach ($model->getCards() as $o) {
+            $cards[] = [
+                'id' => $o['id'],
+                'name' => $o['name'],
+                'logo' => $o['logo'],
+            ];
+        }
+
+        echo json_encode([
+            'id' => $id,
+            'name' => $model->name,
+            'link' => $model->link,
+            'accepted_cards' => $cards
+        ]);
+    }
+
     /**
      * Finds the PaymentChannel model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

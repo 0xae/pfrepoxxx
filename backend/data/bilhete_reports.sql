@@ -11,9 +11,11 @@ SELECT
 		E.nome AS evento_nome,
         E.data as evento_data,
         E.estado as evento_estado,
+        (SELECT count(1) from user_has_bilhete u where u.evento_idevento=E.idevento) as total_checkin,
 
 		B.idbilhete as bilhete_id,
-		B.descricao_bilhete as bilhete_nome,
+		B.descricao_bilhete as bilhete_descricao,
+		B.nome_bilhete as bilhete_nome,
 		B.preco as bilhete_preco,
 		B.stock as bilhete_stock,
 		B.business_percent as business_bilhete_percent,

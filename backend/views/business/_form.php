@@ -16,7 +16,7 @@ if ($model->id) {
 }
 ?>
 
-<div class="container-fluid business_page pagebusiness">
+<div class="container-fluid business_page pagebusiness" ng-controller="BizController">
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
@@ -74,6 +74,12 @@ if ($model->id) {
                                                     'options' => ['multiple' => false],
                                                 ]);
                                             ?>
+                                            <div class="form-control">
+                                                <p ng-foreach="p in payment_channels">
+                                                    {{ p.name }}
+                                                </p>
+                                            </div>
+
                                             <?= $form->field($model, 'cashout')->dropDownList([
                                                     'mensal' => 'Mensal',
                                                     'semestral' => 'Semestral',

@@ -75,39 +75,28 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $marca = Marca::findModel($id);
         $service = new EventReport();
+        $marca = Marca::findModel($id);
         $events = $marca->getNextEvents();
         $prod = $marca->getProdutor();
         $destaque = null;
-        $stats = [
-            'stock_total' => 0,
-            'stock_percent' => 0
-        ];
 
         /**
          * XXX: here is the formula for entrada:
          *      Entrada = <total_cheched_id> / <total sold>
          */
+        $ret = [];
         if (!empty($events)) {
             # the most recent
             $destaque = array_shift($events);
             $ret = $service->getReportById(User::getAppUser(), $destaque->idevento);
-            if ($ret) {
-                $ticketsTotal = (int)$ret['tickets_total'];
-                $ticketsSold = (int)$ret['tickets_sold'];
-                if ($ticketsTotal > 0) {
-                    $stats['stock_total'] = $ticketsTotal;
-                    $stats['stock_percent'] = floor(($ticketsSold * 100) / $ticketsTotal);
-                }
-            }
         }
 
         return $this->render('view', [
             'model' => $marca,
             'produtor' => $prod,
             'destaque' => $destaque,
-            'stats' => $stats,
+            'stats' => $ret,
             'nextEvents' => $events
         ]);
     }

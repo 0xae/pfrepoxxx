@@ -32,7 +32,11 @@
                         <div class="col-md-3 text-center"><br><br>
                             <div class="fundo_circle">
                                 <div class="c100 p50" style="margin-bottom: 13px">
-                                    <span>75% <br/> <span class="value">30000</span> </span>
+                                    <span>
+                                         <span id=""><?= $stats['checkin_percent'] ?>%</span>
+                                         <br/>
+                                         <span id="" class="value"><?= $stats['tickets_sold'] ?></span>
+                                     </span>
                                     <div class="slice">
                                         <div class="bar"></div>
                                         <div class="fill"></div>
@@ -46,9 +50,9 @@
                             <div class="fundo_circle">
                                 <div class="c100 p50" style="margin-bottom:13px">
                                     <span>
-                                         <span id=""><?= $stats['stock_percent'] ?>%</span>
+                                         <span id=""><?= $stats['tickets_percent'] ?>%</span>
                                          <br/>
-                                         <span id="" class="value"><?= $stats['stock_total'] ?></span>
+                                         <span id="" class="value"><?= $stats['tickets_total'] ?></span>
                                      </span>
                                     <div class="slice">
                                         <div class="bar"></div>

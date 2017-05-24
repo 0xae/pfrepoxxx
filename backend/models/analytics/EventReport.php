@@ -29,8 +29,16 @@ class EventReport {
             'event_id' => 'evento_id',
             'event_name' => 'evento_nome',
             'event_date' => 'evento_data',
+            'tickets_stock' => 'sum(tickets_current_stock)',
             'tickets_sold' => 'sum(tickets_sold)',
             'tickets_total' => 'sum(bilhete_stock)',
+            'tickets_percent' => 'floor(
+                                   coalesce( (sum(tickets_sold)*100) / sum(bilhete_stock), 0)
+                                 )',
+            'checkin_total' => 'total_checkin',
+            'checkin_percent' => 'floor(
+                                    coalesce( (total_checkin*100) / sum(tickets_sold), 0)
+                                  )',
             'raw_revenue' => 'sum(total_producer_gross)',
             'liquid_revenue' => 'sum(total_producer_liquid)',
             'business_revenue' => 'sum(total_business_liquid)',

@@ -84,7 +84,6 @@ $(document).ready(function () {
     $('#papelFundo').click(function() {
         if( $('#blah').attr('src')=='#'){
             $('#file').click();
-
         }
     }
     );
@@ -142,6 +141,7 @@ function validateForm(m) {
         'eventModule',
         'analyticsModule',
         'settingsModule',
+        'BizModule',
         'userModule'
     ]);
 })();

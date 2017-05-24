@@ -16,7 +16,7 @@ $this->registerJs("
         <div role="tabpanel">
             <ul class="nav nav-tabs bilhte" role="tablist">
                 <?php foreach ($bilhetesLabel as $id=>$label): ?>
-                <li role="presentation" <? if (!$k){ $k=$id; echo 'class="active"'; }?>>
+                <li role="presentation" <? if (!$k){ $k=$id; echo 'class="active" style="border-top-left-radius: 5px;"'; }?>>
                         <a href="#graph_<?= $id ?>" 
                            aria-controls="home" role="tab" 
                            data-toggle="tab" aria-expanded="false"><?= $label ?></a>
