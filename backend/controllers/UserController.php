@@ -93,8 +93,9 @@ class UserController extends Controller {
                 $model->setPassword($model->password);
             }
 
-            if ($model->save())
+            if ($model->save()) {
                 return $this->redirect(['settings/index']);
+            }
         } 
 
         $countryData = ArrayHelper::map(Country::find()->all(), 'id', 'name');

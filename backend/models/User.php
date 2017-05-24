@@ -79,8 +79,11 @@ class User extends \yii\db\ActiveRecord {
 
     private static function updateType($userId, $ary) {
         $type = 0;
-        if (in_array('business', $ary)) {
+        if (in_array('business', $ary) || in_array('passafree_staff', $ary) 
+                    || in_array('admin', $ary)) {
             $type = 10;
+        } else if (in_array('producer', $ary)) {
+            $type = 3;
         }
         $user = User::findModel($userId);
         $user->tipo_user = $type;
