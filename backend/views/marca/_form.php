@@ -36,7 +36,7 @@ $this->title = 'Form';
 						  <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active">
                                     <a href="#info" aria-controls="home" role="tab" data-toggle="tab">
-                                        Informa&ccedil;&otilde;es Gerais
+                                        Info
                                     </a>
                                 </li>
                                 <li role="presentation">
