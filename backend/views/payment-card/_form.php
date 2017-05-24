@@ -34,12 +34,11 @@ use yii\widgets\ActiveForm;
                                   ])->label(false);
                               ?>
                               <div class="upload text-center">
-                                  <img style="height:160px !important;" class="img-responsive" id="blah" 
-                                       src="<?= $model->logo ? "../passafree_uploads/{$model->logo}": '#'?>" alt="" />
+                                  <img style="height:160px !important;" class="img-responsive" id="blah" src="<?= $model->file ? $model->file: '#'?>" alt="" />
                                   <div id="papelFundo">
                                       <div class="papelFundoinner">
                                           <i class="fa fa-upload" id='upload'></i>
-                                          <span data-default="<?= $model->logo ?>" id="ecrevCriv">Upload Image</span>
+                                          <span id="ecrevCriv">Upload Image</span>
                                       </div>
                                   </div>
                                   <i class="fa fa-trash" id="trashd"></i>
@@ -47,6 +46,13 @@ use yii\widgets\ActiveForm;
                           </div>
 
                           <div class="col-md-6">
+                              <?php if ($model->logo): ?>
+                                  <img style="height:66px; width:66px" 
+                                       class="img-responsive" 
+                                       src="../passafree_uploads/<?= $model->logo ?>" 
+                                       alt="" 
+                                    />
+                              <?php endif ?>
                               <div class="form-group">
                                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]); ?>
                               </div>

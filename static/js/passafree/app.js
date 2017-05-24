@@ -55,32 +55,52 @@ $(document).ready(function () {
     });
 
     if($('#blah').attr('src')=='#'){
+
         $('#trashd').hide();
         $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
         $('#file').hide();
         $('#formFilro').hide();
         $('#papelFundo').css('opacity',1);
         $('#papelFundo').css('background','#f4f7fa');
-    } else{
+    }
+    else{
         $('#upload').hide();
         $('#papelFundo').show();
         $('#ecrevCriv').hide();
         $('#trashd').show();
         $('#trashd').hover($('#trashd').css('cursor','pointer'));
         $('#papelFundo').css('opacity',0.5);
+
     }
 
+    $('#trashd').hide();
+    $('#blah').hide();
+    $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
+    $('#file').hide();
+    $('#formFilro').hide();
+    $('#papelFundo').css('opacity',1);
+    $('#papelFundo').css('background','#f4f7fa');
 
     $('#papelFundo').click(function() {
-        $('#file').click();
-    });
+        if( $('#blah').attr('src')=='#'){
+            $('#file').click();
+
+        }
+    }
+    );
 
     $('._filtroCr').hover(function() {
-        $('#papelFundo').css('background',$(this).attr('value'));
+        if($('#blah').attr('src')!='#') {
+            $('#papelFundo').css('background',$(this).attr('value'));
+        }
         $('#formFilro').val($(this).attr('value'));
     });
 
-    $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
+    if($('#blah').attr('src')=='#'){
+        $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
+    } else {
+        $('#papelFundo').hover($('#papelFundo').css('cursor','crosshair'));
+    }
 
     $('#trashd').click(function() {
         $('#file').val('');
@@ -98,16 +118,10 @@ $(document).ready(function () {
     var filtroConj=document.getElementsByClassName('filtro');
     var i=0;
     for(i=0;i<filtroConj.length;i++){
-        filtroConj[i].style.background=filtroConj[i].getAttribute('value');
-    }
 
-    // $('#trashd').hide();
-    // $('#blah').hide();
-    $('#papelFundo').hover($('#papelFundo').css('cursor','pointer'));
-    $('#file').hide();
-    // $('#formFilro').hide();
-    // $('#papelFundo').css('opacity',1);
-    // $('#papelFundo').css('background','#f4f7fa');
+        filtroConj[i].style.background=filtroConj[i].getAttribute('value');
+
+    }
 });
 
 function selectBiz(bizId) {
