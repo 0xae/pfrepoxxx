@@ -35,6 +35,7 @@ class PaymentCardController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->uploadFileIfExists($model);
+            $model->save();
             return $this->redirect(['settings/index', 'view' => 'paymentChannel']);
         } else {
             return $this->render('create', [

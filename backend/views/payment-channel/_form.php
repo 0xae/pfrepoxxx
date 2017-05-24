@@ -47,8 +47,11 @@ use backend\models\PaymentChannel;
                                                             'value' => $model->supported_cards,
                                                             'options' => ['multiple' => true],
                                                         ]);
-                                            foreach ($model->supported_cards as $c){
-                                                echo "<span style='margin-right:5px' class='label label-default'> {$c} </span>";
+                                            foreach ($model->supported_cards as $k){
+                                                echo "<span style='margin-right:5px' 
+                                                            class='label label-default'> 
+                                                            {$cards[$k]} 
+                                                     </span>";
                                             }
                                         ?>
                                         <br />

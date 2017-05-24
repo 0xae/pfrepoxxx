@@ -5,7 +5,7 @@
     use kartik\select2\Select2;
 ?>
 
-<div class="modal fade popupcriarbilhete " id="modal_criar_marca" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
+<div class="modal fade popuplocalizacao popupcriarbilhete " id="modal_criar_marca" tabindex="-1" role="dialog" aria-labelledby="modalcriarmarca">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
             <?php $form = ActiveForm::begin(["action"=>'index.php?r=marca/create', 'enableAjaxValidation'=>true, 'enableClientValidation'=>true,'options'=>['enctype'=>'multipart/form-data']]); ?>

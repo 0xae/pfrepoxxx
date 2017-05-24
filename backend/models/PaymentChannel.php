@@ -47,26 +47,25 @@ class PaymentChannel extends \yii\db\ActiveRecord {
 
     public function getCards() {
         $data = (new \yii\db\Query())
-                ->select(['card.id', 'card.name'])
+                ->select(['card.id', 'card.name', 'card.logo'])
                 ->from('payment_channel_card cc')
                 ->join('JOIN', 'payment_channel channel', 'channel.id = cc.payment_channel_id')
                 ->join('JOIN', 'payment_card card', 'card.id = cc.payment_card_id')
                 ->where(['channel.id'=>$this->id])
                 ->all();
-        if (!$data) { $data = []; }
+        if (!$data) {
+            $data = []; 
+        }
         return $data;
     }
 
     public function updateCards($cards) {
-        if (!$cards) {
-            return; 
-        }
-
         PaymentChannelCard::deleteAll('payment_channel_id = :id', ['id' => $this->id]);
-        foreach($cards as $c) {
+        if (!$cards) { return; }
+        foreach($cards as $k=>$v) {
             $card = new PaymentChannelCard();
             $card->payment_channel_id=$this->id;
-            $card->payment_card_id = $c;
+            $card->payment_card_id = (int) $v;
             $card->save();
         }
     }

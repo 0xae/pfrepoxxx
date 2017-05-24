@@ -40,6 +40,9 @@ class PaymentChannelController extends Controller {
         } else {
             $data = PaymentCard::find()->all();
             $cards = ArrayHelper::map($data, 'id', 'name');
+            if (!$model->supported_cards) {
+                $model->supported_cards = [];
+            }
             return $this->render('create', [
                 'model' => $model,
                 'cards' => $cards
@@ -58,11 +61,14 @@ class PaymentChannelController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->updateCards($model->supported_cards);
+            # for testing purposes
+            # return $this->redirect(['payment-channel/update', 'id' => $id]);
             return $this->redirect(['settings/index', 'view' => 'paymentChannel']);
         } else {
             $data = PaymentCard::find()->all();
             $cards = ArrayHelper::map($data, 'id', 'name');
-            $model->supported_cards = ArrayHelper::map($model->getCards(), 'id', 'name');
+            # $model->supported_cards = $model->getCards();
+            $model->supported_cards =  ArrayHelper::map($model->getCards(), 'id', 'id');
 
             return $this->render('update', [
                 'model' => $model,

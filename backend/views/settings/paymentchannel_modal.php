@@ -29,21 +29,25 @@ $data = ArrayHelper::map($cards, 'id', 'name');
             <!-- modal body -->
             <div class="modal-body">
                 <?php $form = ActiveForm::begin($conf); ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'name')->textInput($options) ?>
+                    <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
+                </div>
 
-                <?= $form->field($model, 'name')->textInput($options) ?>
-                <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
+                <div class="col-md-12">
+                    <?php
+                        echo $form->field($model, 'supported_cards')->widget(Select2::classname(), [
+                            'data' => $data,
+                            'options' => ['multiple' => true],
+                            'pluginOptions' => [
+                                'tags' => true,
+                                'tokenSeparators' => [' '],
+                                'maximumInputLength' => 10
+                            ],
+                        ])->label('Supported cards');
+                    ?>
+                </div>
 
-                <?php
-                    echo $form->field($model, 'supported_cards')->widget(Select2::classname(), [
-                        'data' => $data,
-                        'options' => ['multiple' => true],
-                        'pluginOptions' => [
-                            'tags' => true,
-                            'tokenSeparators' => [' '],
-                            'maximumInputLength' => 10
-                        ],
-                    ])->label('Supported cards');
-                ?>
                 <div class="modal-footer">
                     <div class="form-group">
                     <button type="button" class="btn btn-sucesss" data-dismiss="modal">Close</button>

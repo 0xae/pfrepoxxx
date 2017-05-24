@@ -72,9 +72,8 @@ class EventoController extends Controller {
     }
 
     /**
-     * Creates a new Evento model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * FIXME: remove all the file upload logic
+     *        we have a better abstraction for that
      */
     public function actionCreate() {
         $model = new Evento(['scenario' => Evento::SCENARIO_CREATE]);

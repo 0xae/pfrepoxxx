@@ -85,6 +85,10 @@ class MarcaController extends Controller {
             'stock_percent' => 0
         ];
 
+        /**
+         * XXX: here is the formula for entrada:
+         *      Entrada = <total_cheched_id> / <total sold>
+         */
         if (!empty($events)) {
             # the most recent
             $destaque = array_shift($events);

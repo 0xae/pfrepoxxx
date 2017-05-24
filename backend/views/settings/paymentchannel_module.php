@@ -24,7 +24,7 @@ h4.active span {
                     <h4 ng-class="{'active':paymentView == 'channels'}" ng-click="setPaymentView('channels')">
                         <div style="background-color: gainsboro;" class="borderlefttitlo"></div>
                         <span style="color: gainsboro">
-                            Channels
+                            Payment Channels
                         </span>
                     </h4>
                 </a>
@@ -32,7 +32,7 @@ h4.active span {
                     <h4 ng-class="{'active':paymentView == 'cards'}" ng-click="setPaymentView('cards')">
                         <div style="background-color: gainsboro;" class="borderlefttitlo"></div>
                         <span style="color: gainsboro">
-                            Cards
+                            Payment Cards
                         </span>
                     </h4>
                 </a>
@@ -74,6 +74,7 @@ h4.active span {
                                     <th># ID</th>
                                     <th>Name</th>
                                     <th>Link</th>
+                                    <th>Accepted cards</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -83,6 +84,17 @@ h4.active span {
                                         <td><?= $c->id ?></td>
                                         <td><?= $c->name ?></td>
                                         <td><?= $c->link ?></td>
+                                        <td>
+                                            <?php
+                                                $paymentAccepted = $c->getCards();
+                                                foreach ($paymentAccepted as $k) {
+                                                    echo "<span> 
+                                                            <img style='width:45px' 
+                                                                 src='../passafree_uploads/{$k['logo']}' /> 
+                                                            </span>";
+                                                }
+                                            ?>
+                                        </td>
                                         <td>
                                             <a href="./index.php?r=payment-channel/update&id=<?=$c->id?>"  style="color: #999" >
                                                 <span class="glyphicon glyphicon-pencil text-default"></span>
@@ -108,7 +120,15 @@ h4.active span {
                                 <?php foreach ($paymentCards as $c): ?>
                                     <tr>
                                         <td><?= $c->id ?></td>
-                                        <td><?= $c->name ?></td>
+                                        <td>
+                                            <?php if ($c->logo) : ?>
+                                                <img style='width:45px' 
+                                                     src='../passafree_uploads/<?= $c->logo ?>' /> 
+                                            <?php else : ?>
+                                                <?= $c->name ?>
+                                            <?php endif; ?>
+
+                                        </td>
                                         <td><?= $c->description ?></td>
                                         <td>
                                             <a href="./index.php?r=payment-card/update&id=<?=$c->id?>"  style="color: #999" >
