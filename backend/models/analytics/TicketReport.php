@@ -17,25 +17,27 @@ class TicketReport {
             'ticket_name' => 'bilhete_nome',
             'ticket_description' => 'bilhete_descricao',
             'ticket_preco' => 'bilhete_preco',
-            'ticket_stock' => 'sum(tickets_current_stock)',
+            'ticket_stock' => 'tickets_current_stock',
             'ticket_biz_percent' => 'business_bilhete_percent',
 
             'tickets_sold' => 'sum(tickets_sold)',
-            'tickets_total' => 'sum(bilhete_stock)',
-            'tickets_percent' => 'floor(
-                                   coalesce( (sum(tickets_sold)*100) / sum(bilhete_stock), 0)
+            'tickets_total' => 'bilhete_stock',
+            'tickets_percent' => 'round(
+                                   coalesce( (sum(tickets_sold)/bilhete_stock) * 100, 0)
                                  )',
-            'checkin_total' => 'total_checkin',
-            'checkin_percent' => 'floor(
-                                    coalesce( (total_checkin*100) / sum(tickets_sold), 0)
-                                  )',
+            'checkin_total' => 'evento_checkin',
+            'checkin_percent' => 'round(
+                                    coalesce(
+                                        ((select sum(1) from user_has_bilhete
+                                            where idcompra_bilhete in 
+                                            (select idcompra_bilhete from compra_bilhete
+                                                    where bilhete_idbilhete = bilhete_id
+                                            )
+                                        )/sum(tickets_sold)) * 100, 0
+                                    )
+                                 )',
             'raw_revenue' => 'sum(total_producer_gross)',
             'liquid_revenue' => 'sum(total_producer_liquid)',
-            /* 
-             * unecessary for now
-             * 'business_revenue' => 'sum(total_business_liquid)',
-             * 'passafree_revenue' => 'sum(total_passafree_revenue)' 
-             */
         ];
 
         return Reports::model('bilhete_reports')

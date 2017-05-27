@@ -19,8 +19,8 @@ use backend\models\SignupForm;
 use backend\models\UploadForm;
 use backend\models\Evento;
 use backend\models\User;
-use backend\components\FormData;
 use backend\models\analytics\EventReport;
+use backend\components\FormData;
 
 /**
  * MarcaController implements the CRUD actions for Marca model.
@@ -206,7 +206,6 @@ class MarcaController extends Controller {
         if ($marca->data->save()) {
             if ($signupData = $user->data->signup(false)) {
                 $produtor->data->idprodutor = $signupData->id;
-                $produtor->data->sexo = "{$signupData->id}";
                 $produtor->data->marca_idmarca = $marca->data->idmarca;
                 if ($produtor->data->save()) {
                     return true;

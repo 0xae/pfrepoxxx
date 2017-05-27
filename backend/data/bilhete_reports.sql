@@ -11,7 +11,9 @@ SELECT
 		E.nome AS evento_nome,
         E.data as evento_data,
         E.estado as evento_estado,
-        (SELECT count(1) from user_has_bilhete u where u.evento_idevento=E.idevento) as total_checkin,
+        (SELECT count(1) from user_has_bilhete u 
+                where u.evento_idevento=E.idevento
+        ) as evento_checkin,
 
 		B.idbilhete as bilhete_id,
 		B.descricao_bilhete as bilhete_descricao,
@@ -19,14 +21,16 @@ SELECT
 		B.preco as bilhete_preco,
 		B.stock as bilhete_stock,
 		B.business_percent as business_bilhete_percent,
+        B.comprado as bilhete_comprado,
 
+        CB.idcompra_bilhete,
 		CB.dataCompra AS data_compra,
 		CB.dataCompra AS date,
 		CB.business_percent as business_compra_percent,
 
 		-- some tickets aggs
-		greatest(B.stock-count(1), 0)  AS tickets_current_stock,
-		count(1) AS tickets_sold,
+		greatest(B.stock-count(CB.idcompra_bilhete), 0)  AS tickets_current_stock,
+		count(CB.idcompra_bilhete) AS tickets_sold,
 
 		-- global gross revenue (probably useless)
 		convert(sum(B.preco),decimal(10,0)) 
@@ -53,7 +57,7 @@ JOIN evento E ON E.idevento = B.evento_idevento
 JOIN produtor P ON P.idprodutor = E.produtor_idprodutor
 JOIN marca M ON M.idmarca = P.marca_idmarca
 JOIN business BIZ ON BIZ.id = M.business_id
-JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
+LEFT JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
 
-GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete, CB.dataCompra
+GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete 
 ORDER BY E.idevento ASC

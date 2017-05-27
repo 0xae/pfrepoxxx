@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <h2 style="color: #313541; font-weight: 700;">Stock</h2>
         <h1 style="color: #009447; font-weight: 700; margin-top: -10px;">
-              <span class="money"> <?= $b['tickets_stock']; ?> </span>
+              <span class="money"> <?= $b['tickets_total']; ?> </span>
         </h1>
 
         <h2 style="color: #313541; font-weight: 700;">Tickets sold</h2>
