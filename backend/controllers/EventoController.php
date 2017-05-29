@@ -70,12 +70,12 @@ class EventoController extends Controller {
         $model = $this->findModel($id);
         $appUser = User::getAppUser();
         $tickets = (new TicketReport)->getReportOfEvent($appUser, $id);
-        $eventAnalytics = (new EventReport)->getReportById($appUser, $id);
+        $event = (new EventReport)->getReportById($appUser, $id);
 
         return $this->render('view', [
             'model' => $model,
             '_dataTickets' => $tickets,
-            '_dataEvent' => $eventAnalytics
+            '_dataEvent' => $event
         ]);
     }
 
