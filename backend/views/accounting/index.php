@@ -8,6 +8,12 @@ $this->title = 'Accounting';
 $range = $model->getRange();
 ?>
 
+<style>
+table td {
+    border-right: 0px !important;
+}
+</style>
+
 <div class="container-fluid pagebusiness accountngpage">
     <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
 	<div class="row">
@@ -89,8 +95,8 @@ $range = $model->getRange();
 					</table>						
 					</div>
 
-					<div class="col-md-6">
-						<div class="graficoacounting"></div>
+					<div style="border-left: 1px solid #ddd;" class="col-md-6">
+						<div id="graficoacounting" class="graficoacounting"></div>
 					</div>
 				</div>
 			</div>
