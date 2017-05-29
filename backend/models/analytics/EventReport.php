@@ -31,7 +31,7 @@ class EventReport {
             'event_date' => 'evento_data',
             'tickets_stock' => 'sum(tickets_current_stock)',
             'tickets_sold' => 'sum(tickets_sold)',
-            'tickets_total' => 'sum(bilhete_stock)',
+            'tickets_total' => 'sum(coalesce(bilhete_stock,0))',
             'tickets_percent' => 'round(
                                    coalesce( (sum(tickets_sold)*100) / sum(bilhete_stock), 0)
                                  )',

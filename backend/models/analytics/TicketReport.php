@@ -21,7 +21,7 @@ class TicketReport {
             'ticket_biz_percent' => 'business_bilhete_percent',
 
             'tickets_sold' => 'sum(tickets_sold)',
-            'tickets_total' => 'sum(bilhete_stock)',
+            'tickets_total' => 'sum(coalesce(bilhete_stock,0))',
             'tickets_percent' => 'round(
                                    coalesce( (sum(tickets_sold)/bilhete_stock) * 100, 0)
                                  )',

@@ -57,7 +57,7 @@ JOIN evento E ON E.idevento = B.evento_idevento
 JOIN produtor P ON P.idprodutor = E.produtor_idprodutor
 JOIN marca M ON M.idmarca = P.marca_idmarca
 JOIN business BIZ ON BIZ.id = M.business_id
-JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
+LEFT JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
 
 GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete 
 ORDER BY E.idevento ASC
