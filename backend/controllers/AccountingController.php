@@ -44,10 +44,20 @@ class AccountingController extends Controller {
             $businessData = [];
         }
 
+        $pieData = [];
+        foreach ($producers as $p) {
+            $pieData[] = [
+                'name' => $p['producer_name'],
+                'y' => (int) $p['business_gross_revenue']
+            ];
+        }
+        $pieData = json_encode($pieData);
+
         return $this->render('index', [
             'model' => $model,
             'producers' => $producers,
-            'businessData' => $businessData
+            'businessData' => $businessData,
+            'pieData' => $pieData
         ]);
     }
 

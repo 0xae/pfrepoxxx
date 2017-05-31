@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use kartik\date\DatePicker;
 use miloschuman\highcharts\HighchartsAsset; 
@@ -13,6 +12,15 @@ table td {
     border-right: 0px !important;
 }
 </style>
+
+<?php
+$s = "
+console.log('$pieData');
+var data = JSON.parse('$pieData');
+LoadPieChart('graficoacounting', 'Revenue Per Producer', data);
+";
+$this->registerJs($s);
+?>
 
 <div class="container-fluid pagebusiness accountngpage">
     <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
@@ -80,14 +88,14 @@ table td {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div>Passa Free</div>
-                                        <div style="text-align:right"><span class="money"><?= $b['passafree_revenue']; ?></span> ECV</div>
+                                        <div><?= $model->name; ?></div>
+                                        <div style="text-align:right"><span class="money"><?= $b['liquid_revenue']; ?></span> ECV</div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div><?= $model->name; ?></div>
-                                        <div style="text-align:right"><span class="money"><?= $b['liquid_revenue']; ?></span> ECV</div>
+                                        <div>Passa Free</div>
+                                        <div style="text-align:right"><span class="money"><?= $b['passafree_revenue']; ?></span> ECV</div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -95,8 +103,11 @@ table td {
 					</table>						
 					</div>
 
-					<div style="border-left: 1px solid #ddd;" class="col-md-6">
-						<div id="graficoacounting" class="graficoacounting"></div>
+					<div style="border-left: 1px solid #ddd;padding-top:20px;" class="col-md-6">
+                        <center>
+                            <h3 style="margin: auto;margin-left:63px;">Revenue Per Producer</h3>
+                            <div id="graficoacounting" class="graficoacounting"></div>
+                        </center>
 					</div>
 				</div>
 			</div>
@@ -104,11 +115,13 @@ table td {
 	</div>
 
 	<div class="row">
+        <!--
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>Digital Revenue Breakdown</span></h4>
 			</div>
 		</div>
+        -->
 	</div>
 
 	<div class="col-md-12 contentbox">
