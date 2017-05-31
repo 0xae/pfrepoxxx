@@ -63,7 +63,10 @@ class AnalyticsService {
 
     public function getBusinessRevenue($bizId, $filters) {
         return Reports::model('bilhete_reports')
-                ->fields(['t' => 'coalesce(sum(total_business_liquid), 0)'])
+            ->fields(['t' => 'coalesce(
+                                sum(total_business_gross) * (business_percent/100),
+                                 0
+                              )'])
                 ->withFilters($filters)
                 ->filter('business_id', '=', $bizId)
                 ->fetchIt('t');
@@ -71,9 +74,12 @@ class AnalyticsService {
 
     public function getPassaFreeRevenue($filters) {
         return Reports::model('bilhete_reports')
-                ->fields(['t' => 'coalesce(sum(total_passafree_revenue), 0)'])
-                ->withFilters($filters)
-                ->fetchIt('t');
+            ->fields(['t' => 'coalesce(
+                                sum(total_business_gross) * ((100-business_percent)/100),
+                                 0
+                              )'])
+            ->withFilters($filters)
+            ->fetchIt('t');
     }
 
     public function getBusinessReport($filters) {
@@ -81,8 +87,8 @@ class AnalyticsService {
             'business_id',
             'business_name',
             'gross_revenue' => 'sum(total_business_gross)',
-            'liquid_revenue' => 'sum(total_business_liquid)',
-            'passafree_revenue' => 'sum(total_passafree_revenue)'
+            'liquid_revenue' => 'sum(total_business_gross) * (business_percent/100)',
+            'passafree_revenue' => 'sum(total_business_gross) * ((100-business_percent)/100)'
         ];
 
         return Reports::model('bilhete_reports')
@@ -100,9 +106,9 @@ class AnalyticsService {
             'gross_revenue' => 'sum(total_producer_gross)',
             'tickets_sold',
             'liquid_revenue' => 'sum(total_producer_liquid)',
-            'business_revenue' => 'sum(total_business_liquid)',
+            'business_revenue' => 'sum(total_business_gross) * (business_percent/100)',
             'business_gross_revenue' => 'sum(total_business_gross)',
-            'passafree_revenue' => 'sum(total_passafree_revenue)'
+            'passafree_revenue' => 'sum(total_business_gross) * ((100-business_percent)/100)'
         ];
 
         $q =  Reports::model('bilhete_reports')
@@ -128,8 +134,8 @@ class AnalyticsService {
             'tickets_total' => 'sum(bilhete_stock)',
             'raw_revenue' => 'sum(total_producer_gross)',
             'liquid_revenue' => 'sum(total_producer_liquid)',
-            'business_revenue' => 'sum(total_business_liquid)',
-            'passafree_revenue' => 'sum(total_passafree_revenue)'
+            'business_revenue' => 'sum(total_business_gross) * (business_percent/100)',
+            'passafree_revenue' => 'sum(total_business_gross) * ((100-business_percent)/100)'
         ];
 
         return Reports::model('bilhete_reports')
@@ -157,11 +163,6 @@ class AnalyticsService {
                       ->withFilters($filters)
                       ->groupBy('evento_data')
                       ->fetch();
-    }
-
-    public function getTicketReport($filters) {
-        $data = [];
-        return $data;
     }
 }
 

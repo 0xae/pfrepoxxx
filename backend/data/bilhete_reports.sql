@@ -20,8 +20,8 @@ SELECT
 		B.nome_bilhete as bilhete_nome,
 		B.preco as bilhete_preco,
 		B.stock as bilhete_stock,
-		B.business_percent as business_bilhete_percent,
         B.comprado as bilhete_comprado,
+        B.business_percent as business_bilhete_percent,
 
         CB.idcompra_bilhete,
 		CB.dataCompra AS data_compra,
@@ -33,24 +33,16 @@ SELECT
 		count(CB.idcompra_bilhete) AS tickets_sold,
 
 		-- global gross revenue (probably useless)
-		convert(sum(B.preco),decimal(10,0)) 
-			AS total_producer_gross,
+		sum(B.preco) AS total_producer_gross,
 
 		-- producer_gross_revenue
-		convert(sum( B.preco - (B.preco * coalesce(CB.business_percent/100, 0) )), decimal(10,0)) 
+		round(sum( B.preco - (B.preco * coalesce(CB.business_percent/100, 0) ))) 
             AS total_producer_liquid,
 
 		-- business_gross_revenue
-		convert(sum( B.preco * coalesce(CB.business_percent/100, 0) ), decimal(10,0)) 
-            AS total_business_gross,
+		round(sum( B.preco * coalesce(CB.business_percent/100, 0))) 
+            AS total_business_gross
 
-		-- business_liquid_revenue
-		convert(sum( B.preco * coalesce(CB.business_percent/100, 0) ) * (responsable_percent/100), decimal(10,0)) 
-            AS total_business_liquid,
-
-		-- passafree_revenue
-		convert(sum( B.preco * coalesce(CB.business_percent/100, 0) ) * ((100-responsable_percent)/100), decimal(10,0)) 
-            AS total_passafree_revenue
 
 FROM bilhete B
 JOIN evento E ON E.idevento = B.evento_idevento

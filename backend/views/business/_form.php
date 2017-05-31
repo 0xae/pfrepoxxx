@@ -74,11 +74,6 @@ if ($model->id) {
                                                     'options' => ['multiple' => false],
                                                 ]);
                                             ?>
-                                            <div class="form-control">
-                                                <p ng-foreach="p in payment_channels">
-                                                    {{ p.name }}
-                                                </p>
-                                            </div>
 
                                             <?= $form->field($model, 'cashout')->dropDownList([
                                                     'mensal' => 'Mensal',

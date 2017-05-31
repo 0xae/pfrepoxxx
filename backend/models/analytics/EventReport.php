@@ -41,8 +41,8 @@ class EventReport {
                                   )',
             'raw_revenue' => 'sum(total_producer_gross)',
             'liquid_revenue' => 'sum(total_producer_liquid)',
-            'business_revenue' => 'sum(total_business_liquid)',
-            'passafree_revenue' => 'sum(total_passafree_revenue)'
+            'business_revenue' => 'sum(total_business_gross) * (business_percent/100)',
+            'passafree_revenue' => 'sum(total_business_gross) * ((100-business_percent)/100)'
         ];
 
         return Reports::model('bilhete_reports')

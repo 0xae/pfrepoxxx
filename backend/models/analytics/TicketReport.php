@@ -33,7 +33,8 @@ class TicketReport {
                                             (select idcompra_bilhete from compra_bilhete
                                                     where bilhete_idbilhete = bilhete_id
                                             )
-                                        )/sum(tickets_sold)) * 100, 0
+                                        )/sum(tickets_sold)) * 100
+                                        ,0
                                     )
                                  )',
             'raw_revenue' => 'sum(total_producer_gross)',
