@@ -51,11 +51,12 @@ class SettingsController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        $users = User::find()->all();
+        $users = User::fetchActive();
+        $country = Country::fetchActive();
+        $paymentChannels = PaymentChannel::fetchActive();
+
         $permissions = Role::find()->all();
-        $country = Country::find()->all();
         $rules = Rule::find()->all();
-        $paymentChannels = PaymentChannel::find()->all();
         $faqs = Faq::find()->all();
         $paymentCards = PaymentCard::find()->all();
 

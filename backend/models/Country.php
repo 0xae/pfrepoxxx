@@ -73,4 +73,9 @@ class Country extends \yii\db\ActiveRecord {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public static function fetchActive() {
+        $data = Country::find()->where(['is_active' => true])->all();
+        return $data;
+    }
 }
