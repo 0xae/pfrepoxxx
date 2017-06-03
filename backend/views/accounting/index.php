@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use kartik\date\DatePicker;
-use miloschuman\highcharts\HighchartsAsset; 
+use miloschuman\highcharts\HighchartsAsset;
 
 $this->title = 'Accounting';
 $range = $model->getRange();
@@ -60,6 +60,7 @@ $this->registerJs($s);
 						<tbody>
 							<tr>
 								<td> <div>Revenue per Producer</div> </td>
+                                "Hello World"
 							</tr>
 
                             <?php foreach ($producers as $p): ?>

@@ -77,6 +77,12 @@ class PaymentChannelController extends Controller {
         }
     }
 
+    public function actionDelete($id) {
+        $model = User::findModel($id);
+        $model->status=0;
+        $model->save();
+    }
+
     public function actionView($id) {
         $model = $this->findModel($id);
         $cards = [];

@@ -34,7 +34,7 @@
 					</thead>
 					<tbody>
                         <?php foreach ($users as $u): ?>
-                            <tr>
+                            <tr id="user_<?= $u->id; ?>">
                                 <td><?= $u->id ?></td>
                                 <td><?= $u->username ?></td>
                                 <td><?= $u->email ?></td>
@@ -50,12 +50,12 @@
                                     ?>
                                 </td>
                                 <td>
-                                    
-                                        <a style="color: #999" href="./index.php?r=user/update&id=<?= $u->id ?>">
-                                            <span class="label label-primary">EDIT</span>
-                                            <span class="label label-danger">DELETE</span>
-                                        </a>
-                                    
+                                    <a style="color: #999" href="./index.php?r=user/update&id=<?= $u->id ?>">
+                                        <span class="label label-primary">EDIT</span>
+                                    </a>
+                                    <a style="color: #999" href="javascript:void(0)">
+                                        <span ng-click="deleteUser(<?= $u->id ?>)" class="label label-danger">DELETE</span>
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

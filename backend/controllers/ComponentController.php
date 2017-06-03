@@ -10,7 +10,7 @@ class ComponentController extends \yii\web\Controller {
 
     public function actionData() {
         $start = @$_GET['start'];
-        $end   = @$_GET['end'];
+        $end = @$_GET['end'];
 
         $data = Reports::model('bilhete_reports')
                 ->fields(['evento'=>'evento_nome', 'total_profit' =>  'sum(total_venda)'])
