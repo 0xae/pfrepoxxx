@@ -31,6 +31,7 @@ SELECT
 		count(CB.idcompra_bilhete) AS tickets_sold,
 
 		-- global gross revenue 
+        -- TODO: fix this
 		sum(B.preco) AS total_producer_gross,
 
 		-- producer_gross_revenue
