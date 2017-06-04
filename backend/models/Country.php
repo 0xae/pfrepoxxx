@@ -66,8 +66,8 @@ class Country extends \yii\db\ActiveRecord {
         return null;
     }
 
-    public static function findModel($id) {
-        if (($model = Country::findOne($id)) !== null) {
+    public static function findModel($countryId) {
+        if (($model = Country::findOne($countryId)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -79,3 +79,4 @@ class Country extends \yii\db\ActiveRecord {
         return $data;
     }
 }
+

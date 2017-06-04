@@ -1,8 +1,6 @@
 <?php
-
 namespace backend\models;
 use yii\helpers\ArrayHelper;
-
 use Yii;
 
 /**

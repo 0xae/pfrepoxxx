@@ -60,7 +60,6 @@ $this->registerJs($s);
 						<tbody>
 							<tr>
 								<td> <div>Revenue per Producer</div> </td>
-                                "Hello World"
 							</tr>
 
                             <?php foreach ($producers as $p): ?>

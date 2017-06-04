@@ -43,13 +43,13 @@ class Business extends \yii\db\ActiveRecord {
     }
 
     public function save($runValidation=true, $attributeNames=NULL) {
-        $t = parent::save($runValidation, $attributeNames);
-        if ($t) {
-            $c = Country::find()->where(['id' => $this->country_id])->one();
-            $c->business_id = $this->id;
-            $c->save();
+        $parent = parent::save($runValidation, $attributeNames);
+        if ($parent) {
+            $country = Country::find()->where(['id' => $this->country_id])->one();
+            $country->business_id = $this->id;
+            $country->save();
         }
-        return $t;
+        return $parent;
     }
 
     /**
@@ -127,33 +127,28 @@ class Business extends \yii\db\ActiveRecord {
         $biz = $this;
         $today = date('Y-m-d');
         if ($biz->cashout == 'mensal') {
-            return [
-                date('Y-m-01'), date("Y-m-t", strtotime($today))
-            ];
+            return [ date('Y-m-01'), date("Y-m-t", strtotime($today)) ];
         } else if ($biz->cashout == 'trimestral') {
-            $s1 = [date('Y-01-01'), date('Y-03-31')];
-            $s2 = [date('Y-04-01'), date('Y-06-31')];
-            $s3 = [date('Y-07-01'), date('Y-09-31')];
-            $s4 = [date('Y-10-01'), date('Y-12-31')];
+            $ary = [
+                [date('Y-01-01'), date('Y-03-31')],
+                [date('Y-04-01'), date('Y-06-30')],
+                [date('Y-07-01'), date('Y-09-31')],
+                [date('Y-10-01'), date('Y-12-31')]
+            ];
 
-            if ($this->inRange($s1[0], $s1[1], $today)) {
-                return $s1;
-            } else if ($this->inRange($s2[0], $s2[1], $today)) {
-                return $s2;
-            } else if ($this->inRange($s3[0], $s3[1], $today)) {
-                return $s3;
-            } else if ($this->inRange($s4[0], $s4[1], $today)) {
-                return $s4;
+            foreach ($ary as $a) {
+                if ($this->inRange($a[0], $a[1], $today)) {
+                    return $a;
+                }
             }
-
         } else if ($biz->cashout == 'semestral') {
-            $s1 = [date('Y-01-01'), date('Y-06-31')];
-            $s2 = [date('Y-07-01'), date('Y-12-31')];
+            $period1 = [date('Y-01-01'), date('Y-06-30')];
+            $period2 = [date('Y-07-01'), date('Y-12-31')];
 
-            if ($this->inRange($s1[0], $s1[1], $today)) {
-                return $s1;
+            if ($this->inRange($period1[0], $period1[1], $today)) {
+                return $period1;
             } else {
-                return $s2;
+                return $period2;
             }
         } else if ($biz->cashout == 'anual') {
             return [
@@ -209,20 +204,19 @@ class Business extends \yii\db\ActiveRecord {
 
     public static function getProducersFromSession() {
         $session = \Yii::$app->session;
-        $id = $session->get('business');
+        $bizId = $session->get('business');
         return Marca::find()
-                ->where(['business_id' => $id])
+                ->where(['business_id' => $bizId])
                 ->all();
     }
 
-    public static function findModel($id) {
-        if (($model = Business::findOne($id)) !== null) {
+    public static function findModel($bizId) {
+        if (($model = Business::findOne($bizId)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
 
     public function behaviors() {  
         return [  
