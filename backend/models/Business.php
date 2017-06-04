@@ -127,7 +127,7 @@ class Business extends \yii\db\ActiveRecord {
         $biz = $this;
         $today = date('Y-m-d');
         if ($biz->cashout == 'mensal') {
-            return [ date('Y-m-01'), date("Y-m-t", strtotime($today)) ];
+            return [date('Y-m-01'), date("Y-m-t", strtotime($today))];
         } else if ($biz->cashout == 'trimestral') {
             $ary = [
                 [date('Y-01-01'), date('Y-03-31')],
@@ -151,9 +151,7 @@ class Business extends \yii\db\ActiveRecord {
                 return $period2;
             }
         } else if ($biz->cashout == 'anual') {
-            return [
-                date('Y-01-01'), date('Y-12-31')
-            ];
+            return [date('Y-01-01'), date('Y-12-31')];
         }
     }
 
