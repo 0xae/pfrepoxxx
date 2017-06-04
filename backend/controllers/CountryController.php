@@ -25,7 +25,7 @@ class CountryController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create', 'update', 'view'],
+                        'actions' => ['index', 'create', 'update', 'view', 'delete'],
                         'roles' => ['passafree_staff', 'admin']
                     ]
                 ]
@@ -54,6 +54,12 @@ class CountryController extends Controller {
      */
     public function actionView($id) {
         return $this->render('view', ['model' => Country::findModel($id)]);
+    }
+
+    public function actionDelete($id) {
+        $model = Country::findOne($id);
+        $model->is_active = false;
+        $model->save();
     }
 
     /**

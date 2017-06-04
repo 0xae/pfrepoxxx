@@ -42,6 +42,7 @@ SELECT
 		round(sum( B.preco * coalesce(CB.business_percent/100, 0))) 
             AS total_business_gross
 
+
 FROM bilhete B
 JOIN evento E ON E.idevento = B.evento_idevento
 JOIN produtor P ON P.idprodutor = E.produtor_idprodutor

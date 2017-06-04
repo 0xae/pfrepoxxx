@@ -35,7 +35,7 @@
 					</thead>
 					<tbody>
                         <?php foreach ($countries as $c): ?>
-                            <tr>
+                            <tr id="ct_<?= $c->id; ?>">
                                 <td><?= $c->id ?></td>
                                 <td><?= $c->name ?></td>
                                 <td><?= $c->code ?></td>
@@ -45,7 +45,9 @@
                                 <td>
                                     <a href="./index.php?r=country/update&id=<?= $c->id ?>">
                                         <span class="label label-primary">EDIT</span>
-                                        <span class="label label-danger">DELETE</span>
+                                    </a>
+                                    <a style="color: #999" href="javascript:void(0)">
+                                        <span ng-click="deleteCountry(<?= $c->id ?>)" class="label label-danger">DELETE</span>
                                     </a>
                                 </td>
                             </tr>

@@ -36,6 +36,7 @@ class LoginForm extends Model {
      * @param array $params the additional name-value pairs given in the rule
      */
     public function validatePassword($attribute, $params) {
+        $params = $params;
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
@@ -43,7 +44,7 @@ class LoginForm extends Model {
             } elseif (!$user || $user->blocked_at != "") {
                 $this->addError('username', 'Your account has been blocked.');
             } elseif (!$user || $user->status==0) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError('username', 'Your account is not active.');
             }
         }
     }

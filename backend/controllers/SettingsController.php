@@ -54,6 +54,7 @@ class SettingsController extends Controller {
         $users = User::fetchActive();
         $country = Country::fetchActive();
         $paymentChannels = PaymentChannel::fetchActive();
+        $eventType = Tipoevento::fetchActive();
 
         $permissions = Role::find()->all();
         $rules = Rule::find()->all();
@@ -66,6 +67,7 @@ class SettingsController extends Controller {
             'countries' => $country,
             'rules' => $rules,
             'paymentChannels' => $paymentChannels,
+            'eventType' => $eventType,
             'paymentCards' => $paymentCards,
             'faqs' => $faqs
         ]);
@@ -74,9 +76,6 @@ class SettingsController extends Controller {
     public function actionLocation() {
         $modelEvento = new Evento(['scenario' => Evento::SCENARIO_CREATE]);
         $Location = new Location();
-        $_dataIlhas = Location::getLocation();
-        $_dataFiltros = $modelEvento->getFiltros();
-        $_dataTipoevento = Tipoevento::getTipoeventos();
 
         $modelLocation = (new \yii\db\Query())
             ->select(['l.idlocation', 'l.nome'])
@@ -103,10 +102,6 @@ class SettingsController extends Controller {
                 'modelsLocation' => $modelsLocation,
                 'pages' => $pages,
                 'Location' => $Location,
-                'modelEvento'=>$modelEvento,
-                '_dataIlhas'=>$_dataIlhas,
-                '_dataFiltros'=>$_dataFiltros,
-                '_dataTipoevento'=>$_dataTipoevento
             ]);
         }
 
@@ -115,9 +110,6 @@ class SettingsController extends Controller {
             'pages' => $pages,
             'Location' => $Location,
             'modelEvento'=>$modelEvento,
-            '_dataIlhas'=>$_dataIlhas,
-            '_dataFiltros'=>$_dataFiltros,
-            '_dataTipoevento'=>$_dataTipoevento
         ]);
     }
     

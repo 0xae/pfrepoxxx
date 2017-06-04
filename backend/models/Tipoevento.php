@@ -48,8 +48,8 @@ class Tipoevento extends \yii\db\ActiveRecord {
         ];
     }
 
-    public function getTipoeventos(){
-        $models = ArrayHelper::map(Tipoevento::find()->where(['estado' => 1])->all(),'idtipoevento','nome');
+    public static function fetchActive(){
+        $models = Tipoevento::find()->where(['estado' => 1])->all();
         return $models;
     }
 }

@@ -2,40 +2,36 @@
 namespace backend\controllers;
 
 use Yii;
+use backend\models\Tipoevento;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
-use backend\models\Role;
 
-class RoleController extends Controller {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors() {
+/**
+ * TipoeventoController implements the CRUD actions for Tipoevento model.
+ */
+class TipoeventoController extends Controller {
+    public function behaviors()
+    {
         return [
-            [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['index', 'create', 'update', 'view', 'delete'],
-                        'roles' => ['passafree_staff', 'admin']
-                    ]
-                ]
-            ]
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
         ];
     }
 
     /**
-     * Lists all Role models.
+     * Lists all Tipoevento models.
      * @return mixed
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $dataProvider = new ActiveDataProvider([
-            'query' => Role::find(),
+            'query' => Tipoevento::find(),
         ]);
 
         return $this->render('index', [
@@ -44,76 +40,74 @@ class RoleController extends Controller {
     }
 
     /**
-     * Displays a single Role model.
-     * @param string $id
+     * Displays a single Tipoevento model.
+     * @param integer $i
      * @return mixed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Role model.
+     * Creates a new Tipoevento model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new Role();
-        $model->type = 1;
+        $model = new Tipoevento();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['settings/index', 'view' => 'permissaotab']);
+            return $this->redirect(['settings/index', 'view' => 'eventType']);
         } else {
-            $data = ArrayHelper::map(Role::find()->all(),'name','name');
             return $this->render('create', [
                 'model' => $model,
-                '_dataChildren' => $data
             ]);
         }
     }
 
     /**
-     * Updates an existing Role model.
+     * Updates an existing Tipoevento model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $i
      * @return mixed
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['settings/index', 'view' => 'permissaotab']);
+            return $this->redirect(['settings/index', 'view' => 'eventType']);
         } else {
-            $data = ArrayHelper::map(Role::find()->all(),'name','name');
             return $this->render('update', [
                 'model' => $model,
-                '_dataChildren' => $data
             ]);
         }
     }
 
     /**
-     * Deletes an existing Role model.
+     * Deletes an existing Tipoevento model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $i
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+        $model->estado = Tipoevento::STATUS_INACTIVE;
+        $model->save();
     }
 
     /**
-     * Finds the Role model based on its primary key value.
+     * Finds the Tipoevento model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Role the loaded model
+     * @param integer $i
+     * @return Tipoevento the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = Role::findOne($id)) !== null) {
+        if (($model = Tipoevento::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

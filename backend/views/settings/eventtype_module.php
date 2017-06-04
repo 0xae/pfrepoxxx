@@ -4,33 +4,32 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use kartik\select2\Select2;
-use backend\models\Faq;
+use backend\models\Tipoevento;
 $faqList = [];
-$model = new Faq();
+$model = new Tipoevento();
 ?>
 
 <div class="container-fluid pagebusiness pageanalitics">
-	<?php /*?>TABELA<?php */?>
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
 			</div>
 		</div>
 	</div>
-	<?php /*?>TITULO, BT<?php */?>
+
 	<div class="row">
 		<div class="col-md-12 titulosection">
 			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>FAQ</span></h4>
+				<h4><div class="borderlefttitlo"></div><span>Event Type</span></h4>
                 <div class="pageventbtngroup">
-                    <a href="#newfaq" data-toggle="modal" class="criar btn btn-primary">
-                        New FAQ
+                    <a href="#newtype" data-toggle="modal" class="criar btn btn-primary">
+                        New Event Type
                     </a>
                 </div>
 			</div>
 		</div>
 	</div>
-	<?php /*?>TABELA<?php */?>
+
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -38,23 +37,23 @@ $model = new Faq();
 					<thead>
 						<tr class="active">
 							<th># ID</th>
-							<th>Question</th>
-							<th>Answer</th>
+							<th>Name</th>
+							<th>Description</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-                        <?php foreach ($faqs as $f): ?>
-                            <tr id="faq_<?= $f->id; ?>">
-                                <td><?= $f->id ?></td>
-                                <td><?= $f->pergunta ?></td>
-                                <td><?= substr($f->resposta,0,50) . '...'; ?></td>
+                        <?php foreach ($eventType as $t): ?>
+                            <tr id="evt_<?= $t->idtipoevento; ?>">
+                                <td><?= $t->idtipoevento ?></td>
+                                <td><?= $t->nome ?></td>
+                                <td><?= $t->descricao ?></td>
                                 <td>
-                                    <a href="./index.php?r=faq/update&id=<?= $f->id ?>">
+                                    <a href="./index.php?r=tipoevento/update&id=<?= $t->idtipoevento ?>">
                                         <span class="label label-primary">EDIT</span>
                                     </a>
                                     <a style="color: #999" href="javascript:void(0)">
-                                        <span ng-click="deleteFAQ(<?= $f->id ?>)" class="label label-danger">DELETE</span>
+                                        <span ng-click="deleteEventType(<?= $t->idtipoevento; ?>)" class="label label-danger">DELETE</span>
                                     </a>
                                 </td>
                             </tr>
@@ -67,17 +66,19 @@ $model = new Faq();
 </div>
 
 <!--inicio poupup adicionar biletes-->
-<div class="modal fade popupcriarbilhete popuplocalizacao" id="newfaq">
+<div class="modal fade popupcriarbilhete popuplocalizacao" id="newtype">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">New FAQ item</h4>
+                <h4 class="modal-title">New Event Type</h4>
             </div>
             <div class="modal-body">
-                <?php $form = ActiveForm::begin(['action'=>'./index.php?r=faq/create']); ?>
+                <?php $form = ActiveForm::begin(['action'=>'./index.php?r=tipoevento/create']); ?>
 
-                <?= $form->field($model, 'pergunta')->textarea(['rows' => 2])->label('Question')?>
-                <?= $form->field($model, 'resposta')->textarea(['rows' => 6,'class'=>'pf-text-editor'])->label('Answer') ?>
+                <?= $form->field($model, 'nome')->label('Name'); ?>
+                <?= $form->field($model, 'descricao')->textarea(['rows' => 6,'class'=>'pf-text-editor'])
+                    ->label('Description')
+                ?>
                 <?= $form->field($model, 'estado')->hiddenInput(['value' => 1])->label(false); ?>
 
                 <div class="form-group" style="float: left">

@@ -31,6 +31,7 @@ class Country extends \yii\db\ActiveRecord {
         return [
             [['name', 'code'], 'required'],
             [['logo'], 'string'],
+            [['is_active'], 'boolean'],
             [['created_at', 'business_id', 'updated_at'], 'integer'],
             [['name', 'code'], 'string', 'max' => 255],
             [['code'], 'unique'],
