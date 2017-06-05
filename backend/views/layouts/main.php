@@ -24,6 +24,7 @@ $userProfile = $user->identity;
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <?= Html::csrfMetaTags() ?>
 <title><?= Html::encode($this->title) ?></title>
 <style type="text/css">
@@ -110,6 +111,7 @@ $this->registerJS($script);
         </li>
         <ul class="list-unstyled notification">
           <li><a href="#"><i class="glyphicon glyphicon-globe"></i></a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-comment"></i></a></li>
           <?php if ($user->can('business')): ?>
                 <li>
                     <span class="badge" ng-if="newMessages" style="position: absolute;margin: -8px 0 0 -13px;z-index:10;background: #f00;">

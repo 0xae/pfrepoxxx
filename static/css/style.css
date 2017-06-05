@@ -63,13 +63,13 @@
 {
 	display:table;
 	float:right;
-	margin: 0 -15px;
+	margin: 0 0px;
 }
 .pageventbtngroup a
 {
 	float: left;
 	margin: 0 0 0 15px !important;
-	padding:8px 15px !important;
+	padding: 6px 15px !important;
 }
 .pagina_geral {
 	margin: 0 5%;
@@ -786,7 +786,7 @@
 	text-align: center;
 	font-size: 13px;
 	font-weight: 600;
-	font-family: "DIN", Helvetica, Arial, sans-serif !important;
+	font-family: "DINRegular", Helvetica, Arial, sans-serif !important;
 
 }
 .sidebar .glyphicon.glyphicon-pencil {
@@ -1276,6 +1276,10 @@
 {
 	padding: 15px 30px;
 }
+.pageanalitics .dropdown-menu {
+    right: 0;
+    left: auto;
+}
 /*
 #top_sellers .highcharts-root {
     width: 82%;
@@ -1406,12 +1410,11 @@
 	margin-right: 0;
 }
 /*------Create Role/Country/Rule------*/
-.create-role .business-create {
+.create-role .business-create,
+.create-country .business-create,
+.create-rule .business-create {
     width: 50%;
     padding: 30px;
-}
-.create-country .business-create .business-form .col-md-6 {
-    padding: 30px 10px 30px 13px !important;
 }
 /*
 .create-country .business-create {
@@ -1421,12 +1424,6 @@
 */
 .create-rule .business-create .business-form .col-md-6 {
     padding: 0px 15px 0 13px !important;
-}
-.create-rule .business-form {
-    margin-top: 30px;
-}
-.create-rule #percentagem_bilhete {
-    margin-bottom: 30px;
 }
 /*---Scroll---*/
 ::-webkit-scrollbar {
