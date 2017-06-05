@@ -73,7 +73,6 @@ class AnalyticsController extends \yii\web\Controller {
         $user = \Yii::$app->user;
         $session = \Yii::$app->session;
         $service = new AnalyticsService();
-
         $globalRevenue=0;
         $filters = RestApp::parseQueryFilters($_GET);
 
