@@ -1,25 +1,55 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model backend\models\Tipoevento */
-/* @var $form yii\widgets\ActiveForm */
+if ($model->estado == null) {
+    $model->estado=1;
+}
 ?>
 
-<div class="tipoevento-form">
+<div class="container-fluid pagebusiness">
+	<div class="row">
+		<div class="col-md-12 titulosection">
+			<div class="proximo_evento">
+				<h4>
+                    <?php if ($model->idtipoevento): ?>
+                        <div class="borderlefttitlo"></div><span>Event Type #<?= $model->idtipoevento ?></span>
+                    <?php endif; ?>
+				</h4>
+			</div>
+		</div>
+	</div>
 
-    <?php $form = ActiveForm::begin(); ?>
+	<div class="col-md-12 contentbox">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="business-create">
+					<div class="business-form">
+						<div role="tabpanel" style="padding:20px">
+						  <!-- Nav tabs -->
+						  <ul class="nav nav-tabs" role="tablist">
+						  </ul>
 
-    <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
+						  <!-- Tab panes -->
+						  <div class="tab-content">
+								<div role="tabpanel" class="biz-pane tab-pane active" id="info">
+                                    <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'descricao')->textarea(['rows' => 6]) ?>
+                                    <?= $form->field($model, 'nome')->label('Name'); ?>
+                                    <?= $form->field($model, 'descricao')->textarea(['rows' => 6,'class'=>'pf-text-editor'])
+                                        ->label('Description')
+                                    ?>
+                                    <?= $form->field($model, 'estado')->hiddenInput(['value' => 1])->label(false); ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Criar' : 'Atualizar', ['class' => $model->isNewRecord ? 'btn btn-success bt' : 'btn btn-primary bt']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
+                                    <div class="form-group" style="float: left">
+                                        <?= Html::submitButton('Save', ['class' => 'btn btn-primary criar']) ?>
+                                    </div>
+                                    <?php ActiveForm::end(); ?>
+								</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

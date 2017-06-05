@@ -31,6 +31,7 @@ class Country extends \yii\db\ActiveRecord {
         return [
             [['name', 'code'], 'required'],
             [['logo'], 'string'],
+            [['is_active'], 'boolean'],
             [['created_at', 'business_id', 'updated_at'], 'integer'],
             [['name', 'code'], 'string', 'max' => 255],
             [['code'], 'unique'],
@@ -66,11 +67,17 @@ class Country extends \yii\db\ActiveRecord {
         return null;
     }
 
-    public static function findModel($id) {
-        if (($model = Country::findOne($id)) !== null) {
+    public static function findModel($countryId) {
+        if (($model = Country::findOne($countryId)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public static function fetchActive() {
+        $data = Country::find()->where(['is_active' => true])->all();
+        return $data;
+    }
 }
+

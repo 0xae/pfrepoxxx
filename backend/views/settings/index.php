@@ -24,6 +24,9 @@ $this->title = 'Settings';
 				<a href="#paymentChannel" aria-controls="payment_channel" role="tab" data-toggle="tab">Payments</a>
 			</li>
 			<li role="presentation">
+				<a href="#eventType" aria-controls="eventType" role="tab" data-toggle="tab">Event Type</a>
+			</li>
+			<li role="presentation">
 				<a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a>
 			</li>
 		</ul>
@@ -50,6 +53,10 @@ $this->title = 'Settings';
                                                                    'paymentCards'=>$paymentCards]); ?>
 			</div>
 
+			<div role="tabpanel" class="biz-pane tab-pane" id="eventType">
+                <?php echo $this->render('eventtype_module', ['eventType' => $eventType]); ?>
+			</div>
+
 			<div role="tabpanel" class="biz-pane tab-pane" id="faq">
                 <?php echo $this->render('faq_module', ['faqs' => $faqs]); ?>
 			</div>
@@ -63,7 +70,6 @@ $script = <<<JS
 var tab = '$view';
 $("a[href='#"+tab+"']").tab('show');
 JS;
-
 $this->registerJs($script);
 ?>
 

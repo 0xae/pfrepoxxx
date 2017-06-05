@@ -34,6 +34,11 @@ class UserController extends Controller {
                         'allow' => true,
                         'actions' => ['index', 'create', 'update', 'view'],
                         'roles' => ['passafree_staff', 'admin'] 
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => ['passafree_staff', 'admin'] 
                     ]
                 ]
             ]
@@ -109,6 +114,12 @@ class UserController extends Controller {
             '_dataPermissions' => $permissionData,
             '_dataCountry' => $countryData
         ]);
+    }
+
+    public function actionDelete($id) {
+        $model = User::findModel($id);
+        $model->status=0;
+        $model->save();
     }
 
     private function getRequestPermissions() {

@@ -85,7 +85,7 @@ class Marca extends \yii\db\ActiveRecord {
         return $query->all();
     }
 
-    public function findModel($id) {
+    public static function findModel($id) {
         if (($model = Marca::findOne($id)) !== null) {
             return $model;
         } else {

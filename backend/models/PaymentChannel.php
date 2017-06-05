@@ -69,5 +69,10 @@ class PaymentChannel extends \yii\db\ActiveRecord {
             $card->save();
         }
     }
+
+    public static function fetchActive() {
+        $data = PaymentChannel::find()->where(['is_active' => true])->all();
+        return $data;
+    }
 }
 

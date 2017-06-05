@@ -4,6 +4,7 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use kartik\file\FileInput;
 $this->title = 'Business';
+$user = Yii::$app->user;
 $responsableOptions = [
     'placeholder' => 'Responsable ...',
 ];
@@ -14,6 +15,15 @@ if ($model->id) {
     $responsableOptions['disabled'] = true;
     $countryOpts['disabled'] = true;
 }
+
+$adminConf = [
+    'disabled' => false
+];
+
+if (!$user->can('admin') && !$user->can('passafree_staff')) {
+    $adminConf['disabled'] = true;
+}
+
 ?>
 
 <div class="container-fluid business_page pagebusiness" ng-controller="BizController">
@@ -55,7 +65,7 @@ if ($model->id) {
                                 <?php $form = ActiveForm::begin(['id' => 'business_form', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                                            <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'disabled'=>$adminConf['disabled']]) ?>
                                             <?php
                                                 echo '<label class="control-label">Country</label>';
                                                 echo Select2::widget([
@@ -71,16 +81,23 @@ if ($model->id) {
                                             <?php
                                                 echo $form->field($model, 'payment_channel')->widget(Select2::classname(), [
                                                     'data' => $paymentChannels,
-                                                    'options' => ['multiple' => false],
+                                                    'options' => ['multiple' => false, 'disabled' => $adminConf['disabled']],
                                                 ]);
                                             ?>
 
-                                            <?= $form->field($model, 'cashout')->dropDownList([
-                                                    'mensal' => 'Mensal',
-                                                    'semestral' => 'Semestral',
-                                                    'trimestral' => 'Trimestral',
-                                                    'anual' => 'Anual'
-                                                ]); ?>
+                                            <?php 
+                                                $field = $form->field($model, 'cashout');
+                                                echo $field->dropDownList([
+                                                        'mensal' => 'Mensal',
+                                                        'semestral' => 'Semestral',
+                                                        'trimestral' => 'Trimestral',
+                                                        'anual' => 'Anual',
+                                                    ], 
+                                                    [
+                                                        'disabled' => $adminConf['disabled']
+                                                    ]
+                                                ); 
+                                            ?>
         
                                             <?= $form->field($model, 'privacy')->hiddenInput([
                                                 'id' => 'privacy_input',
@@ -108,17 +125,22 @@ if ($model->id) {
 
                                         <div class="col-md-6">
                                             <?php
-                                                echo '<label class="control-label">Responsable</label>';
-                                                echo Select2::widget([
-                                                    'model' => $model,
-                                                    'attribute' => 'responsable',
-                                                    'data' => $_dataUsers,
-                                                    'options' => $responsableOptions,
-                                                    'pluginOptions' => ['allowClear' => false],
-                                                ]);
-                                                echo '<br/>';
+                                                if ($user->can('passafree_staff') || $user->can('admin')):
+                                                    echo '<label class="control-label">Responsable</label>';
+                                                    echo Select2::widget([
+                                                        'model' => $model,
+                                                        'attribute' => 'responsable',
+                                                        'data' => $_dataUsers,
+                                                        'options' => $responsableOptions,
+                                                        'pluginOptions' => ['allowClear' => false],
+                                                    ]);
+                                                    echo '<br/>';
+                                                endif;
                                             ?>
-                                            <?= $form->field($model, 'responsable_percent')->textInput(['maxlength' => true, 'placeholder'=>'ex: 15']) ?>
+                                            <?= $form->field($model, 'responsable_percent')->textInput(['maxlength' => true, 
+                                                                                                        'disabled' => $adminConf['disabled'],
+                                                                                                        'placeholder'=>'ex: 15'
+                                                                                                      ]) ?>
                                             <?= $form->field($model, 'support_name')->textInput(['maxlength' => true]) ?>
                                             <?= $form->field($model, 'support_email')->textInput(['maxlength' => true]) ?>
                                             <?= $form->field($model, 'support_phone')->textInput(['maxlength' => true]) ?>

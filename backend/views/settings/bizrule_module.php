@@ -38,7 +38,7 @@
 					</thead>
 					<tbody>
                         <?php foreach ($rules as $r): ?>
-                            <tr>
+                            <tr id="biz_<?= $r->id; ?>">
                                 <td><?= $r->id; ?></td>
                                 <td><?= $r->nome_regra; ?></td>
                                 <td>
@@ -51,7 +51,9 @@
                                 <td>
                                     <a href="./index.php?r=rule/update&id=<?= $r->id ?>">
                                         <span class="label label-primary">EDIT</span>
-                                        <span class="label label-danger">DELETE</span>
+                                    </a>
+                                    <a style="color: #999" href="javascript:void(0)">
+                                        <span ng-click="deleteBizRule(<?= $r->id ?>)" class="label label-danger">DELETE</span>
                                     </a>
                                 </td>
                             </tr>

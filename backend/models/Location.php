@@ -1,8 +1,6 @@
 <?php
-
 namespace backend\models;
 use yii\helpers\ArrayHelper;
-
 use Yii;
 
 /**
@@ -46,7 +44,7 @@ class Location extends \yii\db\ActiveRecord {
     /**
      * XXX: what a uggly code (ayrton)
      */
-    public function getLocation() {
+    public static function getLocation() {
         $user = Yii::$app->user;
         $models = Location::find()
             ->join('INNER JOIN','business','bussiness_id=business.id')

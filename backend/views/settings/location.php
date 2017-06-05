@@ -2,9 +2,7 @@
 use yii\helpers\Url;
 use backend\models\Evento;
 use backend\models\Tipoevento;
-
-$this->title = 'Localização';
-$user = Yii::$app->user;
+$this->title = 'Location';
 ?>
     
 <div class="container-fluid pagebusiness ">
@@ -23,8 +21,7 @@ $user = Yii::$app->user;
     <div class="row">
         <div class="col-md-12">
               <div id="_location">
-              <?php
-                  if($modelsLocation){
+              <?php if($modelsLocation){
                       echo '<div class="row">';
                       foreach ($modelsLocation as $key => $location) {
                           echo "<a idlocation='".$location['idlocation']."' nome='".$location['nome']."' class='_update col-md-4'>";
@@ -32,20 +29,15 @@ $user = Yii::$app->user;
                           echo '</a>';
                       }
                       echo '</div>';
-                  }
-              ?>
+                  } ?>
             </div>
         </div>
     </div>
     <div class="row">
-
-	    <?php
-	    	if($modelsLocation){
-	    		echo \yii\widgets\LinkPager::widget(['pagination' => $pages,]);
-	    	}
-	     ?>
+        <?php if($modelsLocation):
+            echo \yii\widgets\LinkPager::widget(['pagination' => $pages,]); 
+        endif; ?>
     </div>
-
 </div>
 
 <div class="modal fade popupcriarbilhete popupupdate" id="_updatelocation">
@@ -55,14 +47,13 @@ $user = Yii::$app->user;
                 <h4 class="modal-title">Nova Localização</h4>
             </div>
             <div class="modal-body">
-
                 <label class="control-label" for="_nomeLocation">Nome</label>
                 <input name="nome" type="text" id="_nomeLocation" class="form-control">
 
                 <div class="modal-footer">
                     <div class="form-group">
-                    <button type="button" class="btn btn-sucesss" data-dismiss="modal">Close</button>
-                    <button type="button" id="_BtnUpdateLocation" class="btn btn-lg btn-primary criar">Update</button>
+                        <button type="button" class="btn btn-sucesss" data-dismiss="modal">Close</button>
+                        <button type="button" id="_BtnUpdateLocation" class="btn btn-lg btn-primary criar">Update</button>
                     </div>
                 </div>
             </div>
@@ -70,19 +61,11 @@ $user = Yii::$app->user;
     </div>
 </div>
 
-
-
-<?= $this->render('modal_location', [
-    'Location' => $Location
-]) ?>
-
+<?= $this->render('modal_location', ['Location' => $Location]) ?>
 <?php
-
- $urlUpdate=Yii::$app->getUrlManager()->createUrl('settings/updatelocation');
+$urlUpdate=Yii::$app->getUrlManager()->createUrl('settings/updatelocation');
 
 $scrip= <<< JS
-
-
     $(document).on('click','._update',function(event){
         event.preventDefault();
         event.stopImmediatePropagation();
@@ -105,8 +88,6 @@ $scrip= <<< JS
             });
         })
     });
-
-
 JS;
 $this->registerJs($scrip);
 ?>

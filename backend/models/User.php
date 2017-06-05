@@ -186,5 +186,10 @@ class User extends \yii\db\ActiveRecord {
 
         return $permissionObj;
     }
+
+    public static function fetchActive() {
+        $data = User::find()->where(['status' => 10])->all();
+        return $data;
+    }
 }
 

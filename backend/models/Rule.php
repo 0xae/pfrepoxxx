@@ -18,14 +18,14 @@ class Rule extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName() {
         return 'regras';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules() {
         return [
             [['percentagem_bilhete', 'preco_min', 'preco_max', 'nome_regra', 'stockMin', 'stockMax'], 'required'],
             [['percentagem_bilhete', 'stockMin', 'stockMax'], 'integer'],
@@ -37,7 +37,7 @@ class Rule extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'percentagem_bilhete' => 'Percentagem Bilhete',

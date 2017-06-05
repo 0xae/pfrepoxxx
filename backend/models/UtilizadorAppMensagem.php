@@ -14,21 +14,18 @@ use Yii;
  * @property string $data
  * @property integer $is_read
  */
-class UtilizadorAppMensagem extends \yii\db\ActiveRecord
-{
+class UtilizadorAppMensagem extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'utilizador_app_mensagem';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'id_user', 'idBusiness', 'mensagem'], 'required'],
             [['id', 'id_user', 'idBusiness', 'is_read'], 'integer'],
@@ -40,8 +37,7 @@ class UtilizadorAppMensagem extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'id_user' => 'Id User',

@@ -49,7 +49,7 @@ use Yii;
      * @return ChatMessage the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function findModel($id) {
+    public static function findModel($id) {
         if (($model = ChatMessage::findOne($id)) !== null) {
             return $model;
         } else {

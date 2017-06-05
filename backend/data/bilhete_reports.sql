@@ -23,20 +23,19 @@ SELECT
         B.comprado as bilhete_comprado,
         B.business_percent as business_bilhete_percent,
 
-        CB.idcompra_bilhete,
-		CB.dataCompra AS data_compra,
 		CB.dataCompra AS date,
 		CB.business_percent as business_compra_percent,
 
-		-- some tickets aggs
+		-- some aggs
 		greatest(B.stock-count(CB.idcompra_bilhete), 0)  AS tickets_current_stock,
 		count(CB.idcompra_bilhete) AS tickets_sold,
 
-		-- global gross revenue (probably useless)
+		-- global gross revenue 
+        -- TODO: fix this
 		sum(B.preco) AS total_producer_gross,
 
 		-- producer_gross_revenue
-		round(sum( B.preco - (B.preco * coalesce(CB.business_percent/100, 0) ))) 
+		coalesce(round(sum( B.preco - (B.preco * (CB.business_percent/100)))), 0)
             AS total_producer_liquid,
 
 		-- business_gross_revenue
@@ -51,6 +50,6 @@ JOIN marca M ON M.idmarca = P.marca_idmarca
 JOIN business BIZ ON BIZ.id = M.business_id
 LEFT JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
 
-GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete 
+GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete
 ORDER BY E.idevento ASC
 
