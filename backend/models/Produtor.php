@@ -1,22 +1,7 @@
 <?php
-
 namespace backend\models;
-
 use Yii;
 
-/**
- * This is the model class for table "produtor".
- *
- * @property string $idprodutor
- * @property string $marca_idmarca
- * @property string $nome
- * @property string $apelido
- * @property string $public_email
- * @property string $sexo
- * @property string $telefone
- * @property string $foto
- * @property integer $estado
- */
 class Produtor extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
@@ -60,7 +45,7 @@ class Produtor extends \yii\db\ActiveRecord {
         ];
     }
 
-    public function getUsersProdutors($id) {
+    public static function getUsersProdutors($id) {
         $model = Produtor::find()->where(['estado' => 1])->all();
         return $model;
     }
