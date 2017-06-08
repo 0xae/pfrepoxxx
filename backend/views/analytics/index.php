@@ -60,7 +60,7 @@ $user = Yii::$app->user;
                                     <div ng-if="empty_user_gt" style="margin-bottom:-18em;margin-top:10em;">
                                         <no-data></no-data>
                                     </div>
-                                    <div id="user_growth" style="width: 90%"></div>
+                                    <div id="user_growth" style="width: 100%"></div>
                                 </div>
 							</div>
 
@@ -77,7 +77,7 @@ $user = Yii::$app->user;
                                     <div ng-if="empty_interaction_gt" style="margin-bottom:-18em;margin-top:10em;">
                                         <no-data></no-data>
                                     </div>
-                                    <div id="interaction_growth" style="width: 90%"> </div>
+                                    <div id="interaction_growth" style="width: 100%"> </div>
                                 </div>
 							</div>
 						</div>
@@ -144,7 +144,7 @@ $user = Yii::$app->user;
                                     <div ng-if="no_sellers_data" style="margin-bottom:-18em;margin-top:10em;">
                                         <no-data></no-data>
                                     </div>
-                                    <div id="top_sellers" style="width: 90%"></div>
+                                    <div id="top_sellers" style="width: 100%"></div>
                                 </div>
                                 <?php /* echo $this->render('tickets_per_producer', [
                                             'ticketsPerProducer' => $ticketsPerProducer

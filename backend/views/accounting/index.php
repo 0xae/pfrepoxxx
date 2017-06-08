@@ -22,7 +22,7 @@ LoadPieChart('graficoacounting', 'Revenue Per Producer', data);
 $this->registerJs($s);
 ?>
 
-<div class="container-fluid pagebusiness accountngpage">
+<div class="container-fluid pagebusiness accountngpage" ng-controller="AccountingController">
     <?php echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []); ?>
 	<div class="row">
 		<div class="col-md-12 titulosection">
@@ -101,12 +101,25 @@ $this->registerJs($s);
                             <?php endforeach; ?>
 						</tbody>
 					</table>						
+
+                    <?php if(empty($producers)): ?>
+                    <div class="col-md-12" style="margin-top: 13em;">
+                         <no-data></no-data>
+                    </div> 
+                    <?php endif; ?>
+
 					</div>
 
 					<div style="border-left: 1px solid #ddd;padding-top:20px;" class="col-md-6">
                         <center>
                             <h3 style="margin: auto;margin-left:63px;">Revenue Per Producer</h3>
                             <div id="graficoacounting" class="graficoacounting"></div>
+    
+                            <?php if ($pieData == '[]'): ?>
+                            <div class="col-md-12" style="margin-top: -9em;">
+                                 <no-data></no-data>
+                            </div> 
+                            <?php endif; ?>
                         </center>
 					</div>
 				</div>
@@ -114,56 +127,8 @@ $this->registerJs($s);
 		</div>
 	</div>
 
-	<div class="row">
-        <!--
-		<div class="col-md-12 titulosection">
-			<div class="proximo_evento">
-				<h4><div class="borderlefttitlo"></div><span>Digital Revenue Breakdown</span></h4>
-			</div>
-		</div>
-        -->
-	</div>
-
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
-            <!--
-			<div class="panel-body">
-				<table class="table table-striped">
-					<thead>
-						<tr class="active">
-							<th>Subscriber</th>
-							<th>Country</th>
-							<th>Age</th>
-							<th>Period</th>
-							<th>Expira</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td>Larry</td>
-							<td>the Bird</td> 
-							<td>@twitter</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-            -->
 		</div>
 	</div>
 </div>

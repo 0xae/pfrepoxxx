@@ -143,6 +143,7 @@ function validateForm(m) {
         'settingsModule',
         'BizModule',
         'userModule',
+        'accountingModule',
         'coreModule'
     ]);
 })();

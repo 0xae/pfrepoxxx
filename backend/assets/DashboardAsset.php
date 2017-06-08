@@ -69,6 +69,11 @@ class DashboardAsset extends AssetBundle {
 
         /* Dashboard Module */
         'static/js/passafree/dashboard/dashboard.js',
+
+        /* Accounting Module */
+        'static/js/passafree/acc/mod.module.js',
+        'static/js/passafree/acc/mod.service.js',
+        'static/js/passafree/acc/mod.controller.js',
         
         /* Settings Module */
         'static/js/passafree/settings/mod.module.js',
