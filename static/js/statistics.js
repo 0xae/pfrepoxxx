@@ -35,9 +35,7 @@ function LoadTimeseriesChart(container, data) {
     $('#'+container).highcharts({
         credits: { enabled: false },
         chart: { 
-            zoomType: 'x' ,
-            width: 300,
-            height: 300
+            zoomType: 'x'
         },
         title: { text: '' },
         xAxis: { type: 'datetime' },

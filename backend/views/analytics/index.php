@@ -19,37 +19,16 @@ $user = Yii::$app->user;
 			<div class="proximo_evento">
 				<h4><div class="borderlefttitlo"></div><span>User Analitics</span></h4>
                 <div class="">
-                    <!--
-                    <a id="iiidLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <h4>
-                            <div class=""></div> <span class="glyphicon glyphicon-filter"></span>
-                        </h4>
-                    </a>
-                    -->
-                <div class="pageventbtngroup">
-                    <a id="iiidLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="input-group input-group-sm">
-                          <span class="input-group-addon " id="sizing-addon3">
-                               <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                          <input class="form-control" type="text" id="daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
-                        </div>
-                    </a>
-                </div>
-                    <!--
-                    <div class="btn-group">
-                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                Action <span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                          </ul>
+                    <div class="pageventbtngroup">
+                        <a id="iiidLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="input-group input-group-sm">
+                              <span class="input-group-addon " id="sizing-addon3">
+                                   <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                              <input class="form-control" type="text" id="daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
+                            </div>
+                        </a>
                     </div>
-                    -->
                 </div>
 			</div>
 		</div>
@@ -78,35 +57,27 @@ $user = Yii::$app->user;
 						<div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="new">
                                 <div class="col-md-12">
-                                    <!--
-                                    <div class="btn-group" data-toggle="buttons">
-                                          <label class="btn btn-sm btn-primary active">
-                                                <input type="radio" name="options" id="option1" autocomplete="off" checked> This week
-                                          </label>
-                                          <label class="btn btn-sm btn-primary">
-                                                <input type="radio" name="options" id="option2" autocomplete="off"> This month
-                                          </label>
-                                          <label class="btn btn-sm btn-primary">
-                                                <input type="radio" name="options" id="option3" autocomplete="off"> This year
-                                          </label>
-                                          <label class="btn btn-sm btn-primary">
-                                                <input type="radio" name="options" id="option3" autocomplete="off"> 
-                                                <span class="glyphicon glyphicon-filter"></span>
-                                          </label>
+                                    <div ng-if="empty_user_gt" style="margin-bottom:-18em;margin-top:10em;">
+                                        <no-data></no-data>
                                     </div>
-                                    -->
-                                    <!-- Single button -->
-                                    <div id="user_growth"></div>
+                                    <div id="user_growth" style="width: 90%"></div>
                                 </div>
 							</div>
 
-							<div role="tabpanel" style="width:100%" class="fade tab-pane" id="usage">
-                                <div id="usage_growth" style="width:100%"></div>
+                            <!--
+							<div role="tabpanel" style="" class="fade tab-pane" id="usage">
+                                <div class="col-md-12">
+                                    <div id="usage_growth"></div>
+                                </div>
 							</div>
+                            -->
 
 							<div role="tabpanel" class="fade tab-pane" id="interation">
                                 <div class="col-md-12">
-                                <div style="width:80%" id="interaction_growth"></div>
+                                    <div ng-if="empty_interaction_gt" style="margin-bottom:-18em;margin-top:10em;">
+                                        <no-data></no-data>
+                                    </div>
+                                    <div id="interaction_growth" style="width: 90%"> </div>
                                 </div>
 							</div>
 						</div>
@@ -157,6 +128,9 @@ $user = Yii::$app->user;
 						<div class="tab-content" style="padding:0px">
 							<div role="tabpanel" style="padding:10px" class="tab-pane active" id="maisfestas">
                                 <div class="col-md-12">
+                                    <div ng-if="no_populars_data" style="margin-bottom:-18em;margin-top:10em;">
+                                        <no-data></no-data>
+                                    </div>
                                     <div id="most_popular"></div>
                                 </div>
                                 <?php /*
@@ -167,6 +141,9 @@ $user = Yii::$app->user;
 							</div>
 							<div role="tabpanel" class="fade tab-pane" id="maisvendidos" style="padding: 10px">
                                 <div class="col-md-12">
+                                    <div ng-if="no_sellers_data" style="margin-bottom:-18em;margin-top:10em;">
+                                        <no-data></no-data>
+                                    </div>
                                     <div id="top_sellers" style="width: 90%"></div>
                                 </div>
                                 <?php /* echo $this->render('tickets_per_producer', [
@@ -175,6 +152,9 @@ $user = Yii::$app->user;
                                  ?>
 							</div>
                             <div role="tabpanel" class="fade tab-pane" id="maisrendimento">
+                                    <div ng-if="no_profit_data" style="margin-bottom:-18em;margin-top:10em;">
+                                        <no-data></no-data>
+                                    </div>
                                 <div id="most_profitable" style="width: 90%"></div>
 							</div>
 						</div>

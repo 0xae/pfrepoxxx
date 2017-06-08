@@ -5,6 +5,12 @@
         function loadUserGrowth(c) {
             analyticsService.getUserGrowth(c)
             .then(function (data) {
+                var total = _.sumBy(data, function (e) { return e[1]; });
+                if (!total) {
+                    $scope.empty_user_gt = true;
+                } else {
+                    $scope.empty_user_gt = false;
+                }
                 LoadTimeseriesChart('user_growth', data);
             });
         }
@@ -12,6 +18,12 @@
         function loadInteractionGrowth(c) {
             analyticsService.getInteraction(c)
             .then(function (data) {
+                var total = _.sumBy(data.likes, function (e) { return e[1]; });
+                if (!total) {
+                    $scope.empty_interaction_gt = true;
+                } else {
+                    $scope.empty_interaction_gt = false;
+                }
                 LoadTimeseriesChart('interaction_growth', data.likes);
             });
         }
