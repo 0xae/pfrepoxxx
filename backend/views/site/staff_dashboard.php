@@ -1,18 +1,8 @@
 <?php
 $user = \Yii::$app->user;
-$context = '';
-if ($user->can('admin')) {
-    $context = 'passafree';
-} else if ($user->can('producer')) {
-    $context = 'producer';
-} else if ($user->can('business')) {
-    $context = 'business';
-}
 ?>
 
-<div class="global-controller" ng-controller="DashboardController" >
-
-<span id="dashboard_context" data-value="<?php echo $context; ?>"></span>
+<div class="global-controller" ng-controller="DashboardController">
 
 <div class="row">
     <div class="col-md-12 titulosection">
