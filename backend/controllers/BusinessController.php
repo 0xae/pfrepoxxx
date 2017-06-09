@@ -50,10 +50,7 @@ class BusinessController extends Controller {
      */
     public function actionIndex() {
         $data = Business::find()->all();
-
-        return $this->render('index', [
-            'data' => $data,
-        ]);
+        return $this->render('index', ['data' => $data]);
     }
 
     /**

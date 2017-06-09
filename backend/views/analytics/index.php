@@ -6,12 +6,7 @@ $user = Yii::$app->user;
 <div class="container-fluid pagebusiness  pageanalitics">
     <?php
         if ($user->can('admin') || $user->can('passafree_staff')) {
-            echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', [
-                'onChange' => "
-                    function (newBusiness) {
-                    }
-                "
-            ]);
+            echo \Yii::$app->view->renderFile('@app/views/site/business_modal.php', []);
         }
     ?>
 	<div class="row">

@@ -57,57 +57,56 @@ $this->registerJs($s);
 				<div class="accountingbox">
 					<div class="col-md-6">
 						<table class="table table-striped">
-						<tbody>
-							<tr>
-								<td> <div>Revenue per Producer</div> </td>
-							</tr>
-
-                            <?php foreach ($producers as $p): ?>
+                            <tbody>
                                 <tr>
-                                    <td class="childtd">
-                                        <div><?= $p['producer_name']; ?></div>
-                                        <div style="text-align:right">
-                                            <span class="money"><?= $p['business_gross_revenue']; ?></span> 
-                                             ECV
-                                        </div>
-                                    </td>
+                                    <td> <div>Revenue per Producer</div> </td>
                                 </tr>
-                            <?php endforeach; ?>
 
-                            <?php foreach ($businessData as $b): ?>
-                                <tr>
-                                    <td class="childtd">
-                                        <div><strong>Total</strong></div>
-                                        <div style="text-align:right">
-                                            <strong>
-                                                <span class="money"><?= $b['gross_revenue']; ?></span> 
-                                                ECV
-                                            </strong>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div><?= $model->name; ?></div>
-                                        <div style="text-align:right"><span class="money"><?= $b['liquid_revenue']; ?></span> ECV</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>Passa Free</div>
-                                        <div style="text-align:right"><span class="money"><?= $b['passafree_revenue']; ?></span> ECV</div>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-						</tbody>
-					</table>						
+                                <?php foreach ($producers as $p): ?>
+                                    <tr>
+                                        <td class="childtd">
+                                            <div><?= $p['producer_name']; ?></div>
+                                            <div style="text-align:right">
+                                                <span class="money"><?= $p['business_gross_revenue']; ?></span> 
+                                                 ECV
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
 
-                    <?php if(empty($producers)): ?>
-                    <div class="col-md-12" style="margin-top: 13em;">
-                         <no-data></no-data>
-                    </div> 
-                    <?php endif; ?>
+                                <?php foreach ($businessData as $b): ?>
+                                    <tr>
+                                        <td class="childtd">
+                                            <div><strong>Total</strong></div>
+                                            <div style="text-align:right">
+                                                <strong>
+                                                    <span class="money"><?= $b['gross_revenue']; ?></span> 
+                                                    ECV
+                                                </strong>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div><?= $model->name; ?></div>
+                                            <div style="text-align:right"><span class="money"><?= $b['liquid_revenue']; ?></span> ECV</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>Passa Free</div>
+                                            <div style="text-align:right"><span class="money"><?= $b['passafree_revenue']; ?></span> ECV</div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>						
 
+                        <?php if(empty($producers)): ?>
+                        <div class="col-md-12" style="margin-top: 13em;">
+                             <no-data></no-data>
+                        </div> 
+                        <?php endif; ?>
 					</div>
 
 					<div style="border-left: 1px solid #ddd;padding-top:20px;" class="col-md-6">
@@ -127,8 +126,10 @@ $this->registerJs($s);
 		</div>
 	</div>
 
+    <!-->
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 		</div>
 	</div>
+    -->
 </div>
