@@ -38,28 +38,15 @@ class DashboardModel {
                                         ->fetchIt('total_count')
         ];
 
+        $s = new RevenueReport();
         if ($appUser['role'] == 'admin') {
-            $data['total_revenue'] = $this->getPFRevenue($appUser, $filters);
+            $data['total_revenue'] = $s->getPFRevenue($appUser, $filters);
         } else if ($appUser['role'] == 'business') {
-            $data['total_revenue'] = $this->getBizRevenue($appUser, $filters);
+            $data['total_revenue'] = $s->getBizRevenue($appUser, $filters);
         }
 
         return $data;
     }
 
-    private function getPFRevenue($appUser, $filters) {
-        return Reports::model('bilhete_reports')
-            ->fields(['t' => "round(coalesce(sum(total_business_gross * ((100-business_percent)/100), 0)))"])
-            ->withFilters($filters)
-            ->fetchIt('t');
-    }
-
-    private function getBizRevenue($appUser, $filters) {
-        return Reports::model('bilhete_reports')
-            ->fields(['t' => "round(coalesce(sum(total_business_gross * (business_percent/100),0)))"])
-            ->withFilters($filters)
-            ->filter('business_id', '=', $appUser['business_id'])
-            ->fetchIt('t');
-    }
 }
 

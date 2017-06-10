@@ -27,11 +27,15 @@ SELECT
 		CB.business_percent as business_compra_percent,
 
 		/* some aggs */
-		greatest(B.stock-count(CB.idcompra_bilhete), 0)  AS tickets_current_stock,
-		count(CB.idcompra_bilhete) AS tickets_sold,
+		greatest(B.stock-count(CB.idcompra_bilhete), 0) 
+            AS tickets_current_stock,
+
+		count(CB.idcompra_bilhete) 
+            AS tickets_sold,
 
 		/* global gross revenue */
-		sum(B.preco) AS total_producer_gross,
+		sum(B.preco) 
+            AS total_producer_gross,
 
 		/* producer_gross_revenue */
 		coalesce(round(sum( B.preco - (B.preco * (CB.business_percent/100)))), 0)
@@ -40,7 +44,6 @@ SELECT
 		/* business_gross_revenue */
 		round(sum( B.preco * coalesce(CB.business_percent/100, 0))) 
             AS total_business_gross
-
 
 FROM bilhete B
 JOIN evento E ON E.idevento = B.evento_idevento
