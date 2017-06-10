@@ -6,10 +6,7 @@ namespace backend\models\analytics;
  * @author ayrton
  */
 class RevenueReport {
-    const PASSAFREE_REVENUE = "";
-    const BIZ_REVENUE = "";
-
-    public function getRevenuePerBusiness($appUser){
+    public function getRevenuePerBusiness($appUser, $start, $end, $bizId=''){
         $fields = [
             'business_id',
             'business_name',
@@ -20,12 +17,14 @@ class RevenueReport {
 
         return Reports::model('bilhete_reports')
                       ->fields($fields)
-                      ->withFilters($filters)
+                      ->filter('business_id', '=', $bizId)
+                      ->filter('date', '>=', $start)
+                      ->filter('date', '<=', $end)
                       ->groupBy('business_id')
                       ->fetch();
     }
 
-    public function getRevenuePerEvent($appUser) {
+    public function getRevenuePerEvent($appUser, $start, $end, $eventId='') {
         $fields = [
             'event_id' => 'evento_id',
             'event_name' => 'evento_nome',
@@ -48,12 +47,14 @@ class RevenueReport {
 
         return Reports::model('bilhete_reports')
                       ->fields($fields)
-                      ->withFilters($filters)
+                      ->filter('date', '>=', $start)
+                      ->filter('date', '<=', $end)
+                      ->filter('evento_id', '=', $eventId)
                       ->groupBy('evento_id')
                       ->fetch();
     }
 
-    public function getRevenuePerProducer($appUser){
+    public function getRevenuePerProducer($appUser, $start, $end, $producerId=''){
         $fields = [
             'producer_id' => 'marca_id',
             'producer_name' => 'marca_nome',
@@ -67,20 +68,16 @@ class RevenueReport {
         ];
 
         $q =  Reports::model('bilhete_reports')
-                      ->fields($fields)
-                      ->withFilters($filters)
-                      ->groupBy('marca_id');
-
-        if ($mods) {
-            if (isset($mods['order_by'])) {
-                $q->orderBy($mods['order_by']);
-            }
-        }
+                  ->fields($fields)
+                  ->filter('date', '>=', $start)
+                  ->filter('date', '<=', $end)
+                  ->filter('marca_id', '=', $producerId)
+                  ->groupBy('marca_id');
 
         return $q->fetch();
     }
 
-    public function getRevenuePerTicket($appUser, $eventId) {
+    public function getRevenuePerTicket($appUser, $start, $end, $eventId) {
         $fields = [
             'ticket_id' => 'bilhete_id' ,
             'ticket_name' => 'bilhete_nome',
@@ -112,23 +109,27 @@ class RevenueReport {
 
         return Reports::model('bilhete_reports')
                       ->fields($fields)
+                      ->filter('date', '>=', $start)
+                      ->filter('date', '<=', $end)
                       ->filter('evento_id', '=', $eventId)
                       ->groupBy('bilhete_id')
                       ->fetch();
     }
 
-    public function getPFRevenue($appUser, $filters) {
+    public function getPFRevenue($appUser, $start, $end) {
         return Reports::model('bilhete_reports')
             ->fields(['t' => "round(coalesce(sum(total_business_gross * ((100-business_percent)/100), 0)))"])
-            ->withFilters($filters)
+            ->filter('date', '>=', $start)
+            ->filter('date', '<=', $end)
             ->fetchIt('t');
     }
 
-    public function getBizRevenue($appUser, $filters) {
+    public function getBizRevenue($appUser, $start, $end) {
         return Reports::model('bilhete_reports')
             ->fields(['t' => "round(coalesce(sum(total_business_gross * (business_percent/100),0)))"])
-            ->withFilters($filters)
-            ->filter('business_id', '=', $appUser['business_id'])
+            ->filter('date', '>=', $start)
+            ->filter('date', '<=', $end)
+            ->filter('business_id', '=', $bizId)
             ->fetchIt('t');
     }
 }

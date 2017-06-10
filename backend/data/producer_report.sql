@@ -1,4 +1,3 @@
-SELECT * FROM (
 	SELECT 
 		M.idmarca as marca_id,
 		M.nome as marca_nome,
@@ -16,4 +15,3 @@ SELECT * FROM (
 	FROM produtor P
 	JOIN marca M ON M.idmarca = P.marca_idmarca
 	JOIN business BZ on BZ.id = M.business_id
-) F

@@ -31,39 +31,6 @@ class AnalyticsController extends \yii\web\Controller {
         return $this->render("index", []);
     }
 
-    public function actionProducerAnalytics() {
-        $service = new AnalyticsService();
-        $session = \Yii::$app->session;
-        $biz = $session->get('business');
-        $user = \Yii::$app->user;
-        $filters = RestApp::parseQueryFilters($_GET);
-        $filters[] = [
-            'op' => '=',
-            'field' => 'business_id',
-            'val'  => $biz
-        ];
-
-        $d1 = $service->getProducerAnalytics($filters, ['order_by' => 'total_eventos desc']);
-        $d2 = $service->getProducerReport($filters, ['order_by' => 'tickets_sold desc']);
-
-        # lets do it man
-        foreach ($d2 as &$dk) {
-            $field = 'business_revenue';
-            if ($user->can('admin') || $user->can('passafree_admin')) {
-                $field = 'passafree_revenue';
-            } 
-            $dk['relative_revenue'] = $dk[$field];
-            $dk['relative_revenue_of'] = $field;
-        }
-
-        echo json_encode([
-            'data' => [
-                'eventsPerProducer' => $d1,
-                'ticketsPerProducer' => $d2
-            ]
-        ]);
-    }
-
     /*
      * TODO: make this code prettier
      *       add default date filter
@@ -98,30 +65,50 @@ class AnalyticsController extends \yii\web\Controller {
         echo json_encode ($data);
     }
 
-    public function actionBusiness() {
-        $filters = [];
+    public function actionProducerAnalytics() {
         $service = new AnalyticsService();
+        $session = \Yii::$app->session;
+        $biz = $session->get('business');
+        $user = \Yii::$app->user;
+        $filters = RestApp::parseQueryFilters($_GET);
+        $filters[] = [
+            'op' => '=',
+            'field' => 'business_id',
+            'val'  => $biz
+        ];
+
+        $d1 = $service->getProducerAnalytics($filters, ['order_by' => 'total_eventos desc']);
+        $d2 = $service->getProducerReport($filters, ['order_by' => 'tickets_sold desc']);
+
+        # lets do it man
+        foreach ($d2 as &$dk) {
+            $field = 'business_revenue';
+            if ($user->can('admin') || $user->can('passafree_admin')) {
+                $field = 'passafree_revenue';
+            } 
+            $dk['relative_revenue'] = $dk[$field];
+            $dk['relative_revenue_of'] = $field;
+        }
 
         echo json_encode([
-            'data' => $service->getBusinessReport($filters)
+            'data' => [
+                'eventsPerProducer' => $d1,
+                'ticketsPerProducer' => $d2
+            ]
         ]);
     }
 
-    public function actionProducer() {
+
+    public function actionInteractionGrowth() {
         $filters = RestApp::parseQueryFilters($_GET);
         $service = new AnalyticsService();
+        $session = \Yii::$app->session;
+        $filters[] = [
+            'op'=>'=', 'field'=>'business_id', 'val'=>$session->get('business')
+        ];
 
         echo json_encode([
-            'data' => $service->getProducerReport($filters)
-        ]);
-    }
-
-    public function actionEvent() {
-        $filters = RestApp::parseQueryFilters($_GET);
-        $service = new AnalyticsService();
-
-        echo json_encode([
-            'data' => $service->getEventReport($filters)
+            'data' => $service->getReactionGrowth($filters)
         ]);
     }
 
@@ -139,28 +126,6 @@ class AnalyticsController extends \yii\web\Controller {
 
         echo json_encode([
             'data' => $service->getUserGrowth($filters)
-        ]);
-    }
-
-    public function actionInteractionGrowth() {
-        $filters = RestApp::parseQueryFilters($_GET);
-        $service = new AnalyticsService();
-        $session = \Yii::$app->session;
-        $filters[] = [
-            'op'=>'=', 'field'=>'business_id', 'val'=>$session->get('business')
-        ];
-
-        echo json_encode([
-            'data' => $service->getReactionGrowth($filters)
-        ]);
-    }
-
-    public function actionTicket() {
-        $filters = [];
-        $service = new AnalyticsService();
-
-        echo json_encode([
-            'data' => $service->getTicketReport($filters)
         ]);
     }
 }

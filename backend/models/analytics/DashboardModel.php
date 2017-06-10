@@ -2,24 +2,32 @@
 namespace backend\models\analytics;
 
 class DashboardModel {
-    public function getCounters($appUser, $filters) {
-        return $this->_getCounters($appUser, $filters);
+    public function getRevenueData($appUser, $start, $end) {
+        $r = new RevenueReport;
+
+        return [
+            "rvn_per_business" => $r->getRevenuePerBusiness($appUser, $start, $end),
+            "rvn_per_event" => $r->getRevenuePerEvent($appUser, $start, $end),
+            "rvn_per_producer" => $r->getRevenuePerProducer($appUser, $start, $end)
+        ];
     }
 
-    public function getRevenueData($appUser, $filters) {
+    public function getCounters($appUser, $start, $end) {
+        return $this->_getAggregates($appUser, $start, $end);
     }
 
-    private function _getCounters($appUser, $filters) {
-        $fis = $filters;
-        if ($appUser['role']=='admin' || $appUser['role']=='business') {
-            $fis[] = [
-                'field' => 'business_id',
-                'op' => '=',
-                'val' => $appUser['business_id']
-            ];
-        } else {
-            return;
-        }
+    private function _getAggregates($appUser, $start, $end) {
+        $s = new RevenueReport();
+        $bizId = -1;
+        $totalRevenue = 0;
+
+        if ($appUser['role']=='admin') {
+            $bizId = '';
+            $totalRevenue = $s->getPFRevenue($appUser, $start, $end);
+        } else if ($appUser['role'] == 'business') {
+            $bizId = $appUser['business_id'];
+            $totalRevenue = $s->getBizRevenue($appUser, $start, $end, $bizId);
+        } 
 
         $data = [
             // admin only
@@ -28,25 +36,22 @@ class DashboardModel {
 
             // filter
             'producer_count' => (int) Reports::model("producer_report")->count()
+                                        ->filter('business_id', '=', $bizId)
                                         ->filter('marca_estado', '=', 1) 
-                                        ->withFilters($fis)
                                         ->fetchIt('total_count'),
             // filter
             'event_count' => (int) Reports::model("evento_report")->count()
-                                        ->filter('evento_estado','=',1)
-                                        ->withFilters($fis)
-                                        ->fetchIt('total_count')
-        ];
+                                        ->filter('business_id', '=', $bizId)
+                                        ->filter('evento_estado', '=', 1)
+                                        ->filter('evento_data', '>=', $start)
+                                        ->filter('evento_data', '<=', $end)
+                                        ->fetchIt('total_count'),
 
-        $s = new RevenueReport();
-        if ($appUser['role'] == 'admin') {
-            $data['total_revenue'] = $s->getPFRevenue($appUser, $filters);
-        } else if ($appUser['role'] == 'business') {
-            $data['total_revenue'] = $s->getBizRevenue($appUser, $filters);
-        }
+            // 'total_revenue' => (int) $totalRevenue,
+            'total_revenue' => $totalRevenue
+        ];
 
         return $data;
     }
-
 }
 
