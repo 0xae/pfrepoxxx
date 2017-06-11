@@ -17,6 +17,7 @@ angular.module('passafree')
             function updateCounter(counterId, value) {
                 $('#'+counterId).text(value);
             }
+
             function updateDashboardCounters(data) {
                 updateCounter('user_counter', data.user_count);
                 updateCounter('biz_counter', data.business_count);
@@ -25,23 +26,22 @@ angular.module('passafree')
                 updateCounter('sales_counter', coreUtils.formatMoney(data.total_revenue));
             }
 
-            function updateDashboardGraphs(config, data) {
-                var keys = data.business_data.map(function (d) { return d.business_name; });
-                var values = data.business_data.map(function (d) { 
-                    return parseInt(d[config.context_graph_col]);
+            function updateDashboardGraphs(data) {
+                var keys = data.rvn_per_business.map(function (d) { return d.business_name; });
+                var values = data.rvn_per_business.map(function (d) { 
+                    return parseInt(d.context_revenue);
                 });
                 LoadBarchart('#revenue_per_business', '', keys, values);
 
-                var keys = data.event_data.map(function (d) { return d.event_name; });
-                var values = data.event_data.map(function (d) {
-                    // return parseInt(d.liquid_revenue);
-                    return parseInt(d[config.context_graph_col]);
+                var keys = data.rvn_per_event.map(function (d) { return d.event_name; });
+                var values = data.rvn_per_event.map(function (d) {
+                    return parseInt(d.context_revenue);
                 });
                 LoadBarchart('#revenue_per_event', '', keys, values);
 
-                var keys = data.producer_data.map(function (d) { return d.producer_name; });
-                var values = data.producer_data.map(function (d) {
-                    return parseInt(d[config.context_graph_col]);
+                var keys = data.rvn_per_producer.map(function (d) { return d.producer_name; });
+                var values = data.rvn_per_producer.map(function (d) {
+                    return parseInt(d.context_revenue);
                 });
                 LoadBarchart('#revenue_per_producer', '', keys, values);
             }
@@ -57,7 +57,7 @@ angular.module('passafree')
                     start: start,
                     end: end
                 };
-                // console.info(conf);
+
                 $scope.filters = conf;
                 updateDashboard();
             });
@@ -73,7 +73,9 @@ angular.module('passafree')
 
                 dashboardService.fetchData(start, end)
                 .then(function (data){
+                    console.log(data);
                     updateDashboardCounters(data.resume);
+                    updateDashboardGraphs(data.revenue);
                 });
             }
 

@@ -52,7 +52,6 @@ class DashboardModel {
                                         ->filter('evento_data', '<=', $eventEnd)
                                         ->fetchIt('total_count'),
 
-            // 'total_revenue' => (int) $totalRevenue,
             'total_revenue' => (int) $totalRevenue
         ];
 

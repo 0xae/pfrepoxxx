@@ -20,6 +20,12 @@ class RevenueReport {
             'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))'
         ];
 
+        if ($appUser['role'] == 'admin') {
+            $fields['context_revenue'] = $fields['passafree_revenue'];
+        } else if ($appUser['role'] == 'business') {
+            $fields['context_revenue'] = $fields['liquid_revenue'];
+        }
+
         return Reports::model('bilhete_reports')
                       ->fields($fields)
                       ->params([':start'=>$start, ':end'=>$end])
@@ -51,6 +57,12 @@ class RevenueReport {
             'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))'
         ];
 
+        if ($appUser['role'] == 'admin') {
+            $fields['context_revenue'] = $fields['passafree_revenue'];
+        } else if ($appUser['role'] == 'business') {
+            $fields['context_revenue'] = $fields['business_revenue'];
+        }
+
         return Reports::model('bilhete_reports')
                       ->fields($fields)
                       ->params([':start'=>$start, ':end'=>$end])
@@ -68,10 +80,16 @@ class RevenueReport {
             'gross_revenue' => 'sum(total_producer_gross)',
             'tickets_sold',
             'liquid_revenue' => 'sum(total_producer_liquid)',
-            'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))',
             'business_gross_revenue' => 'sum(total_business_gross)',
+            'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))',
             'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))'
         ];
+
+        if ($appUser['role'] == 'admin') {
+            $fields['context_revenue'] = $fields['passafree_revenue'];
+        } else if ($appUser['role'] == 'business') {
+            $fields['context_revenue'] = $fields['business_revenue'];
+        }
 
         $q =  Reports::model('bilhete_reports')
                   ->fields($fields)
@@ -125,8 +143,8 @@ class RevenueReport {
         $this->notNull([$start, $end]);
         $ret= Reports::model('bilhete_reports')
             ->fields(['t' => "round(coalesce(".
-                        "sum(total_business_gross * ((100-business_percent)/100)), 0".
-                        "))",
+                                "sum(total_business_gross) * ((100-business_percent)/100), 0".
+                            "))",
            ])
             ->params([':start'=>$start, ':end'=>$end]);
 
@@ -141,7 +159,7 @@ class RevenueReport {
     public function getBizRevenue($appUser, $start, $end, $bizId='') {
         $this->notNull([$start, $end]);
         return Reports::model('bilhete_reports')
-            ->fields(['t' => "round(coalesce(sum(total_business_gross * (business_percent/100),0)))"])
+            ->fields(['t' => "round(coalesce(sum(total_business_gross) * (business_percent/100),0))"])
             ->params([':start'=>$start, ':end'=>$end])
             ->filter('business_id', '=', $bizId)
             ->fetchIt('t');
