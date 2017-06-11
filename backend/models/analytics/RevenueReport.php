@@ -1,12 +1,17 @@
 <?php
 namespace backend\models\analytics;
 
+use yii;
+use yii\db\QueryBuilder;
+use yii\web\BadRequestHttpException;
+
 /**
  * XXX: deal with filters
  * @author ayrton
  */
 class RevenueReport {
     public function getRevenuePerBusiness($appUser, $start, $end, $bizId=''){
+        $this->notNull([$start, $end]);
         $fields = [
             'business_id',
             'business_name',
@@ -17,18 +22,19 @@ class RevenueReport {
 
         return Reports::model('bilhete_reports')
                       ->fields($fields)
+                      ->params([':start'=>$start, ':end'=>$end])
                       ->filter('business_id', '=', $bizId)
-                      ->filter('date', '>=', $start)
-                      ->filter('date', '<=', $end)
                       ->groupBy('business_id')
                       ->fetch();
     }
 
     public function getRevenuePerEvent($appUser, $start, $end, $eventId='') {
+        $this->notNull([$start, $end]);
         $fields = [
             'event_id' => 'evento_id',
             'event_name' => 'evento_nome',
             'event_date' => 'evento_data',
+
             'tickets_stock' => 'sum(tickets_current_stock)',
             'tickets_sold' => 'sum(tickets_sold)',
             'tickets_total' => 'sum(coalesce(bilhete_stock,0))',
@@ -41,20 +47,20 @@ class RevenueReport {
                                   )',
             'raw_revenue' => 'sum(total_producer_gross)',
             'liquid_revenue' => 'sum(total_producer_liquid)',
-            'business_revenue' => 'sum(total_business_gross) * (business_percent/100)',
-            'passafree_revenue' => 'sum(total_business_gross) * ((100-business_percent)/100)'
+            'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))',
+            'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))'
         ];
 
         return Reports::model('bilhete_reports')
                       ->fields($fields)
-                      ->filter('date', '>=', $start)
-                      ->filter('date', '<=', $end)
+                      ->params([':start'=>$start, ':end'=>$end])
                       ->filter('evento_id', '=', $eventId)
                       ->groupBy('evento_id')
                       ->fetch();
     }
 
     public function getRevenuePerProducer($appUser, $start, $end, $producerId=''){
+        $this->notNull([$start, $end]);
         $fields = [
             'producer_id' => 'marca_id',
             'producer_name' => 'marca_nome',
@@ -62,15 +68,14 @@ class RevenueReport {
             'gross_revenue' => 'sum(total_producer_gross)',
             'tickets_sold',
             'liquid_revenue' => 'sum(total_producer_liquid)',
-            'business_revenue' => 'sum(total_business_gross) * (business_percent/100)',
+            'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))',
             'business_gross_revenue' => 'sum(total_business_gross)',
-            'passafree_revenue' => 'sum(total_business_gross) * ((100-business_percent)/100)'
+            'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))'
         ];
 
         $q =  Reports::model('bilhete_reports')
                   ->fields($fields)
-                  ->filter('date', '>=', $start)
-                  ->filter('date', '<=', $end)
+                  ->params([':start'=>$start, ':end'=>$end])
                   ->filter('marca_id', '=', $producerId)
                   ->groupBy('marca_id');
 
@@ -78,6 +83,7 @@ class RevenueReport {
     }
 
     public function getRevenuePerTicket($appUser, $start, $end, $eventId) {
+        $this->notNull([$start, $end]);
         $fields = [
             'ticket_id' => 'bilhete_id' ,
             'ticket_name' => 'bilhete_nome',
@@ -109,28 +115,44 @@ class RevenueReport {
 
         return Reports::model('bilhete_reports')
                       ->fields($fields)
-                      ->filter('date', '>=', $start)
-                      ->filter('date', '<=', $end)
+                      ->params([':start'=>$start, ':end'=>$end])
                       ->filter('evento_id', '=', $eventId)
                       ->groupBy('bilhete_id')
                       ->fetch();
     }
 
     public function getPFRevenue($appUser, $start, $end) {
+        $this->notNull([$start, $end]);
+        $ret= Reports::model('bilhete_reports')
+            ->fields(['t' => "round(coalesce(".
+                        "sum(total_business_gross * ((100-business_percent)/100)), 0".
+                        "))",
+           ])
+            ->params([':start'=>$start, ':end'=>$end]);
+
+        # $dbg = new QueryBuilder(Yii::$app->db);
+        # $sql = $dbg->build($ret->query);
+        # var_dump($sql);
+        # die;
+
+        return $ret->fetchIt('t');
+    }
+
+    public function getBizRevenue($appUser, $start, $end, $bizId='') {
+        $this->notNull([$start, $end]);
         return Reports::model('bilhete_reports')
-            ->fields(['t' => "round(coalesce(sum(total_business_gross * ((100-business_percent)/100), 0)))"])
-            ->filter('date', '>=', $start)
-            ->filter('date', '<=', $end)
+            ->fields(['t' => "round(coalesce(sum(total_business_gross * (business_percent/100),0)))"])
+            ->params([':start'=>$start, ':end'=>$end])
+            ->filter('business_id', '=', $bizId)
             ->fetchIt('t');
     }
 
-    public function getBizRevenue($appUser, $start, $end) {
-        return Reports::model('bilhete_reports')
-            ->fields(['t' => "round(coalesce(sum(total_business_gross * (business_percent/100),0)))"])
-            ->filter('date', '>=', $start)
-            ->filter('date', '<=', $end)
-            ->filter('business_id', '=', $bizId)
-            ->fetchIt('t');
+    private function notNull($ary) {
+        foreach($ary as $k=>$v) {
+            if ($v == NULL) {
+                throw new BadRequestHttpException("null param received.");
+            }
+        }
     }
 }
 

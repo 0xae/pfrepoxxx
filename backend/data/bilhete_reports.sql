@@ -52,6 +52,8 @@ JOIN marca M ON M.idmarca = P.marca_idmarca
 JOIN business BIZ ON BIZ.id = M.business_id
 LEFT JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
 
+WHERE CB.dataCompra >= :start and CB.dataCompra <= :end
+
 GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete
 ORDER BY E.idevento ASC
 

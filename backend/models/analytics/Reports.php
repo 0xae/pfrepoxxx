@@ -11,7 +11,7 @@ use yii\db\Query;
  * @date 2017-05-03 00:53
  */
 class Reports {
-    private $query;
+    public $query;
    
     private function __construct($sql) {
         $this->query = (new Query())
@@ -43,6 +43,11 @@ class Reports {
 
     public function addFields($f) {
         $this->query->addSelect($f);
+        return $this;
+    }
+
+    public function params($vals) {
+        $this->query->addParams($vals);
         return $this;
     }
 

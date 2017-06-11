@@ -3,14 +3,15 @@ namespace backend\controllers;
 
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\BadRequestHttpException;
+
 use backend\components\RestApp;
 use backend\models\UploadForm;
 use backend\models\Business;
-use backend\models\analytics\ReportsService;
-use backend\models\analytics\AnalyticsService;
+use backend\models\User;
+use backend\models\analytics\DashboardModel;
 
 class AnalyticsController extends \yii\web\Controller {
-    /*
     public function behaviors() {
         return [
             [
@@ -18,51 +19,28 @@ class AnalyticsController extends \yii\web\Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'dashboard', 'business', 'event', 'producer'],
-                        'roles' => ['passafree_staff', 'admin', 'business', 'producer']
+                        'actions' => ['index', 'dashboard'],
+                        'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ]
             ]
         ];
     }
-     */
 
     public function actionIndex() {
         return $this->render("index", []);
     }
 
-    /*
-     * TODO: make this code prettier
-     *       add default date filter
-     * XXX: work on these filters
-    */
     public function actionDashboard() {
-        $user = \Yii::$app->user;
-        $session = \Yii::$app->session;
-        $service = new AnalyticsService();
-        $globalRevenue=0;
-        $filters = RestApp::parseQueryFilters($_GET);
+        $s = new DashboardModel(); 
+        $appUser = User::getAppUser();
+        $start = $this->getQueryParam("start");
+        $end = $this->getQueryParam("end");
 
-        if ($user->can('business')) {
-            $businessId  = $session->get('business');
-            $filters[] = ['field'=>'business_id','op'=>'=', 'val'=>$businessId];
-            $_GET['business_id'] = $businessId;
-            $globalRevenue = $service->getBusinessRevenue($businessId, ['business_id' => $businessId]);
-        } else if ($user->can('producer')) {
-            $producerId = Produtor::find()->where(['idprodutor'=>$user->id])->one()->marca_idmarca;
-            $_GET['producer_id'] = $producerId;
-            $globalRevenue = $service->getProducerRevenue(['producer_id' => $producerId]);
-        } else {
-            $globalRevenue = $service->getPassaFreeRevenue([]);
-        }
-
-        $data = $service->getDashboardReport($filters);
-        $data['business_data'] = $service->getBusinessReport($filters);
-        $data['producer_data'] = $service->getProducerReport($filters);
-        $data['event_data'] = $service->getEventReport($filters);
-        $data['global_revenue'] = $globalRevenue;
-
-        echo json_encode ($data);
+        echo json_encode([
+            "revenue" => $s->getRevenueData($appUser, $start, $end),
+            "resume" => $s->getResume($appUser, $start, $end)
+        ]);
     }
 
     public function actionProducerAnalytics() {
@@ -98,7 +76,6 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 
-
     public function actionInteractionGrowth() {
         $filters = RestApp::parseQueryFilters($_GET);
         $service = new AnalyticsService();
@@ -127,5 +104,13 @@ class AnalyticsController extends \yii\web\Controller {
         echo json_encode([
             'data' => $service->getUserGrowth($filters)
         ]);
+    }
+
+    private function getQueryParam($param) {
+        if (!array_key_exists($param, $_GET) || $_GET[$param] == '') {
+            throw new BadRequestHttpException("param $param is required.");
+        }
+
+        return $_GET[$param];
     }
 }

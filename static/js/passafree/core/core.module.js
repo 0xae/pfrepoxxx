@@ -16,5 +16,15 @@ angular.module('coreModule', [])
     }
 })
 
+.factory('CoreUtils', [function() {
+    function formatMoney(num) {
+        return Number(num).toLocaleString('en');
+    }
+
+    return {
+        formatMoney:formatMoney
+    };
+}])
+
 })();
 
