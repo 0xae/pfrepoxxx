@@ -71,7 +71,7 @@ class RevenueReport {
                       ->fetch();
     }
 
-    public function getRevenuePerProducer($appUser, $start, $end, $producerId=''){
+    public function getRevenuePerProducer($appUser, $start, $end, $producerId='', $bizId=''){
         $this->notNull([$start, $end]);
         $fields = [
             'producer_id' => 'marca_id',
@@ -95,6 +95,7 @@ class RevenueReport {
                   ->fields($fields)
                   ->params([':start'=>$start, ':end'=>$end])
                   ->filter('marca_id', '=', $producerId)
+                  ->filter('business_id', '=', $bizId)
                   ->groupBy('marca_id');
 
         return $q->fetch();

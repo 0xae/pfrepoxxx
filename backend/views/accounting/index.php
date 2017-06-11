@@ -5,6 +5,14 @@ use miloschuman\highcharts\HighchartsAsset;
 
 $this->title = 'Accounting';
 $range = $model->getRange();
+$producers = [];
+$accounting = [];
+$pieData = json_encode($pieData);
+
+if (!empty($_data)) {
+    $producers = $_data['business_producer_revenue'];
+    $accounting = $_data['business_revenue'][0];
+}
 ?>
 
 <style>
@@ -74,13 +82,13 @@ $this->registerJs($s);
                                     </tr>
                                 <?php endforeach; ?>
 
-                                <?php foreach ($businessData as $b): ?>
+                                <?php if (!empty($accounting)): ?>
                                     <tr>
                                         <td class="childtd">
                                             <div><strong>Total</strong></div>
                                             <div style="text-align:right">
                                                 <strong>
-                                                    <span class="money"><?= $b['gross_revenue']; ?></span> 
+                                                    <span class="money"><?= $accounting['gross_revenue']; ?></span> 
                                                     ECV
                                                 </strong>
                                             </div>
@@ -89,16 +97,16 @@ $this->registerJs($s);
                                     <tr>
                                         <td>
                                             <div><?= $model->name; ?></div>
-                                            <div style="text-align:right"><span class="money"><?= $b['liquid_revenue']; ?></span> ECV</div>
+                                            <div style="text-align:right"><span class="money"><?= $accounting['liquid_revenue']; ?></span> ECV</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div>Passa Free</div>
-                                            <div style="text-align:right"><span class="money"><?= $b['passafree_revenue']; ?></span> ECV</div>
+                                            <div style="text-align:right"><span class="money"><?= $accounting['passafree_revenue']; ?></span> ECV</div>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>						
 
@@ -126,7 +134,7 @@ $this->registerJs($s);
 		</div>
 	</div>
 
-    <!-->
+    <!--
 	<div class="col-md-12 contentbox">
 		<div class="panel panel-default">
 		</div>
