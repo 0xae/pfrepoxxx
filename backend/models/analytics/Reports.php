@@ -11,7 +11,7 @@ use yii\db\Query;
  * @date 2017-05-03 00:53
  */
 class Reports {
-    public $query;
+    private $query;
    
     private function __construct($sql) {
         $this->query = (new Query())

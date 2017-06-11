@@ -2,13 +2,13 @@
     angular.module('analyticsModule')
     .controller('ProducerAnalyticsController', ['AnalyticsService', 'AnalyticsCore', '$scope', 
     function (analyticsService, analyticsCore, $scope) {
-
         function loadData(config) {
-            analyticsService.getProducerAnalytics(config)
+            analyticsService.fetchAnalyticsData(config.start, config.end)
             .then(function (data) {
-                loadMostPopularG(data.data.eventsPerProducer);
-                loadTopSellersG(data.data.ticketsPerProducer);
-                loadMostProfitableG(data.data.ticketsPerProducer);
+                data = data.producer_statistics;
+                loadMostPopularG(data.most_popular);
+                loadTopSellersG(data.top_seller);
+                loadMostProfitableG(data.most_profitable);
             });
         }
 
@@ -26,7 +26,7 @@
 
         function loadTopSellersG(data) {
             var ks = data.map(function (d) { return d.producer_name; });
-            var vs = data.map(function (d) { return parseInt(d.tickets_sold); });
+            var vs = data.map(function (d) { return parseInt(d.gross_revenue); });
             var total = _.sumBy(vs, function (e) { return e; });
             if (!total) {
                 $scope.no_sellers_data = true;
@@ -38,7 +38,7 @@
 
         function loadMostProfitableG(data) {
             var ks = data.map(function (d) { return d.producer_name; });
-            var vs = data.map(function (d) { return parseInt(d.relative_revenue); });
+            var vs = data.map(function (d) { return parseInt(d.context_revenue); });
             var total = _.sumBy(vs, function (e) { return e; });
             if (!total) {
                 $scope.no_profit_data = true;
@@ -56,7 +56,6 @@
             "linkedCalendars": false,
         }, function(start, end, label) {
             var conf = {start: start, end: end};
-            console.info(conf);
             loadData(conf);
         });
     }]);

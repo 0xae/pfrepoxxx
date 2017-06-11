@@ -3,114 +3,33 @@
     .factory('AnalyticsService', ['$http', '$q', 'AnalyticsCore', 
     function ($http, $q, analyticsCore) {
         var API = './index.php?r=analytics';
-
-        function _parse(pr) {
-            return pr.then(function (d) {
-                return JSON.parse(d);
-            }); 
+        function fetchAnalyticsData(_start, _end) {
+            var start = _start.format("YYYY-MM-DD");
+            var end = _end.format("YYYY-MM-DD");
+            return $http.get(API+"/analytics-data&start="+start+"&end="+end)
+                   .then(function (resp){ return resp.data; });
         }
 
-        function _process(filters) {
-            var fkeys = Object.keys(filters);
-            var buf = [];
-            fkeys.forEach(function (f) { 
-                var fval = filters[f];          
-                if ($.isPlainObject(fval)) {
-                    var k=Object.keys(fval)[0];
-                    var ffval = fval[k]; 
-                    buf.push(f+'='+k+':'+ffval);
-                } else {
-                    buf.push(f+'='+fval);
-                }
-            });
-            return '&' + buf.join('&');
+        function processUserGrowth(data, start, end) {
+            var userData = analyticsCore.generateTS(
+                start, end, data, 'date', 'total_registrations'
+            );
+            return userData;
         }
 
-        function format(date) {
-            return date.format('YYYY-MM-DD');
-        }
-
-        function _get(endp, filters) {
-            var filtersf = _process(filters);
-            endp = endp || '';
-            return $http.get(API+endp+filtersf);
+        function processInteractionGrowth(data, start, end) {
+            var likes = analyticsCore.generateTS(start, end, data, 'date', 'total_likes');
+            var comments = analyticsCore.generateTS(start, end, data, 'date', 'total_comments');
+            return {
+                likes: likes,
+                comments: comments
+            };
         }
 
         return {
-            getUserGrowth : function (filters) {
-                var defer = $q.defer();
-                var conf = {
-                    date: {
-                        $in: format(filters.start)+ ',' +
-                            format(filters.end)
-                    }
-                };
-
-                _get('/user-growth', conf)
-                .then(function (resp) {
-                    var data = resp.data.data;
-                    var userData = analyticsCore.generateTS(
-                        filters.start,
-                        filters.end,
-                        data,
-                        'date',
-                        'total_registrations'
-                    );
-                    defer.resolve(userData);
-                }, function (error) {
-                    defer.reject(error);
-                });
-
-                return defer.promise;
-            },
-
-            getInteraction: function (filters) {
-                var defer = $q.defer();
-                var conf = {
-                    evento_data: {
-                        $in: format(filters.start) + ',' +
-                            format(filters.end)
-                    }
-                };
-
-                _get('/interaction-growth', conf)
-                .then(function (resp) {
-                    var data = resp.data.data;
-                    var likes = analyticsCore.generateTS(filters.start, filters.end, data, 'date', 'total_likes');
-                    var comments = analyticsCore.generateTS(filters.start, filters.end, data, 'date', 'total_comments');
-
-                    defer.resolve({
-                        likes: likes,
-                        comments: comments
-                    });
-                }, function (error) {
-                    defer.reject(error);
-                });
-
-                return defer.promise;
-            },
-
-            getProducerAnalytics: function (filters) {
-                var defer = $q.defer();
-                var conf = {
-                    evento_data: {
-                        $in: format(filters.start) + ',' +
-                            format(filters.end)
-                    }
-                };
-
-                _get('/producer-analytics', conf)
-                .then(function (resp) {
-                    var data = resp.data;
-                    defer.resolve(data);
-                }, function (error) {
-                    defer.reject(error);
-                });
-
-                return defer.promise;
-            },
-
-            dateFormat: format
+            fetchAnalyticsData : fetchAnalyticsData,
+            processUserGrowth: processUserGrowth,
+            processInteractionGrowth: processInteractionGrowth
         }
     }]);
 })();

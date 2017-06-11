@@ -10,6 +10,7 @@ use backend\models\UploadForm;
 use backend\models\Business;
 use backend\models\User;
 use backend\models\analytics\DashboardModel;
+use backend\models\analytics\AnalyticsModel;
 
 class AnalyticsController extends \yii\web\Controller {
     public function behaviors() {
@@ -19,7 +20,7 @@ class AnalyticsController extends \yii\web\Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'dashboard'],
+                        'actions' => ['index', 'dashboard', 'analytics-data'],
                         'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                 ]
@@ -43,66 +44,22 @@ class AnalyticsController extends \yii\web\Controller {
         ]);
     }
 
-    public function actionProducerAnalytics() {
-        $service = new AnalyticsService();
-        $session = \Yii::$app->session;
-        $biz = $session->get('business');
-        $user = \Yii::$app->user;
-        $filters = RestApp::parseQueryFilters($_GET);
-        $filters[] = [
-            'op' => '=',
-            'field' => 'business_id',
-            'val'  => $biz
-        ];
+    public function actionAnalyticsData() {
+        $s = new AnalyticsModel(); 
+        $appUser = User::getAppUser();
+        $start = $this->getQueryParam("start");
+        $end = $this->getQueryParam("end");
+        $bizId = $appUser['business_id'];
 
-        $d1 = $service->getProducerAnalytics($filters, ['order_by' => 'total_eventos desc']);
-        $d2 = $service->getProducerReport($filters, ['order_by' => 'tickets_sold desc']);
-
-        # lets do it man
-        foreach ($d2 as &$dk) {
-            $field = 'business_revenue';
-            if ($user->can('admin') || $user->can('passafree_admin')) {
-                $field = 'passafree_revenue';
-            } 
-            $dk['relative_revenue'] = $dk[$field];
-            $dk['relative_revenue_of'] = $field;
+        if (!$bizId) {
+            echo json_encode([]);
+            die;
         }
 
+        $model = Business::findModel($bizId);
         echo json_encode([
-            'data' => [
-                'eventsPerProducer' => $d1,
-                'ticketsPerProducer' => $d2
-            ]
-        ]);
-    }
-
-    public function actionInteractionGrowth() {
-        $filters = RestApp::parseQueryFilters($_GET);
-        $service = new AnalyticsService();
-        $session = \Yii::$app->session;
-        $filters[] = [
-            'op'=>'=', 'field'=>'business_id', 'val'=>$session->get('business')
-        ];
-
-        echo json_encode([
-            'data' => $service->getReactionGrowth($filters)
-        ]);
-    }
-
-    public function actionUserGrowth() {
-        $filters = RestApp::parseQueryFilters($_GET);
-        $service = new AnalyticsService();
-        $session = \Yii::$app->session;
-        $bizId = $session->get('business');
-        if ($bizId) {
-            $countryId = Business::find()->where(['id' => $bizId])->one()->country_id;
-            $filters[] = [
-                'op'=>'=', 'field'=>'country_id', 'val'=>$countryId
-            ];
-        }
-
-        echo json_encode([
-            'data' => $service->getUserGrowth($filters)
+            'user_statistics' => $s->getUserStatistics($appUser, $start, $end, $model->country_id, $bizId),
+            'producer_statistics' => $s->getProducerStatistics($appUser, $start, $end, $bizId)
         ]);
     }
 
