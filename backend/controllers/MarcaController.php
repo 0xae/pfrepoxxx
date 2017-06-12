@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\BadRequestHttpException;
 use yii\web\UploadedFile;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -19,7 +20,7 @@ use backend\models\SignupForm;
 use backend\models\UploadForm;
 use backend\models\Evento;
 use backend\models\User;
-use backend\models\analytics\EventReport;
+use backend\models\analytics\RevenueReport;
 use backend\components\FormData;
 
 /**
@@ -75,21 +76,24 @@ class MarcaController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $service = new EventReport();
         $marca = Marca::findModel($id);
-        $events = $marca->getNextEvents();
+        # $start =  $this->getQueryParam('start', date('Y-m-01'));
+        # $end =  $this->getQueryParam('end', date("Y-m-t", strtotime($start)));
+        $start =  $this->getQueryParam('start', date('Y-01-01'));
+        $end =  $this->getQueryParam('end', date("Y-12-31"));
+        $events = $marca->getNextEvents($start, $end);
         $prod = $marca->getProdutor();
-        $destaque = null;
 
-        /**
-         * XXX: here is the formula for entrada:
-         *      Entrada = <total_cheched_id> / <total sold>
-         */
         $ret = [];
+        $destaque = null;
         if (!empty($events)) {
+            $service = new RevenueReport();
             # the most recent
             $destaque = array_shift($events);
-            $ret = $service->getReportById(User::getAppUser(), $destaque->idevento);
+            $ret = $service->getRevenuePerEvent(User::getAppUser(),
+                                                $start, $end,
+                                                $destaque->idevento
+                                               )[0];
         }
 
         return $this->render('view', [
@@ -251,6 +255,15 @@ class MarcaController extends Controller {
         $produtor->marca_idmarca = $marca->idmarca;
         $user->nome = $produtor->nome;
         return new FormData($produtor, $produtor->load($request));
+    }
+
+    private function getQueryParam($param, $defaultValue=null) {
+        if (!array_key_exists($param, $_GET) || $_GET[$param] == '') {
+            if ($defaultValue) { return $defaultValue; }
+            throw new BadRequestHttpException("param $param is required.");
+        }
+
+        return $_GET[$param];
     }
 }
 

@@ -25,6 +25,8 @@ SELECT
 
 		CB.dataCompra AS date,
 		CB.business_percent as business_compra_percent,
+        :start as val1,
+        :end as val2,
 
 		/* some aggs */
 		greatest(B.stock-count(CB.idcompra_bilhete), 0) 
@@ -50,9 +52,7 @@ JOIN evento E ON E.idevento = B.evento_idevento
 JOIN produtor P ON P.idprodutor = E.produtor_idprodutor
 JOIN marca M ON M.idmarca = P.marca_idmarca
 JOIN business BIZ ON BIZ.id = M.business_id
-LEFT JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete
-
-WHERE CB.dataCompra >= :start and CB.dataCompra <= :end
+LEFT JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete AND( CB.dataCompra >= :start and CB.dataCompra <= :end)
 
 GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete
 ORDER BY E.idevento ASC

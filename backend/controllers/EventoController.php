@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\BadRequestHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
@@ -13,8 +14,7 @@ use backend\models\Evento;
 use backend\models\EventoSearch;
 use backend\models\Tipoevento;
 use backend\models\User;
-use backend\models\analytics\TicketReport;
-use backend\models\analytics\EventReport;
+use backend\models\analytics\RevenueReport;
 
 /**
  * EventoController implements the CRUD actions for Evento model.
@@ -69,13 +69,16 @@ class EventoController extends Controller {
     public function actionView($id) {
         $model = $this->findModel($id);
         $appUser = User::getAppUser();
-        $tickets = (new TicketReport)->getReportOfEvent($appUser, $id);
-        $event = (new EventReport)->getReportById($appUser, $id);
+        $start =  $this->getQueryParam('start', date('Y-01-01'));
+        $end =  $this->getQueryParam('end', date("Y-12-31"));
+
+        $tickets = (new RevenueReport)->getRevenuePerTicket($appUser, $start, $end, $id);
+        $events = (new RevenueReport)->getRevenuePerEvent($appUser, $start, $end, $id);
 
         return $this->render('view', [
             'model' => $model,
             '_dataTickets' => $tickets,
-            '_dataEvent' => $event
+            '_dataEvent' => $events[0]
         ]);
     }
 
@@ -103,5 +106,14 @@ class EventoController extends Controller {
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    private function getQueryParam($param, $defaultValue=null) {
+        if (!array_key_exists($param, $_GET) || $_GET[$param] == '') {
+            if ($defaultValue) { return $defaultValue; }
+            throw new BadRequestHttpException("param $param is required.");
+        }
+
+        return $_GET[$param];
     }
 }
