@@ -8,6 +8,7 @@ use yii\web\BadRequestHttpException;
 use backend\components\RestApp;
 use backend\models\UploadForm;
 use backend\models\Business;
+use backend\models\Country;
 use backend\models\User;
 use backend\models\analytics\DashboardModel;
 use backend\models\analytics\AnalyticsModel;
@@ -29,7 +30,19 @@ class AnalyticsController extends \yii\web\Controller {
     }
 
     public function actionIndex() {
-        return $this->render("index", []);
+        $model = new Business;
+        $country = new Country;
+        $bizId = \Yii::$app->session->get('business');
+
+        if ($bizId) {
+            $model = Business::findModel($bizId);
+            $country = Country::findModel($model->country_id);
+        }
+
+        return $this->render("index", [
+            'model' => $model,
+            'country' => $country
+        ]);
     }
 
     public function actionDashboard() {
