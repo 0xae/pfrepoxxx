@@ -20,10 +20,6 @@ use backend\models\PaymentChannel;
 use backend\models\User;
 use backend\models\UploadForm;
 
-
-/**
- * BusinessController implements the CRUD actions for Business model.
- */
 class BusinessController extends Controller {
     /**
      * @inheritdoc
@@ -35,13 +31,13 @@ class BusinessController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create', 'select'],
+                        'actions' => ['index', 'update', 'privacy'],
                         'roles' => ['passafree_staff', 'admin', 'business']
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['view', 'update', 'privacy'],
-                        'roles' => ['passafree_staff', 'admin', 'business']
+                        'actions' => ['delete', 'update', 'create', 'update', 'select', 'privacy'],
+                        'roles' => ['passafree_staff', 'admin']
                     ]
                 ]
             ]
@@ -54,10 +50,7 @@ class BusinessController extends Controller {
      */
     public function actionIndex() {
         $data = Business::find()->all();
-
-        return $this->render('index', [
-            'data' => $data,
-        ]);
+        return $this->render('index', ['data' => $data]);
     }
 
     /**
@@ -117,19 +110,22 @@ class BusinessController extends Controller {
         ]);
     }
 
+    /**
+     * privacy text for this business
+     */
     public function actionPrivacy($id) {
         $biz = Business::findModel($id);
         echo $biz->privacy_content;
     }
 
     /**
-     * Deletes an existing Business model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
+     * deactivates the business
+     * admin only
      */
     public function actionDelete($id) {
-        Business::findModel($id)->delete();
+        $model = Business::findModel($id);
+        $model->is_active = false;
+        $model->save();
         return $this->redirect(['index']);
     }
 

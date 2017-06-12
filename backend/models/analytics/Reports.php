@@ -46,6 +46,11 @@ class Reports {
         return $this;
     }
 
+    public function params($vals) {
+        $this->query->addParams($vals);
+        return $this;
+    }
+
     public function filter($col, $op, $val) {
         $this->query->andFilterWhere([$op, $col, $val]);
         return $this;

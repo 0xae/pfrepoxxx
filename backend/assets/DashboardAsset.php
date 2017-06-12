@@ -44,6 +44,7 @@ class DashboardAsset extends AssetBundle {
         /* App */
         'static/js/passafree/app.js',
         'static/js/passafree/core/analytics.service.js',
+        'static/js/passafree/core/core.module.js',
 
         /* Event Module */
         'static/js/passafree/events/event.module.js',
@@ -68,6 +69,11 @@ class DashboardAsset extends AssetBundle {
 
         /* Dashboard Module */
         'static/js/passafree/dashboard/dashboard.js',
+
+        /* Accounting Module */
+        'static/js/passafree/acc/mod.module.js',
+        'static/js/passafree/acc/mod.service.js',
+        'static/js/passafree/acc/mod.controller.js',
         
         /* Settings Module */
         'static/js/passafree/settings/mod.module.js',

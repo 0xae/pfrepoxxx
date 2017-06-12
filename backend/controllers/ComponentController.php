@@ -5,6 +5,7 @@ use backend\models\analytics\ReportsService;
 
 class ComponentController extends \yii\web\Controller {
     private $service = new ReportsService();
+
     public function actionIndex() {
     }
 

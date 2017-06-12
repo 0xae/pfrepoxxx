@@ -1,8 +1,10 @@
 <?php
 use yii\helpers\Html;
+use backend\models\User;
 
 $this->title = 'Dashboard';
 $user = Yii::$app->user;
+$authUser = User::getAppUser();
 
 ?>
 

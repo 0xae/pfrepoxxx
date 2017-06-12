@@ -42,12 +42,19 @@
     display: inline-table;
 }
 
-.progress-stats {
+.progress-stats, 
+.progress-stats-green  {
     background-color: inherit;
 }
 
 .progress-stats .progress-bar {
     background-color: rgb(208, 148, 171);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
+    border-radius: 2px;
+}
+
+.progress-stats-green .progress-bar {
+    background-color: #009447;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
     border-radius: 2px;
 }

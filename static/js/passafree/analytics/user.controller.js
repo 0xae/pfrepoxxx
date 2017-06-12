@@ -2,32 +2,45 @@
     angular.module('analyticsModule')
     .controller('UserAnalyticsController', ['AnalyticsService', '$scope', 'AnalyticsCore',
     function (analyticsService, $scope, analyticsCore) {
-        function loadUserGrowth(c) {
-            analyticsService.getUserGrowth(c)
-            .then(function (data) {
-                LoadTimeseriesChart('user_growth', data);
-            });
+        function loadUserGrowth(_data, start, end) {
+            var data = analyticsService.processUserGrowth(_data, start, end);
+            var isEmpty = !_.sumBy(data, function (e) { return e[1]; });
+            $scope.empty_user_gt = isEmpty;
+            LoadTimeseriesChart('user_growth', data);
         }
 
-        function loadInteractionGrowth(c) {
-            analyticsService.getInteraction(c)
+        function loadInteractionGrowth(_data, start, end) {
+            var data = analyticsService.processInteractionGrowth(_data, start, end);
+            var totalLikes = _.sumBy(data.likes, function (e) { return e[1]; });
+            var totalComments = _.sumBy(data.comments, function (e) { return e[1]; });
+            var total = totalLikes + totalComments;
+
+            if (!total) {
+                $scope.empty_interaction_gt = true;
+            } else {
+                $scope.empty_interaction_gt = false;
+            }
+
+            LoadTimeseriesChart('interaction_growth', data.likes);
+        }
+
+        function loadAnalyticsData(start, end) {
+            analyticsService.fetchAnalyticsData(start, end)
             .then(function (data) {
-                LoadTimeseriesChart('interaction_growth', data.likes);
+                loadUserGrowth(data.user_statistics.user_growth, start, end);
+                loadInteractionGrowth(data.user_statistics.reaction_growth, start, end);
             });
         }
 
         var thisWeek = analyticsCore.thisWeek();
-        loadUserGrowth(thisWeek);
-        loadInteractionGrowth(thisWeek);
+        loadAnalyticsData(thisWeek.start, thisWeek.end);
 
         $('#daterange').daterangepicker({
-            "startDate": thisWeek.start.format('MM/DD/YYYY'),
-            "endDate": thisWeek.end.format('MM/DD/YYYY'),
+            "startDate": thisWeek.start,
+            "endDate": thisWeek.end,
             "linkedCalendars": false,
         }, function(start, end, label) {
-            var conf = {start: start, end: end};
-            loadUserGrowth(conf);
-            loadInteractionGrowth(conf);
+            loadAnalyticsData(start, end);
         });
     }])
 })();

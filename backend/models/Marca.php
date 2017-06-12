@@ -76,11 +76,11 @@ class Marca extends \yii\db\ActiveRecord {
      * XXX: maybe enhance it a little more
      * XXX: make sure the subquery never returns more than one result after removing 'limit 1'
     */
-    public function getNextEvents() {
+    public function getNextEvents($start, $end) {
         $query = Evento::find()
-                 # ->where('data >= current_date()')
+                 ->where('data >= :start and data <= :end')
                  ->andWhere('produtor_idprodutor = (select idprodutor from produtor where marca_idmarca = :mid limit 1)')
-                 ->addParams([':mid'=>$this->idmarca])
+                 ->addParams([':mid'=>$this->idmarca, 'start'=>$start, 'end'=>$end])
                  ->orderBy('data ASC');
         return $query->all();
     }

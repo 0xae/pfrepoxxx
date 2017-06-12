@@ -4,16 +4,11 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\ForbiddenHttpException;
-use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
-use backend\models\LoginForm;
-use backend\models\Reports;
 use backend\models\Business;
-use backend\models\AccountingReports;
-use backend\models\analytics\AnalyticsService;
-use backend\components\RestApp;
+use backend\models\User;
+use backend\models\analytics\AccountingModel;
 
 /**
  * Site controller
@@ -24,39 +19,32 @@ class AccountingController extends Controller {
      * @return string
      */
     public function actionIndex() {
+        $service = new AccountingModel();
         $session = Yii::$app->session;
-        $service = new AnalyticsService();
+        $model = new Business;
+        $pieData = [];
+        $_data = [];
 
         if ($session->has('business')) {
-            $id = $session->get('business');
-            $model = $this->findModel($id);
-            $r = $model->getRange();
-            $filters = RestApp::parseQueryFilters([
-                'business_id' => $id,
-                'date' => '$in:'.$r[0].','.$r[1]
-            ]);
+            $bizId = $session->get('business');
+            $model = $this->findModel($bizId);
+            $date = $model->getRange();
+            $_data = $service->getAccounting(User::getAppUser(), $date[0], $date[1], $bizId);
+        } 
 
-            $producers = $service->getProducerReport($filters);
-            $businessData = $service->getBusinessReport($filters);
-        } else {
-            $model = new Business;
-            $producers = [];
-            $businessData = [];
+        if (!empty($_data)) {
+            $producers = $_data['business_producer_revenue'];
+            foreach ($producers as $p) {
+                $pieData[] = [
+                    'name' => $p['producer_name'],
+                    'y' => (int) $p['business_gross_revenue']
+                ];
+            }
         }
-
-        $pieData = [];
-        foreach ($producers as $p) {
-            $pieData[] = [
-                'name' => $p['producer_name'],
-                'y' => (int) $p['business_gross_revenue']
-            ];
-        }
-        $pieData = json_encode($pieData);
 
         return $this->render('index', [
             'model' => $model,
-            'producers' => $producers,
-            'businessData' => $businessData,
+            '_data' => $_data,
             'pieData' => $pieData
         ]);
     }

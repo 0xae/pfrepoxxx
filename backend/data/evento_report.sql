@@ -15,8 +15,14 @@ SELECT
 	E.nome AS evento_nome,
     E.data AS evento_data,
     E.estado as evento_estado,
-    (select count(1) from gosto where evento_idevento = E.idevento) as evento_likes,
-    (select count(1) from comentario where evento_idevento = E.idevento) as evento_comments
+
+    (select count(1) from gosto 
+        where evento_idevento = E.idevento
+    ) AS evento_likes,
+
+    (select count(1) from comentario 
+        where evento_idevento = E.idevento
+    ) AS evento_comments
 
 FROM evento E 
 JOIN produtor P ON P.idprodutor = E.produtor_idprodutor

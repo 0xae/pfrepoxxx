@@ -142,7 +142,9 @@ function validateForm(m) {
         'analyticsModule',
         'settingsModule',
         'BizModule',
-        'userModule'
+        'userModule',
+        'accountingModule',
+        'coreModule'
     ]);
 })();
 
