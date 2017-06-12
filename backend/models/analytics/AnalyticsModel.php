@@ -24,7 +24,9 @@ class AnalyticsModel {
         $fields = [
             'producer_id' => 'marca_id',
             'producer_name' => 'marca_nome',
+            'producer_picture' => 'marca_picture',
             'gross_revenue' => 'sum(total_producer_gross)',
+            'liquid_revenue' => 'sum(total_producer_liquid)',
             'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))',
             'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))'
         ];
@@ -48,7 +50,12 @@ class AnalyticsModel {
         $fields = [
             'producer_id' => 'marca_id',
             'producer_name' => 'marca_nome',
-            'gross_revenue' => 'sum(total_producer_gross)'
+            'producer_picture' => 'marca_picture',
+            'gross_revenue' => 'sum(total_producer_gross)',
+            'liquid_revenue' => 'sum(total_producer_liquid)',
+            'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))',
+            'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))',
+            'tickets_sold' => 'sum(tickets_sold)'
         ];
 
         return Reports::model('bilhete_reports')
