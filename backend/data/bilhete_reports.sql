@@ -36,7 +36,7 @@ SELECT
             AS tickets_sold,
 
 		/* global gross revenue */
-		sum(B.preco) 
+		coalesce(sum(B.preco+(CB.business_percent-CB.business_percent)), 0)
             AS total_producer_gross,
 
 		/* producer_gross_revenue */
