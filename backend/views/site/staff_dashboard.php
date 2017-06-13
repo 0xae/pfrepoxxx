@@ -126,7 +126,7 @@ $user = \Yii::$app->user;
                 <div class="row">
                     <div class="col-md-7">
                         <div class="white_box_inner">
-                            <h3 style="font-weight: 700;"><span id="sales_counter" class="money">0</span>$00</h3>
+                            <h3 style="font-weight: 700;"><span id="sales_counter" class="money">0</span>ECV</h3>
                             <small>Sales</small>
                         </div>
                     </div>
