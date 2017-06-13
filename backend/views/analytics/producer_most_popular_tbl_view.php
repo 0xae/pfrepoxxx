@@ -44,7 +44,7 @@
 
                         <div class="progress progress-stats" style="">
                           <div class="progress-bar" role="progressbar" 
-                              aria-valuenow="60" aria-valuemin="1" 
+                              aria-valuenow="60" aria-valuemin="0" 
                               aria-valuemax="100" 
                               ng-style="{width: p.likes_percent+'%'}">
                           </div>
@@ -75,7 +75,7 @@
 
                         <div class="progress progress-stats" style="">
                           <div class="progress-bar" role="progressbar" 
-                              aria-valuenow="60" aria-valuemin="1" 
+                              aria-valuenow="60" aria-valuemin="0" 
                               aria-valuemax="100" 
                               ng-style="{width: p.reaction_percent+'%'}">
                           </div>
