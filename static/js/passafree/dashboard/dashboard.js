@@ -17,7 +17,6 @@ angular.module('passafree')
             function updateCounter(counterId, value) {
                 $('#'+counterId).text(value);
             }
-
             function updateDashboardCounters(data) {
                 updateCounter('user_counter', data.user_count);
                 updateCounter('biz_counter', data.business_count);
@@ -25,7 +24,7 @@ angular.module('passafree')
                 updateCounter('events_counter', data.event_count);
                 updateCounter('sales_counter', coreUtils.formatMoney(data.total_revenue));
             }
-
+            
             function updateDashboardGraphs(data) {
                 var keys = data.rvn_per_business.map(function (d) { return d.business_name; });
                 var values = data.rvn_per_business.map(function (d) { 

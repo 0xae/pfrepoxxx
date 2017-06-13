@@ -140,9 +140,7 @@ $user = \Yii::$app->user;
         </div>
 </div>
 
-<?php /*?>body box<?php */?>
 <div class="row">
-
     <?php if ($user->can('admin') || $user->can('passafree_staff')) :?>
         <div class="col-md-6">
             <div class=" titulosection">
