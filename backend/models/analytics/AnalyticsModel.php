@@ -55,7 +55,8 @@ class AnalyticsModel {
             'liquid_revenue' => 'sum(total_producer_liquid)',
             'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))',
             'passafree_revenue' => 'round(sum(total_business_gross) * ((100-business_percent)/100))',
-            'tickets_sold' => 'sum(tickets_sold)'
+            'tickets_sold' => 'sum(tickets_sold)',
+            'tickets_price_average' => 'avg(bilhete_preco)',
         ];
 
         return Reports::model('bilhete_reports')

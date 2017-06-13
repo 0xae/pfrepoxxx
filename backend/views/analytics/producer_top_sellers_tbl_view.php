@@ -11,6 +11,7 @@
         <tr class="active fb-table-header">
             <th class="fb-header">Producer</th>
             <th class="fb-header" style="text-align: center;">Tickets sold</th>
+            <th class="fb-header" style="text-align: center;">Average Ticket Price</th>
             <th class="fb-header" style="text-align: center">Gross Revenue</th>
             <th class="fb-header" style="text-align: center">Liquid Revenue</th>
         </tr>
@@ -30,6 +31,13 @@
                 <center>
                     <strong>
                     <span class="money"> {{ p.tickets_sold }}  </span>
+                    </strong>
+                </center>
+            </td>
+            <td class="fb-col">
+                <center>
+                    <strong>
+                    <span class="money"> {{ p.tickets_price_average }}  </span>
                     </strong>
                 </center>
             </td>
