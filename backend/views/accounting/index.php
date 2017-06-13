@@ -67,7 +67,7 @@ $this->registerJs($s);
 					<div class="col-md-6">
                         <div style="width:100%;padding-bottom: 15px;padding-top:20px;" class="col-md-6">
                             <center>
-                                <h3 style="margin: auto;margin-left:63px;">Revenue Per Producer</h3>
+                                <h3 style="margin: auto;margin-left:63px;">Business revenue per producer</h3>
                             </center>
                         </div>
 						<table class="table table-striped">
@@ -98,13 +98,13 @@ $this->registerJs($s);
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div><?= $model->name; ?></div>
+                                            <div><?= $model->name; ?> (<?= $model->responsable_percent ?>%) </div>
                                             <div style="text-align:right"><span class="money"><?= $accounting['liquid_revenue']; ?></span> ECV</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div>Passa Free</div>
+                                        <div>Passa Free (<?= 100 - $model->responsable_percent ?>%)  </div>
                                             <div style="text-align:right"><span class="money"><?= $accounting['passafree_revenue']; ?></span> ECV</div>
                                         </td>
                                     </tr>
