@@ -42,20 +42,6 @@ use Yii;
          ];
      }
 
-    /**
-     * Finds the ChatMessage model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return ChatMessage the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public static function findModel($id) {
-        if (($model = ChatMessage::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
 
     public static function countUnread($businessId) {
         $sql = '
@@ -65,6 +51,7 @@ use Yii;
         $cmd = \Yii::$app->db->createCommand($sql);
         $cmd->bindParam(':business', $businessId);
         $data = $cmd->queryOne();
+
         return (int)$data['total_unread'];
     }
 
@@ -79,6 +66,65 @@ use Yii;
         return Utilizador::find()
                 ->where(['idutilizador' => $this->id_user])
                 ->one();
+    }
+
+    public static function fetchBizMessages($bizId) {
+        $sql = "
+            select distinct id_user,concat(u.nome, ' ', u.apelido) as nome, 
+            u.foto, u.email, mensagem, data 
+            from utilizador_app_mensagem 
+            join utilizador u on u.idutilizador = id_user
+            where idBusiness = :bizId
+            group by id_user order by data desc
+        ";
+
+        $cmd = \Yii::$app->db->createCommand($sql);
+        $cmd->bindParam(':bizId', $bizId);
+        $_data = $cmd->queryAll();
+        $data = [];
+        foreach ($_data as $obj) {
+            $data[] = [
+                'nome' => $obj['nome'],
+                'foto' => $obj['foto'],
+                'mensagem' => $obj['mensagem'],
+                'data' => $obj['data'],
+            ];
+        }
+        return $data;
+    }
+
+    public static function fetchAllMessagesFrom($bizId, $userId) {
+        $sql = "
+            select distinct id_user,concat(u.nome, ' ', u.apelido) as nome, 
+            u.foto, u.email, mensagem, data 
+            from utilizador_app_mensagem 
+            join utilizador u on u.idutilizador = id_user
+            where idBusiness = :bizId
+            group by id_user order by data desc
+        ";
+
+        $cmd = \Yii::$app->db->createCommand($sql);
+        $cmd->bindParam(':bizId', $bizId);
+        $_data = $cmd->queryAll();
+        $data = [];
+        foreach ($_data as $obj) {
+            $data[] = [
+                'nome' => $obj['nome'],
+                'foto' => $obj['foto'],
+                'mensagem' => $obj['mensagem'],
+                'data' => $obj['data'],
+            ];
+        }
+
+        return $data;
+    }
+
+    public static function findModel($id) {
+        if (($model = ChatMessage::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
  }
 

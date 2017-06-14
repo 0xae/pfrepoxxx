@@ -22,7 +22,7 @@ class ChatController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'unread', 'index'],
+                        'actions' => ['index', 'unread', 'poll', 'from'],
                         'roles' => ['business']
                     ],
                     [
@@ -35,18 +35,12 @@ class ChatController extends Controller {
         ];
     }
 
-    /**
-     * Lists all chat messages.
-     * @return mixed
-     */
     public function actionIndex() {
         $session = \Yii::$app->session;
-        $id = $session->get('business');
-        $data = ChatMessage::find()
-                ->where(['idBusiness' => $id])
-                ->all();
+        $bizId = $session->get('business');
+        $data = ChatMessage::fetchBizMessages($bizId);
+        ChatMessage::updateRead($bizId);
 
-        ChatMessage::updateRead($id);
         return $this->render('index', [
             'models' => $data,
         ]);
@@ -54,68 +48,30 @@ class ChatController extends Controller {
 
     public function actionUnread() {
         $session = \Yii::$app->session;
-        $id = $session->get('business');
-        $data = ChatMessage::find()
-                ->where(['idBusiness' => $id])
-                ->andWhere('is_read=false')
-                ->all();
-
-        ChatMessage::updateRead($id);
-        return $this->render('index', [
-            'models' => $data,
-        ]);
-    }
-
-    /**
-     * Displays a single ChatMessage model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id) {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new ChatMessage model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionSend() {
-        $model = new ChatMessage();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+        $bizId = $session->get('business');
+        $data = ChatMessage::fetchBizMessages($bizId, false);
+        ChatMessage::updateRead($bizId);
+        return $this->render('index', ['models' => $data]);
     }
 
     public function actionPoll() {
-       $id = 0;
        $user = \Yii::$app->user;
        if ($user->can('business')) {
            $biz = Business::find()->where(['responsable' => $user->identity->id])->One();
-           if ($biz) {
-               $id = $biz->id;
-               echo json_encode (ChatMessage::countUnread($id));
+           if ($biz) { 
+               $unread = ChatMessage::countUnread($biz->id);
+               return json_encode($unread);
            }
-       } else {
-           echo 0;
-       }
+       } 
+       return json_encode(0);
     }
 
-    /**
-     * Deletes an existing ChatMessage model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id) {
-        ChatMessage::findModel($id)->delete();
-        return $this->redirect(['index']);
+    public function actionFrom($id) {
+        $session = \Yii::$app->session;
+        $bizId = $session->get('business');
+        $userId = $id;
+        $data = ChatMessage::fetchAllMessagesFrom($bizId, $userId);
+        return json_encode($data);
     }
 }
 

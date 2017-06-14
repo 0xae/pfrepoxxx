@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\grid\GridView;
 $this->title = 'Messenger';
@@ -21,40 +20,25 @@ $this->title = 'Messenger';
                         </div>
                     </div>
                     <div class="panel-body">
+                        <?php foreach($models as $p): ?>
                         <a href="#">
-                            <div class="message-box active">
+                            <div class="message-box ">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="perfil">
-                                            <img src="img/logo.jpg" alt="" class="img-rounded"/>
+                                        <img src="../passafree_uploads/<?= $p['foto']; ?>" alt="" class="img-rounded"/>
                                         </div>
                                     </div>
                                     <div class="col-md-10">
-                                        <span>Jorge Vieira</span>
-                                        <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small><br>
+                                        <span><?= $p['nome']; ?></span>
+                                        <small class="pull-right time"><?= substr($p['data'], 11); ?></small><br>
                                         <small class="title">Gamboa War, Suggestion</small><br>
                                         <small class="subject">Location H-2, Ayojan Nagar, Near Gate-3</small>
                                     </div>
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
-                            <div class="message-box">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="perfil">
-                                            <img src="img/jorge.jpg" alt="" class="img-rounded"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <span>Jorge Vieira</span>
-                                        <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small><br>
-                                        <small class="title">Gamboa War, Suggestion</small><br>
-                                        <small class="subject">Location H-2, Ayojan Nagar, Near Gate-3</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
@@ -199,22 +183,3 @@ $this->title = 'Messenger';
 
 
 
-
-<div class="chat-message-index">
-    <?php foreach ($models as $obj): $user = $obj->getUser(); ?>
-        <div class="media">
-              <div class="media-left">
-                    <a href="#">
-                        <img class="media-object" src="<?= $user->foto ?>" alt="...">
-                    </a>
-              </div>
-
-              <div class="media-body">
-                <h4 class="media-heading">
-                    <?= $obj->mensagem ?>
-                </h4>
-              </div>
-        </div>
-
-    <?php endforeach; ?>
-</div>
