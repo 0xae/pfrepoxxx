@@ -70,8 +70,11 @@ use Yii;
 
     public static function fetchBizMessages($bizId) {
         $sql = "
-            select distinct id_user,concat(u.nome, ' ', u.apelido) as nome, 
-            u.foto, u.email, mensagem, data 
+            select distinct id_user,
+                   concat(u.nome, ' ', u.apelido) as nome, 
+                   u.foto, u.email, mensagem,
+                   data,
+                   is_read
             from utilizador_app_mensagem 
             join utilizador u on u.idutilizador = id_user
             where idBusiness = :bizId
@@ -81,6 +84,7 @@ use Yii;
         $cmd = \Yii::$app->db->createCommand($sql);
         $cmd->bindParam(':bizId', $bizId);
         $_data = $cmd->queryAll();
+
         $data = [];
         foreach ($_data as $obj) {
             $data[] = [
@@ -88,15 +92,17 @@ use Yii;
                 'foto' => $obj['foto'],
                 'mensagem' => $obj['mensagem'],
                 'data' => $obj['data'],
+                'is_read' => $obj['is_read'],
             ];
         }
+
         return $data;
     }
 
     public static function fetchAllMessagesFrom($bizId, $userId) {
         $sql = "
             select distinct id_user,concat(u.nome, ' ', u.apelido) as nome, 
-            u.foto, u.email, mensagem, data 
+            u.foto, u.email, mensagem, data, is_read
             from utilizador_app_mensagem 
             join utilizador u on u.idutilizador = id_user
             where idBusiness = :bizId
@@ -113,6 +119,7 @@ use Yii;
                 'foto' => $obj['foto'],
                 'mensagem' => $obj['mensagem'],
                 'data' => $obj['data'],
+                'is_read' => $obj['is_read'],
             ];
         }
 

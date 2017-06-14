@@ -32,8 +32,14 @@ $this->title = 'Messenger';
                                     <div class="col-md-10">
                                         <span><?= $p['nome']; ?></span>
                                         <small class="pull-right time"><?= substr($p['data'], 11); ?></small><br>
-                                        <small class="title">Gamboa War, Suggestion</small><br>
-                                        <small class="subject">Location H-2, Ayojan Nagar, Near Gate-3</small>
+                                        <?php if ($p['is_read']): ?>
+                                            <small class="title"><?= $p['mensagem']; ?></small><br>
+                                        <?php else: ?>
+                                            <small class="subject"><?= $p['mensagem']; ?></small>
+                                        <?php endif; ?>
+                                        
+                                        <!-- 
+                                        -->
                                     </div>
                                 </div>
                             </div>
