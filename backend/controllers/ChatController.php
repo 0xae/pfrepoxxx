@@ -22,7 +22,7 @@ class ChatController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'unread', 'poll', 'from'],
+                        'actions' => ['unread', 'poll', 'from'],
                         'roles' => ['business']
                     ],
                     [
@@ -35,22 +35,10 @@ class ChatController extends Controller {
         ];
     }
 
-    public function actionIndex() {
-        $session = \Yii::$app->session;
-        $bizId = $session->get('business');
-        $data = ChatMessage::fetchBizMessages($bizId);
-        ChatMessage::updateRead($bizId);
-
-        return $this->render('index', [
-            'models' => $data,
-        ]);
-    }
-
     public function actionUnread() {
         $session = \Yii::$app->session;
         $bizId = $session->get('business');
         $data = ChatMessage::fetchBizMessages($bizId, false);
-        ChatMessage::updateRead($bizId);
         return $this->render('index', ['models' => $data]);
     }
 
@@ -71,6 +59,7 @@ class ChatController extends Controller {
         $bizId = $session->get('business');
         $userId = $id;
         $data = ChatMessage::fetchAllMessagesFrom($bizId, $userId);
+        ChatMessage::updateRead($bizId, $userId);
         return json_encode($data);
     }
 }
