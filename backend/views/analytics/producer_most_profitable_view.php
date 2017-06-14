@@ -22,11 +22,7 @@ $session = \Yii::$app->session;
         </div>
         <div class="col-md-9">
             <center>
-                <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
                     <h4>Most profitable for <strong>passafree</strong></h4>
-                <?php else: ?>
-                    <h4>Most profitable for <strong><?= $session->get('business_name') ?></strong></h4>
-                <?php endif ?>
             </center>
             <div ng-if="no_profit_data" style="margin-bottom:-18em;margin-top:10em;">
                 <no-data></no-data>
@@ -39,23 +35,3 @@ $session = \Yii::$app->session;
     </div>
 </div>
 
-<div class="modal fade popupcriarbilhete popupupdate" id="_updatelocation">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Nova Localização</h4>
-            </div>
-            <div class="modal-body">
-                <label class="control-label" for="_nomeLocation">Nome</label>
-                <input name="nome" type="text" id="_nomeLocation" class="form-control">
-
-                <div class="modal-footer">
-                    <div class="form-group">
-                        <button type="button" class="btn btn-sucesss" data-dismiss="modal">Close</button>
-                        <button type="button" id="_BtnUpdateLocation" class="btn btn-lg btn-primary criar">Update</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
