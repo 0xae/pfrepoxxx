@@ -5,4 +5,5 @@ uploads/*
 *.swn
 *.swo
 Thumbs.db
-uploads_passa_free
+common/config/main-local.php
+

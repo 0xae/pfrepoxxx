@@ -111,7 +111,6 @@ $this->registerJS($script);
         </li>
         <ul class="list-unstyled notification">
           <li><a href="#"><i class="glyphicon glyphicon-globe"></i></a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-comment"></i></a></li>
           <?php if ($user->can('business')): ?>
                 <li>
                     <span class="badge" ng-if="newMessages" style="position: absolute;margin: -8px 0 0 -13px;z-index:10;background: #f00;">
