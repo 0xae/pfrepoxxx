@@ -63,13 +63,13 @@
 {
 	display:table;
 	float:right;
-	margin: 0 -15px;
+	margin: 0 0px;
 }
 .pageventbtngroup a
 {
 	float: left;
 	margin: 0 0 0 15px !important;
-	padding:8px 15px !important;
+	padding: 6px 15px !important;
 }
 .pagina_geral {
 	margin: 0 5%;
@@ -786,7 +786,7 @@
 	text-align: center;
 	font-size: 13px;
 	font-weight: 600;
-	font-family: "DIN", Helvetica, Arial, sans-serif !important;
+	font-family: "DINRegular", Helvetica, Arial, sans-serif !important;
 
 }
 .sidebar .glyphicon.glyphicon-pencil {
@@ -1276,6 +1276,10 @@
 {
 	padding: 15px 30px;
 }
+.pageanalitics .dropdown-menu {
+    right: 0;
+    left: auto;
+}
 /*
 #top_sellers .highcharts-root {
     width: 82%;
@@ -1406,12 +1410,11 @@
 	margin-right: 0;
 }
 /*------Create Role/Country/Rule------*/
-.create-role .business-create {
+.create-role .business-create,
+.create-country .business-create,
+.create-rule .business-create {
     width: 50%;
     padding: 30px;
-}
-.create-country .business-create .business-form .col-md-6 {
-    padding: 30px 10px 30px 13px !important;
 }
 /*
 .create-country .business-create {
@@ -1421,12 +1424,6 @@
 */
 .create-rule .business-create .business-form .col-md-6 {
     padding: 0px 15px 0 13px !important;
-}
-.create-rule .business-form {
-    margin-top: 30px;
-}
-.create-rule #percentagem_bilhete {
-    margin-bottom: 30px;
 }
 /*---Scroll---*/
 ::-webkit-scrollbar {
@@ -1444,3 +1441,195 @@
     border-radius: 10px;
     background: #009447;
 }
+/*----------/ChatGroup----------*/
+.chat-group .panel-default {
+    border-radius: 0px !important;
+    padding      : 0 !important;
+    border-bottom: none !important;
+}
+.chat-group .panel-default > .panel-heading {
+    background-color: #fff;
+    padding         : 15px 15px;
+}
+.chat-group .panel-heading .glyphicon.glyphicon-refresh {
+    float    : right;
+    font-size: 12px;
+    top      : 3px;
+    color    : #99BACE;
+}
+.chat-group .inbox .panel-body {
+    padding: 0;
+}
+.chat-group .message-box {
+    padding      : 20px 30px;
+    border-bottom: 1px solid #ccc;
+}
+.chat-group .panel-heading span {
+	font-weight : 600;
+	color       : #2C405A;
+	padding-left: 20px;
+}
+.chat-group .message-box .title {
+    font-size  : 13px;
+    font-weight: 600;
+    color      : #2C405A;
+}
+.chat-group .message-box .subject {
+    color: #99BACE;
+}
+.chat-group .message-box.active,
+.chat-group .message-box:hover {
+    background: #068141;
+    color     : #fff !important;
+}
+.chat-group .message-box.active span,
+.chat-group .message-box.active .title,
+.chat-group .message-box.active .subject {
+    color: #fff !important;
+}
+.chat-group .nav-pills > li.active > a {
+    color     : #000;
+    background: #fff;
+    border    : 1px solid #c0c0c0;
+    padding   : 5px 10px;
+    margin    : 10px 5px 10px 0;
+}
+.chat-group .nav-pills > .active > a > .badge {
+    color           : #fff;
+    background-color: #AB7DF6;
+    margin          : 0 6px;
+}
+.chat-group .message .nav-pills > li {
+    display: inline-flex;
+}
+.chat-group .change-view {
+    margin-left: -30px;
+}
+.chat-group .change-view li:nth-child(1) {
+    border-right              : none;
+    border-top-right-radius   : 0;
+    border-bottom-right-radius: 0;
+}
+.chat-group .change-view li:nth-child(2) {
+    border-left              : 1px solid #ddd;
+    border-top-left-radius   : 0;
+    border-bottom-left-radius: 0;
+}
+.chat-group .change-view ul li.active i {
+    color: #c0c0c0;
+}
+.chat-group .change-view .btn.btn-default {
+    color: #068141;
+    margin-left: 9px;
+    background: #fff;
+    text-transform: capitalize;
+    padding: 7px 30px;
+}
+.chat-group .message .dropdown-toggle {
+    color: #068141;
+    background: #DCF3D2;
+    padding: 0 5px;
+    border-radius: 10px;
+    font-size: 13px;
+    height: 100%;
+}
+.chat-group .subject-text {
+    padding: 0 30px !important;
+}
+.chat-group .message .panel-heading {
+    padding: 22px 15px;
+    margin-left: -16px;
+}
+.chat-group .subject-text p {
+    text-align: left;
+}
+.chat-group .perfil {
+    background: #ccc;
+    height: 45px;
+    width: 45px;
+    border-radius: 30%;
+    position: relative;
+    top: 0px;
+}
+.chat-group .change-view i {
+    color: #068141;
+    padding: 10px 15px;
+    top: 0;
+}
+.change-view ul {
+    list-style: none;
+}
+.change-view ul li {
+    float: left;
+    padding: 0;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.chat-group .message .panel-heading span {
+    padding-left: 0;
+    font-size: 16px;
+}
+.contacts {
+    margin-top: 20px;
+}
+.profile-details {
+    margin-top: 20px;
+}
+.chat-group .message .perfil {
+    background: #ccc;
+    height: 100px;
+    width: 100px;
+    border-radius: 10%;
+    position: relative;
+    top: 0px;
+}
+.chat-group .message .panel-heading i {
+    margin-right: 8px;
+}
+.chat-group .message .nav-pills > li > a {
+    border-top: 0 !important;
+}
+.chat-group .message h6 {
+    font-size: 11px;
+    top: 5px;
+	position: absolute;
+	left: 220px;
+}
+.chat-group .full-message {
+    margin-top: -21px;
+    margin-bottom: 40px;
+}
+.chat-group .full-message {
+    margin-top: -21px;
+    margin-bottom: 40px;
+    border-radius: 4px !important;
+    margin-right: 15px;
+}
+/*
+.chat-group .contentbox {
+    margin-top : -31px;
+    margin-left: -6px;
+}
+.chat-group .contentbox .message .panel-body {
+    padding      : 20px 30px 0;
+    margin-bottom: 0;
+}
+.chat-group .message-box span {
+    font-size: 12px;
+    color    : #99BACE;
+}
+.chat-group h6 {
+    font-size  : 14px;
+}
+.chat-group .message h4 {
+    font-weight: 400;
+    font-size  : 20px;
+}
+.message .dropdown-menu > li > a {
+    padding: 7px 20px;
+}
+.change-view ul {
+    list-style: none;
+}
+*/
