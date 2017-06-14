@@ -77,8 +77,8 @@ class EventoController extends Controller {
 
         return $this->render('view', [
             'model' => $model,
-            '_dataTickets' => $tickets,
-            '_dataEvent' => $events[0]
+            '_dataEvent' => $events,
+            '_dataTickets' => $tickets
         ]);
     }
 

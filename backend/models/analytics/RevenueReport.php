@@ -91,14 +91,13 @@ class RevenueReport {
             $fields['context_revenue'] = $fields['business_revenue'];
         }
 
-        $q =  Reports::model('bilhete_reports')
+        return  Reports::model('bilhete_reports')
                   ->fields($fields)
                   ->params([':start'=>$start, ':end'=>$end])
                   ->filter('marca_id', '=', $producerId)
                   ->filter('business_id', '=', $bizId)
-                  ->groupBy('marca_id');
-
-        return $q->fetch();
+                  ->groupBy('marca_id')
+                  ->fetch();
     }
 
     public function getRevenuePerTicket($appUser, $start, $end, $eventId) {

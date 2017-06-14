@@ -25,8 +25,6 @@ SELECT
 
 		CB.dataCompra AS date,
 		CB.business_percent as business_compra_percent,
-        :start as val1,
-        :end as val2,
 
 		/* some aggs */
 		greatest(B.stock-count(CB.idcompra_bilhete), 0) 
