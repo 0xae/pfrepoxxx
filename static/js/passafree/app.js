@@ -144,6 +144,7 @@ function validateForm(m) {
         'BizModule',
         'userModule',
         'accountingModule',
+        'chatModule',
         'coreModule'
     ]);
 })();
