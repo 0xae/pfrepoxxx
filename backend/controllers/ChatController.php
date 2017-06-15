@@ -2,18 +2,14 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
-
 use backend\models\ChatMessage;
 use backend\models\Business;
 
-/**
- * ChatController implements the CRUD actions for ChatMessage model.
- */
 class ChatController extends Controller {
     public function behaviors() {
         return [

@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
-$this->title = 'Messenger';
+$this->title = 'Chat';
 ?>
 
 <div class="chat-group contentbox" ng-controller="ChatController">
@@ -29,9 +29,9 @@ $this->title = 'Messenger';
                                     <span class="img-rounded"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-10" style="margin-top:15px;">
+                                <div class="col-md-10" style="margin-top: 15px;">
                                     <span><?= $p['nome']; ?></span>
-                                    <small class="pull-right time"><?= substr($p['data'], 11); ?></small><br>
+                                    <small class="pull-right time"><?= substr($p['data'], 0, 10); ?></small><br>
                                     <?php if ($p['is_read']): ?>
                                         <small class="subject"><?= $p['mensagem']; ?></small>
                                     <?php else: ?>

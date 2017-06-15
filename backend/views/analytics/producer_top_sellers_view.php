@@ -20,7 +20,7 @@
             <div ng-if="no_sellers_data" style="margin-bottom:-18em;margin-top:10em;">
                 <no-data></no-data>
             </div>
-            <div id="top_sellers" style="width: 100%"></div>
+                <div id="top_sellers" style="width: 100%"></div>
         </div>
 
         <div class="col-md-12">
