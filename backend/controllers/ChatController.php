@@ -55,7 +55,7 @@ class ChatController extends Controller {
         $bizId = $session->get('business');
         $userId = $id;
         $data = ChatMessage::fetchAllMessagesFrom($bizId, $userId);
-        // ChatMessage::updateRead($bizId, $userId);
+        ChatMessage::updateRead($bizId, $userId);
         return json_encode($data);
     }
 }

@@ -102,14 +102,13 @@ use Yii;
 
     public static function fetchAllMessagesFrom($bizId, $userId) {
         $sql = "
-            select id_user,concat(u.nome, ' ', u.apelido) as nome, 
+            select  id_user,concat(u.nome, ' ', u.apelido) as nome, 
                     u.foto, u.email, u.data_nascimento, 
                     u.telefone, u.sexo,
                     mensagem, data, is_read
             from utilizador_app_mensagem 
             join utilizador u on u.idutilizador = id_user
             where idBusiness = :bizId and id_user = :userId
-            group by id_user 
             order by data desc
         ";
 

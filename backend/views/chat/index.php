@@ -63,7 +63,7 @@ $this->title = 'Chat';
                                     <div class="profile-details">
                                       <span class="details">{{ profile.nome }}</span><br>
                                       <small class="details"><i class="fa fa-user"></i>{{ profile.data_nascimento }}</small><br/>
-                                      <!-- <small class="local"><i class="fa fa-envelope"></i>{{ profile.email }}</small><br> -->
+                                      <small class="local"><i class="fa fa-envelope"></i>{{ profile.email }}</small><br>
                                       <small class="local"><i class="fa fa-phone"></i>{{ profile.telefone }}</small>
                                     </div>
                                     <div class="contacts">
@@ -75,13 +75,19 @@ $this->title = 'Chat';
                 </div>
             </div>
 
-              <div class="message full-message panel panel-default">   
+              <div class="message full-message panel panel-default" ng-repeat="m in messages"> 
                 <div class="panel panel-body">
                     <div class="row">
                         <div class="col-md-8">
                             <ul class="nav nav-pills">
                                 <li>
-                                    <p>&nbsp;&nbsp;from&nbsp;&nbsp;</p>
+                                    <p>&nbsp;&nbsp;From&nbsp;&nbsp;</p>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        {{ profile.email }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <p>&nbsp;&nbsp;To&nbsp;&nbsp;</p>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         {{ profile.email }}
                                     </a>
@@ -90,15 +96,15 @@ $this->title = 'Chat';
                         </div>
                     </div>
                 </div>
+
                 <div class="panel panel-body subject-text">
                     <div class="row">
                         <div class="col-md-12">
-                            <p ng-repeat="m in messages" class="">
-                                {{ m.mensagem }}
-                            </p>
+                            <p>{{ m.mensagem }}</p>
                         </div>
                     </div>
                 </div>
+
               </div>
             </div>
         </div>
