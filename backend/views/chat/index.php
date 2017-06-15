@@ -21,7 +21,7 @@ $this->title = 'Chat';
             </div>
             <div class="panel-body">
                 <?php foreach($models as $p): ?>
-                    <a href="#">
+                    <a href="javascript:void(0)" ng-click="loadMessagesFrom(<?=  $p['id_user'] ?>)">
                         <div class="message-box ">
                             <div class="row">
                                 <div class="col-md-2">
@@ -61,13 +61,12 @@ $this->title = 'Chat';
                                 </div>
                                 <div class="col-md-10">
                                     <div class="profile-details">
-                                      <span class="details">{{ }}</span><br>
-                                      <small class="details"><i class="fa fa-user"></i>Nascido 14 de fev 1993 (24anos)</small>&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <small class="local"><i class="fa fa-map-marker"></i>Palmarejo, Praia, Cabo Verde</small>
+                                      <span class="details">{{ profile.nome }}</span><br>
+                                      <small class="details"><i class="fa fa-user"></i>{{ profile.data_nascimento }}</small><br/>
+                                      <!-- <small class="local"><i class="fa fa-envelope"></i>{{ profile.email }}</small><br> -->
+                                      <small class="local"><i class="fa fa-phone"></i>{{ profile.telefone }}</small>
                                     </div>
                                     <div class="contacts">
-                                      <small class="local"><i class="fa fa-envelope"></i>bonako@gmail.com</small><br>
-                                      <small class="local"><i class="fa fa-phone"></i>9999999</small>
                                     </div>
                                 </div>
                             </div>
@@ -80,50 +79,22 @@ $this->title = 'Chat';
                 <div class="panel panel-body">
                     <div class="row">
                         <div class="col-md-8">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <h4>Gamboa War, Suggestion</h4>
-                                  <h6>Today at 12:10am</h6>
-                                </div>
-                              </div>
                             <ul class="nav nav-pills">
-                                <li><p>from&nbsp;&nbsp;</p>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">wilvieira28@gmail.com<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><span>Action</span></a></li>
-                                        <li><a href="#"><span>Another action</span></a></li>
-                                    </ul>
-                                </li>
-
-                                <li><p>&nbsp;&nbsp;to&nbsp;&nbsp;</p>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">wilson.vieira@student.unicv.edu.cv<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><span>Same Action</span></a></li>
-                                        <li><a href="#"><span>Another action</span></a></li>
-                                    </ul>
+                                <li>
+                                    <p>&nbsp;&nbsp;from&nbsp;&nbsp;</p>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        {{ profile.email }}
+                                    </a>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="change-view">
-                                <ul>
-                                    <li><a href=""><i class="glyphicon glyphicon-print"></i></a></li>
-                                    <li><a href=""><i class="glyphicon glyphicon-trash"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="change-view">
-                                <ul>
-                                    <button class="btn btn-default">Reply</button>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-body subject-text">
                     <div class="row">
                         <div class="col-md-12">
-                            <p class="">
-                                Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American Apparel.
+                            <p ng-repeat="m in messages" class="">
+                                {{ m.mensagem }}
                             </p>
                         </div>
                     </div>

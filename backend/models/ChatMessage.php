@@ -93,6 +93,7 @@ use Yii;
                 'mensagem' => $obj['mensagem'],
                 'data' => $obj['data'],
                 'is_read' => $obj['is_read'],
+                'id_user' => $obj['id_user'],
             ];
         }
 
@@ -101,16 +102,20 @@ use Yii;
 
     public static function fetchAllMessagesFrom($bizId, $userId) {
         $sql = "
-            select distinct id_user,concat(u.nome, ' ', u.apelido) as nome, 
-            u.foto, u.email, mensagem, data, is_read
+            select id_user,concat(u.nome, ' ', u.apelido) as nome, 
+                    u.foto, u.email, u.data_nascimento, 
+                    u.telefone, u.sexo,
+                    mensagem, data, is_read
             from utilizador_app_mensagem 
             join utilizador u on u.idutilizador = id_user
-            where idBusiness = :bizId
-            group by id_user order by data desc
+            where idBusiness = :bizId and id_user = :userId
+            group by id_user 
+            order by data desc
         ";
 
         $cmd = \Yii::$app->db->createCommand($sql);
         $cmd->bindParam(':bizId', $bizId);
+        $cmd->bindParam(':userId', $userId);
         $_data = $cmd->queryAll();
         $data = [];
         foreach ($_data as $obj) {
@@ -120,6 +125,11 @@ use Yii;
                 'mensagem' => $obj['mensagem'],
                 'data' => $obj['data'],
                 'is_read' => $obj['is_read'],
+                'data_nascimento' => $obj['data_nascimento'],
+                'telefone' => $obj['telefone'],
+                'email' => $obj['email'],
+                'id_user' => $obj['id_user'],
+                'sexo' => $obj['sexo']
             ];
         }
 

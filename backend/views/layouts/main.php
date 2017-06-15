@@ -117,8 +117,7 @@ $this->registerJS($script);
                     <span class="badge" ng-if="newMessages" style="position: absolute;margin: -8px 0 0 -13px;z-index:10;background: #f00;">
                         {{ newMessages }}
                     </span>
-                    <a href="./index.php?r=chat/unread" ng-if="newMessages"> <i class="glyphicon glyphicon-comment"></i> </a>
-                    <a href="./index.php?r=chat" ng-if="!newMessages"> <i class="glyphicon glyphicon-comment"></i> </a>
+                    <a href="./index.php?r=chat"> <i class="glyphicon glyphicon-comment"></i> </a>
                 </li>
           <?php endif; ?>
           <li class="dropdown sair">
