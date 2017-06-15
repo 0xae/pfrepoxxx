@@ -89,7 +89,7 @@ $this->title = 'Chat';
                                 <li>
                                     <p>&nbsp;&nbsp;To&nbsp;&nbsp;</p>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        {{ profile.email }}
+                                        {{ m.bizEmail }}
                                     </a>
                                 </li>
                             </ul>

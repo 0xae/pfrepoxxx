@@ -70,15 +70,19 @@ use Yii;
 
     public static function fetchBizMessages($bizId) {
         $sql = "
-            select distinct id_user,
-                   concat(u.nome, ' ', u.apelido) as nome, 
-                   u.foto, u.email, mensagem,
-                   data,
-                   is_read
-            from utilizador_app_mensagem 
-            join utilizador u on u.idutilizador = id_user
-            where idBusiness = :bizId
-            group by id_user order by data desc
+            select * from (
+                select id_user,
+                       concat(u.nome, ' ', u.apelido) as nome, 
+                        u.foto, u.email, mensagem,
+                        data,
+                        is_read
+                from utilizador_app_mensagem 
+                join utilizador u on u.idutilizador = id_user
+                where idBusiness = :bizId 
+                order by data desc
+            ) f
+            group by id_user
+            order by data desc
         ";
 
         $cmd = \Yii::$app->db->createCommand($sql);
@@ -102,14 +106,17 @@ use Yii;
 
     public static function fetchAllMessagesFrom($bizId, $userId) {
         $sql = "
-            select  id_user,concat(u.nome, ' ', u.apelido) as nome, 
-                    u.foto, u.email, u.data_nascimento, 
-                    u.telefone, u.sexo,
-                    mensagem, data, is_read
-            from utilizador_app_mensagem 
-            join utilizador u on u.idutilizador = id_user
-            where idBusiness = :bizId and id_user = :userId
-            order by data desc
+                select id_user,
+                       concat(u.nome, ' ', u.apelido) as nome, 
+                        u.foto, u.email, mensagem, u.data_nascimento,
+                        u.telefone, u.sexo,
+                        data,
+                        is_read,
+                        (select support_email from business where id=:bizId) as bizEmail
+                from utilizador_app_mensagem 
+                join utilizador u on u.idutilizador = id_user
+                where idBusiness = :bizId and id_user = :userId
+                order by data desc
         ";
 
         $cmd = \Yii::$app->db->createCommand($sql);
@@ -123,6 +130,7 @@ use Yii;
                 'foto' => $obj['foto'],
                 'mensagem' => $obj['mensagem'],
                 'data' => $obj['data'],
+                'bizEmail' => $obj['bizEmail'],
                 'is_read' => $obj['is_read'],
                 'data_nascimento' => $obj['data_nascimento'],
                 'telefone' => $obj['telefone'],
