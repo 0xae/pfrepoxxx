@@ -61,7 +61,7 @@ $this->title = 'Messenger';
                                 </div>
                                 <div class="col-md-10">
                                     <div class="profile-details">
-                                      <span class="details">Jorge Vieira</span><br>
+                                      <span class="details">{{ }}</span><br>
                                       <small class="details"><i class="fa fa-user"></i>Nascido 14 de fev 1993 (24anos)</small>&nbsp;&nbsp;&nbsp;&nbsp;
                                       <small class="local"><i class="fa fa-map-marker"></i>Palmarejo, Praia, Cabo Verde</small>
                                     </div>

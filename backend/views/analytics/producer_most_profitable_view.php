@@ -22,7 +22,11 @@ $session = \Yii::$app->session;
         </div>
         <div class="col-md-9">
             <center>
-                    <h4>Most profitable for <strong>passafree</strong></h4>
+                    <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
+                        <h4>Passafree Revenue per producer</h4>
+                    <?php else: ?>
+                        <h4>Business Revenue per producer</h4>
+                    <?php endif ?>
             </center>
             <div ng-if="no_profit_data" style="margin-bottom:-18em;margin-top:10em;">
                 <no-data></no-data>

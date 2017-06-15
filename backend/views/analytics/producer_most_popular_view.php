@@ -15,7 +15,7 @@
 
         <div class="col-md-9">
             <center>
-                <h4>Most popular producers</h4>
+                <h4>Total reaction per producer</h4>
             </center>
             <div ng-if="no_populars_data" style="margin-bottom:-18em;margin-top:10em;">
                 <no-data></no-data>

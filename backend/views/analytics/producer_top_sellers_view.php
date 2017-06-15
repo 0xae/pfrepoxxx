@@ -15,7 +15,7 @@
 
         <div class="col-md-9">
             <center>
-                <h4>Top selling producers</h4>
+                <h4>Gross Revenue Per Producer</h4>
             </center>
             <div ng-if="no_sellers_data" style="margin-bottom:-18em;margin-top:10em;">
                 <no-data></no-data>
