@@ -35,6 +35,7 @@ class ChatController extends Controller {
         $session = \Yii::$app->session;
         $bizId = $session->get('business');
         $data = ChatMessage::fetchBizMessages($bizId, false);
+
         return $this->render('index', ['models' => $data]);
     }
 
@@ -47,6 +48,7 @@ class ChatController extends Controller {
                return json_encode($unread);
            }
        } 
+
        return json_encode(0);
     }
 
@@ -56,6 +58,7 @@ class ChatController extends Controller {
         $userId = $id;
         $data = ChatMessage::fetchAllMessagesFrom($bizId, $userId);
         ChatMessage::updateRead($bizId, $userId);
+
         return json_encode($data);
     }
 }

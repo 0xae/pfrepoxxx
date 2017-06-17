@@ -83,13 +83,13 @@ $this->title = 'Chat';
                                 <li>
                                     <p>&nbsp;&nbsp;From&nbsp;&nbsp;</p>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        {{ profile.email }}
+                                        {{ ::profile.email }}
                                     </a>
                                 </li>
                                 <li>
                                     <p>&nbsp;&nbsp;To&nbsp;&nbsp;</p>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        {{ m.bizEmail }}
+                                        {{ ::m.bizEmail }}
                                     </a>
                                 </li>
                             </ul>
@@ -100,7 +100,7 @@ $this->title = 'Chat';
                 <div class="panel panel-body subject-text">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>{{ m.mensagem }}</p>
+                            <p>{{ ::m.mensagem }}</p>
                         </div>
                     </div>
                 </div>
