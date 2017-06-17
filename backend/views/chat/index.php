@@ -92,6 +92,9 @@ $this->title = 'Chat';
                                         {{ ::m.bizEmail }}
                                     </a>
                                 </li>
+                                <li>
+                                    <h6> Yersterday </h6>
+                                </li>
                             </ul>
                         </div>
                     </div>
