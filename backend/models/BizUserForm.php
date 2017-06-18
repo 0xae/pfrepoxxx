@@ -17,6 +17,7 @@ class BizUserForm extends Model {
     public $permissions;
     public $country_id = null;
     public $business_id = null;
+    public $username = null;
 
     /**
      * @inheritdoc
@@ -32,6 +33,11 @@ class BizUserForm extends Model {
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\backend\models\User', 'message' => 'This email address has already been taken.'],
+
+            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'required'],
+            ['username', 'unique', 'targetClass' => '\backend\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -56,9 +62,6 @@ class BizUserForm extends Model {
         $user->password_md5 = md5($this->password);
 
         $l = $user->save();
-        if ($l) {
-            $user->saveProfile();
-        }
         return new FormData($user, $l);
     }
 }

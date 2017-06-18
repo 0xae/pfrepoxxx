@@ -16,7 +16,7 @@
                 type: 'post',
                 data: form.serialize(),
                 success: function (response) {
-                    var json = JSON.parse(response);
+                    var json = (response);
                     console.info(json);
                 } 
             });

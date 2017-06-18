@@ -21,8 +21,15 @@ class BizAccessController extends \yii\web\Controller {
     public function actionValidate() {
         $model = new BizUserForm();
         $model->load(Yii::$app->request->post());
+        $atIdx = strpos($model->email, '@');
+        $model->username = substr($model->email, 0, $atIdx);
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return ActiveForm::validate($model);
+        $validations = ActiveForm::validate($model);
+        if (array_key_exists('bizuserform-username', $validations)) {
+            $validations['bizuserform-email'] = $validations['bizuserform-username'];
+            unset($validations['bizuserform-username']);
+        }
+        return $validations;
     }
 
     public function actionCreate() {
