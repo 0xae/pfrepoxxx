@@ -52,24 +52,41 @@ $model = new BizUserForm;
     </div>
 
     
-    <div class="col-md-5">
+    <div class="col-md-5" style="margin-top: 15px;">
         <?php foreach ($_dataAccess as $v): ?>
-            <a href="javascript:void(0)">
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="mapping_<?= $v->id; ?>">
                     <div class="panel-body">
-                        <div class="col-md-4 imgbussinessbox">
+                        <div class="message-box ">
+                            <div class="row">
+                                <div class="col-md-10" style="padding: 15px;margin-left: 25px;">
+                                    <div><?= $v->email; ?></div>
+                                    <span><?= $v->username; ?></span>
+                                    <br/>
+                                    <span>
+                                    <a href="javascript:void(0)"><span ng-click="deleteUser(<?= $v->id; ?>)" class="label label-danger">DELETE</span></a>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4 descbussinessbox">
-                            <div><?= $v->email; ?></div>
-                            <span><?= $v->username; ?></span>
+                    </div>
+                </div>
+        <?php endforeach; ?>
+        <div class="panel panel-default" ng-repeat="m in mappings" id="mapping_{{::m.id}}">
+            <div class="panel-body">
+                <div class="message-box ">
+                    <div class="row">
+                        <div class="col-md-10" style="padding: 15px;margin-left: 25px;">
+                            <div>{{ ::m.email }}</div>
+                            <span>{{ ::m.username }}</span>
+                            <br/>
                             <span>
-                                <span class="label label-danger">DELETE</span>
+                                <a href="javascript:void(0)"><span ng-click="deleteUser(m.id, $index)" class="label label-danger">DELETE</span></a>
                             </span>
                         </div>
                     </div>
                 </div>
-            </a>
-        <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 </div>
 

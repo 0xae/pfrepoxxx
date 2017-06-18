@@ -64,6 +64,10 @@ class User extends \yii\db\ActiveRecord {
         return $this->hasOne(Country::className(), ['id' => 'country_id']);
     }
 
+    public function revokeAll() {
+        RoleAssignment::deleteAll('user_id = :id', ['id' => $this->id]);
+    }
+
     /**
      * XXX: should we delete all existing permissions ?
      */

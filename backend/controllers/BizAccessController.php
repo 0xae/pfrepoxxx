@@ -44,6 +44,7 @@ class BizAccessController extends \yii\web\Controller {
                 echo json_encode([
                     "id" => $data->id,
                     "username" => $data->username,
+                    "email" => $data->email,
                     "country_id" => $data->country_id,
                     "permission" => $model->permissions
                 ]);
@@ -58,6 +59,12 @@ class BizAccessController extends \yii\web\Controller {
             unset($validations['user-username']);
         }
         return $validations;
+    }
+
+    public function actionDelete($id) {
+        $model = User::findModel($id);
+        $model->revokeAll();
+        $model->delete();
     }
 }
 

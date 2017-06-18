@@ -5,6 +5,10 @@
             hello: function() {
                 var defer = $q.defer();
                 return defer.promise;
+            },
+             
+            deleteUser : function (userId) {
+                return $http.get("./index.php?r=biz-access/delete&id="+userId);
             }
         };
 

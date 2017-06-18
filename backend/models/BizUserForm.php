@@ -62,6 +62,9 @@ class BizUserForm extends Model {
         $user->password_md5 = md5($this->password);
 
         $l = $user->save();
+        if ($l) {
+            $user->saveProfile();
+        }
         return new FormData($user, $l);
     }
 }
