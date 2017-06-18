@@ -58,6 +58,9 @@ if (!$user->can('admin') && !$user->can('passafree_staff')) {
                             <?php if (isset($producers) && !empty($producers)): ?>
 							<li role="presentation"><a href="#access" aria-controls="profile" role="tab" data-toggle="tab">Producers</a></li>
                             <?php endif; ?>
+                            <?php if (!$model->isNewRecord): ?>
+							<li role="presentation"><a href="#control" aria-controls="control" role="tab" data-toggle="tab">Access Control</a></li>
+                            <?php endif; ?>
 						  </ul>
 						  <!-- Tab panes -->
 						  <div class="tab-content">
@@ -176,6 +179,14 @@ if (!$user->can('admin') && !$user->can('passafree_staff')) {
                                     </div>
                                 </div>
 
+								<div role="tabpanel" class="biz-pane tab-pane" id="control" style="padding:20px;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h1>Hello, world</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
 								<div role="tabpanel" class="biz-pane tab-pane" id="access">
                                     <div class="row contentbox">                                                
                                         <?php if (isset($producers)): ?>
@@ -209,8 +220,4 @@ if (!$user->can('admin') && !$user->can('passafree_staff')) {
 		</div>
 	</div>
 </div>
-
-
-
-
 
