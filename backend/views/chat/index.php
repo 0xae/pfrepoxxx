@@ -78,24 +78,19 @@ $this->title = 'Chat';
               <div class="message full-message panel panel-default" ng-repeat="m in messages"> 
                 <div class="panel panel-body">
                     <div class="row">
-                        <div class="col-md-8">
-                            <ul class="nav nav-pills">
-                                <li>
-                                    <p>&nbsp;&nbsp;From&nbsp;&nbsp;</p>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        {{ ::profile.email }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <p>&nbsp;&nbsp;To&nbsp;&nbsp;</p>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        {{ ::m.bizEmail }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <h6> Yersterday </h6>
-                                </li>
-                            </ul>
+                       <div class="col-md-8">
+                                <p> <small>
+                                        Today at 12:10am
+                                    </small> 
+                                </p>
+                                <p>&nbsp;&nbsp;From&nbsp;&nbsp;
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{ ::profile.email }}
+                                </a>
+                                &nbsp;&nbsp;To&nbsp;&nbsp;
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{ ::m.bizEmail }}
+                                </a></p>
                         </div>
                     </div>
                 </div>
