@@ -9,7 +9,14 @@ $model = new BizUserForm;
 
 <div class="row">
     <div class="col-md-6">
-            <?php $form = ActiveForm::begin(['action' => './index.php?r=biz-access/create', 'id' => 'permission_form', 'enableAjaxValidation'=>true, 'enableClientValidation'=>true]); ?>
+            <?php $form = ActiveForm::begin(['action' => './index.php?r=biz-access/create', 
+                                             'validationUrl' => './index.php?r=biz-access/validate',
+                                             'id' => 'permission_form',
+                                             'enableAjaxValidation'=>true,
+                                             'enableClientValidation'=>true,
+                                             'options' => ['ng-submit' => 'submitForm']
+                                             ]); ?>
+
 
             <div class="col-md-12">
                 <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['maxlength' => true])->label("Email") ?>
@@ -34,8 +41,8 @@ $model = new BizUserForm;
                 <?= $form->field($model, 'business_id')->hiddenInput(['value' => $bizModel->id])->label(false); ?>
 
                 <div class="biz-footer">
-                     <?php echo Html::submitButton(
-                         'Add', ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
+                     <?php echo Html::button(
+                         'Add', ['class' =>  'criar btn btn-primary', 'ng-click'=> 'submitForm()', 'id'=> 'submit_business']
                           );
                      ?>
                  </div>
@@ -44,3 +51,4 @@ $model = new BizUserForm;
             </div>
     </div>
 </div>
+
