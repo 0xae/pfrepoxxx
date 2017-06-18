@@ -3,30 +3,30 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use kartik\file\FileInput;
+use backend\models\User;
+$model = new User;
 ?>
 
 <div class="row">
     <div class="col-md-6">
-            <?php
-                echo '<label class="control-label">Select the user </label>';
-                echo Select2::widget([
-                    'model' => $model,
-                    'attribute' => 'responsable',
-                    'data' => $_dataUsers,
-                    'pluginOptions' => ['allowClear' => false],
-                ]);
-                echo '<br/>';
-            ?>
+            <?php $form = ActiveForm::begin(['id' => 'permission_form']); ?>
+
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true])->label("Email") ?>
+
+            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true])->label("Password") ?>
+
+            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true])->label("Password Confirmation") ?>
 
             <?php
-                echo '<label class="control-label">Permissions</label>';
+                echo '<label class="control-label">Permission</label>';
                 echo Select2::widget([
-                    'name' => 'permissions',
-                    'value' => $userPermissions,
+                    'name' => 'permissions_to',
                     'attribute' => 'permissions',
                     'data' => $_dataPermissions,
                     'options' => ['multiple' => false]
                 ]);
             ?>
+
+            <?php ActiveForm::end(); ?>
     </div>
 </div>

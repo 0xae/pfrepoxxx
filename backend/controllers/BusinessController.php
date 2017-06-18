@@ -18,6 +18,7 @@ use backend\models\Country;
 use backend\models\Marca;
 use backend\models\PaymentChannel;
 use backend\models\User;
+use backend\models\Role;
 use backend\models\UploadForm;
 
 class BusinessController extends Controller {
@@ -100,6 +101,12 @@ class BusinessController extends Controller {
         $_dataUsers = ArrayHelper::map([User::findModel($model->responsable)], 'id', 'nome');
         $_data = PaymentChannel::find()->all();
         $paymentChannels = ArrayHelper::map($_data, 'id', 'name');
+        $permissionData = [
+            # 'business' => 'business',
+            'business-analytics' => 'business-analytics',
+            'business-accounting' => 'business-accounting',
+            'business-dashboard' => 'business-dashboard',
+        ];
 
         return $this->render('update', [
             'model' => $model,
@@ -107,6 +114,7 @@ class BusinessController extends Controller {
             'paymentChannels' => $paymentChannels,
             '_dataUsers' => $_dataUsers,
             '_dataCountries' => $countries,
+            '_dataPermissions' => $permissionData,
         ]);
     }
 

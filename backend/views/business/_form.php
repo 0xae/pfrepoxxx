@@ -180,7 +180,10 @@ if (!$user->can('admin') && !$user->can('passafree_staff')) {
                                 </div>
 
 								<div role="tabpanel" class="biz-pane tab-pane" id="control" style="padding:20px;">
-                                    <?php echo $this->render('access_control', ['_dataUsers' => $_dataUsers, 'model'=>$model]); ?>
+                                    <?php echo $this->render('access_control', ['_dataUsers' => $_dataUsers, 
+                                                                                 'model'=>$model,
+                                                                                 '_dataPermissions' => $_dataPermissions
+                                                                               ]); ?>
                                 </div>
 
 								<div role="tabpanel" class="biz-pane tab-pane" id="access">
