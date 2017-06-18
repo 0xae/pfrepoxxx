@@ -79,18 +79,17 @@ $this->title = 'Chat';
                 <div class="panel panel-body">
                     <div class="row">
                        <div class="col-md-8">
-                                <p> <small>
-                                        Today at 12:10am
-                                    </small> 
-                                </p>
-                                <p>&nbsp;&nbsp;From&nbsp;&nbsp;
+                            <p> <small> {{::m.timming}} </small> </p>
+                            <p>
+                                &nbsp;&nbsp;From&nbsp;&nbsp;
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     {{ ::profile.email }}
                                 </a>
                                 &nbsp;&nbsp;To&nbsp;&nbsp;
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     {{ ::m.bizEmail }}
-                                </a></p>
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -108,6 +107,4 @@ $this->title = 'Chat';
         </div>
     </div>
 </div>
-
-
 
