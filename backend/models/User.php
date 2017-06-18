@@ -153,7 +153,10 @@ class User extends \yii\db\ActiveRecord {
 
         if ($appUser->can('admin')) {
             $user['role'] = 'admin';
-        } else if ($appUser->can('business')) {
+        } else if ($appUser->can('business') ||
+            $appUser->can('business-analytics') ||
+            $appUser->can('business-dashboard') ||
+            $appUser->can('business-accounting')) {
             $user['role'] = 'business';
         } else if ($appUser->can('producer')) {
             $user['role'] = 'producer';
@@ -182,7 +185,6 @@ class User extends \yii\db\ActiveRecord {
         }
     }
 
-
     private static function getPerm($permission) {
         $auth = Yii::$app->authManager;
         $permissionObj = $auth->getRole($permission);
@@ -193,6 +195,12 @@ class User extends \yii\db\ActiveRecord {
         }
 
         return $permissionObj;
+    }
+
+    public function getSinglePermission() {
+        return RoleAssignment::find()
+               ->where(['user_id' => $this->id])
+               ->one();
     }
 
     public static function fetchActive() {

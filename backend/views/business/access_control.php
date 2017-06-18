@@ -64,7 +64,7 @@ $model = new BizUserForm;
                             <br/>
                             <span>
                                 <a href="javascript:void(0)"><span ng-click="deleteUser(<?= $v->id; ?>)" class="label label-danger">DELETE</span></a>
-                                <a href="javascript:void(0)"><span class="label label-primary"><?= 'asd' ?></span></a>
+                                <a href="javascript:void(0)"><span class="label label-primary"><?= $v->getSinglePermission()->item_name ?></span></a>
                             </span>
                         </div>
                     </div>
