@@ -5,17 +5,16 @@ use Yii;
 use yii\base\Model;
 use backend\models\User;
 use backend\models\Profile;
+use backend\components\FormData;
 
 /**
  * Signup form
  */
 class BizUserForm extends Model {
-    public $username;
     public $email;
     public $password;
     public $password_confirmation;
     public $permissions;
-    public $tipo_user = 0;
     public $country_id = null;
     public $business_id = null;
 
@@ -48,18 +47,16 @@ class BizUserForm extends Model {
      */
     public function signup() {
         $user = new User();
-        $user->username = $this->username;
+        $atIdx = strpos($this->email, '@');
+        $user->username = substr($this->email, 0, $atIdx);
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->auth_key = Yii::$app->security->generateRandomString();
-        $user->tipo_user = $this->tipo_user;
         $user->country_id = $this->country_id;
         $user->password_md5 = md5($this->password);
 
-        if ($user->save()) {
-        } else {
-            return null;
-        }
+        $l = $user->save();
+        return new FormData($user, $l);
     }
 }
 

@@ -57,7 +57,7 @@ class Business extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'payment_channel', 'cashout', 'privacy', 'responsable_percent', 'responsable', 'support_name', 'support_email', 'support_phone', 'country_id'], 'required'],
+            [['name', 'payment_channel', 'cashout', 'responsable_percent', 'responsable', 'support_name', 'support_email', 'support_phone', 'country_id'], 'required'],
             [['responsable_percent'], 'number'],
             [['responsable',  'country_id', 'payment_channel', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['picture'], 'string'],

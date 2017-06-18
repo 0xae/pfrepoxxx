@@ -9,28 +9,38 @@ $model = new BizUserForm;
 
 <div class="row">
     <div class="col-md-6">
-            <?php $form = ActiveForm::begin(['id' => 'permission_form']); ?>
+            <?php $form = ActiveForm::begin(['action' => './index.php?r=biz-access/create', 'id' => 'permission_form', 'enableAjaxValidation'=>true, 'enableClientValidation'=>true]); ?>
 
+            <div class="col-md-12">
+                <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['maxlength' => true])->label("Email") ?>
+            </div>
 
-            <?= $form->field($model, 'email')->textInput(['maxlength' => true])->label("Email") ?>
+            <div class="col-md-6">
+                <?= $form->field($model, 'password')->passwordInput(['maxlength' => true])->label("Password") ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'password_confirmation')->passwordInput(['maxlength' => true])->label("Password Confirmation") ?>
+            </div>
 
-            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true])->label("Password") ?>
+            <div class="col-md-12" >
+                <?php
+                    echo $form->field($model, 'permissions')->widget(Select2::classname(), [
+                        'data' => $_dataPermissions,
+                        'options' => ['multiple' => false],
+                    ])->label("Permission");
+                ?>
 
-            <?= $form->field($model, 'password_confirmation')->passwordInput(['maxlength' => true])->label("Password Confirmation") ?>
+                <?= $form->field($model, 'country_id')->hiddenInput(['value' => $bizModel->country_id])->label(false); ?>
+                <?= $form->field($model, 'business_id')->hiddenInput(['value' => $bizModel->id])->label(false); ?>
 
-            <?php
-                echo '<label class="control-label">Permission</label>';
-                echo Select2::widget([
-                    'name' => 'permissions_to',
-                    'attribute' => 'permissions',
-                    'data' => $_dataPermissions,
-                    'options' => ['multiple' => false]
-                ]);
-            ?>
+                <div class="biz-footer">
+                     <?php echo Html::submitButton(
+                         'Add', ['class' =>  'criar btn btn-primary', 'id'=> 'submit_business']
+                          );
+                     ?>
+                 </div>
 
-            <?= $form->field($model, 'country_id')->hiddenInput()->label(false); ?>
-            <?= $form->field($model, 'business_id')->hiddenInput()->label(false); ?>
-
-            <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
+            </div>
     </div>
 </div>

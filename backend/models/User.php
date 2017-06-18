@@ -84,6 +84,10 @@ class User extends \yii\db\ActiveRecord {
             $type = 10;
         } else if (in_array('producer', $ary)) {
             $type = 3;
+        } else if (in_array('business-analytics', $ary) ||
+                   in_array('business-accounting', $ary) ||
+                   in_array('business-dashboard', $ary)) {
+            $type = 11;
         }
         $user = User::findModel($userId);
         $user->tipo_user = $type;
@@ -101,7 +105,7 @@ class User extends \yii\db\ActiveRecord {
         return self::saveProfileOf($this);
     }
 
-    public function saveProfileOf($user) {
+    public static function saveProfileOf($user) {
         $p = Profile::find()
             ->where(['user_id' => $user->id])
             ->one();
