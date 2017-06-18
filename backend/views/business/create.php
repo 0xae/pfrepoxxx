@@ -9,5 +9,6 @@ $this->title = 'Business';
     '_dataCountries' => $_dataCountries,
     '_dataUsers' => $_dataUsers,
     '_dataProducers' => $_dataProducers,
-    '_dataPermissions' => []
+    '_dataPermissions' => [],
+    '_dataAccess' => []
 ]) ?>

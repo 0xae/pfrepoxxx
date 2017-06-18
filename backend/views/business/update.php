@@ -14,6 +14,7 @@ use yii\helpers\Html;
         '_dataUsers' => $_dataUsers,
         'paymentChannels' => $paymentChannels,
         '_dataCountries' => $_dataCountries,
-        '_dataPermissions' => $_dataPermissions
+        '_dataPermissions' => $_dataPermissions,
+        '_dataAccess' => $_dataAccess
     ]) ?>
 </div>

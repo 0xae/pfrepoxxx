@@ -50,5 +50,26 @@ $model = new BizUserForm;
                 <?php ActiveForm::end(); ?>
             </div>
     </div>
+
+    
+    <div class="col-md-5">
+        <?php foreach ($_dataAccess as $v): ?>
+            <a href="javascript:void(0)">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-4 imgbussinessbox">
+                        </div>
+                        <div class="col-md-4 descbussinessbox">
+                            <div><?= $v->email; ?></div>
+                            <span><?= $v->username ?></span>
+                            <span>
+                                <span class="label label-danger">DELETE</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <?php endforeach; ?>
+    </div>
 </div>
 

@@ -108,6 +108,14 @@ class BusinessController extends Controller {
             'business-dashboard' => 'business-dashboard',
         ];
 
+        $_dataAccess = User::find()
+                       ->where([
+                           'status' => 10,
+                           'tipo_user' => 11,
+                           'country_id' => $model->country_id
+                       ])
+                       ->all();
+
         return $this->render('update', [
             'model' => $model,
             'producers' => $model->getProducers(),
@@ -115,6 +123,7 @@ class BusinessController extends Controller {
             '_dataUsers' => $_dataUsers,
             '_dataCountries' => $countries,
             '_dataPermissions' => $permissionData,
+            '_dataAccess' => $_dataAccess
         ]);
     }
 
