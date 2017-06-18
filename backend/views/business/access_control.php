@@ -61,7 +61,7 @@ $model = new BizUserForm;
                         </div>
                         <div class="col-md-4 descbussinessbox">
                             <div><?= $v->email; ?></div>
-                            <span><?= $v->username ?></span>
+                            <span><?= $v->username; ?></span>
                             <span>
                                 <span class="label label-danger">DELETE</span>
                             </span>

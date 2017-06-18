@@ -18,38 +18,39 @@ class BizAccessController extends \yii\web\Controller {
     public function actionIndex() {
     }
 
+    public function actionValidate() {
+        $model = new BizUserForm();
+        $model->load(Yii::$app->request->post());
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ActiveForm::validate($model);
+    }
+
     public function actionCreate() {
         $model = new BizUserForm();
         $load = $model->load(Yii::$app->request->post());
 
-        if (Yii::$app->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
         if ($load) {
             $form = $model->signup();
+            $data = $form->data;
             if ($form->isValid) {
-                $data = $form->data;
                 User::updatePermissionsOf($data->id, [$model->permissions]);
                 echo json_encode([
                     "id" => $data->id,
                     "username" => $data->username,
                     "country_id" => $data->country_id,
                     "permission" => $model->permissions
-               ]);
-               return;
-            }
+                ]);
+                return;
+            } 
         }
 
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return ActiveForm::validate($form->data);
-    }
-
-    public function actionUpdatePermission($id) {
-    }
-
-    public function actionDelete($id)  {
+        $validations =  ActiveForm::validate($load? $form->data : $model);
+        if (array_key_exists('user-username', $validations)) {
+            $validations['bizuserform-email'] = $validations['user-username'];
+            unset($validations['user-username']);
+        }
+        return $validations;
     }
 }
 
