@@ -8,7 +8,7 @@ $model = new BizUserForm;
 ?>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
             <?php $form = ActiveForm::begin(['action' => './index.php?r=biz-access/create', 
                                              'validationUrl' => './index.php?r=biz-access/validate',
                                              'id' => 'permission_form',
@@ -52,24 +52,25 @@ $model = new BizUserForm;
     </div>
 
     
-    <div class="col-md-5" style="margin-top: 15px;">
+    <div class="col-md-7" style="margin-top: 15px;padding:15px;background-color:#eee;height:400px;overflow-y:scroll;">
         <?php foreach ($_dataAccess as $v): ?>
-                <div class="panel panel-default" id="mapping_<?= $v->id; ?>">
-                    <div class="panel-body">
-                        <div class="message-box ">
-                            <div class="row">
-                                <div class="col-md-10" style="padding: 15px;margin-left: 25px;">
-                                    <div><?= $v->email; ?></div>
-                                    <span><?= $v->username; ?></span>
-                                    <br/>
-                                    <span>
-                                    <a href="javascript:void(0)"><span ng-click="deleteUser(<?= $v->id; ?>)" class="label label-danger">DELETE</span></a>
-                                    </span>
-                                </div>
-                            </div>
+        <div class="panel panel-default" id="mapping_<?= $v->id; ?>">
+            <div class="panel-body">
+                <div class="message-box ">
+                    <div class="row">
+                        <div class="col-md-10" style="padding: 15px;margin-left: 25px;">
+                            <div><?= $v->email; ?></div>
+                            <span><?= $v->username; ?></span>
+                            <br/>
+                            <span>
+                                <a href="javascript:void(0)"><span ng-click="deleteUser(<?= $v->id; ?>)" class="label label-danger">DELETE</span></a>
+                                <a href="javascript:void(0)"><span class="label label-primary"><?= 'asd' ?></span></a>
+                            </span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
         <?php endforeach; ?>
         <div class="panel panel-default" ng-repeat="m in mappings" id="mapping_{{::m.id}}">
             <div class="panel-body">
@@ -81,6 +82,7 @@ $model = new BizUserForm;
                             <br/>
                             <span>
                                 <a href="javascript:void(0)"><span ng-click="deleteUser(m.id, $index)" class="label label-danger">DELETE</span></a>
+                                <a href="javascript:void(0)"><span class="label label-primary">{{ ::m.permission}}</span></a>
                             </span>
                         </div>
                     </div>
