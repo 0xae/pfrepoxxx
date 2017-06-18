@@ -40,6 +40,7 @@ $this->title = 'Businesses';
                 </a>
             </div>
         <?php endforeach; ?>
-
 	</div>
 </div>
+
+
