@@ -37,6 +37,7 @@
                 if (data.length) {
                     data.forEach(messageTimmingSet);
                     $scope.messages = data.concat($scope.messages);
+                    var lastMessage = data[0];
                 } else {
                     console.info("no messages from " + $scope.profile.nome);
                 }
