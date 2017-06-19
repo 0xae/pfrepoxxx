@@ -19,7 +19,7 @@ $this->title = 'Chat';
                     </div>
                 </div>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-init="loadMessagesFrom(<?= @$models[0]['id_user'] ?>)">
                 <?php foreach($models as $p): ?>
                     <a href="javascript:void(0)" ng-click="loadMessagesFrom(<?=  $p['id_user'] ?>)">
                         <div class="message-box ">
@@ -33,13 +33,10 @@ $this->title = 'Chat';
                                     <span><?= $p['nome']; ?></span>
                                     <small class="pull-right time"><?= substr($p['data'], 0, 10); ?></small><br>
                                     <?php if ($p['is_read']): ?>
-                                        <small class="subject"><?= $p['mensagem']; ?></small>
+                                        <small class="subject"><?= substr($p['mensagem'], 0, 30); ?></small>
                                     <?php else: ?>
-                                        <small class="title"><?= $p['mensagem']; ?></small><br>
+                                        <small class="title"><?= substr($p['mensagem'], 0, 30); ?></small><br>
                                     <?php endif; ?>
-                                    
-                                    <!-- 
-                                    -->
                                 </div>
                             </div>
                         </div>
@@ -97,7 +94,7 @@ $this->title = 'Chat';
                 <div class="panel panel-body subject-text">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>{{ ::m.mensagem }}</p>
+                            <p>{{ ::m.mensagem.substr(0, 30) + "..." }}</p>
                         </div>
                     </div>
                 </div>

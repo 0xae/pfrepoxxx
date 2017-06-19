@@ -29,7 +29,6 @@
 
         function fetchNewMessages() {
             if (!currentUser) {
-                console.info("no current-user");
                 return;
             }
 
