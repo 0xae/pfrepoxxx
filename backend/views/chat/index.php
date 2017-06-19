@@ -35,7 +35,7 @@ $this->title = 'Chat';
                                     <?php if ($p['is_read']): ?>
                                         <small class="subject"><?= substr($p['mensagem'], 0, 30) . '...'; ?></small>
                                     <?php else: ?>
-                                        <small class="title"><?= substr($p['mensagem'], 0, 30) . '...' ?></small><br>
+                                        <small id="msg_from_<?= $p['id_user'] ?>" class="title"><?= substr($p['mensagem'], 0, 30) . '...' ?></small><br>
                                     <?php endif; ?>
                                 </div>
                             </div>

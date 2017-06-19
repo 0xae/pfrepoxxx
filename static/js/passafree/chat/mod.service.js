@@ -8,6 +8,10 @@
             var diff = ((d.getTime() - date.getTime()) / 1000);
             var day_diff = Math.floor(diff / 86400);
 
+            if (diff<0 && day_diff<0) {
+                return 'just now';
+            }
+
             return day_diff == 0 && (
                     diff < 60 && "just now" ||
                     diff < 120 && "1 min ago" ||

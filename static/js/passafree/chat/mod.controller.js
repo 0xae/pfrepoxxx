@@ -43,6 +43,6 @@
             });
         }
 
-        var tickId = setInterval(fetchNewMessages, 3000);
+        setInterval(fetchNewMessages, 3000);
     }]);
 })();
