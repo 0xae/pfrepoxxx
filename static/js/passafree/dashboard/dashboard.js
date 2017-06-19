@@ -17,6 +17,7 @@ angular.module('passafree')
             function updateCounter(counterId, value) {
                 $('#'+counterId).text(value);
             }
+
             function updateDashboardCounters(data) {
                 updateCounter('user_counter', data.user_count);
                 updateCounter('biz_counter', data.business_count);
@@ -61,6 +62,7 @@ angular.module('passafree')
                 updateDashboard();
             });
 
+            var _hash = null;
             function updateDashboard() {
                 var range = analyticsCore.thisWeek();
                 if ($scope.filters) {
@@ -72,14 +74,17 @@ angular.module('passafree')
 
                 dashboardService.fetchData(start, end)
                 .then(function (data){
-                    console.log(data);
-                    updateDashboardCounters(data.resume);
-                    updateDashboardGraphs(data.revenue);
+                    var newHash = JSON.stringify(data);
+                    if (_hash != newHash) {
+                        _hash = newHash;
+                        updateDashboardCounters(data.resume);
+                        updateDashboardGraphs(data.revenue);
+                    }
                 });
             }
 
             updateDashboard();
-            // setInterval(updateDashboard, 3000);
+            setInterval(updateDashboard, 3000);
         }
 ]);
 
