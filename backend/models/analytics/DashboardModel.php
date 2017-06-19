@@ -5,11 +5,15 @@ class DashboardModel {
     public function getRevenueData($appUser, $start, $end) {
         $this->notNull([$start, $end]);
         $r = new RevenueReport;
+        $bizId = '';
+        if ($appUser['role'] != 'admin') {
+            $bizId = $appUser['business_id'];
+        }
 
         return [
-            "rvn_per_business" => $r->getRevenuePerBusiness($appUser, $start, $end),
-            "rvn_per_event" => $r->getRevenuePerEvent($appUser, $start, $end),
-            "rvn_per_producer" => $r->getRevenuePerProducer($appUser, $start, $end)
+            "rvn_per_business" => $r->getRevenuePerBusiness($appUser, $start, $end, $bizId),
+            "rvn_per_event" => $r->getRevenuePerEvent($appUser, $start, $end, '', $bizId),
+            "rvn_per_producer" => $r->getRevenuePerProducer($appUser, $start, $end, '', $bizId)
         ];
     }
 

@@ -34,7 +34,7 @@ class RevenueReport {
                       ->fetch();
     }
 
-    public function getRevenuePerEvent($appUser, $start, $end, $eventId='') {
+    public function getRevenuePerEvent($appUser, $start, $end, $eventId='', $bizId='') {
         $this->notNull([$start, $end]);
         $fields = [
             'event_id' => 'evento_id',
@@ -67,6 +67,7 @@ class RevenueReport {
                       ->fields($fields)
                       ->params([':start'=>$start, ':end'=>$end])
                       ->filter('evento_id', '=', $eventId)
+                      ->filter('business_id', '=', $bizId)
                       ->groupBy('evento_id')
                       ->fetch();
     }
