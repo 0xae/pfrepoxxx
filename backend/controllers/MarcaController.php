@@ -34,7 +34,7 @@ class MarcaController extends Controller {
                 'rules' => [
                     [
                         'actions' => ['index', 'create', 'update', 'view', 'delete', 'update-produtor', 'create-user'],
-                        'roles' => ['passafree_staff', 'admin', 'business'],
+                        'roles' => ['passafree_staff', 'admin', 'business', 'business-producer'],
                         'allow' => true
                     ],
                 ],
