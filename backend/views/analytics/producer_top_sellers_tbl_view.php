@@ -54,30 +54,7 @@
                         <span class="money">{{ p.liquid_revenue }}</span>
                     </strong>
                 </center>
-                <!--
-                <div class="col-md-2">
-                    {{ p.tickets_sold }}
-                </div>
-
-                <div class="progress progress-stats" style="">
-                  <div class="progress-bar" role="progressbar" 
-                      aria-valuenow="60" aria-valuemin="1" 
-                      aria-valuemax="100" 
-                      ng-style="{'background-color':'rgb(255,202,135);',
-                                 'width' : }"
-                      style="background-color: rgb(255, 202, 135);width: <?= max(min(@$p['tickets_sold'], 100),1) ?>%;">
-                  </div>
-                </div>
-                -->
             </td>
-
-            <!--
-            <td class="fb-col" style="width: 200px">
-                <center>
-                <span class="money"><?= @$p['liquid_revenue']; ?></span>$00
-                </center>
-            </td>
-            -->
         </tr>
     </tbody>
 </table>

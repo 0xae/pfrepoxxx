@@ -20,6 +20,7 @@ $session = \Yii::$app->session;
                 <?php endif ?>
             </p>
         </div>
+
         <div class="col-md-9">
             <center>
                     <?php if ($user->can('admin') || $user->can('passafree_staff')): ?>
@@ -33,6 +34,7 @@ $session = \Yii::$app->session;
             </div>
             <div id="most_profitable" style="width: 100%"></div>
         </div>
+
         <div class="col-md-12">
               <button type="button" 
                       ng-click="show_profitable_tbl=!show_profitable_tbl"
@@ -49,6 +51,7 @@ $session = \Yii::$app->session;
                         </span>
               </button>
         </div>
+
         <div class="col-md-12" ng-if="show_profitable_tbl">
             <?php echo $this->render('producer_most_profitable_tbl_view'); ?>
         </div>
