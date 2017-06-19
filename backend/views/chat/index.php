@@ -32,11 +32,14 @@ $this->title = 'Chat';
                                 <div class="col-md-10" style="margin-top: 15px;">
                                     <span><?= $p['nome']; ?></span>
                                     <small class="pull-right time"><?= substr($p['data'], 0, 10) . '...'; ?></small><br>
-                                    <?php if ($p['is_read']): ?>
-                                        <small class="subject"><?= substr($p['mensagem'], 0, 30) . '...'; ?></small>
-                                    <?php else: ?>
-                                        <small id="msg_from_<?= $p['id_user'] ?>" class="title"><?= substr($p['mensagem'], 0, 30) . '...' ?></small><br>
-                                    <?php endif; ?>
+                                        <small 
+                                            <?php if ($p['is_read']): ?>
+                                             class="subject"   
+                                            <?php else: ?>
+                                            class="title"
+                                            <?php endif; ?>>
+                                                <?= substr($p['mensagem'], 0, 30) . '...'; ?>
+                                        </small>
                                 </div>
                             </div>
                         </div>
