@@ -57,10 +57,14 @@
                                     <center>
                                         <h4>User growth in <?= $country->name; ?></h4>
                                     </center>
-                                    <div ng-if="empty_user_gt" style="margin-bottom:-18em;margin-top:10em;">
-                                        <no-data></no-data>
+                                    <div class="titulosection">
+                                        <div class="proximo_evento">
+                                            <div ng-if="empty_user_gt" style="margin-bottom:-18em;margin-top:10em;">
+                                                <no-data></no-data>
+                                            </div>
+                                            <div id="user_growth" style="width: 100%"></div>
+                                        </div>
                                     </div>
-                                    <div id="user_growth" style="width: 100%"></div>
                                 </div>
                             </div>
                         </div>
@@ -91,10 +95,15 @@
                                     <center>
                                         <h4>Reaction growth in <?= $country->name; ?></h4>
                                     </center>
-                                    <div ng-if="empty_interaction_gt" style="margin-bottom:-18em;margin-top:10em;">
-                                        <no-data></no-data>
+
+                                    <div class="titulosection">
+                                        <div class="proximo_evento">
+                                            <div ng-if="empty_interaction_gt" style="margin-bottom:-18em;margin-top:10em;">
+                                                <no-data></no-data>
+                                            </div>
+                                            <div id="interaction_growth" style="width: 100%"> </div>
+                                        </div>
                                     </div>
-                                    <div id="interaction_growth" style="width: 100%"> </div>
                                 </div>
                             </div>
                         </div>
