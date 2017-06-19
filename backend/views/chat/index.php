@@ -31,11 +31,11 @@ $this->title = 'Chat';
                                 </div>
                                 <div class="col-md-10" style="margin-top: 15px;">
                                     <span><?= $p['nome']; ?></span>
-                                    <small class="pull-right time"><?= substr($p['data'], 0, 10); ?></small><br>
+                                    <small class="pull-right time"><?= substr($p['data'], 0, 10) . '...'; ?></small><br>
                                     <?php if ($p['is_read']): ?>
-                                        <small class="subject"><?= substr($p['mensagem'], 0, 30); ?></small>
+                                        <small class="subject"><?= substr($p['mensagem'], 0, 30) . '...'; ?></small>
                                     <?php else: ?>
-                                        <small class="title"><?= substr($p['mensagem'], 0, 30); ?></small><br>
+                                        <small class="title"><?= substr($p['mensagem'], 0, 30) . '...' ?></small><br>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ $this->title = 'Chat';
                 <div class="panel panel-body subject-text">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>{{ ::m.mensagem.substr(0, 30) + "..." }}</p>
+                            <p>{{ ::m.mensagem }}</p>
                         </div>
                     </div>
                 </div>
