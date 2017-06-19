@@ -84,6 +84,18 @@ class SiteController extends Controller {
                     $session->set('business', $b->id);
                     $session->set('business_name', $b->name);
                 }   
+            } else if($user->can('business-analytics') ||
+                      $user->can('business-producer') ||                    
+                      $user->can('business-accounting')) 
+            {
+
+                $b = Business::find()
+                    ->where(['country_id' => $user->identity->country_id])
+                    ->One();
+                if ($b) {
+                    $session->set('business', $b->id);
+                    $session->set('business_name', $b->name);
+                }   
             }
 
             return $this->goHome();

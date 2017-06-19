@@ -48,7 +48,7 @@ class AdminLoginForm extends Model {
             elseif (!$user || $user->status==0) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
-            elseif (!$user || $user->tipo_user != 10) {
+            elseif (!$user || ($user->tipo_user != 10 && $user->tipo_user != 11)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }

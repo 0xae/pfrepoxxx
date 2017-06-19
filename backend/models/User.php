@@ -90,7 +90,7 @@ class User extends \yii\db\ActiveRecord {
             $type = 3;
         } else if (in_array('business-analytics', $ary) ||
                    in_array('business-accounting', $ary) ||
-                   in_array('business-dashboard', $ary)) {
+                   in_array('business-producer', $ary)) {
             $type = 11;
         }
         $user = User::findModel($userId);
@@ -155,7 +155,7 @@ class User extends \yii\db\ActiveRecord {
             $user['role'] = 'admin';
         } else if ($appUser->can('business') ||
             $appUser->can('business-analytics') ||
-            $appUser->can('business-dashboard') ||
+            $appUser->can('business-producer') ||
             $appUser->can('business-accounting')) {
             $user['role'] = 'business';
         } else if ($appUser->can('producer')) {

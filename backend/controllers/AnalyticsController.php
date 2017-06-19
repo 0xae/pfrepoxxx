@@ -22,7 +22,7 @@ class AnalyticsController extends \yii\web\Controller {
                     [
                         'allow' => true,
                         'actions' => ['index', 'dashboard', 'analytics-data'],
-                        'roles' => ['passafree_staff', 'admin', 'business']
+                        'roles' => ['passafree_staff', 'admin', 'business', 'business-analytics', 'business-accounting', 'business-producer']
                     ],
                 ]
             ]

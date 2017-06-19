@@ -105,7 +105,7 @@ class BusinessController extends Controller {
             # 'business' => 'business',
             'business-analytics' => 'business-analytics',
             'business-accounting' => 'business-accounting',
-            'business-dashboard' => 'business-dashboard',
+            'business-producer' => 'business-producer',
         ];
 
         $_dataAccess = User::find()

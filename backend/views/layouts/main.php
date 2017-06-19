@@ -151,29 +151,36 @@ $this->registerJS($script);
                 </li>
             <?php endif; ?>
 
-            <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
-                  <?php if (($isAdmin=$user->can('admin')) || (($isBiz=$user->can('business')) && $session->has('business'))): ?>
-                      <a href="index.php?r=marca">
-                        <?php if ($isAdmin): ?>
-                            <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                        <?php elseif ($isBiz): ?>
-                            <span>My Producers</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                        <?php endif; ?>
+            <?php if (($isAdmin=$user->can('admin')) || 
+                (($isBiz=$user->can('business')) && $session->has('business')) ||
+                (($isBiz=$user->can('business-producer')) && $session->has('business')))
+                : ?>
+                <li class="<?php if (Yii::$app->controller->id == 'marca'){ echo 'active'; } ?> treeview">
+                          <a href="index.php?r=marca">
+                            <?php if ($isAdmin): ?>
+                                <span>Producer</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                            <?php elseif ($isBiz): ?>
+                                <span>My Producers</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                            <?php endif; ?>
+                          </a>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($user->can('admin') || $user->can('business') || $user->can('business-accounting')): ?>
+                <li class="<?php if (Yii::$app->controller->id == 'accounting'){ echo 'active'; } ?> treeview">
+                      <a href="index.php?r=accounting">
+                        <span>Accounting</span> <!--i class="fa fa-angle-left pull-right"></i-->
                       </a>
-                  <?php endif; ?>
-            </li>
+                </li>
+            <?php endif; ?>
 
-            <li class="<?php if (Yii::$app->controller->id == 'accounting'){ echo 'active'; } ?> treeview">
-                  <a href="index.php?r=accounting">
-                    <span>Accounting</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                  </a>
-            </li>
-
-            <li class="<?php if (Yii::$app->controller->id == 'analytics'){ echo 'active'; } ?> treeview">
-                  <a href="index.php?r=analytics">
-                    <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                  </a>
-            </li>
+            <?php if ($user->can('admin') || $user->can('business') || $user->can('business-analytics')): ?>
+                <li class="<?php if (Yii::$app->controller->id == 'analytics'){ echo 'active'; } ?> treeview">
+                      <a href="index.php?r=analytics">
+                        <span>Analytics</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                      </a>
+                </li>
+            <?php endif; ?>
 
             <?php if ($user->can('admin')): ?>
                     <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
@@ -184,11 +191,11 @@ $this->registerJS($script);
             <?php endif; ?>
             
             <?php if ($user->can('admin') || $user->can('business')): ?>
-            <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
-                <a href="index.php?r=settings/location">
-                <span>Location</span> <!--i class="fa fa-angle-left pull-right"></i-->
-                </a>
-            </li>
+                <li class="<?php if (Yii::$app->controller->id == 'settings'){ echo 'active'; } ?> treeview">
+                    <a href="index.php?r=settings/location">
+                    <span>Location</span> <!--i class="fa fa-angle-left pull-right"></i-->
+                    </a>
+                </li>
             <?php endif; ?>
           </ul>
         </section>

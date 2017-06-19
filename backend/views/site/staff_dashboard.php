@@ -65,7 +65,10 @@ $user = \Yii::$app->user;
             </div>
     <?php endif; ?>
 
-    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business')) :?>
+    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business') 
+                                    || $user->can('business-accounting') 
+                                    || $user->can('business-producer') 
+                                    || $user->can('business-analytics') ) :?>
         <div class="col-md-3">
             <div class="white_box">
                 <div class="row">
@@ -152,7 +155,10 @@ $user = \Yii::$app->user;
         </div>
     <?php endif; ?>
 
-    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business')) :?>
+    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business') 
+                                    || $user->can('business-accounting') 
+                                    || $user->can('business-producer') 
+                                    || $user->can('business-analytics') ) :?>
         <div class="col-md-6 ">
     <?php else: ?>
         <div class="col-md-12 ">
@@ -165,7 +171,10 @@ $user = \Yii::$app->user;
             </div>
         </div>
 
-    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business')) :?>
+    <?php if ($user->can('admin') || $user->can('passafree_staff') || $user->can('business') 
+                                    || $user->can('business-accounting') 
+                                    || $user->can('business-producer') 
+                                    || $user->can('business-analytics') ) :?>
         <div class="col-md-6 ">
             <div class="titulosection">
                 <div class="proximo_evento">
