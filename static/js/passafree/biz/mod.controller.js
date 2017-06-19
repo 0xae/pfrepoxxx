@@ -24,7 +24,7 @@
 
         $scope.deleteUser = function (userId, idx) {
             console.info("deleteng ", userId);
-            if (!confirm("Este utilizador sera eliminado permanentemente. Deseja continuar?"))
+            if (!confirm("This user will be permanently deleted. Are you sure?"))
                 return;
             bizService.deleteUser(userId)
             .then(function (resp){
