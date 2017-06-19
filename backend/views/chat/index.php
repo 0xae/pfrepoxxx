@@ -46,7 +46,7 @@ $this->title = 'Chat';
         </div>
 
         <div class="col-md-8">
-            <div class="message panel panel-default">
+            <div class="message panel panel-default" ng-if="profile">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-12">
