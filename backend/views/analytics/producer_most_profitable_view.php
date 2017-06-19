@@ -34,6 +34,22 @@ $session = \Yii::$app->session;
             <div id="most_profitable" style="width: 100%"></div>
         </div>
         <div class="col-md-12">
+              <button type="button" 
+                      ng-click="show_profitable_tbl=!show_profitable_tbl"
+                      class="criar btn btn-primary" 
+                      style="float: left"
+                      aria-expanded="false">
+                        <span  ng-if="show_profitable_tbl">
+                            Less details 
+                            <span style="font-size: 10px" class="glyphicon glyphicon-triangle-top"></span>
+                        </span>
+                        <span  ng-if="!show_profitable_tbl">
+                            More details 
+                            <span style="font-size: 10px" class="glyphicon glyphicon-triangle-bottom"></span>
+                        </span>
+              </button>
+        </div>
+        <div class="col-md-12" ng-if="show_profitable_tbl">
             <?php echo $this->render('producer_most_profitable_tbl_view'); ?>
         </div>
     </div>

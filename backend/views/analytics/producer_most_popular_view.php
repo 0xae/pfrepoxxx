@@ -13,6 +13,7 @@
             </p>
         </div>
 
+
         <div class="col-md-9">
             <center>
                 <h4>Total reaction per producer</h4>
@@ -24,6 +25,23 @@
         </div>
 
         <div class="col-md-12">
+              <button type="button" 
+                      ng-click="show_popular_tbl=!show_popular_tbl"
+                      class="criar btn btn-primary dropdown-toggle" 
+                      style="float: left"
+                      aria-expanded="false">
+                        <span ng-if="show_popular_tbl">
+                            Less details 
+                            <span style="font-size: 10px" class="glyphicon glyphicon-triangle-top"></span>
+                        </span>
+                        <span  ng-if="!show_popular_tbl">
+                            More details 
+                            <span style="font-size: 10px" class="glyphicon glyphicon-triangle-bottom"></span>
+                        </span>
+              </button>
+        </div>
+
+        <div class="col-md-12" ng-if="show_popular_tbl">
             <?php echo $this->render('producer_most_popular_tbl_view'); ?>
         </div>
     </div>

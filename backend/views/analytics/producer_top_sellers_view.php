@@ -24,6 +24,22 @@
         </div>
 
         <div class="col-md-12">
+              <button type="button" 
+                      ng-click="show_topseller_tbl=!show_topseller_tbl"
+                      class="criar btn btn-primary dropdown-toggle" 
+                      style="float: left"
+                      aria-expanded="false">
+                        <span  ng-if="show_topseller_tbl">
+                            Less details 
+                            <span style="font-size: 10px" class="glyphicon glyphicon-triangle-top"></span>
+                        </span>
+                        <span  ng-if="!show_topseller_tbl">
+                            More details 
+                            <span style="font-size: 10px" class="glyphicon glyphicon-triangle-bottom"></span>
+                        </span>
+              </button>
+        </div>
+        <div class="col-md-12" ng-if="show_topseller_tbl">
             <?php echo $this->render('producer_top_sellers_tbl_view'); ?>
         </div>
     </div>
