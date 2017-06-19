@@ -55,11 +55,11 @@ if (!$user->can('admin') && !$user->can('passafree_staff')) {
 						  <ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Info</a></li>
 							<li role="presentation"><a href="#privacy" aria-controls="privacy" role="tab" data-toggle="tab">Privacy Policy</a></li>
-                            <?php if (isset($producers) && !empty($producers)): ?>
-							<li role="presentation"><a href="#access" aria-controls="profile" role="tab" data-toggle="tab">Producers</a></li>
-                            <?php endif; ?>
                             <?php if (!$model->isNewRecord): ?>
 							<li role="presentation"><a href="#control" aria-controls="control" role="tab" data-toggle="tab">Access Control</a></li>
+                            <?php endif; ?>
+                            <?php if (isset($producers) && !empty($producers)): ?>
+							<li role="presentation"><a href="#access" aria-controls="profile" role="tab" data-toggle="tab">Producers</a></li>
                             <?php endif; ?>
 						  </ul>
 						  <!-- Tab panes -->

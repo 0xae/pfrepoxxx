@@ -58,7 +58,12 @@ $model = new BizUserForm;
             <div class="panel-body">
                 <div class="message-box ">
                     <div class="row">
-                        <div class="col-md-10" style="padding: 15px;margin-left: 25px;">
+                        <div class="col-md-2" style="">
+                            <div class="text-center box_icon">
+                                <i class="overview_icons overall_users">business</i>
+                            </div>
+                        </div>
+                        <div class="col-md-10" style="padding: 15px;margin-left:-40px;">
                             <div><?= $v->email; ?></div>
                             <span><?= $v->username; ?></span>
                             <br/>
@@ -76,7 +81,12 @@ $model = new BizUserForm;
             <div class="panel-body">
                 <div class="message-box ">
                     <div class="row">
-                        <div class="col-md-10" style="padding: 15px;margin-left: 25px;">
+                        <div class="col-md-2" style="padding:10px;">
+                            <div class="text-center box_icon">
+                                <i class="overview_icons overall_users">business</i>
+                            </div>
+                        </div>
+                        <div class="col-md-10" style="padding: 15px;margin-left:-40px;">
                             <div>{{ ::m.email }}</div>
                             <span>{{ ::m.username }}</span>
                             <br/>
