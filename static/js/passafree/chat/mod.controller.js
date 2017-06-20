@@ -10,9 +10,8 @@
 
         $scope.loadMessagesFrom = function (userId, c, isUnread) {
             currentUser = userId;
-            if (c) {
-                c.is_read = true;
-            }
+            $scope.currentUser = userId;
+            if (c) { c.is_read = true; }
 
             chatService.fetchMessagesFrom(userId, isUnread)
             .then(function (data){
