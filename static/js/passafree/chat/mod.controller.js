@@ -31,7 +31,7 @@
                 };
 
                 data.forEach(messageTimmingSet);
-                if ($scope.messages) {
+                if ($scope.messages && !c) {
                     $scope.messages = data.concat($scope.messages);
                 } else {
                     $scope.messages = data;
