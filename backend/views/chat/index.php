@@ -22,23 +22,23 @@ $this->title = 'Chat';
 
             <div class="panel-body">
                 <a ng-repeat="c in conversations" ng-click="loadMessagesFrom(c.id_user, c)" href="javascript:void(0)">
-                        <div class="message-box ">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="perfil">
-                                        <span class="img-rounded"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-10" style="margin-top: 15px;">
-                                    <span ng-class="{'subject' : c.is_read, 'title': !c.is_read}">{{ c.nome }}</span>
-                                    <small class="pull-right time">{{ c.data }}</small><br>
-                                    <small ng-class="{'subject' : c.is_read, 'title': !c.is_read}">
-                                        {{ c.mensagem.substr(0,30) + "..." }}
-                                    </small>
+                    <div class="message-box ">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="perfil">
+                                    <img ng-src="../passafree_uploads/{{c.foto}}" class="img-rounded" />
                                 </div>
                             </div>
+                            <div class="col-md-10" style="margin-top: 15px;">
+                                <span ng-class="{'subject' : c.is_read, 'title': !c.is_read}">{{ c.nome }}</span>
+                                <small class="pull-right time">{{ c.data }}</small><br>
+                                <small ng-class="{'subject' : c.is_read, 'title': !c.is_read}">
+                                    {{ c.mensagem.substr(0,30) + "..." }}
+                                </small>
+                            </div>
                         </div>
-                    </a>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -50,7 +50,7 @@ $this->title = 'Chat';
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="perfil">
-                                        <img src="img/jorge.jpg" alt="" class="img-rounded"/>
+                                        <img ng-src="../passafree_uploads/{{profile.foto}}" class="img-rounded" />
                                     </div>
                                 </div>
                                 <div class="col-md-10">
