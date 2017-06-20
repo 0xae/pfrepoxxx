@@ -32,14 +32,10 @@
         }
 
         function fetchNewMessages() {
+            $scope.loadMessagesFrom(currentUser);
             chatService.fetchUnread()
             .then(function (data){
                 if (data.length) {
-                    // if (currentUser) {
-                    //     $scope.messages = data.concat($scope.messages);
-                    //     return;
-                    // }
-                    
                     // new messages
                     var ns = [];
                     _.forEach(data, function (d){
@@ -55,6 +51,7 @@
                         });
 
                         if (!found) {
+                            d.is_read = false;
                             ns.push(d);
                         }
                     });
