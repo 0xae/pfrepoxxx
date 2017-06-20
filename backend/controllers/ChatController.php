@@ -32,11 +32,7 @@ class ChatController extends Controller {
     }
 
     public function actionIndex() {
-        $session = \Yii::$app->session;
-        $bizId = $session->get('business');
-        $data = ChatMessage::fetchBizMessages($bizId, false);
-
-        return $this->render('index', ['models' => $data]);
+        return $this->render('index', []);
     }
 
     public function actionConversations() {

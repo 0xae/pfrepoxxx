@@ -8,8 +8,9 @@
             m.timming = timming || moment(m.data).format("YYYY-MM-DD");
         }
 
-        $scope.loadMessagesFrom = function (userId) {
+        $scope.loadMessagesFrom = function (userId, c) {
             currentUser = userId;
+            c.is_read = true;
             chatService.fetchMessagesFrom(userId)
             .then(function (data){
                 $scope.profile = {
@@ -37,10 +38,15 @@
                 if (data.length) {
                     data.forEach(messageTimmingSet);
                     $scope.messages = data.concat($scope.messages);
-                    var lastMessage = data[0];
-                } else {
-                    console.info("no messages from " + $scope.profile.nome);
-                }
+                    var topMessage = data[0];
+                    $scope.conversations.forEach(function (c) {
+                        if (c.id_user == currentUser) {
+                            c.is_read = false;
+                            c.mensagem = topMessage.mensagem;
+                            c.data = topMessage.data;
+                        }
+                    });
+                } 
             });
         }
 
@@ -49,7 +55,7 @@
         chatService.fetchConversations()
         .then(function (list) {
             $scope.conversations = list;
-            console.info(list);
         });
     }]);
 })();
+

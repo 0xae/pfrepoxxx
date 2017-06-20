@@ -21,7 +21,7 @@ $this->title = 'Chat';
             </div>
 
             <div class="panel-body">
-                <a ng-repeat="c in conversations" ng-click="loadMessagesFrom(c.id_user)" href="javascript:void(0)">
+                <a ng-repeat="c in conversations" ng-click="loadMessagesFrom(c.id_user, c)" href="javascript:void(0)">
                         <div class="message-box ">
                             <div class="row">
                                 <div class="col-md-2">
