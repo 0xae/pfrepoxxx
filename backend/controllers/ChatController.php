@@ -60,11 +60,24 @@ class ChatController extends Controller {
     }
 
     public function actionFrom($id) {
+        $isUnread = @$_GET['unread'];
         $session = \Yii::$app->session;
         $bizId = $session->get('business');
         $userId = $id;
         $data = ChatMessage::fetchAllMessagesFrom($bizId, $userId);
-        ChatMessage::updateRead($bizId, $userId);
+
+        if ($isUnread == '1') {
+            $filters = [];
+            foreach ($data as $k=>$v) {
+                if ($v['is_read'] == '0') {
+                    $filters[] = $v;
+                }
+            }
+            $data = $filters;
+        } 
+        if (!empty($data)) {
+            ChatMessage::updateRead($bizId, $userId);
+        }
 
         return json_encode($data);
     }

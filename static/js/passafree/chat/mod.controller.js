@@ -8,14 +8,18 @@
             m.timming = timming || moment(m.data).format("YYYY-MM-DD");
         }
 
-        $scope.loadMessagesFrom = function (userId, c) {
+        $scope.loadMessagesFrom = function (userId, c, isUnread) {
             currentUser = userId;
             if (c) {
                 c.is_read = true;
             }
 
-            chatService.fetchMessagesFrom(userId)
+            chatService.fetchMessagesFrom(userId, isUnread)
             .then(function (data){
+                if (data.length == 0) {
+                    return;
+                }
+
                 $scope.profile = {
                     nome: data[0].nome,
                     email: data[0].email,
@@ -27,12 +31,16 @@
                 };
 
                 data.forEach(messageTimmingSet);
-                $scope.messages = data;
+                if ($scope.messages) {
+                    $scope.messages = data.concat($scope.messages);
+                } else {
+                    $scope.messages = data;
+                }
             });
         }
 
         function fetchNewMessages() {
-            $scope.loadMessagesFrom(currentUser);
+            $scope.loadMessagesFrom(currentUser, null, true);
             chatService.fetchUnread()
             .then(function (data){
                 if (data.length) {
@@ -62,7 +70,6 @@
         }
 
         setInterval(fetchNewMessages, 3000);
-
         chatService.fetchConversations()
         .then(function (list) {
             $scope.conversations = list;

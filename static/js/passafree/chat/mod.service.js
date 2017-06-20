@@ -25,8 +25,12 @@
 
         return {
             prettyDate: prettyDate,
-            fetchMessagesFrom: function(userId) { 
-                return $http.get(API+"/from&id="+userId).then(function (resp){ return resp.data; });
+            fetchMessagesFrom: function(userId, isUnread) { 
+                var url = API+"/from&id="+userId;
+                 if (isUnread) {
+                     url += '&unread=1'
+                 }
+                return $http.get(url).then(function (resp){ return resp.data; });
             },
 
             fetchUnreadFrom: function (userId) {
