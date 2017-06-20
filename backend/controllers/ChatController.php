@@ -18,7 +18,10 @@ class ChatController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'poll', 'from', 'unread-from', 'conversations'],
+                        'actions' => [ 'index', 'poll', 'from', 
+                                       'unread-from', 'conversations',
+                                       'unread'
+                                     ],
                         'roles' => ['business']
                     ],
                     [
@@ -85,6 +88,21 @@ class ChatController extends Controller {
 
         if (!empty($filters)) {
             ChatMessage::updateRead($bizId, $userId);
+        }
+
+        return json_encode($filters);
+    }
+
+    public function actionUnread() {
+        $session = \Yii::$app->session;
+        $bizId = $session->get('business');
+        $data = ChatMessage::fetchBizMessages($bizId);
+
+        $filters = [];
+        foreach ($data as $k=>$v) {
+            if ($v['is_read'] == '0') {
+                $filters[] = $v;
+            }
         }
 
         return json_encode($filters);

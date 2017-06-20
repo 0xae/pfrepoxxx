@@ -10,7 +10,10 @@
 
         $scope.loadMessagesFrom = function (userId, c) {
             currentUser = userId;
-            c.is_read = true;
+            if (c) {
+                c.is_read = true;
+            }
+
             chatService.fetchMessagesFrom(userId)
             .then(function (data){
                 $scope.profile = {
@@ -29,23 +32,34 @@
         }
 
         function fetchNewMessages() {
-            if (!currentUser) {
-                return;
-            }
-
-            chatService.fetchUnreadFrom(currentUser)
+            chatService.fetchUnread()
             .then(function (data){
                 if (data.length) {
-                    data.forEach(messageTimmingSet);
-                    $scope.messages = data.concat($scope.messages);
-                    var topMessage = data[0];
-                    $scope.conversations.forEach(function (c) {
-                        if (c.id_user == currentUser) {
-                            c.is_read = false;
-                            c.mensagem = topMessage.mensagem;
-                            c.data = topMessage.data;
+                    // if (currentUser) {
+                    //     $scope.messages = data.concat($scope.messages);
+                    //     return;
+                    // }
+                    
+                    // new messages
+                    var ns = [];
+                    _.forEach(data, function (d){
+                        messageTimmingSet(d);
+                        var found=false;
+                        _.forEach($scope.conversations,function (c) {
+                            if (c.id_user == d.id_user) {
+                                c.is_read = false;
+                                c.mensagem = d.mensagem;
+                                c.data = d.data;
+                                found = true;
+                            }
+                        });
+
+                        if (!found) {
+                            ns.push(d);
                         }
                     });
+
+                    $scope.conversations = ns.concat($scope.conversations);
                 } 
             });
         }
@@ -55,6 +69,9 @@
         chatService.fetchConversations()
         .then(function (list) {
             $scope.conversations = list;
+            if (list.length) {
+                $scope.loadMessagesFrom(list[0].id_user);
+            }
         });
     }]);
 })();

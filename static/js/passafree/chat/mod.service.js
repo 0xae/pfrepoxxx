@@ -23,7 +23,7 @@
                 day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
         }
 
-        var s = {
+        return {
             prettyDate: prettyDate,
             fetchMessagesFrom: function(userId) { 
                 return $http.get(API+"/from&id="+userId).then(function (resp){ return resp.data; });
@@ -35,10 +35,12 @@
 
             fetchConversations: function () {
                 return $http.get(API+"/conversations").then(function (resp){ return resp.data; });
+            },
+
+            fetchUnread: function () {
+                return $http.get(API+"/unread").then(function (resp){ return resp.data; });
             }
         };
-
-        return s;
     }]);
 })();
 

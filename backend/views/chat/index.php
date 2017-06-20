@@ -30,7 +30,7 @@ $this->title = 'Chat';
                                     </div>
                                 </div>
                                 <div class="col-md-10" style="margin-top: 15px;">
-                                    <span>{{ c.nome }}</span>
+                                    <span ng-class="{'subject' : c.is_read, 'title': !c.is_read}">{{ c.nome }}</span>
                                     <small class="pull-right time">{{ c.data }}</small><br>
                                     <small ng-class="{'subject' : c.is_read, 'title': !c.is_read}">
                                         {{ c.mensagem.substr(0,30) + "..." }}
