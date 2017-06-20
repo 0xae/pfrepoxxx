@@ -45,5 +45,11 @@
         }
 
         setInterval(fetchNewMessages, 3000);
+
+        chatService.fetchConversations()
+        .then(function (list) {
+            $scope.conversations = list;
+            console.info(list);
+        });
     }]);
 })();

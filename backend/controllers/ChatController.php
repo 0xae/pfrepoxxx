@@ -18,7 +18,7 @@ class ChatController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'poll', 'from', 'unread-from'],
+                        'actions' => ['index', 'poll', 'from', 'unread-from', 'conversations'],
                         'roles' => ['business']
                     ],
                     [
@@ -37,6 +37,14 @@ class ChatController extends Controller {
         $data = ChatMessage::fetchBizMessages($bizId, false);
 
         return $this->render('index', ['models' => $data]);
+    }
+
+    public function actionConversations() {
+        $session = \Yii::$app->session;
+        $bizId = $session->get('business');
+        $data = ChatMessage::fetchBizMessages($bizId, false);
+
+        echo json_encode($data);
     }
 
     public function actionPoll() {

@@ -19,32 +19,26 @@ $this->title = 'Chat';
                     </div>
                 </div>
             </div>
-            <div class="panel-body" ng-init="loadMessagesFrom(<?= @$models[0]['id_user'] ?>)">
-                <?php foreach($models as $p): ?>
-                    <a href="javascript:void(0)" ng-click="loadMessagesFrom(<?=  $p['id_user'] ?>)">
+
+            <div class="panel-body">
+                <a ng-repeat="c in conversations" ng-click="loadMessagesFrom(c.id_user)" href="javascript:void(0)">
                         <div class="message-box ">
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="perfil">
-                                    <span class="img-rounded"></span>
+                                        <span class="img-rounded"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-10" style="margin-top: 15px;">
-                                    <span><?= $p['nome']; ?></span>
-                                    <small class="pull-right time"><?= substr($p['data'], 0, 10) . '...'; ?></small><br>
-                                        <small 
-                                            <?php if ($p['is_read']): ?>
-                                             class="subject"   
-                                            <?php else: ?>
-                                            class="title"
-                                            <?php endif; ?>>
-                                                <?= substr($p['mensagem'], 0, 30) . '...'; ?>
-                                        </small>
+                                    <span>{{ c.nome }}</span>
+                                    <small class="pull-right time">{{ c.data }}</small><br>
+                                    <small ng-class="{'subject' : c.is_read, 'title': !c.is_read}">
+                                        {{ c.mensagem.substr(0,30) + "..." }}
+                                    </small>
                                 </div>
                             </div>
                         </div>
                     </a>
-                <?php endforeach; ?>
             </div>
         </div>
 

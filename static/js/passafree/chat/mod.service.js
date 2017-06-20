@@ -2,7 +2,7 @@
     angular.module('chatModule')
     .factory('ChatService', ['$http', function ($http) {
         var API = "./index.php?r=chat";
-        function prettyDate(time){
+        function prettyDate(time) {
             var d = new Date();
             var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," "));
             var diff = ((d.getTime() - date.getTime()) / 1000);
@@ -28,8 +28,13 @@
             fetchMessagesFrom: function(userId) { 
                 return $http.get(API+"/from&id="+userId).then(function (resp){ return resp.data; });
             },
+
             fetchUnreadFrom: function (userId) {
                 return $http.get(API+"/unread-from&id="+userId).then(function (resp){ return resp.data; });
+            },
+
+            fetchConversations: function () {
+                return $http.get(API+"/conversations").then(function (resp){ return resp.data; });
             }
         };
 
