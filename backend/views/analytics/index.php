@@ -8,3 +8,5 @@ $user = Yii::$app->user;
     <?php echo $this->render('user_view', ['model' => $model, 'country'=>$country]); ?>
     <?php echo $this->render('producer_view', ['model' => $model, 'country'=>$country]); ?>
 </div>
+
+
