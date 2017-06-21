@@ -96,6 +96,8 @@ class MarcaController extends Controller {
                                                );
             if (!$ret || empty($ret)) {
                 $ret = null;
+            } else {
+                $ret = $ret[0];
             }
         }
 
