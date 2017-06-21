@@ -146,3 +146,44 @@ $this->registerJs($s);
 	</div>
     -->
 </div>
+
+
+<div class="container-fluid pagebusiness pageanalitics">
+	<div class="row">
+		<div class="col-md-12 titulosection">
+			<div class="proximo_evento">
+				<h4><div class="borderlefttitlo"></div><span>Revenue Breakdown</span></h4>
+			</div>
+		</div>
+	</div>
+
+	<?php /*?>TABELA<?php */?>
+	<div class="col-md-12 contentbox">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<table class="table table-striped">
+					<thead>
+						<tr class="active">
+							<th># Id</th>
+							<th>Name</th>
+							<th>Business Revenue </th>
+							<th>Passafree Revenue </th>
+							<th>Gross Revenue</th>
+						</tr>
+					</thead>
+					<tbody>
+                        <?php foreach ($producers as $p): ?>
+                            <tr>
+                                <td class=""><?= $p['producer_id'] ?></td>
+                                <td class=""><?= $p['producer_name'] ?></td>
+                                <td style="text-align:center;" class="money"><?= $p['business_revenue'] ?></td>
+                                <td style="text-align:center;" class="money"><?= $p['passafree_revenue'] ?></td>
+                                <td style="text-align:center;" class="money"><?= $p['business_gross_revenue'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</DIV>
