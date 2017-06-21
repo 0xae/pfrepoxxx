@@ -1,13 +1,13 @@
 <div role="tabpanel" class="fade tab-pane" id="producergrowth" style="">
     <div class="row" style="padding:15px" >
-        <div class="col-md-10">
+        <div class="col-md-12">
             <center>
                 <h4>Producer growth</h4>
             </center>
             <div ng-if="no_sellers_data" style="margin-bottom:-18em;margin-top:10em;">
                 <no-data></no-data>
             </div>
-            <div id="producer_growth" style="width: 100%"></div>
+            <div id="producer_growth" style=""></div>
         </div>
     </div>
 </div>

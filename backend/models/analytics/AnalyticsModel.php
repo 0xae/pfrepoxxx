@@ -5,7 +5,7 @@ class AnalyticsModel {
     public function getUserStatistics($appUser, $start, $end, $countryId, $bizId) {
         $data = [
             'user_growth' => $this->getUserGrowth($start, $end, $countryId),
-            'reaction_growth' => $this->getReactionGrowth($start, $end, $bizId)
+            'reaction_growth' => $this->getReactionGrowth($start, $end, $bizId),
         ];
         return $data;
     }
@@ -15,6 +15,9 @@ class AnalyticsModel {
         $data = [
             'most_popular' => $this->getProducerReaction($start, $end, $bizId),
             'top_seller' => $this->getProducerTopSales($start, $end, $bizId),
+            'revenue_growth' => $this->getRevenueGrowth($start, $end, $bizId),
+            'producer_growth' => $this->getProducerGrowth($start, $end, $bizId),
+            'events_growth' => $this->getEventsGrowth($start, $end, $bizId),
             'most_profitable' => $this->getProducerTopProfitable($appUser, $start, $end, $bizId)
         ];
         return $data;
@@ -112,5 +115,50 @@ class AnalyticsModel {
                       ->filter('business_id', '=', $bizId)
                       ->groupBy('evento_data')
                       ->fetch();
+    }
+
+    private function getRevenueGrowth($start, $end, $bizId) {
+        $fields = [
+            'period',
+            'business_revenue' => 'round(sum(total_business_gross) * (business_percent/100))'
+        ];
+        return  Reports::model('bilhete_reports')
+                  ->fields($fields)
+                  ->params([':start'=>$start, ':end'=>$end])
+                  ->filter('business_id', '=', $bizId)
+                  ->groupBy('period')
+                  ->fetch();
+    }
+
+    private function getProducerGrowth($start, $end, $bizId) {
+        $fields = [
+            'period',
+            'total_producers' => 'count(1)'
+        ];
+
+        return Reports::model("producer_report")
+                       ->fields($fields)
+                       ->filter('created_at', '>=', $start)
+                       ->filter('created_at', '<=', $end)
+                       ->filter('business_id', '=', $bizId)
+                       ->filter('marca_estado', '=', 1) 
+                       ->groupBy('period')
+                       ->fetch();
+    }
+
+    private function getEventsGrowth($start, $end, $bizId) {
+        $fields = [
+            'period',
+            'total_events' => 'count(1)'
+        ];
+
+        return Reports::model("evento_report")
+                ->fields($fields)
+                ->filter('business_id', '=', $bizId)
+                ->filter('evento_estado', '=', 1)
+                ->filter('evento_data', '>=', $start)
+                ->filter('evento_data', '<=', $end)
+                ->groupBy('period')
+                ->fetch();
     }
 }

@@ -36,7 +36,7 @@ class Marca extends \yii\db\ActiveRecord {
             [['nome', 'business_id', 'email'], 'required'],
             [['estado', 'business_id'], 'integer'],
             [['email'], 'email'],
-            [['telefone'], 'string', 'max' => 45],
+            [['telefone', 'created_at'], 'string', 'max' => 45],
             [['nome', 'logo', 'sede', 'email', 'slogan'], 'string', 'max' => 255],
             [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpeg, jpg', 'checkExtensionByMimeType'=>true, 'maxFiles' => 1],
             ['email', 'unique',  'message' => 'This email address has already been taken.'],

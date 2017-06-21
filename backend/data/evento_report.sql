@@ -15,6 +15,7 @@ SELECT
 	E.nome AS evento_nome,
     E.data AS evento_data,
     E.estado as evento_estado,
+    concat(year(E.data),'-',month(E.data)) as period,
 
     (select count(1) from gosto 
         where evento_idevento = E.idevento

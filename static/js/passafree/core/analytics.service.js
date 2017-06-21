@@ -33,7 +33,6 @@
 
         function getTimeline(start, end) {
             var ts = genTS(start, end);
-            console.info(ts);
             var dict = {};
             ts.forEach(function (t) {
                 var k = t.format('YYYY-MM-DD');

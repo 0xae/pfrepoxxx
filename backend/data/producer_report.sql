@@ -3,6 +3,8 @@
 		M.nome as marca_nome,
 		M.logo as marca_picture,
 		M.estado as marca_estado,
+        M.created_at,
+        concat(year(M.created_at),'-',month(M.created_at)) as period,
 
 		BZ.id as business_id,
 		BZ.name as business_name,
@@ -15,3 +17,4 @@
 	FROM produtor P
 	JOIN marca M ON M.idmarca = P.marca_idmarca
 	JOIN business BZ on BZ.id = M.business_id
+

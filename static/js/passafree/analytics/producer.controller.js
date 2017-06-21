@@ -10,6 +10,9 @@
                 loadMostPopularG(pdata.most_popular);
                 loadTopSellersG(pdata.top_seller);
                 loadMostProfitableG(pdata.most_profitable);
+                loadProducerGrowth(pdata.producer_growth);
+                loadRevenueGrowth(pdata.revenue_growth);
+                loadEventGrowth(pdata.events_growth);
             });
         }
 
@@ -47,11 +50,13 @@
             var ks = data.map(function (d) { return d.producer_name; });
             var vs = data.map(function (d) { return parseInt(d.gross_revenue); });
             var total = _.sumBy(vs, function (e) { return e; });
+
             if (!total) {
                 $scope.no_sellers_data = true;
             } else {
                 $scope.no_sellers_data = false;
             }
+
             $scope.topSellers = data;
             LoadBarchart('#top_sellers', '', ks, vs);
         }
@@ -60,6 +65,7 @@
             var ks = data.map(function (d) { return d.producer_name; });
             var vs = data.map(function (d) { return parseInt(d.context_revenue); });
             var total = _.sumBy(vs, function (e) { return e; });
+
             if (!total) {
                 $scope.no_profit_data = true;
             } else {
@@ -68,6 +74,25 @@
 
             $scope.topProfits = data;
             LoadBarchart('#most_profitable', '', ks, vs);
+        }
+
+        function loadProducerGrowth(data) {
+            console.info("data is: ", data);
+            var cats = data.map(function (e) { return e.period; });
+            var data = data.map(function (e) { return parseInt(e.total_producers); })
+            LoadGrowthSeries('producer_growth', cats, '# Producers', data);
+        }
+
+        function loadRevenueGrowth(data) {
+            var cats = data.map(function (e) { return e.period; });
+            var data = data.map(function (e) { return parseInt(e.business_revenue); })
+            LoadGrowthSeries('revenue_growth', cats, 'Business Revenue', data);
+        }
+
+        function loadEventGrowth(data) {
+            var cats = data.map(function (e) { return e.period; });
+            var data = data.map(function (e) { return parseInt(e.total_events); })
+            LoadGrowthSeries('event_growth', cats, '# Events', data);
         }
 
         var thisWeek = analyticsCore.thisWeek();
@@ -80,6 +105,8 @@
             var conf = {start: start, end: end};
             loadData(conf);
         });
+
+
     }]);
 })();
 

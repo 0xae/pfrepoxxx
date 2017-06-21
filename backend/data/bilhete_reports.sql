@@ -20,10 +20,10 @@ SELECT
 		B.nome_bilhete as bilhete_nome,
 		B.preco as bilhete_preco,
 		B.stock as bilhete_stock,
-        B.comprado as bilhete_comprado,
         B.business_percent as business_bilhete_percent,
 
 		CB.dataCompra AS date,
+        concat(year(dataCompra), '-', month(dataCompra)) as period,
 		CB.business_percent as business_compra_percent,
 
 		/* some aggs */
@@ -50,8 +50,8 @@ JOIN evento E ON E.idevento = B.evento_idevento
 JOIN produtor P ON P.idprodutor = E.produtor_idprodutor
 JOIN marca M ON M.idmarca = P.marca_idmarca
 JOIN business BIZ ON BIZ.id = M.business_id
-LEFT JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete AND( CB.dataCompra >= :start and CB.dataCompra <= :end)
+JOIN compra_bilhete CB ON CB.bilhete_idbilhete = B.idbilhete AND( CB.dataCompra >= :start and CB.dataCompra <= :end)
 
-GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete
+GROUP BY BIZ.id, M.idmarca, E.idevento, B.idbilhete, CB.dataCompra
 ORDER BY E.idevento ASC
 

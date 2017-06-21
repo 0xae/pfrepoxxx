@@ -11,7 +11,6 @@ angular.module('coreModule', [])
                 '    </div>'+
                 '</center>',
         link: function (scope, element, attrs) {
-            console.log("inited ");
         }
     }
 })
