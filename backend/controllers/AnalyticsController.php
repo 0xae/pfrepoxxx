@@ -84,3 +84,4 @@ class AnalyticsController extends \yii\web\Controller {
         return $_GET[$param];
     }
 }
+

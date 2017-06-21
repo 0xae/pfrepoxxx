@@ -2,7 +2,6 @@
 $user = \Yii::$app->user;
 $session = \Yii::$app->session;
 ?>
-
 <div class="row">
     <div class="col-md-12 titulosection">
         <div class="proximo_evento">
@@ -53,7 +52,6 @@ $session = \Yii::$app->session;
                         <?php echo $this->render('producer_most_popular_view'); ?>
                         <?php echo $this->render('producer_top_sellers_view'); ?>
                         <?php echo $this->render('producer_most_profitable_view'); ?>
-
                         <?php echo $this->render('producer_revenue_growth'); ?>
                         <?php echo $this->render('producer_growth'); ?>
                         <?php echo $this->render('producer_event_growth'); ?>
@@ -63,3 +61,4 @@ $session = \Yii::$app->session;
         </div>
     </div>
 </div>
+
