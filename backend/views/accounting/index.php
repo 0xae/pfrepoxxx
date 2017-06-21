@@ -15,6 +15,9 @@ if (!empty($_data)) {
         $accounting = $_data['business_revenue'][0];
     }
 }
+
+$session = Yii::$app->session;
+
 ?>
 
 <style>

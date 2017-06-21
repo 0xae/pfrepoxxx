@@ -2,6 +2,7 @@
 $user = \Yii::$app->user;
 $session = \Yii::$app->session;
 ?>
+
 <div class="row">
     <div class="col-md-12 titulosection">
         <div class="proximo_evento">
@@ -37,12 +38,25 @@ $session = \Yii::$app->session;
                         <li role="presentation"><a href="#maisrendimento" aria-controls="profile" role="tab" data-toggle="tab">
                            Most profitable
                         </a></li>
+                        <li role="presentation"><a href="#revenuegrowth" aria-controls="profile" role="tab" data-toggle="tab">
+                           Revenue Growth
+                        </a></li>
+                        <li role="presentation"><a href="#producergrowth" aria-controls="profile" role="tab" data-toggle="tab">
+                           Producer Growth
+                        </a></li>
+                        <li role="presentation"><a href="#eventgrowth" aria-controls="profile" role="tab" data-toggle="tab">
+                           Event Growth
+                        </a></li>
                     </ul>
 
                     <div class="tab-content" style="padding:0px">
                         <?php echo $this->render('producer_most_popular_view'); ?>
                         <?php echo $this->render('producer_top_sellers_view'); ?>
                         <?php echo $this->render('producer_most_profitable_view'); ?>
+
+                        <?php echo $this->render('producer_revenue_growth'); ?>
+                        <?php echo $this->render('producer_growth'); ?>
+                        <?php echo $this->render('producer_event_growth'); ?>
                     </div>
                 </div>
             </div>
