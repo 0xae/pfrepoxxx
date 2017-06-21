@@ -93,7 +93,10 @@ class MarcaController extends Controller {
             $ret = $service->getRevenuePerEvent(User::getAppUser(),
                                                 $start, $end,
                                                 $destaque->idevento
-                                               )[0];
+                                               );
+            if (!$ret || empty($ret)) {
+                $ret = null;
+            }
         }
 
         return $this->render('view', [

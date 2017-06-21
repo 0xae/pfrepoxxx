@@ -136,15 +136,12 @@ function LoadGrowthSeries(el, cats, unit, data)  {
             verticalAlign: 'middle'
         },
          xAxis: {
-           // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-           //              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
              categories: cats
         },
         series: [{
             name: unit,
             data: data
         }]
-
     });
 }
 

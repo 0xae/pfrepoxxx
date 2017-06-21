@@ -30,6 +30,7 @@
                         </div>
 
                         <div class="col-md-3 text-center"><br><br>
+                            <?php if ($stats): ?>
                             <div class="fundo_circle">
                                 <div class="c100 p50" style="margin-bottom: 13px">
                                     <span>
@@ -44,9 +45,11 @@
                                 </div>
                                 <span>Entrada</span>
                             </div>
+                            <?php endif; ?>
                         </div>
 
                         <div class="col-md-3 text-center"><br><br>
+                            <?php if ($stats): ?>
                             <div class="fundo_circle">
                                 <div class="c100 p50" style="margin-bottom:13px">
                                     <span>
@@ -61,6 +64,7 @@
                                 </div>
                                 <span>Stock</span>
                             </div>
+                            <?php endif; ?>
                         </div>
 
                     </div>

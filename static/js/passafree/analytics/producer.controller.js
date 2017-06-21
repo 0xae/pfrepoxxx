@@ -105,10 +105,6 @@
             var conf = {start: start, end: end};
             loadData(conf);
         });
-
-
-
-
     }]);
 })();
 

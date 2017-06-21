@@ -47,5 +47,7 @@ if (!empty($_dataTickets)) {
     <!-- .titulosection -->
     </div>
 <?php else: ?>
-    <h4><div class="borderlefttitlo"></div><span style="margin-left: 20px; font-size: 20px; color: #009447; font-weight: 700; font-family: 'DINBold'; text-transform: uppercase;">No Tickets found.</span></h4>
+    <h4><div class="borderlefttitlo"></div><span style="margin-left: 20px; font-size: 20px; color: #009447; font-weight: 700; font-family: 'DINBold'; text-transform: uppercase;">
+            No Data for analysis.
+    </span></h4>
 <?php endif; ?>
