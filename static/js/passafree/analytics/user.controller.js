@@ -32,12 +32,12 @@
             });
         }
 
-        var thisWeek = analyticsCore.thisWeek();
-        loadAnalyticsData(thisWeek.start, thisWeek.end);
+        var period = analyticsCore.getCashoutPeriod();
+        loadAnalyticsData(period.start, period.end);
 
         $('#daterange').daterangepicker({
-            "startDate": thisWeek.start,
-            "endDate": thisWeek.end,
+            "startDate": period.start,
+            "endDate": period.end,
             "linkedCalendars": false,
         }, function(start, end, label) {
             loadAnalyticsData(start, end);

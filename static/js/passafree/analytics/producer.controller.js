@@ -95,16 +95,18 @@
             LoadGrowthSeries('event_growth', cats, '# Events', data);
         }
 
-        var thisWeek = analyticsCore.thisWeek();
-        loadData(thisWeek);
+        var period = analyticsCore.getCashoutPeriod();
+        loadData(period);
         $('#producer_daterange').daterangepicker({
-            "startDate": thisWeek.start.format('MM/DD/YYYY'),
-            "endDate": thisWeek.end.format('MM/DD/YYYY'),
+            "startDate": period.start.format('MM/DD/YYYY'),
+            "endDate": period.end.format('MM/DD/YYYY'),
             "linkedCalendars": false,
         }, function(start, end, label) {
             var conf = {start: start, end: end};
             loadData(conf);
         });
+
+
 
 
     }]);

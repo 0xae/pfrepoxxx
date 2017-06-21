@@ -50,6 +50,20 @@
             return [m1,m2];
         }
 
+        function getCashoutPeriod() {
+            var start = $("#cashout_start").val();
+            var end = $("#cashout_end").val();
+
+            if (start == end && start == '0') {
+                return getWeek(moment());
+            } else {
+                return {
+                    start: moment(start),
+                    end: moment(end)
+                }
+            }
+        }
+
         function thisWeek() {
             var today = moment();
             var w = getWeek(today);
@@ -80,7 +94,8 @@
         return {
             generateTS: parseTimeseries,
             getWeek: getWeek,
-            thisWeek: thisWeek
+            thisWeek: thisWeek,
+            getCashoutPeriod: getCashoutPeriod
         };
     }]);
 })();
